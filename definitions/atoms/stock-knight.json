@@ -1,0 +1,21 @@
+{
+  "id": "stock-knight",
+  "name": "임시 기사",
+  "kind": "character",
+  "renderer": "stock-actor",
+  "assetPath": "characters/stock-knight/runtime/idle.png",
+  "pivot": [
+    12,
+    38
+  ],
+  "attachments": {
+    "hand": [
+      14,
+      -22
+    ],
+    "overhead": [
+      0,
+      -46
+    ]
+  }
+}

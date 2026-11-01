@@ -1,0 +1,81 @@
+{
+  "id": "brynhild",
+  "name": "브린휠드",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/brynhild/runtime/idle.png",
+  "portraitPath": "characters/brynhild/runtime/portrait.png",
+  "pivot": [
+    28,
+    49
+  ],
+  "frames": 4,
+  "fps": 6,
+  "attachments": {
+    "hand": [
+      0,
+      -36
+    ],
+    "overhead": [
+      0,
+      -52
+    ]
+  },
+  "animations": {
+    "idle": {
+      "path": "characters/brynhild/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        28,
+        49
+      ],
+      "loop": true
+    },
+    "move": {
+      "path": "characters/brynhild/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        30,
+        49
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/brynhild/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        34,
+        58
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        28,
+        -4
+      ]
+    },
+    "hit": {
+      "path": "characters/brynhild/runtime/hit.png",
+      "frames": 3,
+      "fps": 10.0,
+      "pivot": [
+        31,
+        48
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/brynhild/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        21,
+        45
+      ],
+      "loop": false
+    }
+  }
+}

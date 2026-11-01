@@ -1,0 +1,26 @@
+{
+  "id": "ghoul",
+  "name": "구울",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/ghoul/runtime/concept.png",
+  "pivot": [
+    35,
+    35
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/ghoul/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        35,
+        35
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "stock-slime",
+  "name": "임시 슬라임",
+  "kind": "monster",
+  "renderer": "effect",
+  "effectId": "critters/slime"
+}

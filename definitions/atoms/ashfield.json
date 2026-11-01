@@ -1,0 +1,7 @@
+{
+  "id": "ashfield",
+  "name": "잿빛 전장",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/ashfield/runtime/background.png"
+}

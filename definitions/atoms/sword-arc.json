@@ -1,0 +1,7 @@
+{
+  "id": "sword-arc",
+  "name": "검격",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "melee/sword-slash"
+}
