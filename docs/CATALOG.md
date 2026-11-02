@@ -1,6 +1,6 @@
 # Catalog
 
-247 effects in 22 categories. Every one is a file in
+248 effects in 22 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -403,3 +403,4 @@ Crimson eruptions, droplets and blood magic.
 | effect | id | | size | what it does |
 |---|---|---|---|---|
 | Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | Swelling crimson cracks erupt into a branching blood column; forty ballistic droplets splash into pools that dry inside a ground ring. |
+| Bleeding status | `blood/bleeding` | loop 1.2s | 64×72 | Torso beads fall and splash underfoot; stacks (0–8, default 1) increase frequency, and the supplied actor silhouette sets the source positions. |
