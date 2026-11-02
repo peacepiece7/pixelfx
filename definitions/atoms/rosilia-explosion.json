@@ -1,0 +1,8 @@
+{
+  "id": "rosilia-explosion",
+  "name": "로실리아 폭발탄 폭발",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "explosions/small-explosion",
+  "options": {}
+}

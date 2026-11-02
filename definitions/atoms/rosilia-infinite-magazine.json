@@ -1,0 +1,18 @@
+{
+  "id": "rosilia-infinite-magazine",
+  "name": "로실리아 무한탄창 유지",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "status/rosilia-infinite-magazine",
+  "options": {
+    "palette": [
+      "#251b19",
+      "#564239",
+      "#866a46",
+      "#b59a63",
+      "#ddc98a",
+      "#f7e9bd",
+      "#ffffff"
+    ]
+  }
+}
