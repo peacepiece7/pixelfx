@@ -1,0 +1,18 @@
+{
+  "id": "alasdair-basic",
+  "name": "알라스데어 기본공격",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "melee/heavy-cleave",
+  "options": {
+    "palette": [
+      "#2a0710",
+      "#5c0b1a",
+      "#8e1424",
+      "#c0202e",
+      "#e8483f",
+      "#ff8a6a",
+      "#fff1e8"
+    ]
+  }
+}

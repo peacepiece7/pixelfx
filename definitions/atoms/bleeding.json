@@ -1,0 +1,18 @@
+{
+  "id": "bleeding",
+  "name": "출혈 상태",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "blood/bleeding",
+  "options": {
+    "palette": [
+      "#2a0710",
+      "#5c0b1a",
+      "#8e1424",
+      "#c0202e",
+      "#e8483f",
+      "#ff8a6a",
+      "#fff1e8"
+    ]
+  }
+}

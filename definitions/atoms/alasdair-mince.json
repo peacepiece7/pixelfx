@@ -1,0 +1,18 @@
+{
+  "id": "alasdair-mince",
+  "name": "잘게다지기",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "melee/double-slash",
+  "options": {
+    "palette": [
+      "#2a0710",
+      "#5c0b1a",
+      "#8e1424",
+      "#c0202e",
+      "#e8483f",
+      "#ff8a6a",
+      "#fff1e8"
+    ]
+  }
+}
