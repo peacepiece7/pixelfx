@@ -1,0 +1,7 @@
+{
+  "id": "judgment-impact",
+  "name": "심판의 일격",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/ground-slam"
+}

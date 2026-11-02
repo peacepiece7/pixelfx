@@ -1,0 +1,68 @@
+{
+  "id": "rodair",
+  "name": "로데어",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/rodair/runtime/idle.png",
+  "pivot": [
+    28,
+    50
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/rodair/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        28,
+        50
+      ],
+      "loop": true
+    },
+    "move": {
+      "path": "characters/rodair/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        43,
+        53
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/rodair/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        50,
+        54
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        37,
+        -26
+      ]
+    },
+    "hit": {
+      "path": "characters/rodair/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        36,
+        45
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/rodair/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        49,
+        41
+      ],
+      "loop": false
+    }
+  }
+}

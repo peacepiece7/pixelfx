@@ -1,0 +1,68 @@
+{
+  "id": "fame",
+  "name": "페임",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/fame/runtime/idle.png",
+  "pivot": [
+    21,
+    46
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/fame/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        21,
+        46
+      ],
+      "loop": true
+    },
+    "move": {
+      "path": "characters/fame/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        30,
+        44
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/fame/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        24,
+        45
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        40,
+        -25
+      ]
+    },
+    "hit": {
+      "path": "characters/fame/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        28,
+        44
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/fame/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        37,
+        44
+      ],
+      "loop": false
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "id": "akasha",
+  "name": "아카아샤",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/akasha/runtime/idle.png",
+  "pivot": [
+    22,
+    49
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/akasha/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        22,
+        49
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/akasha/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        26,
+        52
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        22,
+        -27
+      ]
+    },
+    "hit": {
+      "path": "characters/akasha/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        32,
+        52
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/akasha/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        30,
+        43
+      ],
+      "loop": false
+    }
+  }
+}

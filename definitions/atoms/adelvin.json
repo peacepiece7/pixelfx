@@ -1,0 +1,58 @@
+{
+  "id": "adelvin",
+  "name": "아델빈",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/adelvin/runtime/idle.png",
+  "pivot": [
+    20,
+    49
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/adelvin/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        20,
+        49
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/adelvin/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        22,
+        53
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        39,
+        -30
+      ]
+    },
+    "hit": {
+      "path": "characters/adelvin/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        25,
+        49
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/adelvin/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        39,
+        47
+      ],
+      "loop": false
+    }
+  }
+}

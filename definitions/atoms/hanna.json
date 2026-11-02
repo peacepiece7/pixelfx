@@ -1,0 +1,58 @@
+{
+  "id": "hanna",
+  "name": "한나",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/hanna/runtime/idle.png",
+  "pivot": [
+    20,
+    48
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/hanna/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        20,
+        48
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/hanna/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        24,
+        48
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        26,
+        -35
+      ]
+    },
+    "hit": {
+      "path": "characters/hanna/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        48
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/hanna/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        42
+      ],
+      "loop": false
+    }
+  }
+}

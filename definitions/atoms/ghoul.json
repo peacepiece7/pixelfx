@@ -3,24 +3,52 @@
   "name": "구울",
   "kind": "monster",
   "renderer": "sprite",
-  "assetPath": "monsters/ghoul/runtime/concept.png",
+  "assetPath": "monsters/ghoul/runtime/walk.png",
   "pivot": [
-    35,
-    35
+    21,
+    37
   ],
   "animations": {
     "walk": {
-      "path": "monsters/ghoul/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/ghoul/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
-        35,
-        35
+        21,
+        37
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/ghoul/runtime/attack.png",
+      "frames": 4,
+      "fps": 10.0,
+      "pivot": [
+        36,
+        34
+      ],
+      "loop": false,
+      "hitFrame": 2
+    },
+    "hit": {
+      "path": "monsters/ghoul/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        21,
+        37
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/ghoul/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        5,
+        36
+      ],
+      "loop": false
     }
   }
 }

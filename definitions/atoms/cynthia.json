@@ -1,0 +1,58 @@
+{
+  "id": "cynthia",
+  "name": "신시아",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/cynthia/runtime/idle.png",
+  "pivot": [
+    14,
+    47
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/cynthia/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        14,
+        47
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/cynthia/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        20,
+        47
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        29,
+        -34
+      ]
+    },
+    "hit": {
+      "path": "characters/cynthia/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        20,
+        47
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/cynthia/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        28,
+        41
+      ],
+      "loop": false
+    }
+  }
+}

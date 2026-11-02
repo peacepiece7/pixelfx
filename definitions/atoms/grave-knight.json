@@ -1,0 +1,54 @@
+{
+  "id": "grave-knight",
+  "name": "묘지기사",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/grave-knight/runtime/walk.png",
+  "pivot": [
+    29,
+    50
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/grave-knight/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        50
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/grave-knight/runtime/attack.png",
+      "frames": 5,
+      "fps": 10.0,
+      "pivot": [
+        31,
+        65
+      ],
+      "loop": false,
+      "hitFrame": 3
+    },
+    "hit": {
+      "path": "monsters/grave-knight/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        36,
+        48
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/grave-knight/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        8,
+        48
+      ],
+      "loop": false
+    }
+  }
+}
