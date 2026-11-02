@@ -58,3 +58,16 @@ for(let seed=1;seed<=8;seed++)for(let step=0;step<=28;step++) {
   }
 }
 console.log('All 29 beats, rate independence, seal lighting and eight-seed canvas bounds pass.');
+
+// Peak art direction: a tapered crest, not the old broad cylindrical cap.
+const spanAt = y => {
+  const row = peak.color.slice((116+y)*120,(117+y)*120);
+  let left=60,right=60;
+  while(left>0&&(row[left-1]>>>24)>200)left--;
+  while(right<119&&(row[right+1]>>>24)>200)right++;
+  return right-left+1;
+};
+assert(spanAt(-80)<spanAt(-30),'upper crest tapers above the broad splash base');
+const ivory=0xffe8f1ff;
+assert(peak.color.filter(c=>c===ivory).length>20,'peak contains a readable ivory liquid core');
+console.log('Reference peak taper and bright liquid core pass.');

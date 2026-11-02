@@ -11,8 +11,8 @@ no hero or combat integration is included.
 | 0.00–0.10 | Low wet pressure mound begins rising | Two opposing writing heads trace the outer ring |
 | 0.10–0.20 | Mound broadens; cracks extend segment by segment | Inner ring and twelve staggered angular marks appear |
 | 0.20–0.30 | Vent breaks at 0.25; sheet accelerates from 12px to 57px | Tight ivory flash plus a broader red floor reflection |
-| 0.30–0.40 | Height rises 57→88→99px; broad opaque centre covers a 48px hero | Moving wet ridges and vertical core light |
-| 0.40–0.50 | Crest folds outward; wide shoulders open; first membranes detach | Initial flash cools; seal remains readable |
+| 0.30–0.40 | Height rises 57→88→99px; tapered opaque centre covers a 48px hero; unequal torn peaks | Ivory-red ribbons rise inside deep crimson folds |
+| 0.40–0.50 | Crest folds outward; eight asymmetric splash fins open; first membranes detach | Initial flash cools; seal remains readable |
 | 0.50–0.60 | Pressure drops before the crest; suspended sheets separate | Separate glints on the falling sheets and beads |
 | 0.60–0.70 | Curtain tears along irregular moving holes; height falls 74→63→51px | Core light shrinks with the pressure |
 | 0.70–0.80 | Height falls 51→38→26px; heavy folded membranes accelerate down | Low returning shock rim starts expanding |
@@ -28,6 +28,12 @@ There are 40 seeded primary ballistic droplets, 12 detached liquid membranes and
 additional gameplay hits. The radius-70 ground footprint is projected to 56 pixels
 horizontally to retain the requested 120px canvas, matching the previous convention.
 Every color, including light and near-white glints, comes from `o.palette`.
+
+The peak silhouette follows the supplied blood-boom reference: tall torn crest,
+bright irregular inner liquid ribbons, dark crimson outer membranes, and broad
+asymmetric splash fins. It is authored geometry, not a traced bitmap. Forty beads
+launch from different heights beside the core, decelerate laterally and fall under
+gravity; their landing positions use the same drag equation as their flight.
 
 Validation: `node tools/test-blood-boom.mjs` and `node tools/check.mjs blood/blood-boom`.
 Visual review: `node tools/render-blood-boom.mjs final` creates a 60fps-source GIF and

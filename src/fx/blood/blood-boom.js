@@ -3,7 +3,7 @@ import { Rng, fit, clamp, smooth, lerp, sparkle, TAU, READY } from "../../core/i
 
 export const meta = {
   name: "Blood boom",
-  desc: "A traced crimson seal ruptures into a heavy rising fountain; torn liquid sheets, forty ballistic drops and rebounding splashes collapse into drying pools and fading runes.",
+  desc: "A crimson seal erupts into a tall jagged blood fountain with an ivory-red liquid core, tiered torn splash fins and forty ballistic drops; the crest collapses into drying pools.",
   tags: ["blood", "eruption", "aoe", "magic", "one-shot"],
   size: [120, 140], origin: [60, 116], duration: 1.4, loop: false, fps: 60,
   bg: "ground", actor: 2,
@@ -101,9 +101,6 @@ export function create(o) {
       return [Math.cos(a) * d, Math.sin(a) * d * sy + R.range(-.6, .6)];
     }) };
   });
-  const lips = Array.from({ length: 5 }, (_, i) => ({
-    x: -26 + i * 13, h: R.range(-11, 10), phase: R.range(0, TAU),
-  }));
   // Detached pieces begin as wide membranes, fold edge-on, and become streaks near landing.
   const sheets = Array.from({ length: 12 }, (_, i) => ({
     side: i % 2 ? 1 : -1, start: .43 + (i >> 1) * .035,
@@ -114,14 +111,16 @@ export function create(o) {
   // Forty primary beads. Landing times precede the drying interval.
   const drops = Array.from({ length: 40 }, (_, i) => {
     const start = .26 + (i % 5) * .035 + R.range(0, .018);
-    const vy = -R.range(210, 275), flight = -2 * vy / gravity;
-    return { start, flight, vy, vx: R.range(-63, 63), x: R.range(-5, 5),
-      floor: R.range(-7, 10), size: R.range(.8, 2), phase: R.range(0, TAU),
+    const height = R.range(12, 42), vy = -R.range(140, 230);
+    const flight = (-vy + Math.sqrt(vy * vy + 2 * gravity * height)) / gravity;
+    const side = i % 2 ? 1 : -1;
+    return { start, flight, height, vy, vx: side * R.range(60, 85), x: side * R.range(16, 26),
+      floor: R.range(-7, 10), size: R.range(1.2, 2.3), phase: R.range(0, TAU),
       back: i % 4 === 0, c: R.int(2, 4) };
   });
   const spray = Array.from({ length: 20 }, (_, i) => ({
     start: .3 + i * .017, side: i % 2 ? 1 : -1,
-    x: R.range(18, 29), y: R.range(12, 65), vx: R.range(10, 32), vy: R.range(-35, 15),
+    x: R.range(16, 29), y: R.range(30, 100), vx: R.range(10, 32), vy: R.range(-35, 15),
   }));
   let elapsed = 0, t = 0, F = flowAt(0);
   const alive = () => t >= 0 && t < meta.duration;
@@ -199,62 +198,68 @@ export function create(o) {
   function fountain(p) {
     const [height, width, pressure, broken] = F;
     if (t < .25 || height < 1) return;
-    const rows = Array.from({ length: Math.ceil(height) + 2 }, (_, i) => {
-      const q = i / height, drift = Math.sin(i * .06 - t * 9 + phase) * 2 * q;
-      return { drift, w: width * (.72 + .28 * Math.sin(q * Math.PI * .85)) + Math.sin(i * .23 - t * 21) * (1 + q) };
+    // The reference silhouette is a narrow torn crest above a wide splash skirt.
+    // A continuous opaque lower core still hides the 48px caster at peak.
+    const rows = Array.from({ length: Math.ceil(height * 1.1) + 2 }, (_, i) => {
+      const q = i / height;
+      const drift = Math.sin(q * 5 - t * 6 + phase) * 2 * q;
+      const notch = Math.sin(Math.floor(i / 4) * 1.7 - t * 12 + phase);
+      const widthHere = width * (.72 - .42 * q) + Math.sin(q * 19 - t * 14) * 1.7 * q + notch * 1.3 * q;
+      const centre = Math.sin(q * 8 - t * 9 + phase) * 3;
+      return { drift, width: widthHere, centre };
     });
-    // The crest is broad and scalloped, not pointed flames or separate tentacles.
-    const caps = Array.from({ length: 87 }, (_, i) => {
-      const x = i - 43, lip = lips[clamp(Math.round((x + 26) / 13), 0, 4)];
-      return height * (.97 - .22 * (Math.abs(x) / Math.max(1,width)) ** 1.6) + lip.h * pressure + 3 * Math.cos((x-lip.x)*.2);
-    });
-    softShade(p, -43, -height - 9, 43, 1, (x, y, out) => {
+    softShade(p, -35, -height * 1.1, 35, 1, (x, y, out) => {
       const h = -y, q = h / height;
-      if (h < 0 || h > height + 8) return;
-      const row = rows[Math.min(rows.length - 1, Math.floor(h))], edge = Math.abs(x - row.drift) / Math.max(1, row.w);
-      const cap = caps[clamp(Math.floor(x + 43), 0, 86)];
+      if (h < 0 || q > 1.08) return;
+      const row = rows[Math.min(rows.length - 1, Math.floor(h))];
+      const edge = Math.abs(x - row.drift) / Math.max(1, row.width);
+      // Angular notches and unequal peaks, never a rounded mushroom cap.
+      const tooth = Math.abs(((x * .09 + phase * .1) % 1 + 1) % 1 - .5) * 2;
+      const cap = height * (.84 + tooth * .22) + Math.sin(x * .3 - t * 8) * 2;
       if (edge > 1 || h > cap) return;
-      // A falling perforation front tears only the late curtain; the hero stays covered at peak.
-      const cellX = Math.floor(x/2)*2, cellY = Math.floor((h+t*95)/2)*2;
-      const tear = .5 + .5 * Math.sin(cellX*.31 + Math.sin(cellY*.13+phase)) * Math.cos(cellY*.21 + phase);
+      const cellX = Math.floor(x / 2) * 2, cellY = Math.floor((h + t * 95) / 2) * 2;
+      const tear = .5 + .5 * Math.sin(cellX * .31 + Math.sin(cellY * .13 + phase)) * Math.cos(cellY * .21 + phase);
       if (broken > .25 && q > .22 && tear < (broken - .25) * .95) return;
-      const flow = Math.sin(h * .21 + t * 38 + Math.sin(x * .18 + phase) * 1.4);
-      const fold = Math.sin(x * .22 + Math.sin(h * .065 - t * 8) * 1.5);
-      const ridge = flow > .9 && fold > -.4;
-      out.c = edge > .91 ? C[1] : edge > .74 ? C[2] : ridge ? C[4] : fold > .15 ? C[3] : C[2];
-      if (cap - h < 1.6 && edge < .9) out.c = C[5];
-      const crease = Math.sin(x*.61 + Math.sin(h*.09-t*13)) * Math.cos(h*.37+t*26);
-      if (crease > .88 && edge < .75) out.c = C[4];
-      if (crease < -.91 && edge > .3) out.c = C[1];
-      out.a = edge < .67 ? 1 : .8;
-      out.a *= 1 - smooth(.88, 1, t);
-      out.l = C[4]; out.k = (1 - edge) * pressure * (ridge ? .3 : .1);
+      // Long irregular liquid folds: bright inner ribbons with deep red outer faces.
+      // Their contours advect upward, then reverse as pressure collapses.
+      const travel = t < .55 ? t * 80 : 44 - (t - .55) * 100;
+      const folded = Math.sin(x * .28 + Math.sin((h - travel) * .075) * 1.7);
+      const hotWidth = Math.max(1, row.width * (.27 + .12 * Math.sin(h * .16 - t * 18)));
+      const core = Math.abs(x - row.centre) / hotWidth;
+      out.c = edge > .88 ? C[1] : edge > .67 ? C[2] : folded > .2 ? C[3] : C[2];
+      if (core < 1 && q < .95) out.c = core < .22 ? C[6] : core < .72 ? C[5] : C[4];
+      if (core > 1 && core < 1.5 && folded > -.5) out.c = C[4];
+      if (cap - h < 1.2) out.c = C[4];
+      // Several dark channels cut into the hot ribbon so it reads as liquid, not a laser.
+      if (core < 1 && Math.sin(h * .18 + x * .37 - t * 13) > .87) out.c = C[3];
+      out.a = (edge < .85 ? 1 : .9) * (1 - smooth(.88, 1, t));
+      out.l = C[4]; out.k = core < 1.3 ? pressure * .18 : 0;
     });
-    // Short wet highlights travel upward; they reverse with the collapsing pressure front.
-    for (let i = 0; i < 14; i++) {
-      const q = ((t * 2.8 + i * .137) % 1 + 1) % 1;
-      const h = height * (t < .55 ? q : 1 - q), x = (i % 7 - 3) * width * .22;
-      const k = Math.sin(q * Math.PI) * pressure;
-      wetLine(p, [[x, -h], [x + 1, -h - Math.min(6, height * .08)]], C[5], k * .5);
-    }
-    p.glowLine(0, -5, 0, -height * .8, 18, C[3], pressure * .22);
-    p.glow(0, -height * .65, 24, C[4], pressure * .17);
+    p.glowLine(0, -4, 0, -height * .85, 14, C[3], pressure * .18);
+    pool(p, 0, 0, 32, 8, C[5], pressure * .45);
   }
 
   function shoulders(p) {
-    // Broad shallow sheets turn outward during release; never round globes or narrow tendrils.
-    for (const side of [-1, 1]) {
-      const age = t - (.28 + (side > 0 ? .025 : 0));
-      if (age < 0 || age > .43) continue;
-      const open = smooth(0, .1, age), fall = smooth(.1, .43, age);
-      const x = side * (20 + 24 * open), y = -34 * open * (1 - fall);
-      const k = 1 - smooth(.18, .43, age);
-      const points = [[side*12,0],[side*18,-15*open],[x-side*9,y-4],
-        [x,y],[x-side*4,y+6],[side*28,-6*(1-fall)],[side*23,1]];
-      membrane(p,points,C[2],k);
-      membrane(p,[points[0],points[1],points[2],points[4]],C[3],k);
-      wetLine(p,[points[1],points[2],points[3]],C[5],k*.65);
-      haze(p,x-side*5,y+4,8,C[3],k*.12);
+    // Broad torn fins emerge at staggered heights; the thin tip is the edge of a
+    // membrane, not a cylindrical tentacle. Each retains its own rise/fall phase.
+    for (let tier = 0; tier < 4; tier++) for (const side of [-1, 1]) {
+      const age = t - (.265 + tier * .017 + (side > 0 ? .012 : 0));
+      if (age < 0 || age > .48) continue;
+      const open = smooth(0, .09, age), fall = smooth(.12, .48, age);
+      const height = F[0], base = height * (tier * .19 + (side > 0 ? .025 : -.025) * tier);
+      const reach = (44 - tier * 7 + side * (tier % 2 ? -4 : 2)) * open;
+      const lift = (25 - tier * 2 + side * (tier % 2 ? 6 : -3)) * open * (1 - fall);
+      const root = side * (7 + tier * 1.5), x = side * reach;
+      const y = -base - lift;
+      const k = 1 - smooth(.23, .48, age);
+      const pts = [[root, -base + 7], [side * (12 + tier), -base - 7 * open],
+        [x - side * 5, y + 2], [x - side * 3, y - 5], [x + side * 2, y - 4],
+        [x + side * 3, y], [x - side * 1, y - 1], [x - side * 7, y + 8],
+        [side * (22 + tier), -base + 13], [root, -base + 19]].map(([px, py]) => [px, Math.min(0, py)]);
+      membrane(p, pts, C[2], k);
+      membrane(p, [pts[0], pts[1], pts[2], pts[7], pts[8]], C[3], k);
+      wetLine(p, [pts[1], pts[2], pts[3], pts[4]], C[4], k);
+      wetLine(p, [pts[0], [side * (18 + tier), -base - 2], pts[2]], C[5], k * .85);
     }
   }
 
@@ -284,7 +289,7 @@ export function create(o) {
   }
 
   function splash(p, d, age) {
-    const x = d.x + d.vx * d.flight, y = d.floor, fade = ending();
+    const x = d.x + d.vx * (1 - Math.exp(-d.flight * 3)) / 3, y = d.floor, fade = ending();
     const dry = (1 - smooth(.13, .4, age)) * fade;
     if (dry <= 0) return;
     const spread = smooth(0,.045,age), shrink = 1 - smooth(.16,.4,age);
@@ -314,7 +319,8 @@ export function create(o) {
       const age = t - d.start;
       if (age < 0) continue;
       if (age >= d.flight) { splash(p,d,age-d.flight); continue; }
-      const x = d.x + d.vx * age, y = d.floor + d.vy * age + gravity * age * age * .5;
+      const x = d.x + d.vx * (1 - Math.exp(-age * 3)) / 3;
+      const y = d.floor - d.height + d.vy * age + gravity * age * age * .5;
       const vy = d.vy + gravity * age, tail = clamp(Math.abs(vy)*.018,1,5);
       // The moving bead stretches, rounds at its apex and stretches down on return.
       p.beam(x-d.vx*.012,y-Math.sign(vy)*tail,x,y,d.size,C[d.c],ending());
