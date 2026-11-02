@@ -18,7 +18,7 @@ const centroid = f => {
   assert(n); return sum / n;
 };
 assert(Math.abs(centroid(frame(0.25)) + centroid(frame(0.25, {}, true)) - 259) < 2);
-// Observe the first dust particle at two ages: its centre must move left towards the caster.
+// Ensure the soft dust volumes are present alongside the solid leaf and grit shapes.
 const centres = t => {
   const discs = [], p = new Proxy({}, { get: (_, k) => k === "disc" ? (x, y, r, c, a) => { if (a > 0.001) discs.push([x, y]); } : () => {} });
   const o = resolveOptions(fx.meta);
