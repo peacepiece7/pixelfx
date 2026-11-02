@@ -107,36 +107,39 @@ function orbitLight(p, t, r, C, alpha, back) {
   }
 }
 
-function veils(p, t, r, C, alpha, back, seed) {
-  const R = new Rng(seed + 791);
-  for (let i = 0; i < 12; i++) {
-    const g = (i + .25) * TAU / 12, sn = Math.sin(g);
-    const h = R.range(19, 34), width = R.range(4, 7), delay = R.range(0, .045);
-    if ((sn < 0) !== back) continue;
-    const u = clamp((t - delay) / .64);
-    const energy = Math.sin(Math.PI * u) ** .65 * alpha;
-    if (energy < .01) continue;
-    const [x, y] = floorPoint(g + t * .13, r * .75);
-    const height = h * (.45 + .55 * ease.outCubic(u));
-    // Small translucent folds, brighter at their lower roots, with a narrow
-    // wandering edge. These are healing auroras rather than solid light pillars.
-    softShade(p, x - width - 4, y - height - 1, x + width + 4, y + 1, (px, py, out) => {
-      const v = clamp((y - py) / height);
-      const axis = x + Math.sin(v * 3 - t * 10 + i) * v * 3;
-      const w = width * (1 - v * .68), q = Math.abs(px - axis) / w;
-      if (q > 1 || py > y || py < y - height) return;
-      const edge = 1 - smooth(.7, 1, q), tip = 1 - smooth(.7, 1, v);
-      out.c = C[q > .65 ? 4 : 2];
-      out.a = energy * edge * tip * (back ? .2 : .29);
-      out.l = C[3]; out.k = energy * edge * tip * .09;
-    });
-    const edge = [];
-    for (let j = 0; j <= 10; j++) {
-      const v = j / 10;
-      edge.push([x + Math.sin(v * 3 - t * 10 + i) * v * 3 - width * (1 - v * .68), y - v * height]);
-    }
-    p.polyline(edge, C[4], energy * .45);
+// A continuous translucent aura rises around the seal. Broad light folds
+// dissolve at the top; no separate tapered strands or bright contour strokes.
+function veils(p, t, r, C, alpha, back) {
+  const u = clamp(t / .68), energy = Math.sin(Math.PI * u) ** .65 * alpha;
+  if (energy < .01) return;
+  const radius = r * .75, depth = radius * SY;
+  const height = 23 * (.55 + .45 * ease.outCubic(u));
+  const side = back ? -1 : 1, extent = Math.ceil(radius);
+  // Cache each vertical fold once, rather than recomputing its geometry for
+  // every translucent pixel. Restrict each layer to its own half of the field.
+  const columns = [];
+  for (let ix = -extent; ix < extent; ix++) {
+    const nx = (ix + .5) / radius;
+    if (Math.abs(nx) >= 1) continue;
+    columns[ix + extent] = {
+      base: side * Math.sqrt(1 - nx * nx) * depth,
+      height: height * (.94 + .06 * Math.sin(nx * 3 + t * 6)),
+      sides: 1 - smooth(.84, 1, Math.abs(nx)),
+      fold: .75 + .25 * Math.sin(nx * 4 - t * 7),
+    };
   }
+  softShade(p, -radius, (back ? -depth : 0) - height,
+    radius, back ? 1 : depth + 1, (x, y, out) => {
+    const column = columns[Math.floor(x) + extent];
+    if (!column) return;
+    const v = (column.base - y) / column.height;
+    if (v < 0 || v > 1) return;
+    const feather = (1 - smooth(.25, 1, v)) * smooth(0, .16, v);
+    const k = energy * feather * column.sides * column.fold;
+    out.c = C[3];
+    out.a = k * (back ? .18 : .24);
+    out.l = C[3]; out.k = k * (back ? .14 : .18);
+  });
 }
 
 function crosses(p, t, r, C, alpha, back, seed) {
@@ -173,7 +176,7 @@ function layer(p, t, o, back) {
   }
   seal(p, t, r, C, a, back);
   orbitLight(p, t, r, C, a, back);
-  veils(p, t, r, C, a, back, o.seed);
+  veils(p, t, r, C, a, back);
   // The one outgoing pulse starts at 94% radius, not at the center. A delayed
   // elevated inner hoop is an aura accent, never another heal or duration tick.
   const u = t / meta.duration;
