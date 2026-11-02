@@ -306,7 +306,7 @@ burning, frozen, poisoned, asleep.
 | Petrified | `status/petrified` | one-shot 3.8s | 120×74 | Turned to stone: grey creeps up from the feet behind a crackling edge that spits grit, the statue holds, cracks run through it, and it bursts into tumbling chunks and dust. |
 | Poisoned | `status/poisoned` | loop 1.6s | 72×64 | Sick to the bone: green rolls up the body in waves, dark veins creep from a wound, toxic sweat drips and hisses; every 0.8 s it wobbles, blisters pop and a ring pulses out. |
 | Rage | `status/rage` | loop 1.2s | 80×96 | An anger mark hovers above the head. Paired blood-red bursts throw short rays and rising sparks outward, leaving the hero's body clear. |
-| Rosilia infinite magazine | `status/rosilia-infinite-magazine` | loop 1s | 96×80 | Thin brass orbits and circulating bullet echoes surround the rifle; a restrained infinity mark sits clear of the muzzle. intro is a host-controlled refill flash. |
+| Rosilia infinite magazine | `status/rosilia-infinite-magazine` | loop 1s | 96×80 | A soft brass-ivory sheen breathes over the body and rifle. A travelling highlight follows occupied pixels; intro adds a brief refill glow. |
 | Rosilia reload ready | `status/rosilia-reload-ready` | loop 1s | 64×64 | One small side-mounted brass magazine and paired exchange arrows pulse while a reload reservation is held. |
 | Sleep | `status/sleep` | loop 2.4s | 60×82 | Fast asleep: eyes shut, soft outlined Zs float up off the head one after another, swaying and growing as they rise, dream motes drift, a slow breathing glow. |
 | Slowed | `status/slowed` | loop 2.4s | 64×76 | Dragged through time: a glassy clock dial behind the head ticks round in heavy steps, flashing with each, while drops sink in slow motion and spread slow rings. |
