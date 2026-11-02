@@ -16,6 +16,10 @@ export const meta = {
     wood: ["#3a2414", "#6e4422", "#a8723c", "#d8a868"],
     steel: ["#2e3648", "#5a6680", "#9aa6ba", "#dfe7f2"],
     wind: "#b8c8e8",
+    length: 28,
+    windStreaks: 3,
+    eddies: 0,
+    glint: false,
     seed: 3,
   },
 };
@@ -30,10 +34,10 @@ const FLETCH = [
 
 export function draw(p, t, o) {
   const PL = fit(o.palette, 4), W = fit(o.wood, 4), ST = fit(o.steel, 4), wind = hex(o.wind), S = o.seed, D = meta.duration;
-  const fr = Math.floor(t * 30 + 1e-6), ph = t / D, left = -meta.origin[0] + 2, LEN = 36;
+  const fr = Math.floor(t * 30 + 1e-6), ph = t / D, left = -meta.origin[0] + 2, LEN = o.length;
 
   // streaks of air peeling off the head and the fletching, stretching back and thinning
-  beat(t, D, 9, S, (r) => r.range(0.14, 0.26), (age, life, r) => {
+  beat(t, D, o.windStreaks, S, (r) => r.range(0.14, 0.26), (age, life, r) => {
     const k = age / life, top = r.chance(0.5) ? -1 : 1, from = r.chance(0.6) ? -3 : -LEN + 6;
     const x0 = from - age * r.range(160, 240), len = r.range(8, 16) * (0.5 + k), y = 0.5 + top * (r.range(3, 5) + k * r.range(1, 2.5));
     if (x0 - len < left) return;
@@ -41,7 +45,7 @@ export function draw(p, t, o) {
     p.line(x0, y, x0 - len, y, (u) => (u < 0.25 && k < 0.4 ? mix(wind, WHITE, 0.5) : c), (u) => (u < 0.65 ? 1 : (1 - u) / 0.35));
   });
   // little eddies spinning off the feathers
-  beat(t, D, 6, S + 3, (r) => r.range(0.15, 0.25), (age, life, r) => {
+  beat(t, D, o.eddies, S + 3, (r) => r.range(0.15, 0.25), (age, life, r) => {
     const k = age / life, cx = -LEN - 2 - age * r.range(100, 150), cy = 0.5 + r.sign() * r.range(2, 4), a = age * 30 + r.range(0, TAU), rr = 1.2 + k * 1.5;
     if (cx < left + 4) return;
     for (let i = 0; i < 4; i++) p.dot(cx + Math.cos(a + i * 0.5) * rr, cy + Math.sin(a + i * 0.5) * rr, wind, (1 - k) * (1 - i * 0.2));
@@ -57,5 +61,5 @@ export function draw(p, t, o) {
   p.sprite(HEAD, { L: ST[3], s: ST[2], S: ST[2], d: ST[0], D: ST[1], b: W[0], W: WHITE }, -7, -2);
   // a glint runs down the blade now and then
   const g = (ph * 2) % 1;
-  if (g < 0.25) sparkle(p, -5 + g * 16, -1, 1 + Math.round(2 * Math.sin((g / 0.25) * Math.PI)), WHITE, ST[3], 0.25);
+  if (o.glint && g < 0.25) sparkle(p, -5 + g * 16, -1, 1 + Math.round(2 * Math.sin((g / 0.25) * Math.PI)), WHITE, ST[3], 0.25);
 }
