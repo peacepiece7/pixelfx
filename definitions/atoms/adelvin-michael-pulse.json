@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-michael-pulse",
+  "name": "아델빈 미카엘 회복 파장",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/adelvin-healing-pulse",
+  "options": {
+    "palette": [
+      "#173d42",
+      "#287477",
+      "#57b3af",
+      "#94d5c0",
+      "#cfebbc",
+      "#e5dfa1",
+      "#fff7dc",
+      "#ffffff"
+    ]
+  }
+}

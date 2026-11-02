@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-gabriel-meteor",
+  "name": "아델빈 가브리엘 빛 운석",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/adelvin-meteor",
+  "options": {
+    "palette": [
+      "#162c48",
+      "#27536e",
+      "#3c879b",
+      "#68bfce",
+      "#b8e3df",
+      "#e9ce8d",
+      "#fff4d8",
+      "#ffffff"
+    ]
+  }
+}
