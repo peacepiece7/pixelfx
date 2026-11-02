@@ -81,3 +81,17 @@ for (const stacks of [1, 2, 3]) {
     render(wet, wet.meta.duration, { stacks }).color, 'Wet loop seam');
 }
 console.log('Wet zero-stack, capped density and loop seam passed');
+
+// Regression: the fading wave must retain a long footprint rather than being
+// erased from left to right. Inspect each third near the ground, after the peak.
+for (const t of [.65, .75, .85]) {
+  const f = render(dragon, t);
+  for (const [left, right] of [[20, 95], [110, 195], [215, 305]]) {
+    let water = 0;
+    for (let y = 342; y < 374; y++) for (let x = 320 + left; x < 320 + right; x++) {
+      if ((f.color[y * f.w + x] >>> 24) > 16) water++;
+    }
+    assert(water > 20, `Sea wave retains its ${left}..${right} footprint at ${t}`);
+  }
+}
+console.log('Sea wave retains all three lane sections during settling');

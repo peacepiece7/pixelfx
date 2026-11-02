@@ -4,10 +4,10 @@ import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
   name: "Aorbion sea dragon",
-  desc: "A heavy curling tidal wave rushes forward; its foaming lip only hints at a dragon snout, while dark currents, torn crests and trailing ripples break down in stages.",
+  desc: "A broad tidal wave rises from shallow water, hints at a dragon in its curling lip, then settles along its full length into foam and ripples.",
   tags: ["water", "dragon", "ultimate", "charge", "one-shot"],
-  size: [368, 176],
-  origin: [24, 128],
+  size: [400, 200],
+  origin: [40, 144],
   duration: 1,
   loop: false,
   fps: 40,
@@ -18,29 +18,29 @@ export const meta = {
   },
 };
 
-// 50ms keys: formation, heave, bend, lip fold, curl shear, wisp lift, light, foam, erosion.
+// 50ms keys: formation, heave, bend, lip fold, curl shear, wisp lift, light, foam, settling.
 export const choreography = [
   [0.00, .00,  0, -.20, .00, -.30,  .10, .00, .00, .00],
-  [0.05, .16,  5, -.35, .00, -.25,  .20, .12, .12, .00],
-  [0.10, .42,  1, -.10, .10, -.15,  .55, .38, .35, .00],
-  [0.15, .76, -4,  .25, .40,  .20,  .70, .72, .65, .00],
-  [0.20, 1.0, -7,  .60, .85,  .65,  .40, 1.0, .90, .00],
-  [0.25, 1.0, -5,  .85, 1.0,  .90,  .00, .82, .72, .00],
-  [0.30, 1.0, -1,  .55, .70,  .30, -.30, .72, .62, .00],
-  [0.35, 1.0,  3,  .05, .40, -.20, -.55, .62, .52, .00],
-  [0.40, 1.0,  4, -.40, .25, -.40, -.15, .65, .65, .00],
-  [0.45, 1.0,  1, -.65, .50, -.10,  .30, .82, .82, .00],
-  [0.50, 1.0, -3, -.35, .72,  .40,  .60, .72, .67, .00],
-  [0.55, 1.0, -5,  .10, .55,  .65,  .20, .58, .55, .00],
-  [0.60, 1.0, -3,  .45, .35,  .20, -.30, .48, .45, .08],
-  [0.65, .96,  0,  .60, .30, -.25, -.55, .40, .40, .24],
-  [0.70, .85,  3,  .30, .20, -.50, -.20, .30, .35, .42],
-  [0.75, .70,  5, -.10, .12, -.60,  .10, .22, .28, .58],
-  [0.80, .50,  6, -.30, .08, -.70,  .20, .14, .20, .73],
-  [0.85, .25,  7, -.15, .00, -.80,  .00, .08, .14, .88],
-  [0.90, .00,  8,  .00, .00, -.80,  .00, .03, .08, 1.0],
-  [0.95, .00,  8,  .00, .00, -.80,  .00, .01, .03, 1.0],
-  [1.00, .00,  8,  .00, .00, -.80,  .00, .00, .00, 1.0],
+  [0.05, 0.120,  5, -.35, .00, -.25,  .20, .12, .12, .00],
+  [0.10, 0.380,  1, -.10, .10, -.15,  .55, .38, .35, .00],
+  [0.15, 0.720, -4,  .25, .40,  .20,  .70, .72, .65, .00],
+  [0.20, 1.000, -7,  .60, .85,  .65,  .40, 1.0, .90, .00],
+  [0.25, 1.000, -5,  .85, 1.0,  .90,  .00, .82, .72, .00],
+  [0.30, 1.000, -1,  .55, .70,  .30, -.30, .72, .62, .00],
+  [0.35, 1.000,  3,  .05, .40, -.20, -.55, .62, .52, .00],
+  [0.40, 0.990,  4, -.40, .25, -.40, -.15, .65, .65, .00],
+  [0.45, 0.970,  1, -.65, .50, -.10,  .30, .82, .82, .00],
+  [0.50, 0.930, -3, -.35, .72,  .40,  .60, .72, .67, .00],
+  [0.55, 0.850, -5,  .10, .55,  .65,  .20, .58, .55, .00],
+  [0.60, 0.740, -3,  .45, .35,  .20, -.30, .48, .45, .08],
+  [0.65, 0.610,  0,  .60, .30, -.25, -.55, .40, .40, .24],
+  [0.70, 0.470,  3,  .30, .20, -.50, -.20, .30, .35, .42],
+  [0.75, 0.340,  5, -.10, .12, -.60,  .10, .22, .28, .58],
+  [0.80, 0.220,  6, -.30, .08, -.70,  .20, .14, .20, .73],
+  [0.85, 0.120,  7, -.15, .00, -.80,  .00, .08, .14, .88],
+  [0.90, 0.050,  8,  .00, .00, -.80,  .00, .03, .08, 1.0],
+  [0.95, 0.012,  8,  .00, .00, -.80,  .00, .01, .03, 1.0],
+  [1.00, 0.000,  8,  .00, .00, -.80,  .00, .00, .00, 1.0],
 ];
 
 function pose(t) {
@@ -53,28 +53,30 @@ function pose(t) {
 // The silhouette is a grounded surge, not an articulated animal. The leading
 // hollow is cut from the water volume; a short rolled lip suggests a snout.
 function spine(x, s) {
-  return -8 - 29 * (x / 300) ** 1.5 + Math.sin(x * .045 - s[3]) * 3;
+  return (-8 - 29 * (x / 300) ** 1.5 + Math.sin(x * .045 - s[3]) * 3) * lift(s);
 }
 
+// The whole 300px surge rises and settles together. No moving erase plane:
+// both ends feather into shallow water, so a long attack never becomes a stump.
 function cohesion(x, y, t, s, seed) {
-  const cell = noise2(Math.floor(x / 4) * .7, Math.floor(y / 3) * .8, seed);
-  const appear = smooth(x / 300 * .12, .06 + x / 300 * .12, t);
-  const front = s[9] * 360;
-  return appear * (1 - smooth(x - 14 + cell * 12, x + 28 + cell * 12, front));
+  const shore = smooth(0, 27, x) * (1 - smooth(301, 321, x));
+  return shore * smooth(0, .12, t) * (1 - smooth(.83, 1, t));
 }
+
+function lift(s) { return Math.max(.002, s[1]); }
 
 function waveTop(x, t, s) {
   const u = clamp(x / 300);
   const surge = 12 + 48 * u ** 1.65;
   const rolling = Math.sin(x * .046 - t * 8) * (2 + u * 5);
   const shoulder = 14 * Math.exp(-(((x - 245) / 40) ** 2));
-  return -(surge + shoulder + rolling) * (.55 + .45 * s[1]) + s[2] * .35;
+  return (-(surge + shoulder + rolling) + s[2] * .35) * lift(s) * smooth(0, 32, x);
 }
 
 function hollow(x, y, t, s) {
   const cx = 304 + Math.sin(t * 9) * 3 + s[5] * 2;
-  const cy = -23 + s[2] * .2;
-  return ((x - cx) / 28) ** 2 + ((y - cy) / 23) ** 2;
+  const cy = (-23 + s[2] * .2) * lift(s);
+  return ((x - cx) / 28) ** 2 + ((y - cy) / (23 * lift(s))) ** 2;
 }
 
 // Water is shaded in long curved ribbons. Quantized transverse noise keeps
@@ -86,13 +88,13 @@ function body(p, C, t, s, seed) {
   const fronts = Array.from({length: 96}, (_, y) => 311 + Math.sin((y - 90) * .08 + t * 6) * 3);
   const sample = (x, y, out) => {
     const top = tops[clamp(Math.floor(x), 0, 320)];
-    const floor = 1 + Math.sin(x * .075 + t * 5) * 2;
-    const tip = fronts[clamp(Math.floor(y + 90), 0, 95)];
+    const floor = (1 + Math.sin(x * .075 + t * 5) * 2) * lift(s);
+    const tip = fronts[clamp(Math.floor(y + 90), 0, 95)] - 8 * smooth(.4, 1, -y / (72 * lift(s)));
     if (y < top || y > floor || x > tip || hollow(x, y, t, s) < 1) return;
     const k = survival[clamp(Math.floor(x / 4), 0, 80)][clamp(Math.floor((y + 90) / 3), 0, 32)];
     if (k < .02) return;
     const v = (y - top) / (floor - top);
-    const bend = Math.atan2((y + 23) / 23, (x - 304) / 28);
+    const bend = Math.atan2((y / lift(s) + 23) / 23, (x - 304) / 28);
     const curl = Math.sqrt(hollow(x, y, t, s));
     const turn = smooth(210, 290, x);
     const line = (curl * 17 + bend * 3) * turn + (v * 24 + Math.sin(x * .035 - t * 4) * 3) * (1 - turn);
@@ -107,7 +109,7 @@ function body(p, C, t, s, seed) {
     if (rim < 1.5 && flow > -.3) level = 5;
     if (curl < 1.1) level = 3;
     out.c = C[level];
-    out.a = k * (v > .94 ? .6 : .94);
+    out.a = k * (v > .94 ? .6 : .94) * (1 - smooth(tip - 6, tip, x));
   };
   // Broad water planes are authored on 2px clusters; 1px foam and caustics are
   // overlaid separately. Cache each cluster once instead of repeating its noise.
@@ -135,7 +137,7 @@ function crest(p, C, t, s, seed) {
     for (let x = start; x < 303 - lane * 9; x += 2) {
       const top = waveTop(x, t, s);
       const v = lane / 5;
-      const y = top * (1 - v) + Math.sin(x * .052 - t * (8 + lane) + lane) * (2 + lane);
+      const y = top * (1 - v) + Math.sin(x * .052 - t * (8 + lane) + lane) * (2 + lane) * lift(s);
       const flow = noise2(Math.floor(x / 3) * .43 - t * (4 + lane), lane * 3.7, seed + 33);
       const k = cohesion(x, y, t, s, seed) * (lane === 0 ? .95 : .62);
       if (k < .03 || hollow(x, y, t, s) < 1.05) { previous = null; continue; }
@@ -144,7 +146,7 @@ function crest(p, C, t, s, seed) {
         p.line(previous[0], previous[1], x, y, C[flow > .25 ? 7 : 5], k);
       }
       if (flow > .2 && x % 6 < 2) {
-        const radius = 1.5 + (flow + .2) * (lane === 0 ? 3.8 : 2.2);
+        const radius = (1.5 + (flow + .2) * (lane === 0 ? 3.8 : 2.2)) * Math.sqrt(lift(s));
         billow(p, x, y - .5, radius, C, k);
         p.blend(x - 1, y - radius, C[7], k);
       }
@@ -154,7 +156,7 @@ function crest(p, C, t, s, seed) {
 }
 
 function head(p, C, t, s, seed) {
-  const k = smooth(.1, .2, t) * (1 - smooth(.74, .91, t));
+  const k = smooth(.05, .2, t) * (1 - smooth(.76, .98, t));
   if (k < .01) return;
   // A broad curling brow and rounded drooping lip are the only dragon cues.
   // No eyes, teeth, horns, limbs, separate head sphere or outlined mouth.
@@ -164,13 +166,13 @@ function head(p, C, t, s, seed) {
     for (let i = 0; i <= 35; i++) {
       const u = i / 35;
       const x = 253 + 61 * u - 8 * u ** 4;
-      const y = top - Math.sin(u * Math.PI) * 8 + u ** 4 * (22 + s[4] * 5) + lane * 3;
+      const y = top + (-Math.sin(u * Math.PI) * 8 + u ** 4 * (22 + s[4] * 5) + lane * 3) * lift(s);
       const n = noise2(i * .31 - t * 7, lane * 2, seed + 27);
       if (last) {
-        p.beam(last[0], last[1] + 2, x, y + 2, 5 - lane * .7, C[4], k * .8);
+        p.beam(last[0], last[1] + 2, x, y + 2, (5 - lane * .7) * Math.sqrt(lift(s)), C[4], k * .8);
         p.line(last[0], last[1], x, y, C[n > .12 ? 7 : 5], k);
       }
-      if (i % 4 === 0) billow(p, x, y, 1.5 + Math.max(0, n) * 2, C, k * .9);
+      if (i % 4 === 0) billow(p, x, y, (1.5 + Math.max(0, n) * 2) * Math.sqrt(lift(s)), C, k * .9);
       last = [x, y];
     }
   }
@@ -180,7 +182,7 @@ function head(p, C, t, s, seed) {
     for (let i = 0; i < 24; i++) {
       const u = i / 23;
       const x = 302 - u * (34 + side * 17);
-      const y = top + 19 + side * 8 + Math.sin(u * Math.PI * 1.4 - t * 5) * (5 + s[6] * 2);
+      const y = top + (19 + side * 8 + Math.sin(u * Math.PI * 1.4 - t * 5) * (5 + s[6] * 2)) * lift(s);
       if (last) p.line(last[0], last[1], x, y, C[4], k * (1 - u) * .5);
       last = [x, y];
     }
@@ -195,11 +197,11 @@ function fallingLace(p, C, t, s, seed) {
     const x0 = 35 + i * 21;
     const phase = (t * (1.6 + i % 3 * .22) + i * .277) % 1;
     const top = waveTop(x0, t, s);
-    const length = (9 + i % 4 * 5) * Math.sin(phase * Math.PI);
+    const length = (9 + i % 4 * 5) * Math.sin(phase * Math.PI) * lift(s);
     const k = cohesion(x0, top, t, s, seed) * Math.sin(phase * Math.PI);
     for (let j = 0; j < length; j += 2) {
       const x = x0 - j * .48 + Math.sin(j * .25 + i) * 2;
-      const y = top + j + phase * 8;
+      const y = top + j + phase * 8 * lift(s);
       if (hollow(x, y, t, s) < 1.05 || y > 0) continue;
       const n = noise2(i * 2 + j * .3, t * 7, seed + 108);
       if (n < -.32) continue;
@@ -265,7 +267,7 @@ function wake(p, C, t, s, seed, front) {
     if (age < 0 || age >= life || (side > 0) !== front) continue;
     const u = age / life, drift = (1 - Math.exp(-age * 5)) / 5;
     const xx = x + vx * drift, y = side * (3 + 14 * u);
-    const k = smooth(0, .035, age) * (1 - smooth(.5, 1, u));
+    const k = smooth(0, .035, age) * (1 - smooth(.5, 1, u)) * (1 - smooth(.86, 1, t));
     p.disc(xx, y, radius, C[2], d => k * .22 * (1 - d));
     p.arc(xx, y, radius, .7, 3.4, 5.9, C[5], k * .65);
     p.blend(xx - .5, y - radius * .5, C[6], k * .6);
@@ -327,18 +329,27 @@ function bowFoam(p, C, t, s, seed, front) {
   }
 }
 
-function unravel(p, C, t, s, seed) {
-  const R = new Rng(seed + 99);
-  for (let i = 0; i < 28; i++) {
-    const x0 = R.range(12, 298), born = .59 + x0 / 300 * .23;
-    const age = t - born, life = R.range(.1, .18);
-    const z = R.range(-10, 9), vx = R.range(-18, 28);
-    if (age < 0 || age > life) continue;
-    const k = 1 - age / life, source = pose(born);
-    const x = x0 + vx * age, y = spine(x0, source) + z + age * 24;
-    const size = 1 + Math.ceil(3 * k);
-    p.rect(Math.round(x / 2) * 2, Math.round(y / 2) * 2, size, Math.max(1, size - 1), C[k > .6 ? 4 : 2]);
-    haze(p, x, y, 4 + age * 10, C[3], k * .1);
+// Water lost from the height becomes a broad, low wash. Its footprint stays
+// connected across the attack lane while separate foam patches stretch outward.
+function settlingWash(p, C, t, s, seed, front) {
+  const settle = smooth(.42, .78, t);
+  const fade = 1 - smooth(.82, 1, t);
+  if (settle * fade <= 0) return;
+  for (let i = 0; i < 9; i++) {
+    const x = 20 + i * 34 + Math.sin(i * 8.1) * 7;
+    const delayed = smooth(.42 + i % 4 * .025, .84, t);
+    const r = 7 + delayed * (12 + i % 3 * 5);
+    const side = front ? 1 : -1;
+    const z = side * (2 + delayed * (6 + i % 4 * 2));
+    ring(p, x, z, r, .25, Math.sin(delayed * Math.PI * .8) * fade * .28, C,
+      { n: 1, half: side, seed: seed + i * 13, hot: false, wob: .8 });
+    for (let j = 0; j < 3; j++) {
+      const xx = x + (j - 1) * 5 + delayed * (j - 1) * 4;
+      const yy = z + Math.sin(i * 2 + j + t * 8) * 1.3;
+      const k = delayed * fade * (.45 + .2 * Math.sin(i + j));
+      p.line(xx - 3, yy, xx + 3, yy, C[4], k);
+      billow(p, xx, yy, (.7 + .5 * Math.sin(i * 3 + j) ** 2) * fade, C, k);
+    }
   }
 }
 
@@ -350,6 +361,7 @@ export function drawBack(p, t, o) {
   wake(p, C, t, s, o.seed, false);
   for (const d of droplets(o.seed)) spray(p, C, d, t, false);
   bowFoam(p, C, t, s, o.seed, false);
+  settlingWash(p, C, t, s, o.seed, false);
 }
 
 export function draw(p, t, o) {
@@ -371,5 +383,5 @@ export function draw(p, t, o) {
   waterSheets(p, C, t, s, o.seed, true);
   wake(p, C, t, s, o.seed, true);
   for (const d of droplets(o.seed)) spray(p, C, d, t, true);
-  unravel(p, C, t, s, o.seed);
+  settlingWash(p, C, t, s, o.seed, true);
 }

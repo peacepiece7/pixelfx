@@ -68,10 +68,10 @@ Source stills are registered in the host project's `assets/vfx-ref/vfx-ref/sourc
 
 The dragon descriptions in the original timing table above describe the retired spirit
 shape. The current 21 timing keys instead control formation, wave heave, bend, lip fold,
-curl shear, wisp lift, localized light, foam and forward erosion. At .05–.15 the low
+curl shear, wisp lift, localized light, foam and settling. At .05–.15 the low
 wake builds into a broad wave; .20–.55 the hollow leading curl and staggered foam
-curtains roll over dark channels; .60–.85 the tail erodes forward and the crest breaks;
-.90–.95 only scattered droplets remain; 1.00 is empty. No legs, fins, eyes or jaw.
+curtains roll over dark channels; .60–.85 the entire wave loses height while its full footprint spreads into low foam;
+.90–.95 thin ground films and scattered droplets remain; 1.00 is empty. No legs, fins, eyes or jaw.
 The curled leading lip only suggests a dragon head. Broad water planes use 2px
 clusters; the foam, short strands and falling beads use 1px accents.
 
@@ -92,3 +92,16 @@ Visual review used repeated black/ground contact renders at 1x and 2x, with 50ms
 samples for the one-shots. Functional checks remain distinct from artistic acceptance:
 the user must inspect these animations in `/vfx`. No combat integration or review
 approval was performed by this revision.
+
+## Sea wave start/end correction
+
+The approved still represents maximum swell, not a rigid shape to reveal or erase.
+The full 300px lane now rises from a shallow water film at .00–.20, holds its large
+curl through .45, then steadily settles at .50/.60/.70/.80/.90/.95 with height factors
+.93/.74/.47/.22/.05/.012. At 1.00 everything is empty. A spatial erase front and
+floating rectangular breakup pieces were removed. The curl hollow, leading lip,
+foam size, mist height and emitted droplets follow the same height envelope;
+independently delayed low foam/ripples carry the lost height into a spreading wash.
+Rear and leading water edges taper inside an expanded 400×200 preview viewport
+(origin 40,144); the attack's 300px local span and one-second contract are unchanged.
+A regression check verifies all three lane sections remain visible while settling.
