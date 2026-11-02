@@ -1,0 +1,17 @@
+{
+  "id": "aorbion-charge-emerge",
+  "name": "대담한 돌격 출수",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "water/aorbion-charge-emerge",
+  "options": {
+    "palette": [
+      "#071e38",
+      "#0c4169",
+      "#147d9c",
+      "#32b9d0",
+      "#8de8ed",
+      "#e3ffff"
+    ]
+  }
+}
