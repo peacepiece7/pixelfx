@@ -1,0 +1,39 @@
+{
+  "id": "rodair-wolf",
+  "name": "로데어 초원 형태",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/rodair-wolf/runtime/concept.png",
+  "pivot": [
+    30,
+    56
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/rodair-wolf/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        30,
+        56
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "characters/rodair-wolf/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        30,
+        56
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}

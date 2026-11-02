@@ -1,0 +1,39 @@
+{
+  "id": "rodair-snow",
+  "name": "로데어 설원 형태",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/rodair-snow/runtime/concept.png",
+  "pivot": [
+    27,
+    56
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/rodair-snow/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        27,
+        56
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "characters/rodair-snow/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        27,
+        56
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}

@@ -53,6 +53,61 @@
         46
       ],
       "loop": false
+    },
+    "idle-dagger": {
+      "path": "characters/hilding/runtime/idle-dagger.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        17,
+        49
+      ],
+      "loop": true
+    },
+    "move-dagger": {
+      "path": "characters/hilding/runtime/move-dagger.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        16,
+        41
+      ],
+      "loop": true
+    },
+    "attack-dagger": {
+      "path": "characters/hilding/runtime/attack-dagger.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        16,
+        40
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        25,
+        -21
+      ]
+    },
+    "hit-dagger": {
+      "path": "characters/hilding/runtime/hit-dagger.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        24,
+        35
+      ],
+      "loop": false
+    },
+    "death-dagger": {
+      "path": "characters/hilding/runtime/death-dagger.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        27,
+        32
+      ],
+      "loop": false
     }
   }
 }

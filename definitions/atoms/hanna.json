@@ -53,6 +53,51 @@
         42
       ],
       "loop": false
+    },
+    "idle-shotgun": {
+      "path": "characters/hanna/runtime/idle-shotgun.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        20,
+        48
+      ],
+      "loop": true
+    },
+    "attack-shotgun": {
+      "path": "characters/hanna/runtime/attack-shotgun.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        24,
+        48
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        24,
+        -35
+      ]
+    },
+    "hit-shotgun": {
+      "path": "characters/hanna/runtime/hit-shotgun.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        48
+      ],
+      "loop": false
+    },
+    "death-shotgun": {
+      "path": "characters/hanna/runtime/death-shotgun.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        42
+      ],
+      "loop": false
     }
   }
 }

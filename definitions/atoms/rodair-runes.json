@@ -1,0 +1,33 @@
+{
+  "id": "rodair-runes",
+  "name": "로데어 룬 각인",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/rodair-runes/runtime/runes-common.png",
+  "icons": [
+    "rodair-release-rune",
+    "rodair-resistance-rune",
+    "rodair-recovery-rune",
+    "rodair-majesty-rune",
+    "rodair-spin-rune",
+    "rodair-snow-rune",
+    "rodair-wolf-rune",
+    "rodair-frost-talon-rune",
+    "rodair-beast-hide-rune",
+    "rodair-beast-heart-rune"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/rodair-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/rodair-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/rodair-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

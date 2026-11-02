@@ -1,0 +1,31 @@
+{
+  "id": "brynhild-runes",
+  "name": "브린휠드 룬 각인",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/brynhild-runes/runtime/runes-common.png",
+  "icons": [
+    "brynhild-blessing-rune",
+    "brynhild-leap-rune",
+    "brynhild-valhalla-rune",
+    "brynhild-balance-rune",
+    "brynhild-grace-rune",
+    "brynhild-release-rune",
+    "brynhild-mana-shield-rune",
+    "brynhild-sprint-rune"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/brynhild-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/brynhild-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/brynhild-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

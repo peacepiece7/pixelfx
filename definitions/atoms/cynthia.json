@@ -53,6 +53,96 @@
         41
       ],
       "loop": false
+    },
+    "idle-gatling": {
+      "path": "characters/cynthia/runtime/idle-gatling.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        14,
+        48
+      ],
+      "loop": true
+    },
+    "attack-gatling": {
+      "path": "characters/cynthia/runtime/attack-gatling.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        20,
+        47
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        24,
+        -24
+      ]
+    },
+    "hit-gatling": {
+      "path": "characters/cynthia/runtime/hit-gatling.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        20,
+        47
+      ],
+      "loop": false
+    },
+    "death-gatling": {
+      "path": "characters/cynthia/runtime/death-gatling.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        28,
+        41
+      ],
+      "loop": false
+    },
+    "idle-rifle": {
+      "path": "characters/cynthia/runtime/idle-rifle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        14,
+        47
+      ],
+      "loop": true
+    },
+    "attack-rifle": {
+      "path": "characters/cynthia/runtime/attack-rifle.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        20,
+        47
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        29,
+        -35
+      ]
+    },
+    "hit-rifle": {
+      "path": "characters/cynthia/runtime/hit-rifle.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        20,
+        47
+      ],
+      "loop": false
+    },
+    "death-rifle": {
+      "path": "characters/cynthia/runtime/death-rifle.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        41
+      ],
+      "loop": false
     }
   }
 }

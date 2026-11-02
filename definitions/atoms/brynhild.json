@@ -3,24 +3,11 @@
   "name": "브린휠드",
   "kind": "character",
   "renderer": "sprite",
-  "assetPath": "characters/brynhild/runtime/idle.png",
-  "portraitPath": "characters/brynhild/runtime/portrait.png",
+  "assetPath": "characters/brynhild/runtime/leap.png",
   "pivot": [
-    28,
-    49
+    46,
+    57
   ],
-  "frames": 4,
-  "fps": 6,
-  "attachments": {
-    "hand": [
-      0,
-      -36
-    ],
-    "overhead": [
-      0,
-      -52
-    ]
-  },
   "animations": {
     "idle": {
       "path": "characters/brynhild/runtime/idle.png",
@@ -76,6 +63,47 @@
         45
       ],
       "loop": false
+    },
+    "leap": {
+      "path": "characters/brynhild/runtime/leap.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        46,
+        57
+      ],
+      "loop": false
+    },
+    "dash": {
+      "path": "characters/brynhild/runtime/dash.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        24,
+        49
+      ],
+      "loop": false
+    },
+    "cast": {
+      "path": "characters/brynhild/runtime/cast.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        66
+      ],
+      "loop": false
     }
+  },
+  "portraitPath": "characters/brynhild/runtime/portrait.png",
+  "attachments": {
+    "hand": [
+      0,
+      -36
+    ],
+    "overhead": [
+      0,
+      -52
+    ]
   }
 }

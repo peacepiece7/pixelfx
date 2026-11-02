@@ -53,6 +53,51 @@
         47
       ],
       "loop": false
+    },
+    "idle-wand": {
+      "path": "characters/adelvin/runtime/idle-wand.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        17,
+        47
+      ],
+      "loop": true
+    },
+    "attack-wand": {
+      "path": "characters/adelvin/runtime/attack-wand.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        24,
+        47
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        26,
+        -31
+      ]
+    },
+    "hit-wand": {
+      "path": "characters/adelvin/runtime/hit-wand.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        47
+      ],
+      "loop": false
+    },
+    "death-wand": {
+      "path": "characters/adelvin/runtime/death-wand.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        34,
+        46
+      ],
+      "loop": false
     }
   }
 }

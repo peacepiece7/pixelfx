@@ -63,6 +63,61 @@
         44
       ],
       "loop": false
+    },
+    "idle-dagger": {
+      "path": "characters/fame/runtime/idle-dagger.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        22,
+        46
+      ],
+      "loop": true
+    },
+    "move-dagger": {
+      "path": "characters/fame/runtime/move-dagger.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        30,
+        44
+      ],
+      "loop": true
+    },
+    "attack-dagger": {
+      "path": "characters/fame/runtime/attack-dagger.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        25,
+        45
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        36,
+        -26
+      ]
+    },
+    "hit-dagger": {
+      "path": "characters/fame/runtime/hit-dagger.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        43
+      ],
+      "loop": false
+    },
+    "death-dagger": {
+      "path": "characters/fame/runtime/death-dagger.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        37,
+        44
+      ],
+      "loop": false
     }
   }
 }
