@@ -10,14 +10,14 @@ no hero or combat integration is included.
 |---|---|---|
 | 0.00–0.10 | Low wet pressure mound begins rising | Two opposing writing heads trace the outer ring |
 | 0.10–0.20 | Mound broadens; cracks extend segment by segment | Inner ring and twelve staggered angular marks appear |
-| 0.20–0.30 | Vent breaks at 0.25; sheet accelerates from 12px to 57px | Tight ivory flash plus a broader red floor reflection |
-| 0.30–0.40 | Height rises 57→88→99px; tapered opaque centre covers a 48px hero; unequal torn peaks | Ivory-red ribbons rise inside deep crimson folds |
+| 0.20–0.30 | Vent breaks at 0.25; five differently angled sheets snap upward within 45ms; core jumps 12→99px | Tight ivory flash plus a broader red floor reflection |
+| 0.30–0.40 | Full-height sheets coast and peel away; opaque lower centre covers a 48px hero | Ivory-red ribbons rise inside deep crimson folds |
 | 0.40–0.50 | Crest folds outward; eight asymmetric splash fins open; first membranes detach | Initial flash cools; seal remains readable |
 | 0.50–0.60 | Pressure drops before the crest; suspended sheets separate | Separate glints on the falling sheets and beads |
-| 0.60–0.70 | Curtain tears along irregular moving holes; height falls 74→63→51px | Core light shrinks with the pressure |
-| 0.70–0.80 | Height falls 51→38→26px; heavy folded membranes accelerate down | Low returning shock rim starts expanding |
+| 0.60–0.70 | Curtain tears along irregular moving holes; height falls 35→25→17px | Core light shrinks with the pressure |
+| 0.70–0.80 | Height falls 17→11→7px; heavy folded membranes accelerate down | Low returning shock rim starts expanding |
 | 0.80–0.90 | Low core collapses; primary droplets and folded sheets land | Individual wet crowns, small landing pools and short reflections |
-| 0.90–1.00 | Core falls 9→4→0px; remaining droplets rebound | Seal cools; local ripples overlap the pooled liquid |
+| 0.90–1.00 | Core falls 2→1→0px; remaining droplets rebound | Seal cools; local ripples overlap the pooled liquid |
 | 1.00–1.10 | Final rain settles; wet puddles flatten | Outer marks begin extinguishing at staggered times |
 | 1.10–1.20 | Pool margins retreat independently of their alpha | Ring segments lose light and break apart |
 | 1.20–1.30 | Dark residue contracts; isolated wet glints remain | Nearly all inscription light is gone |
@@ -39,3 +39,8 @@ Validation: `node tools/test-blood-boom.mjs` and `node tools/check.mjs blood/blo
 Visual review: `node tools/render-blood-boom.mjs final` creates a 60fps-source GIF and
 all 29 contact frames at exact 50ms intervals in `records/blood/blood-boom/final/`.
 Character choreography: `node tools/act.mjs blood/blood-boom`.
+
+The impact is an upward response to a ground strike: five sheets launch 4ms apart,
+each reaching its own 64–110px apex in 45ms. Their lower membranes tear free
+before the tips fall. Forty primary beads launch in a 44ms burst and leave
+64ms curved trails sampled from their own ballistic paths. No hit is added.

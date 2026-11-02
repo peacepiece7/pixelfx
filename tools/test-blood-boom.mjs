@@ -71,3 +71,12 @@ assert(spanAt(-80)<spanAt(-30),'upper crest tapers above the broad splash base')
 const ivory=0xffe8f1ff;
 assert(peak.color.filter(c=>c===ivory).length>20,'peak contains a readable ivory liquid core');
 console.log('Reference peak taper and bright liquid core pass.');
+
+const top = f => {
+  for(let y=0;y<110;y++)for(let x=20;x<100;x++)
+    if((f.color[y*120+x]>>>24)>220)return 116-y;
+  return 0;
+};
+assert(top(frame({time:.3}))>=95,'ground impulse reaches near-full height within 50ms');
+assert(top(frame({time:.25}))<30,'no tall pre-existing column at the strike instant');
+console.log('Ground-strike impulse reaches its apex within 50ms.');

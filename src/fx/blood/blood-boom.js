@@ -3,7 +3,7 @@ import { Rng, fit, clamp, smooth, lerp, sparkle, TAU, READY } from "../../core/i
 
 export const meta = {
   name: "Blood boom",
-  desc: "A crimson seal erupts into a tall jagged blood fountain with an ivory-red liquid core, tiered torn splash fins and forty ballistic drops; the crest collapses into drying pools.",
+  desc: "A ground strike snaps five layered blood sheets skyward in 50ms; bright torn ridges, forty curved droplet trails and falling membranes collapse onto a fading crimson seal.",
   tags: ["blood", "eruption", "aoe", "magic", "one-shot"],
   size: [120, 140], origin: [60, 116], duration: 1.4, loop: false, fps: 60,
   bg: "ground", actor: 2,
@@ -28,20 +28,20 @@ export const FLOW_BEATS = [
   [ 3, 14, .18, .00, .42, .00], // 0.15 cracks light in sequence
   [ 5, 19, .30, .00, .65, .00], // 0.20 ground heaves
   [12, 24, 1.00, .00, 1.00, .00], // 0.25 vent ruptures
-  [57, 29, .95, .00, .90, .00], // 0.30 broad vertical acceleration
-  [88, 31, .88, .00, .76, .00], // 0.35 crest overtakes the hero
+  [99, 29, .95, .00, .90, .00], // 0.30 impact impulse reaches full height
+  [99, 31, .88, .00, .76, .00], // 0.35 torn tips coast above the caster
   [99, 32, .84, .00, .66, .00], // 0.40 full opaque foreground
-  [96, 33, .76, .03, .58, .00], // 0.45 crown folds outwards
-  [91, 32, .67, .10, .52, .02], // 0.50 first heavy sheets detach
-  [84, 30, .56, .19, .47, .06], // 0.55 pressure falls, crest still hangs
-  [74, 28, .43, .31, .42, .12], // 0.60 folds pull down
-  [63, 26, .31, .44, .38, .20], // 0.65 holes open between sheets
-  [51, 23, .23, .57, .34, .30], // 0.70 broken curtain drops
-  [38, 20, .16, .70, .30, .43], // 0.75 lower body reappears
-  [26, 17, .10, .81, .27, .59], // 0.80 low returning splash
-  [16, 14, .06, .90, .24, .74], // 0.85 folds hit the floor
-  [ 9, 11, .03, .96, .21, .86], // 0.90 rebound crowns
-  [ 4,  8, .01, 1.0, .18, .96], // 0.95 small last spurts
+  [82, 33, .76, .03, .58, .00], // 0.45 crown folds outwards
+  [64, 32, .67, .10, .52, .02], // 0.50 first heavy sheets detach
+  [48, 30, .56, .19, .47, .06], // 0.55 pressure falls, crest still hangs
+  [35, 28, .43, .31, .42, .12], // 0.60 folds pull down
+  [25, 26, .31, .44, .38, .20], // 0.65 holes open between sheets
+  [17, 23, .23, .57, .34, .30], // 0.70 broken curtain drops
+  [11, 20, .16, .70, .30, .43], // 0.75 lower body reappears
+  [ 7, 17, .10, .81, .27, .59], // 0.80 low returning splash
+  [ 4, 14, .06, .90, .24, .74], // 0.85 folds hit the floor
+  [ 2, 11, .03, .96, .21, .86], // 0.90 rebound crowns
+  [ 1,  8, .01, 1.0, .18, .96], // 0.95 small last spurts
   [ 0,  0, .00, 1.0, .15, 1.0], // 1.00 airborne core is gone
   [ 0,  0, .00, 1.0, .12, .95], // 1.05 last droplets land
   [ 0,  0, .00, 1.0, .09, .83], // 1.10 pools flatten
@@ -110,7 +110,7 @@ export function create(o) {
   }));
   // Forty primary beads. Landing times precede the drying interval.
   const drops = Array.from({ length: 40 }, (_, i) => {
-    const start = .26 + (i % 5) * .035 + R.range(0, .018);
+    const start = .25 + (i % 5) * .009 + R.range(0, .008);
     const height = R.range(12, 42), vy = -R.range(140, 230);
     const flight = (-vy + Math.sqrt(vy * vy + 2 * gravity * height)) / gravity;
     const side = i % 2 ? 1 : -1;
@@ -216,7 +216,7 @@ export function create(o) {
       // Angular notches and unequal peaks, never a rounded mushroom cap.
       const tooth = Math.abs(((x * .09 + phase * .1) % 1 + 1) % 1 - .5) * 2;
       const cap = height * (.84 + tooth * .22) + Math.sin(x * .3 - t * 8) * 2;
-      if (edge > 1 || h > cap) return;
+      if (edge > 1 || h > cap || q > .55 && Math.sin(x * .35 + q * 11) > .4) return;
       const cellX = Math.floor(x / 2) * 2, cellY = Math.floor((h + t * 95) / 2) * 2;
       const tear = .5 + .5 * Math.sin(cellX * .31 + Math.sin(cellY * .13 + phase)) * Math.cos(cellY * .21 + phase);
       if (broken > .25 && q > .22 && tear < (broken - .25) * .95) return;
@@ -227,8 +227,8 @@ export function create(o) {
       const hotWidth = Math.max(1, row.width * (.27 + .12 * Math.sin(h * .16 - t * 18)));
       const core = Math.abs(x - row.centre) / hotWidth;
       out.c = edge > .88 ? C[1] : edge > .67 ? C[2] : folded > .2 ? C[3] : C[2];
-      if (core < 1 && q < .95) out.c = core < .22 ? C[6] : core < .72 ? C[5] : C[4];
-      if (core > 1 && core < 1.5 && folded > -.5) out.c = C[4];
+      if (core < 1 && q < .95) out.c = core < .72 ? C[3] : C[2];
+      if (core > 1 && core < 1.5 && folded > -.5) out.c = C[3];
       if (cap - h < 1.2) out.c = C[4];
       // Several dark channels cut into the hot ribbon so it reads as liquid, not a laser.
       if (core < 1 && Math.sin(h * .18 + x * .37 - t * 13) > .87) out.c = C[3];
@@ -239,13 +239,58 @@ export function create(o) {
     pool(p, 0, 0, 32, 8, C[5], pressure * .45);
   }
 
+  // Five independently timed sheets share the impact point, then fan upward.
+  // This is a ballistic strike response: fast extension, free tips, delayed fall.
+  function impactSheets(p, back) {
+    const directions = [[-36, 79, 8], [-19, 101, 7], [4, 110, 9], [26, 94, 7], [44, 64, 8]];
+    directions.forEach(([reach, rise, width], i) => {
+      if ((i === 0 || i === 4) !== back) return;
+      const age = t - .25 - i * .004;
+      if (age <= 0 || age >= .58) return;
+      const attack = 1 - (1 - clamp(age / .045)) ** 3;
+      const fall = Math.max(0, age - .12);
+      const top = rise * attack - 280 * fall * fall;
+      const detached = smooth(.10, .32, age) * .88;
+      const fade = 1 - smooth(.24, .48, age);
+      const points = [], left = [], right = [], innerLeft = [], innerRight = [];
+      for (let j = 0; j <= 14; j++) {
+        const q = detached + (1 - detached) * j / 14;
+        const x = reach * q ** 1.35 * attack + Math.sin(q * 8 + phase + i) * q * 3;
+        const y = -top * q;
+        const fold = 1 + .20 * Math.sin(q * 19 - age * 36 + i);
+        const tornBase = detached > .04 ? smooth(detached, detached + .14, q) : 1;
+        const w = width * (.45 + .55 * Math.sin(q * Math.PI)) * (1 - smooth(.78, 1, q)) * fold * attack * tornBase;
+        const notch = j % 4 === 2 ? 1.8 : 0;
+        left.push([x - w, y]); right.push([x + w - notch, y]);
+        innerLeft.push([x - w * .45, y]); innerRight.push([x + w * .18, y]);
+        points.push([x - w * .18, y]);
+      }
+      membrane(p, [...left, ...right.reverse()], C[back ? 2 : 3], fade);
+      membrane(p, [...innerLeft, ...innerRight.reverse()], C[back ? 4 : 5], fade * .95);
+      // Interrupted hot ridges follow the sheet, revealing several separate layers.
+      for (let j = 2; j < points.length - 1; j++) {
+        if ((j + i) % 5 === 0) continue;
+        wetLine(p, [points[j], points[j + 1]], C[back ? 5 : 6], fade);
+      }
+      const tip = points.at(-1);
+      p.glowLine(...points[3], ...tip, 5, C[4], fade * .17);
+      // A torn bead runs ahead of the membrane during the first upward impulse.
+      if (age > .04 && age < .19) {
+        const free = age - .04, x = tip[0] + reach * free * .16;
+        const y = Math.max(-112, tip[1] - free * 24 + free * free * 180);
+        p.beam(x, y + 3, x + .5, y, 1.3, C[4], fade);
+        p.blend(x, y, C[5], fade);
+      }
+    });
+  }
+
   function shoulders(p) {
     // Broad torn fins emerge at staggered heights; the thin tip is the edge of a
     // membrane, not a cylindrical tentacle. Each retains its own rise/fall phase.
     for (let tier = 0; tier < 4; tier++) for (const side of [-1, 1]) {
       const age = t - (.265 + tier * .017 + (side > 0 ? .012 : 0));
       if (age < 0 || age > .48) continue;
-      const open = smooth(0, .09, age), fall = smooth(.12, .48, age);
+      const open = 1 - (1 - clamp(age / .035)) ** 3, fall = smooth(.08, .48, age);
       const height = F[0], base = height * (tier * .19 + (side > 0 ? .025 : -.025) * tier);
       const reach = (44 - tier * 7 + side * (tier % 2 ? -4 : 2)) * open;
       const lift = (25 - tier * 2 + side * (tier % 2 ? 6 : -3)) * open * (1 - fall);
@@ -322,6 +367,15 @@ export function create(o) {
       const x = d.x + d.vx * (1 - Math.exp(-age * 3)) / 3;
       const y = d.floor - d.height + d.vy * age + gravity * age * age * .5;
       const vy = d.vy + gravity * age, tail = clamp(Math.abs(vy)*.018,1,5);
+      // The trail samples this same trajectory at earlier instants, so the curve
+      // follows the drop through its apex and never extends ahead of its head.
+      for (let j = 1; j <= 8; j++) {
+        const before = age - j * .008, after = age - (j - 1) * .008;
+        if (before < 0) continue;
+        const at = a => [d.x + d.vx * (1 - Math.exp(-a * 3)) / 3,
+          d.floor - d.height + d.vy * a + gravity * a * a * .5];
+        wetLine(p, [at(before), at(after)], C[j < 3 ? 5 : 3], (1 - j / 9) * .75 * ending());
+      }
       // The moving bead stretches, rounds at its apex and stretches down on return.
       p.beam(x-d.vx*.012,y-Math.sign(vy)*tail,x,y,d.size,C[d.c],ending());
       p.blend(x-.5,y-.7,C[5],.8*ending());
@@ -370,7 +424,9 @@ export function create(o) {
     draw(p) {
       if (!alive()) return;
       shoulders(p);
+      impactSheets(p, true);
       fountain(p);
+      impactSheets(p, false);
       fallingSheets(p);
       fineSpray(p);
       droplets(p,false);

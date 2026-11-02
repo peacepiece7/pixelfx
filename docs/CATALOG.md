@@ -262,7 +262,7 @@ crimson eruptions, droplets and blood magic.
 | effect | id | | size | what it does |
 |---|---|---|---|---|
 | Bleeding status | `blood/bleeding` | loop 1.2s | 64×72 | Wet beads gather on the target's torso, fall and kick up tiny crowns; stacks increase the drip frequency while dark splats dry underfoot. |
-| Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | A crimson seal erupts into a tall jagged blood fountain with an ivory-red liquid core, tiered torn splash fins and forty ballistic drops; the crest collapses into drying pools. |
+| Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | A ground strike snaps five layered blood sheets skyward in 50ms; bright torn ridges, forty curved droplet trails and falling membranes collapse onto a fading crimson seal. |
 | Roar wave | `blood/roar-wave` | one-shot 0.9s | 220×110 | Three crimson pressure rings burst from the mouth to a 100px radius, driving rolling dust and grit away from the caster. |
 | Thorn reflect | `blood/thorn-reflect` | one-shot 0.4s | 64×64 | A sharp blood-red hit flashes, then five to seven barbed shards kick back toward the attacker, trailing thin red wakes and cooling away in midair. |
 
