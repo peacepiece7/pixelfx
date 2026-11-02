@@ -40,11 +40,11 @@ Layer order: far ground ripples / far spray → dark water body → teal middle 
   The metadata viewport fits five pillars; hosts displaying more must allocate a taller frame.
 - Charge: front reaches 100px, 32px ground width. Three claws have separate release and
   close times. Bubbles and splashes stay small beside a 48px hero.
-- Dragon: 300px lane, approximately 50px body depth. Tail, spine, soft head, water wisps, fin rays and wake use separate motion.
+- Dragon: 300px lane, approximately 50px body depth. Grounded wave volume, curling lip, foam curtains, wind wisps and wake use separate motion.
   The 2026-11-03 revision removes all legs and rigid facial anatomy.
 - Render at 20 fps to inspect every row, then 60 fps for interpolation/motion.
 - Validate determinism, empty end frame, bounds, palette/facing and count variants.
-- The original 285-line source-size floor counts the shared geyser rendering code
+- The original 285-line source-size floor counts the shared `_surging-water.js` rendering code
   for the revised tail pillars; do not duplicate that code merely to inflate the wrapper.
 
 ## Verification commands
@@ -60,11 +60,35 @@ empty start/end, palette/facing support, 1/3/5/12 pillars and the requested sour
 The final authoring tables contain 14 / 17 / 21 keys respectively. Acceptance remains the
 user's `/vfx` review; these checks do not certify artistic quality or combat integration.
 
-## 2026-11-03 review correction
+## Approved still reference revision
 
-The user's new direction favors abstract water over literal anatomy. Sea dragon legs,
-rigid horns, eye details and articulated jaw are removed; the head uses overlapping
-soft water volumes. Tail pillars directly call the reference geyser's column and foam
-renderers with lower crown strength. Poseidon uses the same renderers for three orbiting
-jets, with independent spray, landing rings and floating bubbles. Its six-second cycle
-is closed; pulse modifies light only. Original geyser rendering is preserved.
+Source stills are registered in the host project's `assets/vfx-ref/vfx-ref/source/`:
+`aorbion-seadragon.png`, `aorbion-tail-pillars.png`, `aorbion-poseidon.png`,
+`aorbion-geyser.png`, `wet-status.png`. These are art references, not runtime textures.
+
+The dragon descriptions in the original timing table above describe the retired spirit
+shape. The current 21 timing keys instead control formation, wave heave, bend, lip fold,
+curl shear, wisp lift, localized light, foam and forward erosion. At .05–.15 the low
+wake builds into a broad wave; .20–.55 the hollow leading curl and staggered foam
+curtains roll over dark channels; .60–.85 the tail erodes forward and the crest breaks;
+.90–.95 only scattered droplets remain; 1.00 is empty. No legs, fins, eyes or jaw.
+The curled leading lip only suggests a dragon head. Broad water planes use 2px
+clusters; the foam, short strands and falling beads use 1px accents.
+
+Tail pillars retain the specified vertical centerline, 35px spacing and count option,
+so their projection is more overlapped than the diagonal presentation in the still.
+Their shared surge renderer supplies dark channels, twisting caustics, climbing fine
+strands, asynchronous five-lobe caps and a low foam foot. Poseidon uses a wider crown
+and three layered orbit-following wave ribbons around an open center. The six-second
+cycle remains seamless and pulse changes light only.
+
+The original geyser keeps its eruption, rain, rebound and foam animation; a configurable
+`channelDepth` darkens broken secondary streams (zero restores the original column).
+Wet status reuses bleed trajectories with brighter cyan bead midtones and four to eight
+small beads per cycle, saturating visual density at three status stacks. Zero stacks
+remain empty. No source column or large status puddle.
+
+Visual review used repeated black/ground contact renders at 1x and 2x, with 50ms
+samples for the one-shots. Functional checks remain distinct from artistic acceptance:
+the user must inspect these animations in `/vfx`. No combat integration or review
+approval was performed by this revision.

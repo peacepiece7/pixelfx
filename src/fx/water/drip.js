@@ -71,9 +71,13 @@ const REBOUND = 0.06, BACK = 0.2;
 export function draw(p, t, o) {
   if (o.status !== false) {
     // Reuse the small actor-attached bleed droplets; no overhead source or large puddle.
-    // Saturate visual density at three stacks, keeping one effect instance per target.
+    // Saturate at three status stacks (four to eight beads per cycle), one instance per target.
     const stacks = Number.isFinite(o.stacks) ? clamp(Math.floor(o.stacks), 0, 3) : 1;
-    drawBleeding(p, t * bleedingMeta.duration / meta.duration, { ...o, stacks });
+    const water = fit(o.palette, 7);
+    // Reference beads have a cyan body and pale one-pixel glint. Keep the
+    // bleed motion, but lift the midtone so tiny drops read against the actor.
+    const palette = [water[0], water[1], water[2], water[4], water[5], water[6], water[6]];
+    drawBleeding(p, t * bleedingMeta.duration / meta.duration, { ...o, palette, stacks: stacks ? Math.min(4, stacks + 1) : 0 });
     return;
   }
   const C = fit(o.palette, 8), H = o.height, land = landAt(H);

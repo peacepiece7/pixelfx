@@ -1,8 +1,8 @@
-// The water column and foam crown directly reuse water/geyser.
-// Reduced crown strength and restrained spray keep these combat jets compact.
+// Thick reference-directed water jets retain geyser-style layered shading.
+// A restrained foam crown keeps the motion rising, without overflowing sideways.
 import { Rng, fit, clamp, smooth, noise2 } from "../../core/index.js";
 import { bead, ring, billow } from "./_lib.js";
-import { drawGeyserColumn, drawGeyserFoam } from "./geyser.js";
+import { surgeColumn, surgeCrown, surgeFoot } from "./_surging-water.js";
 import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
@@ -54,7 +54,7 @@ function state(t) {
 
 function waterline(p, C, radius, k, seed, front) {
   if (radius < 1 || k <= 0) return;
-  ring(p, 0, 0, radius, .27, k * .48, C, {
+  ring(p, 0, 0, radius, .27, k * .24, C, {
     n: 1,
     half: front ? 1 : -1,
     hot: false,
@@ -78,10 +78,11 @@ function film(p, C, s, age) {
 function column(p, C, s, age, seed, heightScale) {
   const H = s[1] * heightScale;
   if (H < 1 || s[2] <= 0) return;
-  // Use the actual geyser core and foam renderer; reduce its crown, not its texture.
-  const water = { C, t: 1.15 + age * 2.5, HMAX: 66, S: seed };
-  drawGeyserColumn(p, H, s[2], water);
-  drawGeyserFoam(p, H, Math.min(.62, s[4] * 1.3), false, water);
+  // Thick dark channels and a narrow rolling cap follow the approved still.
+  const water = { C, t: 1.15 + age * 2.5, S: seed, width: 13, strength: .85 };
+  surgeColumn(p, H, s[2], water);
+  surgeCrown(p, H, s[2], water, false);
+  surgeFoot(p, C, age, 11, s[2], seed, true);
 }
 
 function veins(p, C, s, age, seed, heightScale) {
@@ -228,8 +229,8 @@ export function create(o) {
         p.ty = ty + pillar.y * p.cs;
         if (!front) {
           film(p, C, s, age);
-          drawGeyserFoam(p, s[1] * pillar.heightScale, Math.min(.62, s[4] * 1.3), true,
-            { C, t: 1.15 + age * 2.5, S: pillar.seed });
+          surgeCrown(p, s[1] * pillar.heightScale, s[2],
+            { C, t: 1.15 + age * 2.5, S: pillar.seed, width: 13, strength: .85 }, true);
           waterline(p, C, s[5], 1 - smooth(.25, .8, age), pillar.seed, false);
         } else {
           column(p, C, s, age, pillar.seed, pillar.heightScale);

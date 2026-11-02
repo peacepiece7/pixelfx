@@ -6,6 +6,7 @@ import * as charge from '../src/fx/water/aorbion-charge-emerge.js';
 import * as pillars from '../src/fx/water/aorbion-tail-pillars.js';
 import * as dragon from '../src/fx/water/aorbion-seadragon.js';
 import * as poseidon from '../src/fx/water/aorbion-poseidon.js';
+import * as wet from '../src/fx/water/drip.js';
 
 const effects = [
   ['aorbion-charge-emerge', charge],
@@ -14,7 +15,7 @@ const effects = [
 ];
 const lines = path => readFileSync(new URL(path, import.meta.url), 'utf8').trimEnd().split('\n').length;
 const referenceLines = 285; // Original requested reference, before sharing its rendering functions.
-const sharedLines = readFileSync(new URL('../src/fx/water/geyser.js', import.meta.url), 'utf8').split('// Shared rendering primitives')[1].trim().split('\n').length;
+const sharedLines = lines('../src/fx/water/_surging-water.js');
 const alternate = ['#160b20', '#422249', '#714b79', '#b083af', '#edc6e6'];
 
 function render(mod, t, options = {}, substeps = 1) {
@@ -69,3 +70,14 @@ for (const t of [0, .15, .8, 2.3, 5.95]) {
     render(poseidon, t, { pulse: 1 }).color, 'Pulse changes light, not geometry');
 }
 console.log('Poseidon loop, facing and brightness-only pulse passed');
+
+for (const t of [0, .2, .65, 1.1, 1.59]) {
+  assert(empty(render(wet, t, { stacks: 0 })), 'Wet: zero stacks must be empty');
+  assert.deepEqual(render(wet, t, { stacks: 3 }).color,
+    render(wet, t, { stacks: 99 }).color, 'Wet density saturates at three stacks');
+}
+for (const stacks of [1, 2, 3]) {
+  assert.deepEqual(render(wet, 0, { stacks }).color,
+    render(wet, wet.meta.duration, { stacks }).color, 'Wet loop seam');
+}
+console.log('Wet zero-stack, capped density and loop seam passed');

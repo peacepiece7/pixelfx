@@ -14,7 +14,7 @@ export const meta = {
   loop: false,
   fps: 30,
   bg: "ground",
-  options: { palette: WATER, height: 100, seed: 4, jetOnly: false },
+  options: { palette: WATER, height: 100, seed: 4, jetOnly: false, channelDepth: .45 },
 };
 
 const SY = 0.22, G = 820, ERUPT = 1.15, FALL = 2.6, GONE = 3.3;
@@ -56,7 +56,7 @@ export function create(o) {
   const done = new Set(), once = (key, at) => !done.has(key) && t >= at && done.add(key);
   const emit = (rate, dt) => R.chance(Math.min(1, rate * dt));
 
-  const column = (p, H, thin) => drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly: o.jetOnly });
+  const column = (p, H, thin) => drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly: o.jetOnly, channelDepth: o.channelDepth });
   const foamHead = (p, H, k, back) => drawGeyserFoam(p, H, k, back, { C, t, S });
 
   // Compact skill variant: retain the rising, textured column without the overflowing
@@ -238,7 +238,7 @@ export function create(o) {
   // the column: a white core banded out to blue edges, shadowed on the right; 1 px strands whose streaks run up
   // in jet time (fast and long low down, bunching where the water slows near the top); it spreads as it rises,
   // its sides ragged and running, a sway through it, light all the way up
-export function drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly = false }) {
+export function drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly = false, channelDepth = 0 }) {
     const V0 = Math.sqrt(2 * G * HMAX);
     if (H < 1) return;
     const tau = (h) => (V0 - Math.sqrt(Math.max(0, V0 * V0 - 2 * G * Math.min(h, HMAX * 0.96)))) / G;
@@ -254,7 +254,10 @@ export function drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly = false })
       if (q > 0.38) lvl++;
       if (streak > 0.28) lvl--;
       if (body < -0.4) lvl++;
-      out.c = jetOnly ? [C[6], C[5], C[4], C[3], C[2]][clamp(lvl, 0, 4)] : [WHITE, C[6], C[5], C[4], C[3]][clamp(lvl, 0, 4)];
+      // A shaded secondary stream keeps the approved deep-teal channels visible
+      // alongside the original hot upstroke, without flattening the foam crown.
+      if (!jetOnly && channelDepth > 0 && aq > .3 && body < clamp(channelDepth) - .42) lvl += 2;
+      out.c = jetOnly ? [C[6], C[5], C[4], C[3], C[2]][clamp(lvl, 0, 4)] : [WHITE, C[6], C[5], C[4], C[3], C[2]][clamp(lvl, 0, channelDepth > 0 ? 5 : 4)];
     });
     p.glowLine(0, 0, 0, -H, 16 + 8 * thin, C[5], 0.12 * thin);
   }

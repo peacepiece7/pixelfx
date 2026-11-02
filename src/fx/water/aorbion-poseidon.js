@@ -1,7 +1,7 @@
 import { Rng, fit, clamp, TAU } from "../../core/index.js";
 import { bead, ring, billow } from "./_lib.js";
 import { haze, pool, softBand } from "../_soft.js";
-import { drawGeyserColumn, drawGeyserFoam } from "./geyser.js";
+import { surgeColumn, surgeCrown, surgeFoot } from "./_surging-water.js";
 
 export const meta = {
   name: "Aorbion Poseidon",
@@ -32,8 +32,8 @@ function site(t, i, seed) {
     x: Math.cos(angle) * 60,
     y: Math.sin(angle) * 60 * .26,
     angle,
-    height: 36 + breathing,
-    pressure: .78 + .07 * Math.sin(t / 1.5 * TAU + i * 1.7),
+    height: 43 + breathing,
+    pressure: .92 + .07 * Math.sin(t / 1.5 * TAU + i * 1.7),
     foam: .48 + .09 * Math.cos(t / 2 * TAU + i * 2),
     // Sample the actual geyser turbulence on a closed path so the loop cannot snap.
     waterTime: 1.9 + .24 * Math.sin(t / 2 * TAU + i) + .12 * Math.cos(t * TAU + i * 2),
@@ -42,12 +42,25 @@ function site(t, i, seed) {
 
 function zone(p, C, t, front, pulse) {
   softBand(p, 0, 0, 70, .26, 2, .22, C.slice(0, 6), a => (Math.sin(a) >= 0) === front);
-  for (let i = 0; i < 12; i++) {
-    const a = i * TAU / 12 + Math.sin(t / 3 * TAU + i) * .025;
-    if ((Math.sin(a) >= 0) !== front) continue;
-    const r = 64 + 2 * Math.sin(t / 2 * TAU + i * 1.7);
-    const x = Math.cos(a) * r, y = Math.sin(a) * r * .26;
-    p.blend(x, y, C[4], .22 + .12 * Math.sin(t * TAU + i) ** 2);
+  // Three ribbons chase the orbit, separated by open water. The crest climbs
+  // and flattens independently of the jets; the middle remains unobstructed.
+  for (let lane = 0; lane < 3; lane++) {
+    let previous = null;
+    for (let j = 0; j <= 100; j++) {
+      const a = j / 100 * TAU;
+      if ((Math.sin(a) >= 0) !== front) { previous = null; continue; }
+      const phase = a * 3 - t / 6 * TAU * 3 + lane * 1.7;
+      const crest = Math.max(0, Math.sin(phase));
+      const r = 60 + lane * 3 + Math.sin(phase + lane) * 2;
+      const x = Math.cos(a) * r;
+      const y = Math.sin(a) * r * .26 - crest ** 3 * (3 + lane * 1.5);
+      if (previous) {
+        p.beam(previous[0], previous[1] + 1.5, x, y + 1.5, 2.2, C[2], .65);
+        p.line(previous[0], previous[1], x, y, C[crest > .82 ? 5 : 3], .65);
+      }
+      if (crest > .8 && j % 5 === 0) billow(p, x, y, .8 + crest, C, .65);
+      previous = [x, y];
+    }
   }
   if (!front) pool(p, 0, 0, 70, 18, C[2], .055 + pulse * .025);
 }
@@ -67,8 +80,8 @@ function foot(p, C, t, s, i, front) {
   for (let j = 0; j < 6; j++) {
     const a = (j / 6) * Math.PI + (front ? 0 : Math.PI);
     const wave = Math.sin(t / 1.5 * TAU + j * 1.3 + i);
-    const x = Math.cos(a) * (5 + wave), y = Math.sin(a) * 2.1;
-    billow(p, x, y - .5, 1.1 + .3 * wave, C, front ? .65 : .4);
+    const x = Math.cos(a) * (11 + wave), y = Math.sin(a) * 2.1;
+    billow(p, x, y - .5, 1.6 + .5 * wave, C, front ? .65 : .4);
   }
   const age = wrap(t + i * .17, .75), q = age / .75;
   ring(p, 0, 0, 6 + 12 * q, .25, Math.sin(q * Math.PI) * .3, C, {
@@ -81,11 +94,12 @@ function foot(p, C, t, s, i, front) {
 }
 
 function column(p, C, t, s, i, seed, pulse) {
-  const water = { C, t: s.waterTime, HMAX: 44, S: seed + i * 71 };
+  const water = { C, t: s.waterTime, S: seed + i * 71, width: 12, strength: 1.6 };
   // Exact geyser shading and churning crown, scaled for three sustained orbiting jets.
-  drawGeyserFoam(p, s.height, s.foam, true, water);
-  drawGeyserColumn(p, s.height, s.pressure, water);
-  drawGeyserFoam(p, s.height, s.foam, false, water);
+  surgeCrown(p, s.height, s.pressure, water, true);
+  surgeColumn(p, s.height, s.pressure, water);
+  surgeCrown(p, s.height, s.pressure, water, false);
+  surgeFoot(p, C, s.waterTime, 10, .8, seed + i, true);
   haze(p, -2, -s.height + 2, 7, C[3], .075);
   p.glowLine(0, -3, -1, -s.height + 3, 8, C[4], .045 + pulse * .07);
   for (let j = 0; j < 4; j++) {

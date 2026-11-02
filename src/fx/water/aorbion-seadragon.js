@@ -4,7 +4,7 @@ import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
   name: "Aorbion sea dragon",
-  desc: "A legless water spirit flows through translucent currents; a soft indistinct head and trailing wisps dissolve into foam, spray and ripples.",
+  desc: "A heavy curling tidal wave rushes forward; its foaming lip only hints at a dragon snout, while dark currents, torn crests and trailing ripples break down in stages.",
   tags: ["water", "dragon", "ultimate", "charge", "one-shot"],
   size: [368, 176],
   origin: [24, 128],
@@ -18,8 +18,7 @@ export const meta = {
   },
 };
 
-// 50ms keys: formation, heave, body bend, three retired anatomical channels, light, foam, erosion.
-// Retired columns retain the timeline layout; only the water body and wisps are rendered.
+// 50ms keys: formation, heave, bend, lip fold, curl shear, wisp lift, light, foam, erosion.
 export const choreography = [
   [0.00, .00,  0, -.20, .00, -.30,  .10, .00, .00, .00],
   [0.05, .16,  5, -.35, .00, -.25,  .20, .12, .12, .00],
@@ -51,120 +50,172 @@ function pose(t) {
   return choreography[i].map((v, j) => v + (choreography[i + 1][j] - v) * u);
 }
 
+// The silhouette is a grounded surge, not an articulated animal. The leading
+// hollow is cut from the water volume; a short rolled lip suggests a snout.
 function spine(x, s) {
-  const u = x / 280;
-  const main = Math.sin(u * TAU * 1.1 - s[3] * 1.6) * (9 - u * 4);
-  const shoulder = Math.sin(u * Math.PI) * s[3] * 5;
-  return -33 + main + shoulder + s[2] * (.25 + u * .75);
-}
-
-function thickness(x) {
-  return 1.2 + 15 * Math.sin(Math.PI * clamp(x / 302)) ** .8;
+  return -8 - 29 * (x / 300) ** 1.5 + Math.sin(x * .045 - s[3]) * 3;
 }
 
 function cohesion(x, y, t, s, seed) {
   const cell = noise2(Math.floor(x / 4) * .7, Math.floor(y / 3) * .8, seed);
-  const appear = smooth(x / 300 * .15, .05 + x / 300 * .15, t);
-  const front = s[9] * 340;
-  const remain = 1 - smooth(x - 12 + cell * 13, x + 24 + cell * 13, front);
-  return appear * remain;
+  const appear = smooth(x / 300 * .12, .06 + x / 300 * .12, t);
+  const front = s[9] * 360;
+  return appear * (1 - smooth(x - 14 + cell * 12, x + 28 + cell * 12, front));
 }
 
-// Translucent polygon faces keep water volume soft without checkerboard fading.
-function waterPoly(p, points, color, alpha) {
-  if (alpha <= .01) return;
-  const xs = points.map(v => v[0]), ys = points.map(v => v[1]);
-  p.each(Math.min(...xs), Math.min(...ys), Math.max(...xs) + 1, Math.max(...ys) + 1, (x, y, sx, sy) => {
-    let inside = false;
-    for (let i = 0, j = points.length - 1; i < points.length; j = i++) {
-      const a = points[i], b = points[j];
-      if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0]) inside = !inside;
-    }
-    if (inside) p.blendPx(sx, sy, color, alpha);
-  });
+function waveTop(x, t, s) {
+  const u = clamp(x / 300);
+  const surge = 12 + 48 * u ** 1.65;
+  const rolling = Math.sin(x * .046 - t * 8) * (2 + u * 5);
+  const shoulder = 14 * Math.exp(-(((x - 245) / 40) ** 2));
+  return -(surge + shoulder + rolling) * (.55 + .45 * s[1]) + s[2] * .35;
 }
 
-// Curves are sampled in local pixel space. Bend changes with the authored delayed head motion.
-function whisker(p, C, pts, k) {
-  if (k <= .01) return;
-  let previous = pts[0];
-  for (let i = 1; i <= 24; i++) {
-    const u = i / 24, v = 1 - u;
-    const x = v ** 3 * pts[0][0] + 3 * v * v * u * pts[1][0] + 3 * v * u * u * pts[2][0] + u ** 3 * pts[3][0];
-    const y = v ** 3 * pts[0][1] + 3 * v * v * u * pts[1][1] + 3 * v * u * u * pts[2][1] + u ** 3 * pts[3][1];
-    p.line(previous[0], previous[1], x, y, C[u < .4 ? 6 : 4], k * (1 - u * .5));
-    if (i < 10) p.blend(x, y + 1, C[2], k * .6);
-    previous = [x, y];
-  }
+function hollow(x, y, t, s) {
+  const cx = 304 + Math.sin(t * 9) * 3 + s[5] * 2;
+  const cy = -23 + s[2] * .2;
+  return ((x - cx) / 28) ** 2 + ((y - cy) / 23) ** 2;
 }
 
-function dorsal(p, C, t, s, seed) {
-  const fins = [[38, 10], [66, 13], [95, 9], [127, 16], [159, 12], [188, 17], [216, 13], [242, 10]];
-  for (let i = 0; i < fins.length; i++) {
-    const [x, height] = fins[i], delayed = pose(t - .008 * i);
-    const y = spine(x, s) - thickness(x) * .7;
-    const sway = (delayed[3] - s[3]) * 12 + noise2(i, t * 5, seed) * 2;
-    const k = cohesion(x, y, t, s, seed);
-    if (k < .03) continue;
-    const tip = [x - 14 + sway, y - height];
-    waterPoly(p, [[x - 9, y + 3], tip, [x - 2, y - 4], [x + 9, y + 2]], C[2], k * .8);
-    p.polyline([tip, [x - 2, y - 4], [x + 9, y + 2]], C[5], k * .8);
-    p.line(tip[0] + 2, tip[1] + 2, x, y, C[3], k * .7);
-  }
-}
-
+// Water is shaded in long curved ribbons. Quantized transverse noise keeps
+// connected pixel clusters instead of a static granular fill or smooth gradient.
 function body(p, C, t, s, seed) {
-  const columns = Array.from({ length: 281 }, (_, x) => ({
-    y: spine(x, s),
-    w: thickness(x),
-    vein: noise2(x * .12 - t * 8, t * 3, seed),
-  }));
-  softShade(p, 0, -72, 280, 0, (x, y, out) => {
-    const col = columns[clamp(Math.floor(x), 0, 280)];
-    const q = (y - col.y) / col.w;
-    if (Math.abs(q) > 1) return;
-    const k = cohesion(x, y, t, s, seed);
-    if (k < .03) return;
-    const flow = noise2(Math.floor(x / 3) * .31 - t * 9, Math.floor(y / 2) * .3, seed + 7);
-    out.c = C[q > .65 ? 1 : q > .25 ? 2 : q < -.8 ? 5 : flow > .25 ? 4 : 3];
-    out.a = k * (.65 + .25 * (1 - Math.abs(q)));
-    if (q < -.25 && q > -.6 && col.vein > .1) out.c = C[5];
+  const tops = Array.from({length: 321}, (_, x) => waveTop(x, t, s));
+  const survival = Array.from({length: 81}, (_, x) =>
+    Array.from({length: 33}, (_, y) => cohesion(x * 4, y * 3 - 90, t, s, seed)));
+  const fronts = Array.from({length: 96}, (_, y) => 311 + Math.sin((y - 90) * .08 + t * 6) * 3);
+  const sample = (x, y, out) => {
+    const top = tops[clamp(Math.floor(x), 0, 320)];
+    const floor = 1 + Math.sin(x * .075 + t * 5) * 2;
+    const tip = fronts[clamp(Math.floor(y + 90), 0, 95)];
+    if (y < top || y > floor || x > tip || hollow(x, y, t, s) < 1) return;
+    const k = survival[clamp(Math.floor(x / 4), 0, 80)][clamp(Math.floor((y + 90) / 3), 0, 32)];
+    if (k < .02) return;
+    const v = (y - top) / (floor - top);
+    const bend = Math.atan2((y + 23) / 23, (x - 304) / 28);
+    const curl = Math.sqrt(hollow(x, y, t, s));
+    const turn = smooth(210, 290, x);
+    const line = (curl * 17 + bend * 3) * turn + (v * 24 + Math.sin(x * .035 - t * 4) * 3) * (1 - turn);
+    const flow = noise2(Math.floor(line / 1.5) * .65, Math.floor(x / 5) * .14 - t * 8, seed + 7);
+    const channel = Math.sin(line * 1.1 + t * 12 + flow * 1.7);
+    let level = channel > .82 ? 4 : channel > .25 ? 3 : channel > -.65 ? 2 : 1;
+    if (v > .84) level = Math.max(1, level - 1);
+    const strand = noise2(Math.floor(line * 2) * 1.37, Math.floor(x / 4) * .21 - t * 11, seed + 18);
+    if (strand > .27) level = Math.min(5, level + 1);
+    if (strand < -.4) level = Math.max(1, level - 1);
+    const rim = y - top;
+    if (rim < 1.5 && flow > -.3) level = 5;
+    if (curl < 1.1) level = 3;
+    out.c = C[level];
+    out.a = k * (v > .94 ? .6 : .94);
+  };
+  // Broad water planes are authored on 2px clusters; 1px foam and caustics are
+  // overlaid separately. Cache each cluster once instead of repeating its noise.
+  const cells = new Array(160 * 48);
+  softShade(p, 0, -88, 320, 5, (x, y, out) => {
+    const ix = Math.floor(x / 2), iy = Math.floor((y + 88) / 2);
+    const index = iy * 160 + ix;
+    let cell = cells[index];
+    if (!cell) {
+      cell = { c: 0, a: 1 };
+      sample(ix * 2 + .5, iy * 2 - 87.5, cell);
+      cells[index] = cell;
+    }
+    out.c = cell.c;
+    out.a = cell.a;
   });
-  // Disconnected caustic strokes travel through the body at different speeds.
-  for (let i = 0; i < 20; i++) {
-    const x = 14 + i * 13, y = spine(x, s);
-    const k = cohesion(x, y, t, s, seed);
-    const drift = noise2(i * 2, t * (5 + i % 3), seed + 19);
-    if (k < .1 || drift < -.15) continue;
-    const yy = y - thickness(x) * (.15 + .35 * drift);
-    p.line(x - 3, yy, x + 3 + drift * 4, yy - 1, C[5], k * .65);
-    if (i % 4 === 0) p.glow(x, yy, 9, C[3], k * s[7] * .07);
+}
+
+// Foam follows several asynchronous rolling ridges, not an animal's dorsal fins.
+// Each crest folds forward, breaks into beads, then leaves a dark trough behind it.
+function crest(p, C, t, s, seed) {
+  for (let lane = 0; lane < 4; lane++) {
+    const start = 15 + lane * 19;
+    let previous = null;
+    for (let x = start; x < 303 - lane * 9; x += 2) {
+      const top = waveTop(x, t, s);
+      const v = lane / 5;
+      const y = top * (1 - v) + Math.sin(x * .052 - t * (8 + lane) + lane) * (2 + lane);
+      const flow = noise2(Math.floor(x / 3) * .43 - t * (4 + lane), lane * 3.7, seed + 33);
+      const k = cohesion(x, y, t, s, seed) * (lane === 0 ? .95 : .62);
+      if (k < .03 || hollow(x, y, t, s) < 1.05) { previous = null; continue; }
+      if (previous && flow > -.48) {
+        p.line(previous[0], previous[1] + 2, x, y + 2, C[3], k);
+        p.line(previous[0], previous[1], x, y, C[flow > .25 ? 7 : 5], k);
+      }
+      if (flow > .2 && x % 6 < 2) {
+        const radius = 1.5 + (flow + .2) * (lane === 0 ? 3.8 : 2.2);
+        billow(p, x, y - .5, radius, C, k);
+        p.blend(x - 1, y - radius, C[7], k);
+      }
+      previous = [x, y];
+    }
   }
 }
 
-function head(p, C, t, s) {
-  const y = spine(272, s), k = smooth(.11, .2, t) * (1 - smooth(.78, .9, t));
-  if (k <= 0) return;
-  // A soft water mass only suggests a head: no eye sockets, jaw plates or facial lines.
-  softShade(p, 250, y - 27, 320, y + 19, (x, yy, out) => {
-    const crown = ((x - 274) / 21) ** 2 + ((yy - y + 5) / 17) ** 2;
-    const muzzle = ((x - 296) / 20) ** 2 + ((yy - y + 1) / 11) ** 2;
-    const flow = noise2(Math.floor(x / 2) * .23 - t * 7, Math.floor(yy / 2) * .2, 47);
-    const d = Math.min(crown, muzzle) + flow * .1;
-    if (d > 1) return;
-    const upper = (yy - y + 22) / 40;
-    out.c = C[d > .78 ? 2 : upper < .3 ? 5 : flow > .25 ? 4 : upper > .68 ? 2 : 3];
-    out.a = k * (.42 + .5 * (1 - smooth(.6, 1, d)));
-  });
-  for (let i = 0; i < 6; i++) {
-    const x = 263 + i * 8, yy = y - 8 + Math.sin(i * 1.7 + s[3]) * 4;
-    haze(p, x, yy, 8 + i % 3, C[4], k * .11);
-    if (i % 2 === 0) billow(p, x, yy - 4, 1.2 + s[8], C, k * .5);
+function head(p, C, t, s, seed) {
+  const k = smooth(.1, .2, t) * (1 - smooth(.74, .91, t));
+  if (k < .01) return;
+  // A broad curling brow and rounded drooping lip are the only dragon cues.
+  // No eyes, teeth, horns, limbs, separate head sphere or outlined mouth.
+  const top = waveTop(285, t, s);
+  for (let lane = 0; lane < 3; lane++) {
+    let last = null;
+    for (let i = 0; i <= 35; i++) {
+      const u = i / 35;
+      const x = 253 + 61 * u - 8 * u ** 4;
+      const y = top - Math.sin(u * Math.PI) * 8 + u ** 4 * (22 + s[4] * 5) + lane * 3;
+      const n = noise2(i * .31 - t * 7, lane * 2, seed + 27);
+      if (last) {
+        p.beam(last[0], last[1] + 2, x, y + 2, 5 - lane * .7, C[4], k * .8);
+        p.line(last[0], last[1], x, y, C[n > .12 ? 7 : 5], k);
+      }
+      if (i % 4 === 0) billow(p, x, y, 1.5 + Math.max(0, n) * 2, C, k * .9);
+      last = [x, y];
+    }
   }
-  const lag = pose(t - .045)[2] - s[2];
-  whisker(p, C, [[298, y + 1], [315, y - 12], [300, y - 21 + lag], [278, y - 18]], k * .38);
-  whisker(p, C, [[298, y + 3], [313, y + 13], [297, y + 20], [278, y + 14 - lag]], k * .3);
-  p.glow(284, y - 7, 14, C[4], k * s[7] * .1);
+  // Wind tears two low wisps from the water lip. Their lag differs from the crest.
+  for (let side = 0; side < 2; side++) {
+    let last = null;
+    for (let i = 0; i < 24; i++) {
+      const u = i / 23;
+      const x = 302 - u * (34 + side * 17);
+      const y = top + 19 + side * 8 + Math.sin(u * Math.PI * 1.4 - t * 5) * (5 + s[6] * 2);
+      if (last) p.line(last[0], last[1], x, y, C[4], k * (1 - u) * .5);
+      last = [x, y];
+    }
+  }
+  p.glow(280, top + 6, 22, C[4], k * s[7] * .16);
+}
+
+// Broken curtains of foam slide down the face, branching into droplets.
+// These broad patches bridge the fine flow ribbons and the foamy crest.
+function fallingLace(p, C, t, s, seed) {
+  for (let i = 0; i < 13; i++) {
+    const x0 = 35 + i * 21;
+    const phase = (t * (1.6 + i % 3 * .22) + i * .277) % 1;
+    const top = waveTop(x0, t, s);
+    const length = (9 + i % 4 * 5) * Math.sin(phase * Math.PI);
+    const k = cohesion(x0, top, t, s, seed) * Math.sin(phase * Math.PI);
+    for (let j = 0; j < length; j += 2) {
+      const x = x0 - j * .48 + Math.sin(j * .25 + i) * 2;
+      const y = top + j + phase * 8;
+      if (hollow(x, y, t, s) < 1.05 || y > 0) continue;
+      const n = noise2(i * 2 + j * .3, t * 7, seed + 108);
+      if (n < -.32) continue;
+      const r = (1 - j / (length + 2)) * (2.4 + Math.max(0, n) * 2);
+      billow(p, x, y, r, C, k * .83);
+    }
+  }
+  // The bow strikes the ground in several offset white foam tongues.
+  for (let i = 0; i < 11; i++) {
+    const x = 219 + i * 8 + Math.sin(i * 7) * 4;
+    const phase = (t * 2.5 + i * .173) % 1;
+    const k = cohesion(x, 0, t, s, seed) * Math.sin(phase * Math.PI);
+    const xx = x + phase * 10, yy = -1 - Math.sin(phase * Math.PI) * (2 + i % 4);
+    p.beam(xx - 4, yy + 2, xx + 3, yy, 2, C[4], k);
+    billow(p, xx, yy, 1.2 + Math.sin(phase * Math.PI) * 1.4, C, k * .85);
+  }
 }
 
 function droplets(seed) {
@@ -176,7 +227,7 @@ function droplets(seed) {
     list.push({
       birth, x,
       z: R.range(-14, 14),
-      h: bow ? R.range(4, 20) : Math.max(3, -spine(x, s) - R.range(6, 16)),
+      h: Math.max(3, -waveTop(x, birth, s) + R.range(-3, 4)),
       vx: bow ? R.range(-75, -20) : R.range(-26, 12),
       vz: R.range(-20, 20),
       vh: R.range(10, 65),
@@ -305,10 +356,12 @@ export function draw(p, t, o) {
   t = Math.round(t * 1e9) / 1e9;
   if (t <= 0 || t >= meta.duration) return;
   const C = fit(o.palette, 8), s = pose(t);
-  dorsal(p, C, t, s, o.seed);
+
   body(p, C, t, s, o.seed);
-  head(p, C, t, s);
-  // Underbody haze follows the articulated spine, never a full-screen glow.
+  crest(p, C, t, s, o.seed);
+  head(p, C, t, s, o.seed);
+  fallingLace(p, C, t, s, o.seed);
+  // Restrained spray haze sits under the rolling crests; color carries the volume.
   for (const x of [48, 108, 172, 232]) {
     const y = spine(x, s), k = cohesion(x, y, t, s, o.seed);
     haze(p, x, y + 7, 10, C[3], k * .12);
