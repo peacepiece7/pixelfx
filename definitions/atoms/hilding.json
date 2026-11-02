@@ -76,17 +76,17 @@
     },
     "attack-dagger": {
       "path": "characters/hilding/runtime/attack-dagger.png",
-      "frames": 6,
-      "fps": 12.0,
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        16,
-        40
+        15,
+        45
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 5,
       "tip": [
-        25,
-        -21
+        22,
+        -29
       ]
     },
     "hit-dagger": {

@@ -1,0 +1,37 @@
+{
+  "id": "hilding-runes",
+  "name": "힐딩 스킬·직업 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/hilding-runes/runtime/runes-32.png",
+  "icons": [
+    "hilding-poisoned-edge-rune",
+    "hilding-poison-fog-rune",
+    "hilding-poison-mine-rune",
+    "hilding-poison-detonation-rune",
+    "hilding-extra-fog-job",
+    "hilding-basic-mine-job",
+    "hilding-poison-retain-job",
+    "hilding-poison-transfer-job"
+  ],
+  "labels": {
+    "hilding-poisoned-edge-rune": "독 묻은 날",
+    "hilding-poison-fog-rune": "독안개",
+    "hilding-poison-mine-rune": "독지뢰",
+    "hilding-poison-detonation-rune": "독 폭발",
+    "hilding-extra-fog-job": "잔류 독무",
+    "hilding-basic-mine-job": "매복 독침",
+    "hilding-poison-retain-job": "잔독",
+    "hilding-poison-transfer-job": "독의 계승"
+  },
+  "sheets": {
+    "16": {
+      "path": "icons/hilding-runes/runtime/runes-16.png",
+      "size": 16
+    },
+    "32": {
+      "path": "icons/hilding-runes/runtime/runes-32.png",
+      "size": 32
+    }
+  }
+}

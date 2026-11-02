@@ -83,6 +83,21 @@
         51
       ],
       "loop": false
+    },
+    "pulse": {
+      "path": "characters/adelvin-michael/runtime/pulse.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        23,
+        51
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        26,
+        -36
+      ]
     }
   }
 }

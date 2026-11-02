@@ -158,6 +158,66 @@
         18,
         -28
       ]
+    },
+    "cast-gabriel": {
+      "path": "characters/adelvin/runtime/cast-gabriel.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        23,
+        45
+      ],
+      "loop": false,
+      "hitFrame": 8,
+      "tip": [
+        24,
+        -42
+      ]
+    },
+    "cast-orbs-wand": {
+      "path": "characters/adelvin/runtime/cast-orbs-wand.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        16,
+        46
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        16,
+        -32
+      ]
+    },
+    "cast-gabriel-wand": {
+      "path": "characters/adelvin/runtime/cast-gabriel-wand.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        20,
+        45
+      ],
+      "loop": false,
+      "hitFrame": 8,
+      "tip": [
+        19,
+        -36
+      ]
+    },
+    "cast-michael-wand": {
+      "path": "characters/adelvin/runtime/cast-michael-wand.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        21,
+        45
+      ],
+      "loop": false,
+      "hitFrame": 8,
+      "tip": [
+        17,
+        -13
+      ]
     }
   }
 }
