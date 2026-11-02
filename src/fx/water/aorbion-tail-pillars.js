@@ -17,7 +17,8 @@ export const meta = {
 export function create(o) {
   const n = clamp(Math.floor(Number.isFinite(o.count) ? o.count : 3), 1, 12);
   const warmup = 1.1, delay = 0.018;
-  const speed = (geyserMeta.duration - warmup) / (meta.duration - delay * (n - 1));
+  const clock = u => u < 0.16 ? warmup + u / 0.16 * 1.5
+    : 2.6 + (u - 0.16) / (meta.duration - delay * (n - 1) - 0.16) * 2.4;
   const pillars = Array.from({ length: n }, (_, i) => {
     const fx = createGeyser({ ...geyserMeta.options, palette: o.palette, height: 44, seed: o.seed + i * 31 });
     // Start just before eruption; the slower ambient buildup is omitted for this combat skill.
@@ -27,7 +28,8 @@ export function create(o) {
   let elapsed = 0;
   const draw = (p, back) => {
     if (elapsed >= meta.duration) return;
-    const tx = p.tx, ty = p.ty;
+    const tx = p.tx, ty = p.ty, light = p.lightK;
+    p.lightK *= 0.35;
     try {
       for (const pillar of pillars) {
         if (elapsed < pillar.start) continue;
@@ -36,7 +38,7 @@ export function create(o) {
         if (back) pillar.fx.drawBack(p);
         else pillar.fx.draw(p);
       }
-    } finally { p.tx = tx; p.ty = ty; }
+    } finally { p.tx = tx; p.ty = ty; p.lightK = light; }
   };
   return {
     update(dt) {
@@ -45,7 +47,7 @@ export function create(o) {
       for (const pillar of pillars) {
         const step = Math.min(elapsed, meta.duration) - Math.max(prev, pillar.start);
         // Small fixed substeps preserve the geyser's spray emission when time is compressed.
-        for (let left = step * speed; left > 1e-9; left -= 1 / 120)
+        for (let left = step > 0 ? clock(Math.max(0, Math.min(elapsed, meta.duration) - pillar.start)) - clock(Math.max(0, prev - pillar.start)) : 0; left > 1e-9; left -= 1 / 120)
           pillar.fx.update(Math.min(1 / 120, left));
       }
     },

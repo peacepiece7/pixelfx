@@ -14,15 +14,15 @@ export function create(o) {
   const drops = new Drops({ sy: 0.25, g: 840, onLand: d => {
     rings.add(d.x, d.z, 1, 2 + d.s, 0.18, { n: 1, k: 0.65 });
   } });
-  for (let i = 0; i < 42; i++) {
+  for (let i = 0; i < 24; i++) {
     const x = R.range(1, 98), side = R.sign();
     drops.add({ x, z: side * R.range(2, 24), h: R.range(1, 6), vx: R.range(15, 62),
       vz: side * R.range(10, 38), vh: R.range(50, 130), s: R.int(1, 3),
       delay: x / 100 * 0.13, life: 0.5 });
   }
-  const foam = Array.from({ length: 11 }, () => ({ y: R.range(-9, 7), size: R.range(1.8, 3.6), phase: R.range(0, TAU) }));
+  const foam = Array.from({ length: 7 }, () => ({ y: R.range(-9, 7), size: R.range(1.8, 3.6), phase: R.range(0, TAU) }));
   let elapsed = 0;
-  const fade = () => 1 - smooth(0.28, 0.65, elapsed);
+  const fade = () => 1 - smooth(0.3, 0.65, elapsed);
   return {
     update(dt) { elapsed += dt; drops.update(dt); rings.update(dt); },
     drawBack(p) {
@@ -30,7 +30,7 @@ export function create(o) {
       const head = 100 * ease.outCubic(clamp(elapsed / 0.18)), k = fade();
       // Narrow footprint and broken foam persist after the forward crest passes.
       p.ellipse(head * 0.5, 0, Math.max(0.1, head * 0.5), 8, C[1], k * 0.25);
-      lace(p, head * 0.5, 0, head * 0.5, 9, k * 0.8, C, elapsed * 8, o.seed);
+      lace(p, head * 0.5, 0, head * 0.5, 9, k * 0.35, C, elapsed * 8, o.seed);
       rings.draw(p, C, "back"); drops.draw(p, C, "back");
     },
     draw(p) {
@@ -64,8 +64,10 @@ export function create(o) {
           const q = (x - 8) / 92, cy = (j - 1) * 6 - 6 - Math.sin(Math.PI * q) * (12 + j * 2);
           const w = 2.7 * Math.sin(Math.PI * q) * (1 - close);
           const d = Math.abs(y - cy) / Math.max(0.1, w);
+          // Retreat in staggered chunks instead of dissolving every pixel at once.
+          if (u > 0.18 && Math.floor(x / 6) % 3 < (u - 0.18) * 12) return;
           if (d > 1) return;
-          out.c = d < 0.32 ? C[7] : d < 0.7 ? C[5] : C[3]; out.a = k;
+          out.c = d < 0.32 ? C[7] : d < 0.7 ? C[5] : C[3]; out.a = 1;
         });
       }
       drops.draw(p, C, "front"); rings.draw(p, C, "front");
