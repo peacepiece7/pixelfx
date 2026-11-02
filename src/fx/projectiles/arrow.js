@@ -16,8 +16,8 @@ export const meta = {
     wood: ["#3a2414", "#6e4422", "#a8723c", "#d8a868"],
     steel: ["#2e3648", "#5a6680", "#9aa6ba", "#dfe7f2"],
     wind: "#b8c8e8",
-    length: 28,
-    windStreaks: 3,
+    length: 14,
+    windStreaks: 0,
     eddies: 0,
     glint: false,
     seed: 3,
@@ -25,11 +25,11 @@ export const meta = {
 };
 
 // the arrow, nose right, tip at (0, 0): fletching (three poses for the flutter), shaft, binding, broadhead
-const HEAD = ["..LL....", "..sLLL..", "bbsSSSSW", "..dDDD..", "..DD...."];
+const HEAD = [".LL.", "bSSW", ".DD."];
 const FLETCH = [
-  ["AAa.........", ".aAAa.......", "..aaAAa.....", "nkkkkkkkkkkk", "..cCCc......", ".cCCc.......", "CCc........."],
-  [".AAa........", "..aAAa......", "..aaAAAa....", "nkkkkkkkkkkk", "..cCCCc.....", "..cCCc......", ".CCc........"],
-  ["AAAa........", "aAAa........", ".aaAAa......", "nkkkkkkkkkkk", "..ccCc......", "cCCc........", "CCc........."],
+  ["AAa...", "nkkkkk", "CCc..."],
+  [".AAa..", "nkkkkk", ".CCc.."],
+  ["Aa....", "nkkkkk", "Cc...."],
 ];
 
 export function draw(p, t, o) {
@@ -52,13 +52,13 @@ export function draw(p, t, o) {
   });
 
   // the shaft with a lit top line
-  p.line(-LEN + 11, 0, -7, 0, W[2]);
-  for (let x = -LEN + 14; x < -8; x += 6) p.px(x, 0, W[3]);
+  p.line(-LEN + 5, 0, -3, 0, W[2]);
+  for (let x = -LEN + 7; x < -4; x += 4) p.px(x, 0, W[3]);
   // the fletching flutters through its poses, faster than the frame rate can quite catch
   const pose = FLETCH[Math.floor(rand(fr, S) * 3)];
-  p.sprite(pose, { a: PL[2], A: PL[3], c: PL[0], C: PL[1], k: W[1], n: W[0] }, -LEN, -3);
+  p.sprite(pose, { a: PL[2], A: PL[3], c: PL[0], C: PL[1], k: W[1], n: W[0] }, -LEN, -1);
   // the binding and the broadhead: a lit upper bevel, a shaded lower one, a white point
-  p.sprite(HEAD, { L: ST[3], s: ST[2], S: ST[2], d: ST[0], D: ST[1], b: W[0], W: WHITE }, -7, -2);
+  p.sprite(HEAD, { L: ST[3], s: ST[2], S: ST[2], d: ST[0], D: ST[1], b: W[0], W: WHITE }, -3, -1);
   // a glint runs down the blade now and then
   const g = (ph * 2) % 1;
   if (o.glint && g < 0.25) sparkle(p, -5 + g * 16, -1, 1 + Math.round(2 * Math.sin((g / 0.25) * Math.PI)), WHITE, ST[3], 0.25);
