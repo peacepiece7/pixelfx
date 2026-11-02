@@ -84,7 +84,10 @@ for (const id of ids) {
     if (typeof meta.desc !== "string" || meta.desc.length < 12) errs.push("meta.desc missing or too short");
     if (meta.desc?.length > 180) notes.push(`desc is ${meta.desc.length} chars (keep it under 180)`);
     if (!Array.isArray(meta.tags) || !meta.tags.length) errs.push("meta.tags missing");
-    if (!Array.isArray(meta.size) || meta.size.some((v) => !Number.isInteger(v) || v < 8 || v > 480)) errs.push("meta.size must be [w, h], whole pixels 8..480");
+    // Wide traveling effects may exceed a square viewport without increasing
+    // the original 480×480 pixel budget. Keep both the extent and area bounded.
+    if (!Array.isArray(meta.size) || meta.size.length !== 2 || meta.size.some((v) => !Number.isInteger(v) || v < 8 || v > 960)
+      || meta.size[0] * meta.size[1] > 480 * 480) errs.push("meta.size must be [w, h], whole pixels 8..960, area <= 480×480");
     if (!Array.isArray(meta.origin) || meta.origin.length !== 2) errs.push("meta.origin must be [x, y]");
     if (!(meta.duration > 0 && meta.duration <= 12)) errs.push("meta.duration must be 0..12 s");
     if (!BACKDROPS.includes(meta.bg)) errs.push(`meta.bg must be one of ${BACKDROPS.join(", ")}`);

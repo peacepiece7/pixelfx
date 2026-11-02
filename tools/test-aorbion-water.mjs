@@ -19,7 +19,7 @@ const sharedLines = lines('../src/fx/water/_surging-water.js');
 const alternate = ['#160b20', '#422249', '#714b79', '#b083af', '#edc6e6'];
 
 function render(mod, t, options = {}, substeps = 1) {
-  const frame = createFrame(768, 768), fx = createFx(mod, { x: 320, y: 360, ...options });
+  const frame = createFrame(1280, 768), fx = createFx(mod, { x: 320, y: 360, ...options });
   for (let i = 0; i < substeps; i++) fx.update(t / substeps);
   fx.draw(frame, 'back');
   fx.draw(frame, 'front');
@@ -82,16 +82,25 @@ for (const stacks of [1, 2, 3]) {
 }
 console.log('Wet zero-stack, capped density and loop seam passed');
 
-// Regression: the fading wave must retain a long footprint rather than being
-// erased from left to right. Inspect each third near the ground, after the peak.
-for (const t of [.65, .75, .85]) {
-  const f = render(dragon, t);
-  for (const [left, right] of [[20, 95], [110, 195], [215, 305]]) {
-    let water = 0;
-    for (let y = 342; y < 374; y++) for (let x = 320 + left; x < 320 + right; x++) {
-      if ((f.color[y * f.w + x] >>> 24) > 16) water++;
-    }
-    assert(water > 20, `Sea wave retains its ${left}..${right} footprint at ${t}`);
+// Regression: the visible crest travels through a long lane, grows to its peak,
+// then keeps advancing while shrinking. The host-driven mode has no extra travel.
+function waterStats(t, options = {}) {
+  const f = render(dragon, t, options);
+  let count = 0, sumX = 0, top = f.h;
+  const rows = new Uint32Array(f.h);
+  for (let i = 0; i < f.color.length; i++) if ((f.color[i] >>> 24) > 128) {
+    count++; sumX += i % f.w; rows[Math.floor(i / f.w)]++;
   }
+  // Ignore isolated ballistic drops when measuring the dense water body.
+  for (let y = 0; y < f.h; y++) if (rows[y] > 18) { top = y; break; }
+  return { count, x: sumX / count, height: 360 - top };
 }
-console.log('Sea wave retains all three lane sections during settling');
+const early = waterStats(.15), peak = waterStats(.4), late = waterStats(.75);
+assert(peak.x > early.x + 70 && late.x > peak.x + 150, 'Crest advances through the lane');
+assert(peak.height > early.height + 15 && peak.height > late.height + 15, 'Wave grows then shrinks');
+for (const t of [.2, .5, .8]) {
+  assert.equal(dragon.travelPose(t, { travelDistance: 0 }).front, 0, 'Host-driven mode avoids double travel');
+  assert.equal(dragon.travelPose(t, { travelDistance: 640 }).front, t * 640);
+}
+assert(!empty(render(dragon, .45, { travelDistance: 0 })), 'Host-driven crest visible');
+console.log('Sea wave advances, grows, shrinks and supports a host-driven anchor');

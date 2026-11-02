@@ -4,10 +4,10 @@ import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
   name: "Aorbion sea dragon",
-  desc: "A broad tidal wave rises from shallow water, hints at a dragon in its curling lip, then settles along its full length into foam and ripples.",
+  desc: "A traveling tidal wave grows into a huge curling crest, then keeps advancing as it collapses into spray, leaving a stationary foamy water trail behind.",
   tags: ["water", "dragon", "ultimate", "charge", "one-shot"],
-  size: [400, 200],
-  origin: [40, 144],
+  size: [736, 208],
+  origin: [48, 144],
   duration: 1,
   loop: false,
   fps: 40,
@@ -15,31 +15,32 @@ export const meta = {
   options: {
     palette: ["#071e38", "#0c4169", "#147d9c", "#32b9d0", "#8de8ed", "#e3ffff"],
     seed: 17,
+    travelDistance: 640,
   },
 };
 
 // 50ms keys: formation, heave, bend, lip fold, curl shear, wisp lift, light, foam, settling.
 export const choreography = [
-  [0.00, .00,  0, -.20, .00, -.30,  .10, .00, .00, .00],
-  [0.05, 0.120,  5, -.35, .00, -.25,  .20, .12, .12, .00],
-  [0.10, 0.380,  1, -.10, .10, -.15,  .55, .38, .35, .00],
-  [0.15, 0.720, -4,  .25, .40,  .20,  .70, .72, .65, .00],
-  [0.20, 1.000, -7,  .60, .85,  .65,  .40, 1.0, .90, .00],
-  [0.25, 1.000, -5,  .85, 1.0,  .90,  .00, .82, .72, .00],
-  [0.30, 1.000, -1,  .55, .70,  .30, -.30, .72, .62, .00],
-  [0.35, 1.000,  3,  .05, .40, -.20, -.55, .62, .52, .00],
-  [0.40, 0.990,  4, -.40, .25, -.40, -.15, .65, .65, .00],
-  [0.45, 0.970,  1, -.65, .50, -.10,  .30, .82, .82, .00],
-  [0.50, 0.930, -3, -.35, .72,  .40,  .60, .72, .67, .00],
-  [0.55, 0.850, -5,  .10, .55,  .65,  .20, .58, .55, .00],
-  [0.60, 0.740, -3,  .45, .35,  .20, -.30, .48, .45, .08],
-  [0.65, 0.610,  0,  .60, .30, -.25, -.55, .40, .40, .24],
-  [0.70, 0.470,  3,  .30, .20, -.50, -.20, .30, .35, .42],
-  [0.75, 0.340,  5, -.10, .12, -.60,  .10, .22, .28, .58],
-  [0.80, 0.220,  6, -.30, .08, -.70,  .20, .14, .20, .73],
-  [0.85, 0.120,  7, -.15, .00, -.80,  .00, .08, .14, .88],
-  [0.90, 0.050,  8,  .00, .00, -.80,  .00, .03, .08, 1.0],
-  [0.95, 0.012,  8,  .00, .00, -.80,  .00, .01, .03, 1.0],
+  [0.00, 0.000,  0, -.20, .00, -.30,  .10, .00, .00, .00],
+  [0.05, 0.080,  5, -.35, .00, -.25,  .20, .12, .12, .00],
+  [0.10, 0.220,  1, -.10, .10, -.15,  .55, .38, .35, .00],
+  [0.15, 0.420, -4,  .25, .40,  .20,  .70, .72, .65, .00],
+  [0.20, 0.630, -7,  .60, .85,  .65,  .40, 1.0, .90, .00],
+  [0.25, 0.800, -5,  .85, 1.0,  .90,  .00, .82, .72, .00],
+  [0.30, 0.920, -1,  .55, .70,  .30, -.30, .72, .62, .00],
+  [0.35, 0.980,  3,  .05, .40, -.20, -.55, .62, .52, .00],
+  [0.40, 1.000,  4, -.40, .25, -.40, -.15, .65, .65, .00],
+  [0.45, 1.000,  1, -.65, .50, -.10,  .30, .82, .82, .00],
+  [0.50, 0.980, -3, -.35, .72,  .40,  .60, .72, .67, .00],
+  [0.55, 0.910, -5,  .10, .55,  .65,  .20, .58, .55, .00],
+  [0.60, 0.800, -3,  .45, .35,  .20, -.30, .48, .45, .08],
+  [0.65, 0.660,  0,  .60, .30, -.25, -.55, .40, .40, .24],
+  [0.70, 0.510,  3,  .30, .20, -.50, -.20, .30, .35, .42],
+  [0.75, 0.360,  5, -.10, .12, -.60,  .10, .22, .28, .58],
+  [0.80, 0.230,  6, -.30, .08, -.70,  .20, .14, .20, .73],
+  [0.85, 0.130,  7, -.15, .00, -.80,  .00, .08, .14, .88],
+  [0.90, 0.060,  8,  .00, .00, -.80,  .00, .03, .08, 1.0],
+  [0.95, 0.018,  8,  .00, .00, -.80,  .00, .01, .03, 1.0],
   [1.00, 0.000,  8,  .00, .00, -.80,  .00, .00, .00, 1.0],
 ];
 
@@ -48,6 +49,29 @@ function pose(t) {
   const i = Math.min(choreography.length - 2, Math.floor(f));
   const u = smooth(0, 1, f - i);
   return choreography[i].map((v, j) => v + (choreography[i + 1][j] - v) * u);
+}
+
+// The default gallery travels beyond a normal viewport. A host that already
+// advances the effect anchor uses travelDistance:0 to avoid double movement.
+export function travelPose(t, o) {
+  const s = pose(t), distance = Math.max(0, Number.isFinite(o.travelDistance) ? o.travelDistance : 640);
+  const growth = smooth(0, .48, t);
+  const length = 310 * (.12 + .88 * growth) * (.32 + .68 * Math.sqrt(lift(s)));
+  const width = distance > 0 ? Math.min(length, distance * t + 8) : length;
+  const scale = Math.max(.012, width / 310);
+  return { front: distance * t, scale, offset: distance * t - 310 * scale };
+}
+
+function movingPainter(p, t, o) {
+  const m = travelPose(t, o), q = Object.create(p);
+  const { tx, ty, fx, cs, sn } = p;
+  const x0 = tx + m.offset * fx * cs, y0 = ty + m.offset * fx * sn;
+  const ax = m.scale * fx * cs, ay = m.scale * fx * sn;
+  q.toX = (x, y) => x0 + x * ax - y * sn;
+  q.toY = (x, y) => y0 + x * ay + y * cs;
+  q.fromX = (x, y) => ((x - x0) * cs + (y - y0) * sn) * fx / m.scale;
+  q.fromY = (x, y) => -(x - x0) * sn + (y - y0) * cs;
+  return q;
 }
 
 // The silhouette is a grounded surge, not an articulated animal. The leading
@@ -220,17 +244,32 @@ function fallingLace(p, C, t, s, seed) {
   }
 }
 
-function droplets(seed) {
+function breakingLip(p, C, t, s, seed) {
+  const k = smooth(.23, .4, t) * (1 - smooth(.68, .9, t));
+  for (let i = 0; i < 12; i++) {
+    const phase = (t * (2.1 + i % 3 * .17) + i * .183) % 1;
+    const x = 248 + i * 4.7 + Math.sin(i * 1.7) * 2;
+    const top = waveTop(x, t, s);
+    const drop = phase * phase * 17 * (1 - s[1] * .5);
+    const y = top + drop;
+    const radius = (1.3 + Math.sin(phase * Math.PI) * 2.4) * Math.sqrt(lift(s));
+    const a = k * Math.sin(phase * Math.PI);
+    billow(p, x + phase * 4, y, radius, C, a);
+    if (phase > .6) bead(p, x + phase * 5, y + 2, 14, 25, 1, C, a * .7);
+  }
+}
+
+function droplets(seed, o) {
   const R = new Rng(seed), list = [];
   for (let i = 0; i < 76; i++) {
     const birth = .09 + R.range(0, .65), bow = i < 32;
     const x = bow ? R.range(270, 303) : R.range(22, 270);
-    const s = pose(birth);
+    const s = pose(birth), m = travelPose(birth, o);
     list.push({
-      birth, x,
+      birth, x: m.offset + x * m.scale,
       z: R.range(-14, 14),
       h: Math.max(3, -waveTop(x, birth, s) + R.range(-3, 4)),
-      vx: bow ? R.range(-75, -20) : R.range(-26, 12),
+      vx: (bow ? R.range(-75, -20) : R.range(-26, 12)) * m.scale + (o.travelDistance || 0) * .14,
       vz: R.range(-20, 20),
       vh: R.range(10, 65),
       size: R.next() < .24 ? 2 : 1,
@@ -255,38 +294,6 @@ function spray(p, C, d, t, front) {
     ring(p, x, z, 1 + age * 25, .3, k * (1 - smooth(.02, .13, age)) * .45, C, {
       n: 1, half: front ? 1 : -1, seed: d.seed, hot: false,
     });
-  }
-}
-
-function wake(p, C, t, s, seed, front) {
-  const R = new Rng(seed + 56);
-  for (let i = 0; i < 22; i++) {
-    const x = R.range(10, 296), birth = R.range(.02, .65), life = R.range(.22, .4);
-    const side = R.sign(), vx = R.range(-25, -6), radius = R.range(1.2, 2.6);
-    const age = t - birth;
-    if (age < 0 || age >= life || (side > 0) !== front) continue;
-    const u = age / life, drift = (1 - Math.exp(-age * 5)) / 5;
-    const xx = x + vx * drift, y = side * (3 + 14 * u);
-    const k = smooth(0, .035, age) * (1 - smooth(.5, 1, u)) * (1 - smooth(.86, 1, t));
-    p.disc(xx, y, radius, C[2], d => k * .22 * (1 - d));
-    p.arc(xx, y, radius, .7, 3.4, 5.9, C[5], k * .65);
-    p.blend(xx - .5, y - radius * .5, C[6], k * .6);
-    if (u > .7) p.blend(xx + radius + (u - .7) * 4, y, C[4], (1 - u) * .7);
-  }
-  for (let i = 0; i < 9; i++) {
-    const birth = .04 + i * .065, age = t - birth;
-    if (age < 0 || age > .36) continue;
-    const x = 14 + i * 33, r = 4 + 16 * smooth(0, .3, age);
-    ring(p, x, 0, r, .4, (1 - age / .36) * .4, C, {
-      n: 1, half: front ? 1 : -1, wob: .6, seed: seed + i, hot: false,
-    });
-  }
-  if (!front) {
-    pool(p, 151, 0, 150, 18, C[3], s[8] * .14);
-    for (let i = 0; i < 6; i++) {
-      const x = 30 + i * 48;
-      haze(p, x, 2, 13, C[2], s[8] * .07);
-    }
   }
 }
 
@@ -329,59 +336,56 @@ function bowFoam(p, C, t, s, seed, front) {
   }
 }
 
-// Water lost from the height becomes a broad, low wash. Its footprint stays
-// connected across the attack lane while separate foam patches stretch outward.
-function settlingWash(p, C, t, s, seed, front) {
-  const settle = smooth(.42, .78, t);
-  const fade = 1 - smooth(.82, 1, t);
-  if (settle * fade <= 0) return;
-  for (let i = 0; i < 9; i++) {
-    const x = 20 + i * 34 + Math.sin(i * 8.1) * 7;
-    const delayed = smooth(.42 + i % 4 * .025, .84, t);
-    const r = 7 + delayed * (12 + i % 3 * 5);
+// Each water deposit remembers the wave position at birth. It expands at that
+// world position rather than sliding along with the traveling crest.
+function depositedWake(p, C, t, o, front) {
+  for (let i = 0; i < 20; i++) {
+    const birth = .035 + i * .039, age = t - birth;
+    if (age <= 0 || age > .34) continue;
+    const m = travelPose(birth, o), s = pose(birth);
+    const x = m.front - 16 * m.scale;
+    const u = age / .34, k = Math.sin(u * Math.PI) * (1 - smooth(.88, 1, t));
+    const width = 7 + age * (40 + i % 4 * 6);
     const side = front ? 1 : -1;
-    const z = side * (2 + delayed * (6 + i % 4 * 2));
-    ring(p, x, z, r, .25, Math.sin(delayed * Math.PI * .8) * fade * .28, C,
-      { n: 1, half: side, seed: seed + i * 13, hot: false, wob: .8 });
-    for (let j = 0; j < 3; j++) {
-      const xx = x + (j - 1) * 5 + delayed * (j - 1) * 4;
-      const yy = z + Math.sin(i * 2 + j + t * 8) * 1.3;
-      const k = delayed * fade * (.45 + .2 * Math.sin(i + j));
-      p.line(xx - 3, yy, xx + 3, yy, C[4], k);
-      billow(p, xx, yy, (.7 + .5 * Math.sin(i * 3 + j) ** 2) * fade, C, k);
+    ring(p, x, 0, width, .32, k * .35, C,
+      { n: 1, half: side, seed: o.seed + i * 17, hot: false, wob: .8 });
+    for (let j = 0; j < 4; j++) {
+      const xx = x + (j - 1.5) * width * .35;
+      const y = side * (3 + u * 12) + Math.sin(i * 1.9 + j) * 2;
+      const size = (1.1 + j % 2 * .7) * k * (.5 + s[1]);
+      billow(p, xx, y - 1, size, C, k * .65);
+      p.line(xx - 3, y, xx + 3, y, C[3], k * .4);
     }
+    if (!front) pool(p, x, 0, width * 1.3, width * .27, C[3], k * .07);
   }
 }
 
 export function drawBack(p, t, o) {
   t = Math.round(t * 1e9) / 1e9;
   if (t <= 0 || t >= meta.duration) return;
-  const C = fit(o.palette, 8), s = pose(t);
-  waterSheets(p, C, t, s, o.seed, false);
-  wake(p, C, t, s, o.seed, false);
-  for (const d of droplets(o.seed)) spray(p, C, d, t, false);
-  bowFoam(p, C, t, s, o.seed, false);
-  settlingWash(p, C, t, s, o.seed, false);
+  const C = fit(o.palette, 8), s = pose(t), q = movingPainter(p, t, o);
+  depositedWake(p, C, t, o, false);
+  waterSheets(q, C, t, s, o.seed, false);
+  for (const d of droplets(o.seed, o)) spray(p, C, d, t, false);
+  bowFoam(q, C, t, s, o.seed, false);
 }
 
 export function draw(p, t, o) {
   t = Math.round(t * 1e9) / 1e9;
   if (t <= 0 || t >= meta.duration) return;
-  const C = fit(o.palette, 8), s = pose(t);
-
-  body(p, C, t, s, o.seed);
-  crest(p, C, t, s, o.seed);
-  head(p, C, t, s, o.seed);
-  fallingLace(p, C, t, s, o.seed);
-  // Restrained spray haze sits under the rolling crests; color carries the volume.
+  const C = fit(o.palette, 8), s = pose(t), q = movingPainter(p, t, o);
+  body(q, C, t, s, o.seed);
+  crest(q, C, t, s, o.seed);
+  head(q, C, t, s, o.seed);
+  fallingLace(q, C, t, s, o.seed);
+  breakingLip(q, C, t, s, o.seed);
   for (const x of [48, 108, 172, 232]) {
     const y = spine(x, s), k = cohesion(x, y, t, s, o.seed);
-    haze(p, x, y + 7, 10, C[3], k * .12);
-    p.glow(x, y - 4, 15, C[3], k * s[7] * .06);
+    haze(q, x, y + 7, 10, C[3], k * .12);
+    q.glow(x, y - 4, 15, C[3], k * s[7] * .06);
   }
-  bowFoam(p, C, t, s, o.seed, true);
-  waterSheets(p, C, t, s, o.seed, true);
-  wake(p, C, t, s, o.seed, true);
-  for (const d of droplets(o.seed)) spray(p, C, d, t, true);
-  settlingWash(p, C, t, s, o.seed, true);
+  bowFoam(q, C, t, s, o.seed, true);
+  waterSheets(q, C, t, s, o.seed, true);
+  depositedWake(p, C, t, o, true);
+  for (const d of droplets(o.seed, o)) spray(p, C, d, t, true);
 }

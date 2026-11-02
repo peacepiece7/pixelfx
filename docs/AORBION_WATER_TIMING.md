@@ -119,3 +119,21 @@ their analytic trajectories remain independent of update partitioning.
 `tools/test-geyser-strike.mjs` checks the single peak, empty endings, 50ms keys,
 height/jetOnly/facing variants and partition-independent rendering. This changes
 visual timing only; hit count and damage remain owned by combat code.
+
+## Traveling wave correction (supersedes the stationary settling preview)
+
+The user clarified that the swell itself must advance: small at release, largest in
+the middle, then moving onward while shrinking. The default preview now travels
+640px in one second; the peak body is approximately 310px long. `travelDistance`
+controls visual travel only. At application time a host that already moves the
+traveling anchor must pass `travelDistance: 0` and place that anchor at the wave tip.
+The renderer does not read/clamp to map bounds and does not change combat distance,
+speed, lifetime or hit count. Approval and combat binding remain separate.
+
+`travelPose` controls forward translation and horizontal growth; the 50ms height
+keys peak at .40–.45. Sprays use their birth position and ballistic velocity, while
+foam deposits remain where the crest passed. No hard wipe or stationary pillar.
+The default preview is 736×208 to contain the full path. The checker now permits
+wide canvases up to 960px on either side while preserving its original 480×480 total
+pixel budget. Tests measure actual rendered forward motion and growing/shrinking
+water height, plus the host-driven option, deterministic substeps and clean ending.

@@ -47,6 +47,7 @@ that loop come from `cycle`, motion from `fly`, noise from `loopNoise`/`tileFbm`
 
 - **Scale.** The stock character is 24 x 38 px (`actor: 2`): every effect is drawn at that scale, detail at the
   1 px level. Canvases are as big as the effect needs, often 96 to 320 px wide; transitions are 320 x 180.
+- **Preview canvas.** `meta.size` may be wide for traveling attacks: each side is 8–960 integer pixels, with total area at most 480×480 pixels. This is a rendering budget, not a map or combat-range limit. Allocate enough room for the whole default trajectory.
 - **Local coordinates.** (0, 0) is the anchor: the feet of the character, the point of impact, the base of a
   torch, the muzzle. x right, y down, 1 unit = 1 px. The painter places, mirrors (`flip`) and rotates (`angle`).
   Directional effects face right. Ground effects stand on y = 0, the floor; floor rings, cracks, scorch and
