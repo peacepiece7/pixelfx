@@ -12,7 +12,7 @@ export const meta = {
   fps: 30,
   bg: "ground",
   actor: 2,
-  options: { palette: GOLD, seed: 5 },
+  options: { palette: GOLD, lightActor: false, seed: 5 },
 };
 
 const PRAY = { turn: 1.1, fx: -1, fy: -26, bx: 2, by: -26, armsFront: true, hy: 1, ffx: -3, fbx: 4 };
@@ -29,7 +29,7 @@ export function draw(p, t, o) {
   const C = fit(o.palette, 8), T = meta.duration, ph = (t / T) * TAU, A = o.actor;
   const y0 = HY + (Math.sin(ph) > 0.55 ? -1 : 0), gl = Math.PI / 2 + ph;
   // the hair under it catches the light
-  if (A) {
+  if (A && o.lightActor) {
     // a warm rim on the top edge of each column of the head, and light falling off below it
     const m = A.mask;
     for (let i = 0; i < m.w; i++)
