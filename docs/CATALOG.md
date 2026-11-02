@@ -1,6 +1,6 @@
 # Catalog
 
-253 effects in 22 categories. Every one is a file in
+254 effects in 22 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -265,6 +265,7 @@ curses, voids, tendrils, souls.
 | Soul drain | `shadow/soul-drain` | loop 3.2s | 208×120 | Pale souls are torn loose on the right and dragged down a funnel of streaks into a black crystal vessel, which flares violet as each one lands. |
 | Void orb | `shadow/void-orb` | loop 3.2s | 168×160 | A black orb hangs in the air, a pale rim crawling round it; a dark vortex winds into it, motes and streaks are pulled in, and light bends round its edge. |
 | Dark shroud | `shadow/dark-shroud` | loop 1s | 144×112 | A violet veil surrounds radius 65 with split front/back layers and inward-curling hands. Optional `pulse` (0–1); omitted uses one timed grip per second. |
+| Dark wave | `shadow/dark-wave` | one-shot 1s | 260×130 | A ragged dark pressure wave reaches radius 110, shedding violet embers and a fading smoky wake around a hollow centre. |
 
 ## status
 
