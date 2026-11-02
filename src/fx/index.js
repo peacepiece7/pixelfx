@@ -1,3 +1,4 @@
+import * as shadow_vampire_awaken from "./shadow/vampire-awaken.js";
 import * as shadow_dark_wave from "./shadow/dark-wave.js";
 import * as shadow_dark_shroud from "./shadow/dark-shroud.js";
 import * as ice_freeze_slam from "./ice/freeze-slam.js";
@@ -258,6 +259,7 @@ import * as critters_wisp from "./critters/wisp.js";
 export { categories } from "./categories.js";
 
 export const effects = {
+  "shadow/vampire-awaken": shadow_vampire_awaken,
   "shadow/dark-wave": shadow_dark_wave,
   "shadow/dark-shroud": shadow_dark_shroud,
   "ice/freeze-slam": ice_freeze_slam,
