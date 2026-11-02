@@ -1,0 +1,8 @@
+{
+  "id": "skeleton-archer-shot",
+  "name": "해골 궁수 화살",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "projectiles/arrow",
+  "options": {}
+}
