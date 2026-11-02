@@ -1,6 +1,6 @@
 # Catalog
 
-255 effects in 22 categories. Every one is a file in
+268 effects in 22 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -10,6 +10,7 @@ whole attacks, wind-up to recovery, chained from the effects below.
 | effect | id | | size | what it does |
 |---|---|---|---|---|
 | Arrow shot | `moves/arrow-shot` | one-shot 1.9s | 300×74 | He raises the bow, draws to his cheek, holds his breath and looses: the string snaps forward, the arrow crosses the floor and thuds home. |
+| Brynhild basic strike | `moves/brynhild-basic` | one-shot 2.3s | 372×156 | A crouch, then he's across the floor in a blur of after-images and already cutting: a clean blue slash, a beat, and he hops back to where he started. |
 | Dash strike | `moves/dash-strike` | one-shot 2.3s | 372×156 | A crouch, then he's across the floor in a blur of after-images and already cutting: a critical hit, a beat, and he hops back to where he started. |
 | Earth stomp | `moves/earth-stomp` | one-shot 3.46s | 290×142 | A knee comes up, the boot slams down, the floor heaves under the target and a stone spike rams up through it. |
 | Fireball throw | `moves/fireball-throw` | one-shot 6.81s | 356×244 | He gathers fire in his hand, leans back and hurls it: the ball flies, the target takes it in a blast and comes out charred. |
@@ -66,6 +67,12 @@ splashes, falls, fountains, waves.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
+| Aorbion charge emerge | `water/aorbion-charge-emerge` | one-shot 0.65s | 144×88 | A single narrow 100px forward surge breaks the surface with three claw tracks and a trailing spray; fixed to the chosen emergence direction. |
+| Aorbion Poseidon | `water/aorbion-poseidon` | loop 6s | 168×144 | Three water pillars orbit an attached radius-70 zone; pulse is brightness only and never adds visual hits. The host retains or removes the zone. |
+| Aorbion sea response | `water/aorbion-sea-response` | loop 5s | 80×80 | mode travel shows a small sea-dragon crest; mode claw rims the actor claws with water light. Host-owned buff lifetime, not an extra attack. |
+| Aorbion sea dragon | `water/aorbion-seadragon` | one-shot 1s | 336×104 | A translucent 300px water dragon faces right along a 50px travel lane; the host owns its position, direction and stored speed. |
+| Aorbion submerge | `water/aorbion-submerge` | loop 0.5s | 80×64 | The actor vanishes under thin surface ripples and bubbles at the host position. Removing the effect restores the actor immediately. |
+| Aorbion tail pillars | `water/aorbion-tail-pillars` | one-shot 0.8s | 92×260 | Three or count supplied water geysers rise 35px apart along the target vertical line, each with a radius-30 foaming footprint. |
 | Bubbles | `water/bubbles` | loop 4s | 104×112 | Bubbles stream up from a vent of pebbles, wobbling and swelling as they rise, flare as they cross shafts of light from the surface, then dome up and pop there. |
 | Drip | `water/drip` | loop 1.6s | 72×88 | A bead swells under a wet stone tip and catches the light, pinches off, falls stretched by its speed and plinks into a puddle with a crown, a ring and a tiny rebound. |
 | Fountain | `water/fountain` | loop 2s | 120×104 | A stone basin; a jet rises from its spout and blooms into glassy arcs that break into beads, fall back and plink into the water with rings. |
@@ -87,6 +94,7 @@ spikes, novas, freezing, shattering.
 |---|---|---|---|---|
 | Blizzard vortex | `ice/blizzard-vortex` | loop 2s | 128×116 | A swirling snow tornado: wind bands spin up a leaning funnel, flakes and ice crystals orbit in front and behind, snow boils at its foot and cold light fills its throat. |
 | Freeze | `ice/freeze` | one-shot 4s | 176×128 | Frost races in and climbs the character, turning it to ice; a faceted block crystallizes round it pane by pane, glints, cracks and bursts, and the character thaws free. |
+| Freeze slam | `ice/freeze-slam` | one-shot 1.6s | 200×120 | A landing flash drives a radial crown of ice to radius 90; frost mist rolls between the spikes, fractures light up and the crown bursts into falling splinters. |
 | Frost breath | `ice/frost-breath` | loop 1.2s | 184×104 | A cone of icy wind blowing right: frost puffs billow out, swell and sink, wind streaks race through, ice crystals tumble and glint off a white-hot mouth. |
 | Frost nova | `ice/frost-nova` | one-shot 3.4s | 288×192 | Frost spirals into a spinning snowflake, then a wave blooms three rings of ice crystals round the caster; snow drifts, frost creeps, and the ice melts back into the floor. |
 | Ice crystal | `ice/ice-crystal` | loop 3s | 96×100 | A floating ice crystal turning slowly in its own cold light: its facets brighten and darken as they turn, glints flash on them, frost motes circle it. |
@@ -95,7 +103,6 @@ spikes, novas, freezing, shattering.
 | Ice spikes | `ice/ice-spikes` | one-shot 3s | 264×112 | A frost line races along the floor and clusters of jagged ice blades burst up behind it in a rising wave, glint, flash white together and shatter into toppling shards. |
 | Icicle fall | `ice/icicle-fall` | one-shot 2.6s | 152×120 | An icicle drips and trembles, snaps off its frosted root, drops, stabs the floor and bursts into skidding shards, splinters and rolling frost. |
 | Snowflake burst | `ice/snowflake-burst` | one-shot 3.2s | 140×120 | A cold pop: frost gathers and flashes white in a ring, then crisp six-armed snowflakes spin out, slow, twinkle and drift down to settle and melt. |
-| Freeze slam | `ice/freeze-slam` | one-shot 1.6s | 200×120 | A landing flash erupts into radial ice at radius 90; frost mist gathers, cracks light up and the spikes burst into falling splinters. |
 
 ## lightning
 
@@ -147,7 +154,7 @@ slashes, smears, cleaves, combos.
 | Heavy cleave | `melee/heavy-cleave` | one-shot 1.9s | 208×116 | A glint over the head, then a thick ember arc accelerates over the top into the floor: a white slam, glowing cracks, dust rolling both ways, grit and rising embers. |
 | Scythe reap | `melee/scythe-reap` | one-shot 2.1s | 184×116 | A slow, huge dark crescent reaps round the front with a pale ghostly edge; it hangs, then tears away from the tail into curling wisps and cold vapour. |
 | Spear sweep | `melee/spear-sweep` | one-shot 1.5s | 216×84 | A wide low sweep at shin height: a long flat crescent swings from behind the legs round the front, and the wind of it kicks a wake of dust and grit along the floor. |
-| Spin slash | `melee/spin-slash` | one-shot 0.8s | 208×104 | The blade whirls once round the waist on a tilted plane, behind the body and back in front; the closed ring flares white, dissolves into a dotted trace and throws sparks. |
+| Spin slash | `melee/spin-slash` | one-shot 2.6s | 240×120 | Four broad waist-high sweeps follow in distinct beats; each ring flares, cools into a dotted trace and throws sparks behind and in front of the body. |
 | Sword slash | `melee/sword-slash` | one-shot 0.75s | 136×104 | A tilted crescent whips round in two frames, cools from white to deep blue as it trails off, glints at the tip and throws sparks. |
 | Thrust | `melee/thrust` | one-shot 0.75s | 196×76 | A piercing stab: a bundle of streaks shoots out from the hand to a point, a long four-point star flares at the tip with a pierce ring, sparks and speed lines. |
 | Uppercut | `melee/uppercut` | one-shot 0.85s | 132×128 | A crescent rises from the floor past the face, and at the top a comic impact star bursts: bold outline, hot core, burst lines, twinkles and sparks. |
@@ -160,7 +167,7 @@ hit sparks, shockwaves, landings.
 | effect | id | | size | what it does |
 |---|---|---|---|---|
 | Blunt hit | `impacts/blunt-hit` | one-shot 0.9s | 128×88 | A heavy, soft thud: a white-hot lumpy blob cools to cream in a warm pool of light, inked wedges jab out and snap back, a squashed ring of dust puffs swells and drifts, clods drop. |
-| Bullet impact | `impacts/bullet-impact` | one-shot 1.4s | 152×100 | A bullet hits a wall on the right: a hot half-star, sparks sprayed back in a cone, a puff of grit, chips that fall and bounce, a pock mark cooling to soot. |
+| Bullet impact | `impacts/bullet-impact` | one-shot 1.4s | 152×100 | A bullet hits a wall on the right: a compact circular impact ripple, sparks sprayed back in a cone, a puff of grit, chips that fall and bounce, a pock mark cooling to soot. |
 | Critical hit | `impacts/crit-hit` | one-shot 0.9s | 216×136 | A critical hit: a jagged starburst slams in white and overshoots, a ring breaks into flying arcs, sparks streak off, shards tumble to the floor under a big flare. |
 | Ground slam | `impacts/ground-slam` | one-shot 3.2s | 288×208 | Something lands hard: the floor flashes and cracks, two crescent shock waves race out along it, a dust wave and a tall dust cloud rise, rocks erupt, bounce and settle. |
 | Heavy landing | `impacts/heavy-landing` | one-shot 1.6s | 176×80 | A character lands hard: the floor dents and cracks under their feet, two rings of dust roll out along the floor one after the other, and pebbles hop away. |
@@ -190,6 +197,8 @@ bullets, rockets, lasers, arrows.
 | SMG burst | `projectiles/muzzle-smg` | loop 1s | 112×72 | Sustained fire at twelve rounds a second: each shot a different spiky flash with a white core, sparks, smoke wisps piling up and drifting, brass casings bouncing on the floor. |
 | Plasma shot | `projectiles/plasma-shot` | loop 0.8s | 144×60 | A glowing plasma blob: hot knots churning in its core, a corona crackling over its skin, its tail necking into droplets that tear off, cool and wink out behind. |
 | Rocket | `projectiles/rocket` | loop 1.2s | 288×76 | A steel rocket roars along: a flickering jet with shock diamonds and a white-hot nozzle, a thick billowing smoke trail lit by the flame, sparks shed behind. |
+| Rosilia support shot | `projectiles/rosilia-support-shot` | loop 2s | 200×120 | A fixed radius-90 ground reticle persists; each external pulse shows one diagonal support tracer, a tight impact, brass fragments and a dust ring. No internal firing schedule. |
+| Rosilia target reticle | `projectiles/rosilia-target-reticle` | loop 1s | 48×56 | A small brass crosshair tracks a marked target; only an external pulse brightens the current shot target. |
 
 ## spawn & death
 
@@ -246,6 +255,17 @@ heals, halos, pillars of light.
 | Valhalla zone | `holy/valhalla-zone` | loop 6s | 224×160 | A gold seal unfolds beneath the caster: rotating runes, a radiant compass and rising rim motes brighten on each second, then fold into the floor. |
 | Valkyrie landing | `holy/valkyrie-landing` | one-shot 1s | 160×100 | A floor sigil tightens before a white landing flash; two gold wing-shaped shockwaves unfurl, scattering ten fluttering feathers over a rolling dust ring. |
 
+## blood
+
+crimson eruptions, droplets and blood magic.
+
+| effect | id | | size | what it does |
+|---|---|---|---|---|
+| Bleeding status | `blood/bleeding` | loop 1.2s | 64×72 | Wet beads gather on the target's torso, fall and kick up tiny crowns; stacks increase the drip frequency while dark splats dry underfoot. |
+| Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | Swelling crimson cracks erupt into a broad upward blood fountain that engulfs the caster; forty ballistic droplets splash into pools that dry inside a ground ring. |
+| Roar wave | `blood/roar-wave` | one-shot 0.9s | 220×110 | Three crimson pressure rings burst from the mouth to a 100px radius, driving rolling dust and grit away from the caster. |
+| Thorn reflect | `blood/thorn-reflect` | one-shot 0.4s | 64×64 | A sharp blood-red hit flashes, then five to seven barbed shards kick back toward the attacker, trailing thin red wakes and cooling away in midair. |
+
 ## shadow
 
 curses, voids, tendrils, souls.
@@ -255,18 +275,19 @@ curses, voids, tendrils, souls.
 | Black hole | `shadow/black-hole` | loop 4s | 184×132 | A tilted disk of banded rings turns round a black hole, its far side bent up over the top and under the bottom; debris spirals in, stretches and is swallowed. |
 | Curse | `shadow/curse` | one-shot 3.4s | 112×124 | Wisps gather over the head, a skull stamps down with a flash, its eyes burn as the curse floods the body violet, then it cracks and crumbles. |
 | Dark explosion | `shadow/dark-explosion` | one-shot 3.8s | 280×248 | Motes swirl into a pulsing core, a black star cuts across a violet-white flash, and a black sphere burns at the rim, throws lit shards and smoke, then collapses. |
+| Dark shroud | `shadow/dark-shroud` | loop 1s | 144×112 | A hollow violet veil sways around the caster, dark behind and translucent in front; each one-second pulse curls shadow hands inward without hiding the centre. |
+| Dark wave | `shadow/dark-wave` | one-shot 1s | 260×130 | A hollow wave of midnight shadow rolls outward to radius 110, its ragged violet lip shedding bright embers while the dark wake thins away. |
 | Eclipse | `shadow/eclipse` | loop 4s | 160×144 | A black moon over the sun: a breathing pearl corona with long streamers, a thin white rim, and one diamond bead blazing on its edge. |
 | Grasping hands | `shadow/grasping-hands` | one-shot 3.1s | 200×116 | Shadow arms burst up out of a dark pool with a splash, clench their hands into claws, strain, and are dragged back under, fingers clawing at the air. |
 | Hex sigil | `shadow/hex-sigil` | one-shot 4.2s | 168×128 | A burning pen traces a cursed sigil in the air, its glyphs pop in one by one, then it flares white and crumbles into falling embers. |
+| King's decree | `shadow/kings-decree` | one-shot 1.8s | 320×160 | A cracked bone crown rises above the field; five or fewer curse chains strike supplied target x coordinates, leaving dark seals and bone dust. |
 | Life steal | `shadow/life-steal` | one-shot 2.2s | 184×100 | A target on the right is struck and bleeds red orbs; they hang a moment, then whip home as comet streaks and flood the caster crimson. |
 | Necro skulls | `shadow/necro-skulls` | loop 3s | 136×116 | Spectral skulls circle a cold green flame on a tilted orbit, passing behind and before it, eyes lit, trailing curls of ghost smoke. |
 | Shadow flames | `shadow/shadow-flames` | loop 2.4s | 104×112 | Inside-out fire on the floor: a black heart wrapped in violet flame with pale skin and tips, shedding embers and dark smoke. |
 | Shadow tendrils | `shadow/shadow-tendrils` | one-shot 3.2s | 208×130 | A dark pool opens on the floor; tentacles with lit rims and hooked tips lash up out of it with a splash, writhe, and sink back as it closes. |
 | Soul drain | `shadow/soul-drain` | loop 3.2s | 208×120 | Pale souls are torn loose on the right and dragged down a funnel of streaks into a black crystal vessel, which flares violet as each one lands. |
+| Vampire awaken | `shadow/vampire-awaken` | one-shot 1.6s | 200×160 | A dense cascade of ninety bats pours across the caster and scatters outward in overlapping waves above a dark ground ring; no central pillar. |
 | Void orb | `shadow/void-orb` | loop 3.2s | 168×160 | A black orb hangs in the air, a pale rim crawling round it; a dark vortex winds into it, motes and streaks are pulled in, and light bends round its edge. |
-| Dark shroud | `shadow/dark-shroud` | loop 1s | 144×112 | A violet veil surrounds radius 65 with split front/back layers and inward-curling hands. Optional `pulse` (0–1); omitted uses one timed grip per second. |
-| Dark wave | `shadow/dark-wave` | one-shot 1s | 260×130 | A ragged dark pressure wave reaches radius 110, shedding violet embers and a fading smoky wake around a hollow centre. |
-| Vampire awaken | `shadow/vampire-awaken` | one-shot 1.6s | 200×160 | Crimson moonlight releases 20–30 flapping bats over a radius-90 shadow ring. NIGHT main palette and a separate recolorable `moonlight` ramp. |
 
 ## status
 
@@ -275,6 +296,7 @@ burning, frozen, poisoned, asleep.
 | effect | id | | size | what it does |
 |---|---|---|---|---|
 | Bleeding | `status/bleeding` | loop 2.4s | 60×56 | Bleeding out: beads swell at three wounds, run, let go and fall to spatter into a glossy pool that ripples; each heartbeat spurts a little and flashes the body red. |
+| Blood armor | `status/blood-armor` | loop 1.2s | 80×80 | A sustained blood-red aura shaped into paired pauldrons, a breastplate and plated gauntlets. Open seams pulse with heat while the head stays clear. |
 | Burning | `status/burning` | loop 1.2s | 72×80 | Burning over time: small flames lick from four hot spots, trailing sparks and thin smoke; every 0.6 s they flare, the body flashes white then orange, scorch marks spread. |
 | Charmed | `status/charmed` | loop 2.4s | 60×76 | Smitten: a big heart beats over the head, throwing a ring and a flush of light with every beat, little hearts float up, the eyes go pink and the cheeks blush. |
 | Confused | `status/confused` | loop 2.4s | 60×78 | Head in a spin: a glowing spiral whirls over the head, question marks pop up round it and bob, the eyes dart left and right. |
@@ -283,7 +305,9 @@ burning, frozen, poisoned, asleep.
 | Haste | `status/haste` | loop 1.2s | 100×56 | Sped up: striped after-images stream out behind, speed lines whip past, dust kicks off the heels and the leading edge catches the wind. Faces right. |
 | Petrified | `status/petrified` | one-shot 3.8s | 120×74 | Turned to stone: grey creeps up from the feet behind a crackling edge that spits grit, the statue holds, cracks run through it, and it bursts into tumbling chunks and dust. |
 | Poisoned | `status/poisoned` | loop 1.6s | 72×64 | Sick to the bone: green rolls up the body in waves, dark veins creep from a wound, toxic sweat drips and hisses; every 0.8 s it wobbles, blisters pop and a ring pulses out. |
-| Rage | `status/rage` | loop 1.2s | 80×80 | Seething: the body judders on every heartbeat, an anger mark throbs at the temple, eyes burn, steam jets off the head, stress lines flash out and the floor cracks hot underfoot. |
+| Rage | `status/rage` | loop 1.2s | 80×96 | An anger mark hovers above the head. Paired blood-red bursts throw short rays and rising sparks outward, leaving the hero's body clear. |
+| Rosilia infinite magazine | `status/rosilia-infinite-magazine` | loop 1s | 96×80 | Thin brass orbits and circulating bullet echoes surround the rifle; a restrained infinity mark sits clear of the muzzle. intro is a host-controlled refill flash. |
+| Rosilia reload ready | `status/rosilia-reload-ready` | loop 1s | 64×64 | One small side-mounted brass magazine and paired exchange arrows pulse while a reload reservation is held. |
 | Sleep | `status/sleep` | loop 2.4s | 60×82 | Fast asleep: eyes shut, soft outlined Zs float up off the head one after another, swaying and growing as they rise, dream motes drift, a slow breathing glow. |
 | Slowed | `status/slowed` | loop 2.4s | 64×76 | Dragged through time: a glassy clock dial behind the head ticks round in heavy steps, flashing with each, while drops sink in slow motion and spread slow rings. |
 | Stunned | `status/stunned` | loop 2s | 60×64 | Seeing stars: three spinning stars and two little birds circle the head on a tilted ring, ducking behind it and sweeping round in front, trailing glitter. |
@@ -300,6 +324,7 @@ poison, vines, thorns, quakes.
 | Healing bloom | `nature/healing-bloom` | one-shot 3.3s | 124×120 | A sprout pushes up and unfurls, a bud swells and opens round a glowing golden heart in a flare of healing light; its petals lift away one by one as motes. |
 | Leaf storm | `nature/leaf-storm` | loop 2.4s | 112×104 | Leaves tumble up a rising spiral round the character, passing behind and in front, turning and flipping, wrapped in bright bands of wind; litter swirls at their feet. |
 | Poison cloud | `nature/poison-cloud` | loop 4s | 256×100 | A miasma hugging the floor: ragged sheets of gas lit yellow-green from within, fading to violet, creep out in tongues that curl over at their tips; plumes twist up as ribbons. |
+| Pull vortex | `nature/pull-vortex` | loop 2s | 144×80 | Dust, grit and dry grass spiral inward from every direction along the floor, converging on the slam point in front of the caster. |
 | Quake | `nature/quake` | one-shot 3.1s | 288×104 | The ground jolts three times: a rift tears out along the floor glowing deep inside, slabs of floor heave up and drop back askew, pebbles hop and dust bursts out of the split. |
 | Root snare | `nature/root-snare` | one-shot 2.7s | 128×96 | The floor cracks and roots burst up round the character, spiralling round its legs; they cinch tight with a snap, hold, then crack and crumble into bark and dust. |
 | Spore burst | `nature/spore-burst` | one-shot 3.2s | 212×132 | A toadstool pushes up, swells and trembles as its gills glow, then squashes and puffs a lumpy cloud of glowing spores that billows up and drifts down twinkling. |
@@ -307,7 +332,6 @@ poison, vines, thorns, quakes.
 | Tornado | `nature/tornado` | loop 2s | 196×168 | A snaking funnel of spinning wind bands under a flared, churning top that flickers with lightning; leaves and debris whirl round it front and back, dust boils at its foot. |
 | Toxic puddle | `nature/toxic-puddle` | loop 4s | 176×100 | Black tar lit from inside by chartreuse veins and a glowing rim, an oily sheen drifting on it; glossy bubbles dome, stretch and pop, vapour curls up in fraying ribbons. |
 | Vine whip | `nature/vine-whip` | one-shot 1.4s | 216×128 | A thorny vine bursts from the floor, rears back coiled, then lashes out right in a whip crack that sprays sap and tears off leaves, before sliding back into the ground. |
-| Pull vortex | `nature/pull-vortex` | loop 2s | 120×80 | Earth-coloured wind, dust, grit and dry grass spiral leftward into the caster from a widening forward fan. |
 
 ## weather
 
@@ -400,14 +424,3 @@ slimes, bats, ghosts, frogs.
 | Slime | `critters/slime` | loop 1.8s | 112×88 | A glossy slime hops in place: it squashes to wind up, stretches into the jump, rounds out in the air, splats down flinging droplets that creep back, then wobbles and blinks. |
 | Snake | `critters/snake` | loop 2.4s | 136×56 | A snake slithers along the floor, head raised: humps rise and roll back down its patterned body to the tail, dust puffs where it touches down, its forked tongue flicks. |
 | Wisp | `critters/wisp` | loop 3.2s | 128×104 | A will-o'-the-wisp loops a figure-eight over the floor: a little soul-flame with a face, its flame tail licking up and streaming behind, shedding puffs and sparks. |
-
-## blood
-
-Crimson eruptions, droplets and blood magic.
-
-| effect | id | | size | what it does |
-|---|---|---|---|---|
-| Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | Swelling crimson cracks erupt into a broad opaque upward blood fountain that covers the caster; torn splash sheets and forty ballistic droplets fall into drying pools. |
-| Bleeding status | `blood/bleeding` | loop 1.2s | 64×72 | Torso beads fall and splash underfoot; stacks (0–8, default 1) increase frequency, and the supplied actor silhouette sets the source positions. |
-| Roar wave | `blood/roar-wave` | one-shot 0.9s | 220×110 | Three mouth-centered rings reach radius 100 and push dust outward. Optional `onShake({duration, amplitude})` fires once; `shake` scales amplitude (0 disables, default 1). |
-| Thorn reflect | `blood/thorn-reflect` | one-shot 0.4s | 64×64 | Five to seven barbed blood shards burst rightward from an airborne hit, leave short wakes and cool away. |
