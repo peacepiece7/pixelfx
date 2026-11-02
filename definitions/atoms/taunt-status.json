@@ -1,0 +1,16 @@
+{
+  "id": "taunt-status",
+  "name": "도발 상태",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/exclamation",
+  "options": {
+    "palette": [
+      "#2a1406",
+      "#6a3a10",
+      "#b0661c",
+      "#e8a040",
+      "#ffe0a0"
+    ]
+  }
+}

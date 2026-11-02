@@ -1,0 +1,8 @@
+{
+  "id": "valhalla-zone",
+  "name": "발할라 신성 장판",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/valhalla-zone",
+  "options": {}
+}
