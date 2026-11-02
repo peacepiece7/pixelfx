@@ -1,0 +1,16 @@
+{
+  "id": "pull-vortex",
+  "name": "회오리 흡인",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "nature/pull-vortex",
+  "options": {
+    "palette": [
+      "#2b2116",
+      "#5a4632",
+      "#8c6e4a",
+      "#c2a172",
+      "#e8d6a8"
+    ]
+  }
+}

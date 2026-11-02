@@ -1,0 +1,8 @@
+{
+  "id": "warlord-slam",
+  "name": "몰락한 군주 필살기 충격파",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/ground-slam",
+  "options": {}
+}

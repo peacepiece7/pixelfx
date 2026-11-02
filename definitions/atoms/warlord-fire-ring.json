@@ -1,0 +1,8 @@
+{
+  "id": "warlord-fire-ring",
+  "name": "몰락한 군주 필살기 불꽃 고리",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "fire/fire-ring",
+  "options": {}
+}

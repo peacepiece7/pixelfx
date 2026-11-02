@@ -1,0 +1,17 @@
+{
+  "id": "lich-raise",
+  "name": "리치 언데드 부활",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "spawn/summon-rise",
+  "options": {
+    "palette": [
+      "#0b0614",
+      "#22113a",
+      "#3d1d63",
+      "#6a2d8f",
+      "#a04ccf",
+      "#e0a8ff"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "skeleton-king-summon",
+  "name": "백골왕 해골 군단 소환",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "spawn/summon-rise",
+  "options": {
+    "palette": [
+      "#140c06",
+      "#3a2a14",
+      "#7a5a26",
+      "#b8902e",
+      "#e0cc8a",
+      "#f4ecd2"
+    ]
+  }
+}

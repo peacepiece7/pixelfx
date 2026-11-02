@@ -1,0 +1,17 @@
+{
+  "id": "dark-wave",
+  "name": "암흑 파동",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "shadow/dark-wave",
+  "options": {
+    "palette": [
+      "#0b0614",
+      "#22113a",
+      "#3d1d63",
+      "#6a2d8f",
+      "#a04ccf",
+      "#e0a8ff"
+    ]
+  }
+}

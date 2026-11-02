@@ -1,0 +1,17 @@
+{
+  "id": "dullahan-charge",
+  "name": "듀라한 돌진",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "moves/dash-strike",
+  "options": {
+    "palette": [
+      "#06141a",
+      "#0f3440",
+      "#1c6070",
+      "#3aa0b0",
+      "#8ee8ec",
+      "#e6ffff"
+    ]
+  }
+}
