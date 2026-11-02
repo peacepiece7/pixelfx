@@ -1,0 +1,18 @@
+{
+  "id": "rosilia-tracer",
+  "name": "로실리아 소총 탄도",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "projectiles/bullet-tracer",
+  "options": {
+    "palette": [
+      "#251b19",
+      "#564239",
+      "#866a46",
+      "#b59a63",
+      "#ddc98a",
+      "#f7e9bd",
+      "#ffffff"
+    ]
+  }
+}

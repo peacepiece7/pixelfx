@@ -1,0 +1,17 @@
+{
+  "id": "skeleton-king-revive",
+  "name": "백골왕 1회 부활",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/resurrection",
+  "options": {
+    "palette": [
+      "#140c06",
+      "#3a2a14",
+      "#7a5a26",
+      "#b8902e",
+      "#e0cc8a",
+      "#f4ecd2"
+    ]
+  }
+}

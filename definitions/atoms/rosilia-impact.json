@@ -1,0 +1,18 @@
+{
+  "id": "rosilia-impact",
+  "name": "로실리아 관통·장갑탄 탄착",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/bullet-impact",
+  "options": {
+    "palette": [
+      "#251b19",
+      "#564239",
+      "#866a46",
+      "#b59a63",
+      "#ddc98a",
+      "#f7e9bd",
+      "#ffffff"
+    ]
+  }
+}
