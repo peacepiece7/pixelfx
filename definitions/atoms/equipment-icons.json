@@ -1,0 +1,26 @@
+{
+  "id": "equipment-icons",
+  "name": "장비 부위 아이콘",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-icons/runtime/equipment-32.png",
+  "icons": [
+    "hat",
+    "necklace",
+    "chest",
+    "legs",
+    "ring",
+    "shoes",
+    "gloves"
+  ],
+  "sheets": {
+    "32": {
+      "path": "icons/equipment-icons/runtime/equipment-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "icons/equipment-icons/runtime/equipment-64.png",
+      "size": 64
+    }
+  }
+}
