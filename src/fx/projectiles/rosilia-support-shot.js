@@ -1,9 +1,10 @@
 import { haze, pool, softBand, softShade } from '../_soft.js';
+import { oval } from '../holy/_lib.js';
 import { Rng, fit, smooth, clamp, TAU, sparkle } from '../../core/index.js';
 
 export const meta = {
   name: 'Rosilia support shot',
-  desc: 'A long tapered wake follows a brass round into a hollow, drifting rifle sight; an ivory blast, twin pressure waves, stone and dust erupt on contact.',
+  desc: 'A layered brass rifle sight: moving range marks, counter-moving brackets, rim glints and a hollow crosshair. A long luminous round strikes with twin shock waves and debris.',
   tags: ['projectiles', 'impact', 'debris', 'loop'],
   size: [240, 180], origin: [128, 148], duration: 2, loop: true, fps: 30, bg: 'ground',
   options: {
@@ -41,31 +42,85 @@ function sight(p, t, o, C) {
   const phase = ((t % meta.duration) + meta.duration) % meta.duration * TAU / meta.duration;
   const breath = .5 - .5 * Math.cos(phase);
   const radius = (o.radius ?? 62) * (1 + .025 * Math.sin(phase));
-  const cx = Math.sin(phase) * 2.5, cy = Math.sin(phase * 2) * .5;
-  const rotation = Math.sin(phase) * .045;
-  // Simplified Valhalla rim construction: hollow brass sight, without runes/fill.
-  const keep = a => Math.cos((a - rotation) * 4) < .94;
-  softBand(p, cx, cy, radius, .30, 2.8, .95, C.slice(3, 6), keep);
-  softBand(p, cx, cy, radius - 5, .30, 1.2, .7, C.slice(2, 5), keep);
-  // Large moving plus; gaps before the perimeter and short transverse end bars.
-  const crossX = cx + Math.sin(phase * 2) * 5;
-  const crossY = cy + Math.sin(phase) * 1.2;
-  const arm = radius * (.72 + breath * .05);
-  p.line(crossX - arm, crossY, crossX + arm, crossY, C[5]);
-  p.line(crossX, crossY - arm * .30, crossX, crossY + arm * .30, C[5]);
-  for (const side of [-1, 1]) {
-    const x = crossX + side * arm, y = crossY + side * arm * .30;
-    p.line(x, crossY - 2.5, x, crossY + 2.5, C[5]);
-    p.line(crossX - 5, y, crossX + 5, y, C[5]);
-    // Separate outer ticks cross the rim gap, like a rifle scope's range marks.
-    p.line(cx + side * (radius - 1), cy, cx + side * (radius + 5), cy, C[5]);
-    p.line(cx, cy + side * (radius * .30 - 1), cx, cy + side * (radius * .30 + 3), C[5]);
+  const cx = Math.sin(phase) * 2.3, cy = Math.sin(phase * 2) * .6;
+  const tilt = .38, rotation = Math.sin(phase) * .055;
+  const at = (a, d, centreX = cx, centreY = cy) =>
+    [centreX + Math.cos(a) * radius * d, centreY + Math.sin(a) * radius * d * tilt];
+  const tick = o.pulse > 0 ? pose(o)[3] : 0;
+  // Valhalla's nested rim / independent compass / local light structure, recast
+  // as engraved brass range-finding hardware. The entire centre is transparent.
+  const gap = a => Math.cos((a - rotation) * 4) < .965;
+  for (const [scale, color, alpha] of [[1, 5, 1], [.95, 2, 1], [.70, 4, 1], [.66, 2, 1]]) {
+    oval(p, cx, cy, radius * scale, radius * scale * tilt, C[color], alpha, gap);
   }
+  // Eight short curved plates float just outside the sight. Alternating lengths
+  // and a dark undercut give them physical thickness instead of another full ring.
   for (let i = 0; i < 8; i++) {
     const a = i * TAU / 8 + rotation;
-    const x = cx + Math.cos(a) * radius, y = cy + Math.sin(a) * radius * .30;
-    p.glow(x, y, 5, C[4], .10 + breath * .06);
+    const half = i % 2 ? .07 : .12;
+    const keep = angle => Math.abs(Math.atan2(Math.sin(angle-a), Math.cos(angle-a))) < half;
+    softBand(p, cx, cy + .7, radius * 1.055, tilt, 2.6, .85, C.slice(0, 4), keep);
+    oval(p, cx, cy, radius * 1.055, radius * 1.055 * tilt, C[5], .95, keep);
   }
+  // Two opposing banks of calibrated marks slide in the narrow outer annulus.
+  // Long/short ticks, split chevrons and inset dots have distinct visual roles.
+  const dial = Math.sin(phase) * .12;
+  for (let i = 0; i < 24; i++) {
+    const bank = i < 12 ? 1 : -1;
+    const a = i * TAU / 24 + bank * dial;
+    const major = i % 3 === 0;
+    p.line(...at(a, major ? .75 : .85), ...at(a, .91), C[major ? 5 : 2]);
+    if (major) {
+      p.polyline([at(a - .045, .84), at(a, .75), at(a + .045, .84)], C[4]);
+      p.dot(...at(a + .055, .87), C[5], .85);
+    }
+    // Local hotspots chase around the rim, with an exact two-second seam.
+    const glint = Math.max(0, Math.cos(a - phase)) ** 12;
+    p.glow(...at(a, .96), 7, C[4], .13 + glint * .25 + tick * .10);
+    if (glint > .7) p.blend(...at(a, .96), C[6], (glint - .7) / .3);
+  }
+  // Counter-moving inner brackets leave the major axis endpoints open.
+  for (let i = 0; i < 4; i++) {
+    const a = Math.PI / 4 + i * TAU / 4 - dial * .6;
+    const pts = [at(a - .10, .57), at(a - .10, .62), at(a + .10, .62), at(a + .10, .57)];
+    p.polyline(pts, C[4]);
+    p.glow(...at(a, .62), 4, C[4], .13 + breath * .08);
+  }
+  // Short-lived brass flecks lift off the rim, with staggered seamless cycles.
+  // Their quiet glow separates the moving ring from the static ground texture.
+  const R = new Rng(o.seed + 211);
+  for (let i = 0; i < 12; i++) {
+    const a = R.range(0, TAU), offset = R.range(0, 1), rise = R.range(4, 9);
+    const life = (phase / TAU * 2 + offset) % 1;
+    const alpha = Math.sin(life * Math.PI) ** 2;
+    const [x, y] = at(a, .97 + life * .025);
+    p.blend(x, y - rise * life, C[4], alpha * .65);
+    p.blend(x, y - rise * life + 1, C[2], alpha * .35);
+    p.glow(x, y - rise * life, 3, C[4], alpha * .15);
+  }
+  // The large cross is a separate moving assembly, with bevel, range marks,
+  // separated terminal bars and four floating tips through the perimeter gaps.
+  const crossX = cx + Math.sin(phase * 2) * 4;
+  const crossY = cy + Math.sin(phase) * 1.1;
+  const arm = radius * (.56 + breath * .04);
+  for (const side of [-1, 1]) {
+    p.line(crossX + side * 3, crossY + 1, crossX + side * arm, crossY + 1, C[1]);
+    p.line(crossX + side * 3, crossY, crossX + side * arm, crossY, C[5]);
+    p.line(crossX + 1, crossY + side * 2, crossX + 1, crossY + side * arm * tilt, C[1]);
+    p.line(crossX, crossY + side * 2, crossX, crossY + side * arm * tilt, C[5]);
+    for (let j = 1; j <= 3; j++) {
+      const d = arm * j / 4;
+      p.line(crossX + side * d, crossY - 1, crossX + side * d, crossY + 2, C[3]);
+    }
+    const x = crossX + side * (arm + 5), y = crossY + side * (arm * tilt + 2);
+    p.line(x, crossY - 3, x, crossY + 3, C[5]);
+    p.line(crossX - 5, y, crossX + 5, y, C[5]);
+    p.line(cx + side * (radius - 1), cy, cx + side * (radius + 6), cy, C[5]);
+    p.line(cx, cy + side * (radius * tilt - 1), cx, cy + side * (radius * tilt + 3), C[5]);
+  }
+  // A four-pixel centre aperture keeps the impact point easy to locate.
+  p.polyline([[crossX, crossY-2],[crossX+3,crossY],[crossX,crossY+2],
+    [crossX-3,crossY],[crossX,crossY-2]], C[5]);
 
 }
 
@@ -129,11 +184,14 @@ function wake(p, seconds, C) {
     const born = .05 * (q <= .42 ? q / .42 : 1 + (q - .42) / .58);
     const age = seconds - born;
     const fade = 1 - smooth(.13, .25, age);
-    const across = Math.abs(-(x + 108) * DY + (y + 130) * DX);
+    const signed = -(x + 108) * DY + (y + 130) * DX;
+    const across = Math.abs(signed);
     const width = .2 + 5.4 * (q / Math.max(.001, head)) ** 1.7;
     if (across >= width || fade <= 0) return;
     const edge = across / width;
-    out.c = edge < .25 ? C[6] : edge < .58 ? C[5] : C[3];
+    const flow = .5 + .5 * Math.sin(q * 22 - seconds * 38);
+    const spine = Math.abs(signed - Math.sin(q * 13 - seconds * 21) * width * .12) / width;
+    out.c = spine < .12 ? C[6] : edge < .40 ? C[5] : edge < .68 && flow > .3 ? C[4] : C[3];
     out.a = fade * (1 - edge * .7) * smooth(0, .025, q);
     out.l = C[4]; out.k = fade * (1 - edge) * .16;
   });
