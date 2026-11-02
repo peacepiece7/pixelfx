@@ -2,7 +2,7 @@ import { Rng, fit, clamp, smooth, band, READY } from "../../core/index.js";
 
 export const meta = {
   name: "Blood boom",
-  desc: "Swelling crimson cracks erupt into a branching blood column; forty ballistic droplets splash into pools that dry inside a ground ring.",
+  desc: "Swelling crimson cracks erupt into a dense, rounded blood explosion that engulfs the caster; forty ballistic droplets splash into pools that dry inside a ground ring.",
   tags: ["blood", "eruption", "aoe", "magic", "one-shot"],
   size: [120, 140], origin: [60, 116], duration: 1.4, loop: false, fps: 30,
   bg: "ground", actor: 2,
@@ -25,13 +25,14 @@ export function create(o) {
       return [Math.cos(a) * d, Math.sin(a) * d * 0.22 + R.range(-1, 1)];
     });
   });
-  const jets = Array.from({ length: 9 }, (_, i) => ({
-    x: (i - 4) * 4, h: i === 4 ? 98 : R.range(40, 83), lean: (i - 4) * R.range(3, 5),
-    w: R.range(3, 6), phase: R.range(0, 6), delay: R.range(0, 0.045),
-  }));
+  // Broad overlapping lobes form one opaque blast, rather than narrow branching jets.
+  const lobes = Array.from({ length: 10 }, (_, i) => {
+    const a = i * Math.PI * 2 / 10;
+    return { x: Math.cos(a) * R.range(17, 25), y: Math.sin(a) * R.range(18, 25), r: R.range(13, 18) };
+  });
   const drops = Array.from({ length: 40 }, () => {
     const flight = R.range(0.42, 0.8), vx = R.range(-57, 57);
-    return { start: R.range(0.27, 0.46), flight, vx, vy: -210 * flight,
+    return { start: R.range(0.27, 0.46), flight, vx, vy: (24 - 210 * flight * flight) / flight,
       floor: R.range(-9, 12), s: R.range(0.8, 2.2), c: R.int(2, 4) };
   });
   let t = 0;
@@ -66,32 +67,32 @@ export function create(o) {
     draw(p) {
       if (t >= meta.duration) return;
       ground(p, false);
-      for (const j of jets) {
-        const u = t - 0.25 - j.delay;
-        if (u <= 0 || u >= 0.67) continue;
-        const rise = smooth(0, 0.13, u), fall = smooth(0.23, 0.67, u);
-        const h = j.h * rise * (1 - fall), w = j.w * (1 - fall);
-        const pts = [];
-        for (let y = 0; y <= h; y += 1) {
-          const q = y / Math.max(1, h), x = j.x + j.lean * q * q + Math.sin(y * 0.16 - u * 15 + j.phase) * q * 3;
-          const width = Math.max(0.4, w * (1 - q * 0.8));
-          p.line(x - width, -y, x + width, -y, C[q > 0.7 ? 3 : 2], 1 - fall);
-          p.dot(x - width, -y, C[4], 1 - fall);
-          pts.push([x - width * 0.3, -y]);
-        }
-        p.polyline(pts, C[5], (1 - fall) * 0.8);
-        if (j === jets[4]) p.polyline(pts, C[6], (1 - fall) * 0.9);
-        p.glowLine(j.x, -2, j.x + j.lean * 0.6, -h * 0.8, 5, C[4], 0.22 * (1 - fall));
+      const age = t - 0.25;
+      if (age > 0 && age < 0.75) {
+        const expand = smooth(0, 0.12, age), collapse = smooth(0.32, 0.75, age);
+        const size = expand * (1 - collapse * 0.25), cy = -25 + collapse * 12;
+        const opacity = 1 - smooth(0.35, 0.75, age);
+        // A filled central mass hides the entire 48px hero at the explosion's peak.
+        p.shade(-52, -82, 52, 14, (x, y, out) => {
+          let d = Math.hypot(x / (30 * size), (y - cy) / (32 * size));
+          for (const l of lobes)
+            d = Math.min(d, Math.hypot(x - l.x * size, y - cy - l.y * size) / (l.r * size));
+          if (d > 1) return;
+          out.c = d > 0.88 ? C[1] : d > 0.68 ? C[4] : d > 0.5 ? C[3] : C[2];
+          out.a = opacity;
+          out.l = C[4];
+          out.k = Math.max(0, 1 - Math.hypot(x / 20, (y - cy) / 25)) * 0.25 * opacity;
+        });
       }
       const flash = clamp(1 - (t - 0.25) / 0.1);
       if (t >= 0.25 && flash > 0) {
-        p.ellipse(0, -2, 19 * flash, 4, C[6], flash);
+        p.ellipse(0, -25, 12 * flash, 16 * flash, C[5], flash);
         p.glow(0, -12, 36, C[5], flash * 0.7);
       }
       for (const d of drops) {
         const u = t - d.start;
         if (u < 0 || u >= d.flight) continue;
-        const x = d.vx * u, y = d.floor + d.vy * u + 210 * u * u;
+        const x = d.vx * u, y = d.floor - 24 + d.vy * u + 210 * u * u;
         const vy = d.vy + 420 * u;
         p.beam(x - d.vx * 0.018, y - vy * 0.018, x, y, d.s, C[d.c]);
         p.dot(x - 0.5, y - 1, C[5], 0.9);
