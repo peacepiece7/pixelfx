@@ -150,6 +150,7 @@ import * as arcane_spell_charge from "./arcane/spell-charge.js";
 import * as arcane_star_fall from "./arcane/star-fall.js";
 import * as arcane_time_stop from "./arcane/time-stop.js";
 import * as holy_adelvin_aurora_impact from "./holy/adelvin-aurora-impact.js";
+import * as holy_adelvin_orb_flight from "./holy/adelvin-orb-flight.js";
 import * as holy_adelvin_bolt from "./holy/adelvin-bolt.js";
 import * as holy_adelvin_heal_impact from "./holy/adelvin-heal-impact.js";
 import * as holy_adelvin_healing_lance from "./holy/adelvin-healing-lance.js";
@@ -433,6 +434,7 @@ export const effects = {
   "arcane/star-fall": arcane_star_fall,
   "arcane/time-stop": arcane_time_stop,
   "holy/adelvin-aurora-impact": holy_adelvin_aurora_impact,
+  "holy/adelvin-orb-flight": holy_adelvin_orb_flight,
   "holy/adelvin-bolt": holy_adelvin_bolt,
   "holy/adelvin-heal-impact": holy_adelvin_heal_impact,
   "holy/adelvin-healing-lance": holy_adelvin_healing_lance,
