@@ -197,7 +197,7 @@ bullets, rockets, lasers, arrows.
 | SMG burst | `projectiles/muzzle-smg` | loop 1s | 112×72 | Sustained fire at twelve rounds a second: each shot a different spiky flash with a white core, sparks, smoke wisps piling up and drifting, brass casings bouncing on the floor. |
 | Plasma shot | `projectiles/plasma-shot` | loop 0.8s | 144×60 | A glowing plasma blob: hot knots churning in its core, a corona crackling over its skin, its tail necking into droplets that tear off, cool and wink out behind. |
 | Rocket | `projectiles/rocket` | loop 1.2s | 288×76 | A steel rocket roars along: a flickering jet with shock diamonds and a white-hot nozzle, a thick billowing smoke trail lit by the flame, sparks shed behind. |
-| Rosilia support shot | `projectiles/rosilia-support-shot` | loop 2s | 200×120 | A solid brass round descends into a breathing ground sight, buries its tip and breaks the soil. Its segmented wake erases oldest first while chips, dust and contact light settle. |
+| Rosilia support shot | `projectiles/rosilia-support-shot` | loop 2s | 200×120 | A brass round buries into the reticle: an ivory impact fan, twin pressure waves, flying stone and brass, and a rising dust plume. The wake fades oldest first. |
 | Rosilia target reticle | `projectiles/rosilia-target-reticle` | loop 1s | 48×56 | A small brass crosshair tracks a marked target; only an external pulse brightens the current shot target. |
 
 ## spawn & death

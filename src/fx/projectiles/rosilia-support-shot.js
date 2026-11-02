@@ -3,7 +3,7 @@ import { Rng, fit, smooth, clamp, TAU, sparkle } from '../../core/index.js';
 
 export const meta = {
   name: 'Rosilia support shot',
-  desc: 'A solid brass round descends into a breathing ground sight, buries its tip and breaks the soil. Its segmented wake erases oldest first while chips, dust and contact light settle.',
+  desc: 'A brass round buries into the reticle: an ivory impact fan, twin pressure waves, flying stone and brass, and a rising dust plume. The wake fades oldest first.',
   tags: ['projectiles', 'impact', 'debris', 'loop'],
   size: [200, 120], origin: [100, 87], duration: 2, loop: true, fps: 30, bg: 'ground',
   options: {
@@ -18,8 +18,8 @@ export const meta = {
 const BEATS = [
   [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
   [0.05, 0.42, 0.00, 0.00, 0.00, 0.00, 0.00],
-  [0.10, 1.00, 0.00, 0.65, 0.15, 0.00, 0.20],
-  [0.15, 1.00, 1.00, 0.18, 1.00, 0.68, 1.00],
+  [0.10, 1.00, 0.00, 1.00, 0.15, 0.00, 0.20],
+  [0.15, 1.00, 1.00, 0.35, 1.00, 0.68, 1.00],
   [0.20, 1.00, 1.00, 0.00, 0.85, 1.00, 0.85],
   [0.25, 1.00, 1.00, 0.00, 0.60, 0.70, 0.55],
   [0.30, 1.00, 1.00, 0.00, 0.25, 0.25, 0.20],
@@ -27,11 +27,13 @@ const BEATS = [
 ];
 
 function pose(o) {
-  const seconds = (1 - clamp(o.pulse ?? 0)) * .35;
+  const seconds = Math.round((1 - clamp(o.pulse ?? 0)) * .35 * 1e9) / 1e9;
   const index = Math.min(6, Math.floor(seconds / .05));
   const a = BEATS[index], b = BEATS[index + 1];
   const q = clamp((seconds - a[0]) / .05);
-  return [seconds, ...a.slice(1).map((value, i) => value + (b[i + 1] - value) * q)];
+  const result = [seconds, ...a.slice(1).map((value, i) => value + (b[i + 1] - value) * q)];
+  if (seconds < .10) result[3] = 0; // light starts on contact, never during flight
+  return result;
 }
 
 // Reticle motion never moves the actual impact centre or combat radius.
@@ -65,7 +67,7 @@ function fractures(p, seconds, strength, C, seed) {
   const growth = smooth(.095, .16, seconds);
   for (let i = 0; i < 7; i++) {
     const a = i * TAU / 7 + R.range(-.2, .2);
-    const length = R.range(18, 37) * growth;
+    const length = R.range(26, 51) * growth;
     let x = 0, y = 1;
     for (let j = 1; j <= 4; j++) {
       const d = length * j / 4;
@@ -99,8 +101,7 @@ export function drawBack(p, t, o) {
     a => Math.sin(a * 7) < .7);
   fractures(p, seconds, crack, C, o.seed);
   pool(p, 0, 0, 22 + spread * 28, 8 + spread * 6, C[4], flash * .75);
-  softBand(p, 0, 1, 9 + spread * 52, .24, 4 - spread * 2,
-    dust * .36, C.slice(1, 5));
+  pressureWaves(p, seconds, C, true);
 }
 
 // A local coordinate along the descending round and its perpendicular.
@@ -153,15 +154,15 @@ function round(p, flight, burial, C) {
 
 function debris(p, seconds, C, seed) {
   const R = new Rng(seed + 71);
-  for (let i = 0; i < 28; i++) {
-    const angle = R.range(-Math.PI, 0), speed = R.range(70, 210);
+  for (let i = 0; i < 42; i++) {
+    const angle = R.range(-Math.PI, 0), speed = R.range(120, 310);
     const delay = R.range(.10, .125), age = seconds - delay;
     const life = R.range(.14, .22), w = R.range(1.4, 3.4);
     if (age <= 0 || age >= life) continue;
     const fade = 1 - smooth(life * .55, life, age);
     const x = Math.cos(angle) * speed * age;
     const y = Math.sin(angle) * speed * age + 410 * age * age;
-    const brass = i % 5 === 0;
+    const brass = i % 3 === 0;
     if (brass) {
       p.line(x - 2, y - 3, x + 1, y, C[4], fade);
       p.dot(x, y - 2, C[6], fade);
@@ -178,14 +179,91 @@ function dustSkirt(p, seconds, strength, C, seed) {
   for (let i = 0; i < 20; i++) {
     const a = R.range(0, TAU), delay = R.range(.105, .145);
     const age = Math.max(0, seconds - delay);
-    const speed = R.range(120, 240), size = R.range(3, 6);
+    const speed = R.range(220, 380), size = R.range(4, 8);
     const distance = speed * (1 - Math.exp(-age * 8)) / 8;
     const x = Math.cos(a) * distance;
     const y = Math.sin(a) * distance * .25 - Math.sin(clamp(age / .23) * Math.PI) * 5;
     const alpha = smooth(0, .025, age) * strength;
     const radius = size + age * 26;
-    haze(p, x, y, radius, C[1], alpha * .5);
-    haze(p, x - 1, y - radius * .25, radius * .75, C[3], alpha * .3);
+    haze(p, x, y, radius, C[1], alpha * .65);
+    haze(p, x - 1, y - radius * .25, radius * .75, C[3], alpha * .38);
+  }
+}
+
+// Actual alpha keeps the thinning pressure edges and flash fins free of stipple.
+function translucentPoly(p, pts, color, alpha) {
+  if (alpha <= 0) return;
+  const xs = pts.map(v => v[0]), ys = pts.map(v => v[1]);
+  softShade(p, Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys), (x, y, out) => {
+    let inside = false;
+    for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+      const [ax, ay] = pts[i], [bx, by] = pts[j];
+      if ((ay > y) !== (by > y) && x < (bx - ax) * (y - ay) / (by - ay) + ax) inside = !inside;
+    }
+    if (inside) { out.c = color; out.a = alpha; }
+  });
+}
+
+// Choreography reference: impacts/ground-slam and explosions/small-explosion.
+// Their fast contact, delayed pressure fronts and lit dust are re-timed to one
+// externally driven shot; this pure renderer never creates a second damage event.
+function pressureWaves(p, seconds, C, back) {
+  for (let i = 0; i < 2; i++) {
+    const age = seconds - .10 - i * .025;
+    if (age < 0) continue;
+    const q = clamp(age / (.22 - i * .025));
+    const spread = 1 - (1 - q) ** 3;
+    const r = 5 + spread * (78 - i * 12);
+    const fade = (1 - smooth(.35, 1, q));
+    softBand(p, 0, 1, r, .24, 2 + (1 - q) * 4, fade * .8,
+      C.slice(2, 7), a => (Math.sin(a) < 0) === back);
+    if (!back) for (const side of [-1, 1]) {
+      const x = side * r, h = 17 * (1 - q);
+      p.glow(x, -h * .3, 10, C[4], fade * .25);
+      // Raised, curling pressure edge above the flatter ground ring.
+      const pts = [[x - side * 4, 0], [x, -h * .35], [x - side * 2, -h],
+        [x + side * 3, -h * .55], [x + side * 4, 0]];
+      translucentPoly(p, pts, C[4], fade * .65);
+      translucentPoly(p, [pts[1], pts[2], pts[3]], C[5], fade * .8);
+    }
+  }
+}
+
+function impactBurst(p, seconds, C, seed) {
+  const age = seconds - .10;
+  if (age < 0 || age > .12) return;
+  const q = age / .12, fade = (1 - q) ** 2;
+  const R = new Rng(seed + 149);
+  // An asymmetric pointed blast, broad along the floor with a shorter upward fan.
+  for (let i = 0; i < 11; i++) {
+    const a = -Math.PI + i * Math.PI / 10 + R.range(-.07, .07);
+    const length = R.range(22, 47) * (1 + q * .5);
+    const w = R.range(2, 4) * (1 - q);
+    const x = Math.cos(a) * length, y = Math.sin(a) * length * .75;
+    const nx = -Math.sin(a) * w, ny = Math.cos(a) * w;
+    translucentPoly(p, [[-nx, -2-ny], [x, y-2], [nx, -2+ny]], C[4], fade);
+    translucentPoly(p, [[-nx*.4, -2-ny*.4], [x*.82, y*.82-2], [nx*.4, -2+ny*.4]], C[6], fade);
+  }
+  p.ellipse(0, -2, 18 * (1 - q), 7 * (1 - q), C[6], fade);
+  p.glow(0, -12, 38, C[4], fade * .7);
+  p.glow(0, -3, 15, C[6], fade * .85);
+  pool(p, 0, 1, 79, 13, C[5], fade * .65);
+}
+
+function soilPlume(p, seconds, C, seed) {
+  const R = new Rng(seed + 181);
+  for (let i = 0; i < 14; i++) {
+    const delay = R.range(.11, .145), age = seconds - delay;
+    const vx = R.range(-65, 65), rise = R.range(110, 230), size = R.range(4, 8);
+    if (age <= 0) continue;
+    const q = clamp(age / (.35 - delay));
+    const fade = smooth(0, .1, q) * (1 - smooth(.38, 1, q));
+    const x = vx * (1 - Math.exp(-age * 7)) / 7;
+    const y = -3 - rise * (1 - Math.exp(-age * 6)) / 6;
+    const r = size + q * 7;
+    haze(p, x, y, r, C[1], fade * .7);
+    haze(p, x - 1, y - r * .3, r * .8, C[3], fade * .5);
+    haze(p, x - 2, y - r * .5, r * .5, C[4], fade * .25);
   }
 }
 
@@ -195,10 +273,15 @@ export function draw(p, t, o) {
   const [seconds, flight, burial, flash, , dust] = pose(o);
   wake(p, seconds, C);
   round(p, flight, burial, C);
-  // Contact is brief and small: it must not replace the descending bullet.
-  p.glow(0, -1, 21, C[3], flash * .45);
-  p.glow(0, -1, 8, C[5], flash * .65);
-  sparkle(p, 0, -1, 9 * flash, C[6], C[4], flash);
-  debris(p, seconds, C, o.seed);
+  // Arrival stays readable before the ultimate contact blooms.
+  if (flash > 0) {
+    p.glow(0, -1, 21, C[3], flash * .45);
+    p.glow(0, -1, 8, C[5], flash * .65);
+    sparkle(p, 0, -1, 9 * flash, C[6], C[4], flash);
+  }
+  soilPlume(p, seconds, C, o.seed);
   dustSkirt(p, seconds, dust, C, o.seed);
+  debris(p, seconds, C, o.seed);
+  pressureWaves(p, seconds, C, false);
+  impactBurst(p, seconds, C, o.seed);
 }
