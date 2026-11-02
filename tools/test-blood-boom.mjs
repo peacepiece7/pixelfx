@@ -33,3 +33,28 @@ for (let y = -48; y < 0; y++) for (let x = -12; x <= 12; x++) {
   assert.equal(peak.color[(116 + y) * 120 + 60 + x] >>> 24, 255, `uncovered hero at ${x},${y}`);
 }
 console.log("Peak fountain covers the full 48px hero silhouette.");
+
+// The 50ms choreography must change at every beat, including the long settling tail.
+assert.equal(fx.FLOW_BEATS.length, 29);
+for (let i = 1; i < 28; i++) {
+  assert.notDeepEqual(frame({time:i*.05}),frame({time:(i-1)*.05}),`motion at beat ${i}`);
+}
+for (const time of [.1,.3,.4,.6,.8,1,1.2,1.4]) {
+  assert.deepEqual(frame({time,fps:30}),frame({time,fps:120}),`rate independence at ${time}`);
+}
+const ground = time => {
+  const sim=fx.create(resolveOptions(fx.meta));sim.update(time);
+  const f=createFrame(120,140);sim.drawBack(painterFor(f).place(60,116));return f;
+};
+const light=f=>f.light.reduce((n,c)=>n+(c&255)+(c>>>8&255)+(c>>>16&255),0);
+assert(light(ground(.2))>light(ground(.05)),'seal light builds before release');
+assert(light(ground(.3))>light(ground(1.25))*5,'seal and floor light decay');
+for(let seed=1;seed<=8;seed++)for(let step=0;step<=28;step++) {
+  const time=step*.05,sim=fx.create(resolveOptions(fx.meta,{seed}));sim.update(time);
+  const f=createFrame(160,180),p=painterFor(f).place(80,136);
+  sim.drawBack(p);sim.draw(p);
+  for(let y=0;y<180;y++)for(let x=0;x<160;x++) {
+    if(x<20||x>=140||y<20||y>=160)assert.equal(f.color[y*160+x],0,`spill seed=${seed}, t=${time}`);
+  }
+}
+console.log('All 29 beats, rate independence, seal lighting and eight-seed canvas bounds pass.');

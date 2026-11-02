@@ -1,0 +1,35 @@
+# Blood boom: 50 ms choreography
+
+`blood/blood-boom` is a 1.4-second simulation on a 120×140 canvas, anchored at the
+caster's feet. `FLOW_BEATS` contains 29 control rows (0.00–1.40 in 0.05-second steps),
+interpolated continuously. Each row independently controls height, width, pressure,
+membrane breakup, inscription light and pooled liquid. This is animation timing only;
+no hero or combat integration is included.
+
+| Interval | Liquid motion | Seal and lighting |
+|---|---|---|
+| 0.00–0.10 | Low wet pressure mound begins rising | Two opposing writing heads trace the outer ring |
+| 0.10–0.20 | Mound broadens; cracks extend segment by segment | Inner ring and twelve staggered angular marks appear |
+| 0.20–0.30 | Vent breaks at 0.25; sheet accelerates from 12px to 57px | Tight ivory flash plus a broader red floor reflection |
+| 0.30–0.40 | Height rises 57→88→99px; broad opaque centre covers a 48px hero | Moving wet ridges and vertical core light |
+| 0.40–0.50 | Crest folds outward; wide shoulders open; first membranes detach | Initial flash cools; seal remains readable |
+| 0.50–0.60 | Pressure drops before the crest; suspended sheets separate | Separate glints on the falling sheets and beads |
+| 0.60–0.70 | Curtain tears along irregular moving holes; height falls 74→63→51px | Core light shrinks with the pressure |
+| 0.70–0.80 | Height falls 51→38→26px; heavy folded membranes accelerate down | Low returning shock rim starts expanding |
+| 0.80–0.90 | Low core collapses; primary droplets and folded sheets land | Individual wet crowns, small landing pools and short reflections |
+| 0.90–1.00 | Core falls 9→4→0px; remaining droplets rebound | Seal cools; local ripples overlap the pooled liquid |
+| 1.00–1.10 | Final rain settles; wet puddles flatten | Outer marks begin extinguishing at staggered times |
+| 1.10–1.20 | Pool margins retreat independently of their alpha | Ring segments lose light and break apart |
+| 1.20–1.30 | Dark residue contracts; isolated wet glints remain | Nearly all inscription light is gone |
+| 1.30–1.40 | Last residue shrinks and clears | Both buffers are empty at exactly 1.40 |
+
+There are 40 seeded primary ballistic droplets, 12 detached liquid membranes and
+20 fine spray flecks. Primary droplets and membranes generate landing crowns, not
+additional gameplay hits. The radius-70 ground footprint is projected to 56 pixels
+horizontally to retain the requested 120px canvas, matching the previous convention.
+Every color, including light and near-white glints, comes from `o.palette`.
+
+Validation: `node tools/test-blood-boom.mjs` and `node tools/check.mjs blood/blood-boom`.
+Visual review: `node tools/render-blood-boom.mjs final` creates a 60fps-source GIF and
+all 29 contact frames at exact 50ms intervals in `records/blood/blood-boom/final/`.
+Character choreography: `node tools/act.mjs blood/blood-boom`.
