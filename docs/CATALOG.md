@@ -1,6 +1,6 @@
 # Catalog
 
-279 effects in 22 categories. Every one is a file in
+287 effects in 23 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -67,16 +67,16 @@ splashes, falls, fountains, waves.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
-| Aorbion charge emerge | `water/aorbion-charge-emerge` | one-shot 0.65s | 176×104 | A foaming bow wave races 100px forward as three sharp water-claw ribbons rake through it; spray arcs down into ripples and a lacy wake drains away. |
-| Aorbion Poseidon | `water/aorbion-poseidon` | loop 6s | 168×144 | Three water pillars orbit an attached radius-70 zone; pulse is brightness only and never adds visual hits. The host retains or removes the zone. |
+| Aorbion charge emerge | `water/aorbion-charge-emerge` | one-shot 0.65s | 184×112 | A layered water crest surges 100px forward; three offset claws peel into spray, floating foam, popping bubbles and small landing ripples. |
+| Aorbion Poseidon wave storm | `water/aorbion-poseidon` | loop 6s | 256×208 | An open water storm: layered spiral waves, curling splash sheets, foam and falling spray, with a four-beat local shimmer. No pillars. |
 | Aorbion sea response | `water/aorbion-sea-response` | loop 5s | 80×80 | mode travel shows a small sea-dragon crest; mode claw rims the actor claws with water light. Host-owned buff lifetime, not an extra attack. |
-| Aorbion sea dragon | `water/aorbion-seadragon` | one-shot 1s | 736×208 | A huge ivory-crested sea dragon uncoils above a surging tidal wall, lunges with a swept mane and open water jaw, then tears into streaming spray and a foamy wake. |
+| Aorbion sea dragon | `water/aorbion-seadragon` | one-shot 1s | 752×272 | An abyssal sea dragon surges through tidal pressure crescents: sculpted water ribs, streaming fins, a fanged ivory jaw and a collapsing trail of foam. |
 | Aorbion submerge | `water/aorbion-submerge` | loop 0.5s | 200×80 | The actor sinks through the surface, leaves spreading ripples along its travel path, then rises through a small crown of water. The host owns movement and interruption. |
-| Aorbion tail pillars | `water/aorbion-tail-pillars` | one-shot 0.8s | 208×320 | Foaming geysers erupt along a vertical line, 35px apart. Layered water cores burst into churning crowns, falling spray and ripples before draining away. |
+| Aorbion tail pillars | `water/aorbion-tail-pillars` | one-shot 0.8s | 208×320 | Overlapping jets rise through layered teal water, pale veins and uneven tips; tiny side bubbles and falling beads leave restrained landing ripples. |
 | Bubbles | `water/bubbles` | loop 4s | 104×112 | Bubbles stream up from a vent of pebbles, wobbling and swelling as they rise, flare as they cross shafts of light from the surface, then dome up and pop there. |
 | Drip | `water/drip` | loop 1.6s | 72×88 | Small water beads fall from the torso like bleeding droplets. Stacks increase frequency, not size. Set status:false for the ambient drip. |
 | Fountain | `water/fountain` | loop 2s | 120×104 | A stone basin; a jet rises from its spout and blooms into glassy arcs that break into beads, fall back and plink into the water with rings. |
-| Geyser | `water/geyser` | one-shot 5s | 184×168 | A pool heaves and burbles faster and faster, then blasts a white column of water skyward with a churning foam head; it rains back down in drops and steam, slumps and sputters out. |
+| Geyser | `water/geyser` | one-shot 0.85s | 184×168 | One fast water strike: a dense rising jet, a brilliant foam crown, then a single collapse into ballistic spray and fading landing ripples. |
 | Rain splash | `water/rain-splash` | loop 2.4s | 176×80 | A low close-up on one puddle in the rain: big drops land in crowns that throw beads and a rebound jet, rings spread and interfere, a lamp's reflection wobbles on the water. |
 | Ripples | `water/ripples` | loop 2s | 136×52 | A drop plinks on still dark water and rings spread out across it at a low angle: the swell of each ring catches the light, crests glint, and they fade into the calm. |
 | Splash | `water/splash` | one-shot 2.5s | 176×100 | A stone drops into still water: a white hit, a crown that tears into droplets arcing out to plink down with rings, a jet that bounces back, foam and drifting mist. |
@@ -244,16 +244,16 @@ heals, halos, pillars of light.
 |---|---|---|---|---|
 | Adelvin aurora bloom | `holy/adelvin-aurora-impact` | one-shot 0.65s | 160×128 | An airy cyan veil lifts behind a compact ivory impact, then folds into gold flecks. A wide rod hit stays translucent so crowds remain readable. |
 | Adelvin aurora bolt | `holy/adelvin-bolt` | loop 1.2s | 112×72 | A small pearly head pulls three cyan ribbons and spaced gold motes. Its nose follows host projectile coordinates; size can distinguish wand, rod and stored orbs. |
-| Adelvin light missile | `holy/adelvin-orb-flight` | loop 1.2s | 112×72 | Dedicated stored-orb flight: white core, twisting cyan ribbon and ivory stars; host-owned homing. |
-| Adelvin healing arrival | `holy/adelvin-heal-impact` | one-shot 0.6s | 104×112 | A brief mint hoop climbs the ally with three small ivory healing crosses. Compact half-second feedback supports frequent heals without a full-body wash. |
+| Adelvin healing arrival | `holy/adelvin-heal-impact` | one-shot 0.6s | 104×112 | A brief mint hoop climbs the ally with five staggered ivory healing crosses. Compact 0.6-second feedback supports frequent heals without a full-body wash. |
 | Adelvin healing lance | `holy/adelvin-healing-lance` | loop 1.2s | 160×80 | A soft mint-ivory healing spear with a small cross on its collar. The host sends it toward one ally; the image does not decide healing timing. |
-| Michael healing pulse | `holy/adelvin-healing-pulse` | one-shot 0.7s | 272×136 | One shallow mint-and-ivory ripple expands from one Michael instance, lifting eight small crosses at its rim. The host emits it per actual heal event. |
-| Adelvin orb impact | `holy/adelvin-impact` | one-shot 0.55s | 128×112 | A compact ivory star cracks into cyan crystal-like light shards, with a thin gold echo. No fire, smoke, persistent zone or extra damage pulse. |
+| Michael healing pulse | `holy/adelvin-healing-pulse` | one-shot 0.7s | 272×160 | A full-radius mint sanctuary ignites at once: ivory rune engravings, a petal mandala, rising aurora veils and eight healing crosses dissolve in 0.7 seconds. |
+| Adelvin light missile impact | `holy/adelvin-impact` | one-shot 0.55s | 128×112 | A white magic core snaps open into a broken cyan halo, twisting light streaks and fading ivory stars. Compact and fireless; one burst per actual impact. |
 | Adelvin light lance | `holy/adelvin-lance` | loop 1.2s | 160×80 | An ivory spearhead with a cyan bevel, gold collar and tapering split ribbons. The host moves the nose; it never selects targets or applies damage. |
-| Gabriel ivory meteor | `holy/adelvin-meteor` | one-shot 1.15s | 272×224 | A fixed cyan warning ellipse precedes one falling ivory sphere at 0.3s. A compact white contact, aurora curtain and two low ripples fade without fire or smoke. |
-| Adelvin stored orbs | `holy/adelvin-orb-array` | loop 2s | 144×128 | Charged white cores orbit on short cyan wakes, with rotating light rays. Host remaining count controls the array; zero is empty, with no fixed five-orb cap. |
+| Gabriel radiant meteor | `holy/adelvin-meteor` | one-shot 1.15s | 288×288 | A large pearl-gold light meteor releases an enlarged sunburst, two aura shells, floor light waves and drifting sparks. No stone, dark crater or curtains. |
+| Adelvin stored light missiles | `holy/adelvin-orb-array` | loop 2s | 144×128 | Charged white cores orbit on short twisting cyan wakes, ready to launch. Host remaining count controls every light; zero is empty and there is no five-orb cap. |
+| Adelvin light missile | `holy/adelvin-orb-flight` | loop 1.2s | 112×72 | A white-hot magic core pulls a twisting cyan ribbon and warm star motes. Host owns homing, position and lifetime; this loop never travels or applies damage. |
 | Adelvin orbiting shields | `holy/adelvin-orbiting-shields` | loop 2s | 168×128 | Independent beveled shields orbit an ally in front and back layers. Count and phase come from the host; the art never creates extra collision or shield HP. |
-| Adelvin summon seal | `holy/adelvin-summon-seal` | one-shot 0.85s | 192×152 | A thin cyan floor seal opens into ivory wing-like arcs, with twelve rising gold motes. Only arrival magic; Gabriel and Michael bodies are separate sprites. |
+| Adelvin radiant summon seal | `holy/adelvin-summon-seal` | one-shot 0.85s | 192×152 | A layered cyan-gold rune seal opens beneath the summon. Counter-rotating compass rays, rising ivory halos and star motes unfold once and dissolve. |
 | Blessing | `holy/blessing` | loop 3s | 80×128 | A soft cone of light rests on the character from above; sparkles drift down through it, twinkling, and wink out where they land on the head and shoulders. |
 | Divine shield | `holy/divine-shield` | loop 2.4s | 88×84 | A bubble of gold light round the character: a bright rim and a thin gold film, meridians turning like a slow globe, a sheen sweeping across and sparkles winking on it. |
 | Feather burst | `holy/feather-burst` | one-shot 3s | 160×160 | A white puff pops and throws feathers that brake hard, then rock from side to side as they sink and fade, with down drifting after them. |
@@ -324,6 +324,20 @@ burning, frozen, poisoned, asleep.
 | Slowed | `status/slowed` | loop 2.4s | 64×76 | Dragged through time: a glassy clock dial behind the head ticks round in heavy steps, flashing with each, while drops sink in slow motion and spread slow rings. |
 | Stunned | `status/stunned` | loop 2s | 60×64 | Seeing stars: three spinning stars and two little birds circle the head on a tilted ring, ducking behind it and sweeping round in front, trailing glitter. |
 
+## poison
+
+venom arrows, thrown daggers, fixed fog, contact mines and residual toxin.
+
+| effect | id | | size | what it does |
+|---|---|---|---|---|
+| Venom mine burst | `poison/mine-burst` | one-shot 0.5s | 128×96 | One consumed mine erupts into a low liquid crown, falling venom beads, a spreading floor ripple and olive-violet gas. No fire, chain reaction or extra hits. |
+| Poison arrow | `poison/poison-arrow` | one-shot 0.4s | 128×64 | A thin physical arrow flies from the bow with a wet venom tip, dark fletching and a sparse trail of falling poison beads. No impact or damage cue. |
+| Poison dagger | `poison/poison-dagger` | one-shot 0.4s | 128×64 | A beveled physical throwing dagger with a wrapped handle, crossguard and a few venom drops. A visual delivery cue without ammunition, return or impact logic. |
+| Poison detonation | `poison/poison-detonation` | one-shot 0.7s | 160×128 | Stored venom detonates into green liquid and a violet-crowned gas bloom. Snapshot stacks enlarge only the visual silhouette; the host owns all damage. |
+| Poison fog field | `poison/poison-fog` | loop 5s | 160×96 | A fixed olive-green miasma rolls in low translucent banks with violet crowns, oily beads and one local light pulse per second. Every area has its own clock. |
+| Venom contact mine | `poison/poison-mine` | loop 12s | 64×64 | A small barbed venom capsule settles into the ground; three olive pips charge for 0.5 seconds, then a green core breathes in a ready ring. Host-owned lifetime and contact. |
+| Residual poison transfer | `poison/poison-transfer` | one-shot 0.5s | 160×96 | A wet venom bead pulls free of a dead target and follows a shallow arc to the host-selected recipient, trailing smaller droplets. No new stacks or lifetime refresh. |
+
 ## nature
 
 poison, vines, thorns, quakes.
@@ -336,7 +350,7 @@ poison, vines, thorns, quakes.
 | Healing bloom | `nature/healing-bloom` | one-shot 3.3s | 124×120 | A sprout pushes up and unfurls, a bud swells and opens round a glowing golden heart in a flare of healing light; its petals lift away one by one as motes. |
 | Leaf storm | `nature/leaf-storm` | loop 2.4s | 112×104 | Leaves tumble up a rising spiral round the character, passing behind and in front, turning and flipping, wrapped in bright bands of wind; litter swirls at their feet. |
 | Poison cloud | `nature/poison-cloud` | loop 4s | 256×100 | A miasma hugging the floor: ragged sheets of gas lit yellow-green from within, fading to violet, creep out in tongues that curl over at their tips; plumes twist up as ribbons. |
-| Pull vortex | `nature/pull-vortex` | loop 2s | 144×80 | Dust, grit and dry grass spiral inward from every direction along the floor, converging on the slam point in front of the caster. |
+| Pull vortex | `nature/pull-vortex` | loop 2s | 288×160 | Broad ground-hugging dust arms accelerate inward from every direction; tumbling grit, lifted grass and low pressure waves converge on the forward slam point. |
 | Quake | `nature/quake` | one-shot 3.1s | 288×104 | The ground jolts three times: a rift tears out along the floor glowing deep inside, slabs of floor heave up and drop back askew, pebbles hop and dust bursts out of the split. |
 | Root snare | `nature/root-snare` | one-shot 2.7s | 128×96 | The floor cracks and roots burst up round the character, spiralling round its legs; they cinch tight with a snap, hold, then crack and crumble into bark and dust. |
 | Spore burst | `nature/spore-burst` | one-shot 3.2s | 212×132 | A toadstool pushes up, swells and trembles as its gills glow, then squashes and puffs a lumpy cloud of glowing spores that billows up and drifts down twinkling. |

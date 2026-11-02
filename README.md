@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->279<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->287<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -29,7 +29,7 @@ the idea at library scale, with a skill to keep going.
 | **moves** | 13 | arrow shot, brynhild basic strike, dash strike, earth stomp, fireball throw, ground pound… |
 | **fire** | 12 | brazier, campfire, candle, fire breath, fire ring, fire tornado… |
 | **explosions** | 12 | barrel explosion, big explosion, cartoon pow, dirt explosion, firework burst, firework rocket… |
-| **water** | 18 | aorbion charge emerge, aorbion poseidon, aorbion sea response, aorbion sea dragon, aorbion submerge, aorbion tail pillars… |
+| **water** | 18 | aorbion charge emerge, aorbion poseidon wave storm, aorbion sea response, aorbion sea dragon, aorbion submerge, aorbion tail pillars… |
 | **ice** | 11 | blizzard vortex, freeze, freeze slam, frost breath, frost nova, ice crystal… |
 | **lightning** | 11 | ball lightning, chain lightning, charge up, electrified, lightning strike, plasma ball… |
 | **sci-fi** | 12 | emp blast, energy core, force field, glitch, hologram, jetpack… |
@@ -38,10 +38,11 @@ the idea at library scale, with a skill to keep going.
 | **projectiles** | 15 | arrow, bullet tracer, cannon shot, energy disc, signal flare, homing missile… |
 | **spawn & death** | 10 | coin drop, disintegrate, dissolve burn, egg hatch, poof, respawn beam… |
 | **arcane** | 12 | arcane beam, arcane missiles, arcane orb, blink in, blink out, magic circle cast… |
-| **holy** | 23 | adelvin aurora bloom, adelvin aurora bolt, adelvin healing arrival, adelvin healing lance, michael healing pulse, adelvin orb impact… |
+| **holy** | 24 | adelvin aurora bloom, adelvin aurora bolt, adelvin healing arrival, adelvin healing lance, michael healing pulse, adelvin light missile impact… |
 | **blood** | 4 | bleeding status, blood boom, roar wave, thorn reflect |
 | **shadow** | 16 | black hole, curse, dark explosion, dark shroud, dark wave, eclipse… |
 | **status** | 16 | bleeding, blood armor, burning, charmed, confused, cursed… |
+| **poison** | 7 | venom mine burst, poison arrow, poison dagger, poison detonation, poison fog field, venom contact mine… |
 | **nature** | 14 | acid splash, boulder, earth spike, healing bloom, leaf storm, poison cloud… |
 | **weather** | 12 | aurora, blizzard, cherry blossoms, clouds, falling leaves, fireflies… |
 | **ui** | 12 | achievement, coin collect, combo counter, confetti, countdown, crit number… |

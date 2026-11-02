@@ -150,7 +150,6 @@ import * as arcane_spell_charge from "./arcane/spell-charge.js";
 import * as arcane_star_fall from "./arcane/star-fall.js";
 import * as arcane_time_stop from "./arcane/time-stop.js";
 import * as holy_adelvin_aurora_impact from "./holy/adelvin-aurora-impact.js";
-import * as holy_adelvin_orb_flight from "./holy/adelvin-orb-flight.js";
 import * as holy_adelvin_bolt from "./holy/adelvin-bolt.js";
 import * as holy_adelvin_heal_impact from "./holy/adelvin-heal-impact.js";
 import * as holy_adelvin_healing_lance from "./holy/adelvin-healing-lance.js";
@@ -159,6 +158,7 @@ import * as holy_adelvin_impact from "./holy/adelvin-impact.js";
 import * as holy_adelvin_lance from "./holy/adelvin-lance.js";
 import * as holy_adelvin_meteor from "./holy/adelvin-meteor.js";
 import * as holy_adelvin_orb_array from "./holy/adelvin-orb-array.js";
+import * as holy_adelvin_orb_flight from "./holy/adelvin-orb-flight.js";
 import * as holy_adelvin_orbiting_shields from "./holy/adelvin-orbiting-shields.js";
 import * as holy_adelvin_summon_seal from "./holy/adelvin-summon-seal.js";
 import * as holy_blessing from "./holy/blessing.js";
@@ -209,6 +209,13 @@ import * as status_rosilia_reload_ready from "./status/rosilia-reload-ready.js";
 import * as status_sleep from "./status/sleep.js";
 import * as status_slowed from "./status/slowed.js";
 import * as status_stunned from "./status/stunned.js";
+import * as poison_mine_burst from "./poison/mine-burst.js";
+import * as poison_poison_arrow from "./poison/poison-arrow.js";
+import * as poison_poison_dagger from "./poison/poison-dagger.js";
+import * as poison_poison_detonation from "./poison/poison-detonation.js";
+import * as poison_poison_fog from "./poison/poison-fog.js";
+import * as poison_poison_mine from "./poison/poison-mine.js";
+import * as poison_poison_transfer from "./poison/poison-transfer.js";
 import * as nature_acid_splash from "./nature/acid-splash.js";
 import * as nature_boulder from "./nature/boulder.js";
 import * as nature_earth_spike from "./nature/earth-spike.js";
@@ -434,7 +441,6 @@ export const effects = {
   "arcane/star-fall": arcane_star_fall,
   "arcane/time-stop": arcane_time_stop,
   "holy/adelvin-aurora-impact": holy_adelvin_aurora_impact,
-  "holy/adelvin-orb-flight": holy_adelvin_orb_flight,
   "holy/adelvin-bolt": holy_adelvin_bolt,
   "holy/adelvin-heal-impact": holy_adelvin_heal_impact,
   "holy/adelvin-healing-lance": holy_adelvin_healing_lance,
@@ -443,6 +449,7 @@ export const effects = {
   "holy/adelvin-lance": holy_adelvin_lance,
   "holy/adelvin-meteor": holy_adelvin_meteor,
   "holy/adelvin-orb-array": holy_adelvin_orb_array,
+  "holy/adelvin-orb-flight": holy_adelvin_orb_flight,
   "holy/adelvin-orbiting-shields": holy_adelvin_orbiting_shields,
   "holy/adelvin-summon-seal": holy_adelvin_summon_seal,
   "holy/blessing": holy_blessing,
@@ -493,6 +500,13 @@ export const effects = {
   "status/sleep": status_sleep,
   "status/slowed": status_slowed,
   "status/stunned": status_stunned,
+  "poison/mine-burst": poison_mine_burst,
+  "poison/poison-arrow": poison_poison_arrow,
+  "poison/poison-dagger": poison_poison_dagger,
+  "poison/poison-detonation": poison_poison_detonation,
+  "poison/poison-fog": poison_poison_fog,
+  "poison/poison-mine": poison_poison_mine,
+  "poison/poison-transfer": poison_poison_transfer,
   "nature/acid-splash": nature_acid_splash,
   "nature/boulder": nature_boulder,
   "nature/earth-spike": nature_earth_spike,

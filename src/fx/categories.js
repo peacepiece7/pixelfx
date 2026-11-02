@@ -17,6 +17,7 @@ export const categories = [
   { id: "blood", name: "blood", blurb: "crimson eruptions, droplets and blood magic" },
   { id: "shadow", name: "shadow", blurb: "curses, voids, tendrils, souls" },
   { id: "status", name: "status", blurb: "burning, frozen, poisoned, asleep" },
+  { id: "poison", name: "poison", blurb: "venom arrows, thrown daggers, fixed fog, contact mines and residual toxin" },
   { id: "nature", name: "nature", blurb: "poison, vines, thorns, quakes" },
   { id: "weather", name: "weather", blurb: "rain, snow, fog, aurora" },
   { id: "ui", name: "ui", blurb: "level ups, numbers, toasts, countdowns" },
