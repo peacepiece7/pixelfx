@@ -5,7 +5,7 @@ import { stone, spikes, star, SOOT } from "./_lib.js";
 
 export const meta = {
   name: "Bullet impact",
-  desc: "A bullet hits a wall on the right: a hot half-star, sparks sprayed back in a cone, a puff of grit, chips that fall and bounce, a pock mark cooling to soot.",
+  desc: "A bullet hits a wall on the right: a compact circular impact ripple, sparks sprayed back in a cone, a puff of grit, chips that fall and bounce, a pock mark cooling to soot.",
   tags: ["impact", "bullet", "gun", "wall", "sparks", "debris", "directional", "one-shot"],
   size: [152, 100],
   origin: [116, 84],
@@ -13,7 +13,7 @@ export const meta = {
   loop: false,
   fps: 30,
   bg: "ground",
-  options: { palette: ["#4a1712", "#c9281f", "#f2561d", "#ff8a2a", "#ffe26b", "#fff3a6", "#ffffff"], stone: "#5b5079", height: 24, seed: 6 },
+  options: { palette: ["#4a1712", "#c9281f", "#f2561d", "#ff8a2a", "#ffe26b", "#fff3a6", "#ffffff"], stone: "#5b5079", height: 24, ringRadius: 11, fullRing: true, seed: 6 },
 };
 
 export function create(o) {
@@ -77,13 +77,13 @@ export function create(o) {
         }
         if (heat > 0) p.glow(X + 1, Y, 6 + 6 * heat, C[3], 0.5 * heat);
       }
-      // a half ring opening away from the wall
+      // A compact full ripple for character hits; wall callers can request the original half ring.
       const u = (t - 0.03) / 0.18;
       if (u >= 0 && u < 1) {
-        const r = 5 + 12 * ease.outCubic(u), c = u < 0.3 ? C[5] : u < 0.6 ? C[4] : C[3];
+        const r = o.ringRadius * (0.3 + 0.7 * ease.outCubic(u)), c = u < 0.3 ? C[5] : u < 0.6 ? C[4] : C[3];
         for (let j = 0, n = Math.ceil(r * TAU * 1.3); j < n; j++) {
           const g = (j / n) * TAU;
-          if (open(g)) p.dot(X + Math.cos(g) * r, Y + Math.sin(g) * r, c, 1.15 - u);
+          if (o.fullRing || open(g)) p.dot(X + Math.cos(g) * r, Y + Math.sin(g) * r, c, 1.15 - u);
         }
       }
       ps.draw(p, "front");
