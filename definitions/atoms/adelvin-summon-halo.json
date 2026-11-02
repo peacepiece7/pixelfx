@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-summon-halo",
+  "name": "아델빈 소환체 광륜",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/halo",
+  "options": {
+    "palette": [
+      "#162c48",
+      "#27536e",
+      "#3c879b",
+      "#68bfce",
+      "#b8e3df",
+      "#e9ce8d",
+      "#fff4d8",
+      "#ffffff"
+    ]
+  }
+}

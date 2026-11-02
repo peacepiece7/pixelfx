@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-orb-flight",
+  "name": "아델빈 빛의 구체 유도 비행",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/adelvin-orb-flight",
+  "options": {
+    "palette": [
+      "#162c48",
+      "#27536e",
+      "#3c879b",
+      "#68bfce",
+      "#b8e3df",
+      "#e9ce8d",
+      "#fff4d8",
+      "#ffffff"
+    ]
+  }
+}
