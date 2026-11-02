@@ -1,6 +1,6 @@
 # Catalog
 
-251 effects in 22 categories. Every one is a file in
+252 effects in 22 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -95,6 +95,7 @@ spikes, novas, freezing, shattering.
 | Ice spikes | `ice/ice-spikes` | one-shot 3s | 264×112 | A frost line races along the floor and clusters of jagged ice blades burst up behind it in a rising wave, glint, flash white together and shatter into toppling shards. |
 | Icicle fall | `ice/icicle-fall` | one-shot 2.6s | 152×120 | An icicle drips and trembles, snaps off its frosted root, drops, stabs the floor and bursts into skidding shards, splinters and rolling frost. |
 | Snowflake burst | `ice/snowflake-burst` | one-shot 3.2s | 140×120 | A cold pop: frost gathers and flashes white in a ring, then crisp six-armed snowflakes spin out, slow, twinkle and drift down to settle and melt. |
+| Freeze slam | `ice/freeze-slam` | one-shot 1.6s | 200×120 | A landing flash erupts into radial ice at radius 90; frost mist gathers, cracks light up and the spikes burst into falling splinters. |
 
 ## lightning
 
