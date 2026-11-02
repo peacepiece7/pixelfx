@@ -1,0 +1,17 @@
+{
+  "id": "kings-decree",
+  "name": "백골왕 왕관 저주",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "shadow/kings-decree",
+  "options": {
+    "palette": [
+      "#140c06",
+      "#3a2a14",
+      "#7a5a26",
+      "#b8902e",
+      "#e0cc8a",
+      "#f4ecd2"
+    ]
+  }
+}
