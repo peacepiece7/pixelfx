@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-healing-lance",
+  "name": "아델빈 회복의 죽창",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/adelvin-healing-lance",
+  "options": {
+    "palette": [
+      "#173d42",
+      "#287477",
+      "#57b3af",
+      "#94d5c0",
+      "#cfebbc",
+      "#e5dfa1",
+      "#fff7dc",
+      "#ffffff"
+    ]
+  }
+}

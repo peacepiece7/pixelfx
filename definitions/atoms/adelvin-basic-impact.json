@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-basic-impact",
+  "name": "아델빈 로드 오로라 착탄",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/adelvin-aurora-impact",
+  "options": {
+    "palette": [
+      "#162c48",
+      "#27536e",
+      "#3c879b",
+      "#68bfce",
+      "#b8e3df",
+      "#e9ce8d",
+      "#fff4d8",
+      "#ffffff"
+    ]
+  }
+}

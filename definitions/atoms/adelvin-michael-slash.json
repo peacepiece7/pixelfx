@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-michael-slash",
+  "name": "아델빈 미카엘 검격 궤적",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "melee/sword-slash",
+  "options": {
+    "palette": [
+      "#162c48",
+      "#27536e",
+      "#3c879b",
+      "#68bfce",
+      "#b8e3df",
+      "#e9ce8d",
+      "#fff4d8",
+      "#ffffff"
+    ]
+  }
+}

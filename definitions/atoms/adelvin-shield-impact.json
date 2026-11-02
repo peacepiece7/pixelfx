@@ -1,0 +1,19 @@
+{
+  "id": "adelvin-shield-impact",
+  "name": "아델빈 회전 방패 마법 적중",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/hit-spark",
+  "options": {
+    "palette": [
+      "#162c48",
+      "#27536e",
+      "#3c879b",
+      "#68bfce",
+      "#b8e3df",
+      "#e9ce8d",
+      "#fff4d8",
+      "#ffffff"
+    ]
+  }
+}
