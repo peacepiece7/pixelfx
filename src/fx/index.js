@@ -1,3 +1,4 @@
+import * as blood_thorn_reflect from "./blood/thorn-reflect.js";
 import * as blood_roar_wave from "./blood/roar-wave.js";
 import * as blood_bleeding from "./blood/bleeding.js";
 import * as blood_blood_boom from "./blood/blood-boom.js";
@@ -253,6 +254,7 @@ import * as critters_wisp from "./critters/wisp.js";
 export { categories } from "./categories.js";
 
 export const effects = {
+  "blood/thorn-reflect": blood_thorn_reflect,
   "blood/roar-wave": blood_roar_wave,
   "blood/bleeding": blood_bleeding,
   "blood/blood-boom": blood_blood_boom,
