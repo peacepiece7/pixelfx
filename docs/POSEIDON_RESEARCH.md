@@ -51,3 +51,27 @@ full-cycle playback. Automated checks pass without warnings, including exact
 loop closure, mirrored rendering, and brightness-only pulse variants through
 `tools/test-aorbion-water.mjs`. Artistic acceptance remains the user's `/vfx`
 review. No combat integration or approval state was changed.
+
+## User reference study — water dragon and storm (2026-11-03)
+
+The user supplied Desktop screenshots at 01.42.02, 01.42.13 and 01.42.28.
+The first two show water gathering into a bent neck, white surface streams,
+backward peeling mane-like water and a long forward release. The third shows
+open spiral bands above a churning footprint, with lifted splash sheets around
+its base. Their silhouettes and movement cues were studied, not traced or
+imported as animation assets. TIDE recoloring remains supported.
+
+- Poseidon retains its three orbiting jets and adds two broad ascending spiral
+  currents, dark underside channels, slipping foam, twelve staggered curling
+  splash sheets and separated falling beads. Front/back halves surround the
+  actor. Motion periods close at six seconds; pulse still affects light only.
+- Sea dragon retains its 640px default travel, growth, forward collapse and
+  stationary deposited wake. A continuous curved water neck connects to the
+  wave, with a rounded muzzle fold, nine unequal peeling streams and two lagging
+  water whiskers. No limbs, detailed teeth or eyes were added.
+- Four visual iterations adjusted thin wire-like bands into broader folds,
+  connected the neck back to the wave, and reduced redundant beam overdraw.
+  Final previews sampled at 50ms; deterministic timing/loop/flip/palette tests
+  pass. Sea dragon check passes without warnings. Poseidon passes bounds and
+  seam checks but retains a local CPU timing warning (~4.3ms median, 4ms warning
+  threshold); no browser performance claim is made. User /vfx review is pending.

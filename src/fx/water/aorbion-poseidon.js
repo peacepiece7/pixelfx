@@ -7,7 +7,7 @@ import { haze, pool, softBand, softShade } from "../_soft.js";
 
 export const meta = {
   name: "Aorbion Poseidon",
-  desc: "Three surging jets roll around a churning water belt: bright broken crowns, rising channels, falling veils and ballistic spray leave frothy wakes.",
+  desc: "Three orbiting jets weave through rising spiral water, curling splash sheets and drifting foam; bright crowns shed falling spray into a churning wake.",
   tags: ["water", "geyser", "orbit", "loop"],
   size: [256, 208],
   origin: [128, 150],
@@ -45,7 +45,7 @@ function zone(p, C, t, front, pulse, seed) {
   const ph = t / 6;
   // A connected annulus has dark troughs and fast broken foam, rather than
   // three decorative outlines. Leave the actor's central floor clear.
-  softShade(p, -76, -29, 76, 29, (x, y, out) => {
+  softShade(p, -76, front ? 0 : -29, 76, front ? 29 : 0, (x, y, out) => {
     if ((y >= 0) !== front) return;
     const row = clamp(Math.floor(y + 29), 0, 57), col = clamp(Math.floor(x + 76), 0, 151);
     const [r, a] = FLOOR[row * 152 + col];
@@ -85,11 +85,11 @@ function zone(p, C, t, front, pulse, seed) {
 }
 
 function movingFilm(p, C, t, i, seed, front) {
-  for (let j = 0; j < 5; j++) {
-    const age = .04 + j * .045;
+  for (let j = 0; j < 4; j++) {
+    const age = .04 + j * .06;
     const s = site(wrap(t - age), i, seed);
     if ((s.y >= 0) !== front) continue;
-    const k = (1 - j / 5) * .28;
+    const k = (1 - j / 4) * .28;
     softBand(p, s.x, s.y, 6 + j * 1.9, .25, 1.2, k, C.slice(0, 6));
   }
 }
@@ -231,11 +231,74 @@ function bubbles(p, C, t, i, seed, front) {
   }
 }
 
+// Reference-study addition: open, rising helices, never a solid cylinder.
+// Two broad pitches leave windows between the storm and the orbiting jets.
+function storm(p, C, t, seed, front) {
+  for (let lane = 0; lane < 2; lane++) {
+    let last = null;
+    for (let j = 0; j <= 56; j++) {
+      const u = j / 56;
+      const a = u * TAU * 1.35 - t * TAU / 1.5 + lane * Math.PI;
+      const r = 42 + 22 * u + Math.sin(a * 3 + t * TAU) * 2;
+      const floor = Math.sin(a) * r * .31;
+      const h = 4 + u * 68 + Math.sin(u * 8 + lane + t * TAU) * 3;
+      const x = Math.cos(a) * r, y = floor - h;
+      if ((floor >= 0) !== front) { last = null; continue; }
+      const edge = Math.sin(u * Math.PI) ** .6;
+      const flow = tileNoise(u * 24 - t * 4, lane * 7, 24, 0, seed + 301);
+      const thick = (2.4 + 6 * Math.max(0, flow + .35)) * edge;
+      if (last && flow > -.48) {
+        if (thick > 2.8) p.beam(last[0], last[1] + 2, x, y + 2, thick + 2, C[2], edge);
+        p.beam(last[0], last[1], x, y, thick, C[4], edge);
+        p.line(last[0], last[1] - 1, x, y - 1, C[flow > .18 ? 7 : 5], edge);
+        if (j % 14 === 0 && flow > .12) p.glow(x, y, 6, C[4], edge * .16);
+      }
+      // Broad water folds terminate in a feather of foam, with a dark underside.
+      if (j % 9 === 0 && flow > .05) {
+        const tip = a - .17;
+        const xx = Math.cos(tip) * (r + 3), yy = Math.sin(tip) * r * .31 - h - 4;
+        p.beam(x, y, xx, yy, 2 * edge, C[4], edge);
+        p.line(x, y - 1, xx, yy - 1, C[6], edge);
+        billow(p, xx, yy, 1.1 + edge, C, edge);
+      }
+      last = [x, y];
+    }
+  }
+  // Water sheets lift out of the ground, curl inward, then separate into beads.
+  // All periods divide six; no particles teleport at the loop seam.
+  for (let i = 0; i < 12; i++) {
+    const age = wrap(t + i * .139, 1.5), u = age / 1.5;
+    const a = i * TAU / 12 - t * TAU / 6;
+    const r = 65 + Math.sin(i * 7) * 4;
+    const baseX = Math.cos(a) * r, baseY = Math.sin(a) * r * .34;
+    if ((baseY >= 0) !== front) continue;
+    const k = Math.sin(u * Math.PI) ** 1.3;
+    const height = (15 + i % 4 * 4) * k;
+    let last = null;
+    for (let j = 0; j <= 13; j++) {
+      const v = j / 13;
+      const x = baseX + Math.cos(a) * (8 * v - 13 * v * v) * k;
+      const y = baseY - height * v + 5 * v ** 4;
+      if (last) {
+        p.beam(last[0], last[1], x, y, (3.8 * (1 - v) + .6) * k, C[3], k);
+        p.line(last[0] - 1, last[1], x - 1, y, C[6], k);
+      }
+      last = [x, y];
+    }
+    if (u > .48 && u < .88) {
+      const fall = (u - .48) * 1.5;
+      bead(p, last[0] + Math.cos(a) * fall * 16, last[1] - fall * 22 + 80 * fall * fall,
+        Math.cos(a) * 16, -22 + 160 * fall, 2, C, k);
+    }
+  }
+}
+
 function layer(p, time, o, front) {
   const t = Math.round(wrap(time) * 1e9) / 1e9;
   const C = fit(o.palette, 8);
   const pulse = Number.isFinite(o.pulse) ? clamp(o.pulse) : .5 + .5 * Math.cos(t * TAU * 2);
   zone(p, C, t, front, pulse, o.seed);
+  if (!front) storm(p, C, t, o.seed, false);
   const sites = [0, 1, 2].map(i => ({ i, ...site(t, i, o.seed) })).sort((a, b) => a.y - b.y);
   for (const s of sites) {
     movingFilm(p, C, t, s.i, o.seed, front);
@@ -257,6 +320,7 @@ function layer(p, time, o, front) {
       p.lightK = light;
     }
   }
+  if (front) storm(p, C, t, o.seed, true);
 }
 
 export function drawBack(p, t, o) { layer(p, t, o, false); }

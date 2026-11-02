@@ -259,6 +259,61 @@ function breakingLip(p, C, t, s, seed) {
   }
 }
 
+// A water-neck rises from the main surge and folds forward into its lip.
+// The silhouette is suggested by flowing negative space, not anatomical detail.
+function dragonCurrent(p, C, t, s, seed) {
+  const k = smooth(.09, .28, t) * (1 - smooth(.65, .95, t));
+  if (k < .01) return;
+  const L = lift(s);
+  const path = u => {
+    const a = 3.35 - u * 3.65;
+    return [244 + Math.cos(a) * (35 + 14 * u) + 14 * u,
+      (-32 - Math.sin(a) * 39 + 7 * u + Math.sin(t * 10 + u * 5) * 3) * L];
+  };
+  // A dark hollow separates the crown from the lower wave. Shaded bands remain
+  // connected while white foam slips along them at a different speed.
+  let last = null;
+  for (let j = 0; j <= 36; j++) {
+    const u = j / 36, [x, y] = path(u);
+    const thickness = (5 + 7 * Math.sin(u * Math.PI)) * Math.sqrt(L);
+    const n = noise2(u * 17 - t * 8, 0, seed + 702);
+    if (last) {
+      p.beam(last[0], last[1], x, y, thickness,
+        (along, across) => C[across > .8 ? 2 : across > .5 ? 3 : n > .15 ? 5 : 4], k);
+      if (n > -.2) p.line(last[0], last[1] - thickness * .4, x, y - thickness * .4, C[n > .28 ? 7 : 5], k);
+      p.line(last[0], last[1] + 1, x, y + 1, C[5], k * .65);
+    }
+    last = [x, y];
+  }
+  // Backward streaming mane: unequal curved water tongues peel from the neck.
+  for (let i = 0; i < 9; i++) {
+    const u = .18 + i * .072, [x, y] = path(u);
+    const phase = (t * (2 + i % 3 * .25) + i * .217) % 1;
+    const length = (8 + i % 4 * 4) * Math.sin(phase * Math.PI) * L;
+    let last = [x, y];
+    for (let j = 1; j <= 9; j++) {
+      const v = j / 9;
+      const xx = x - length * v, yy = y - Math.sin(v * 2.2) * length * .55;
+      p.beam(last[0], last[1] + 1, xx, yy + 1, (1 - v) * 2.4 * L, C[4], k);
+      p.line(last[0], last[1], xx, yy, C[6], k * (1 - v * .7));
+      last = [xx, yy];
+    }
+  }
+  // The muzzle is a soft rounded water fold; two streamers lag beneath it.
+  const [hx, hy] = path(.94);
+  billow(p, hx + 2, hy, 4 * Math.sqrt(L), C, k);
+  for (let lane = 0; lane < 2; lane++) {
+    let last = [hx, hy + (3 + lane * 2) * L];
+    for (let j = 1; j <= 25; j++) {
+      const u = j / 25;
+      const x = hx - u * (31 + lane * 11);
+      const y = hy + (5 + lane * 4 + Math.sin(u * 4 - t * 10 + lane) * 5 * u) * L;
+      p.line(last[0], last[1], x, y, C[5], k * (1 - u));
+      last = [x, y];
+    }
+  }
+}
+
 function droplets(seed, o) {
   const R = new Rng(seed), list = [];
   for (let i = 0; i < 76; i++) {
@@ -377,6 +432,7 @@ export function draw(p, t, o) {
   body(q, C, t, s, o.seed);
   crest(q, C, t, s, o.seed);
   head(q, C, t, s, o.seed);
+  dragonCurrent(q, C, t, s, o.seed);
   fallingLace(q, C, t, s, o.seed);
   breakingLip(q, C, t, s, o.seed);
   for (const x of [48, 108, 172, 232]) {
