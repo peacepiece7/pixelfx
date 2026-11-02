@@ -4,7 +4,7 @@ import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
   name: "Aorbion sea dragon",
-  desc: "A traveling tidal wave grows into a huge curling crest, then keeps advancing as it collapses into spray, leaving a stationary foamy water trail behind.",
+  desc: "A huge ivory-crested sea dragon uncoils above a surging tidal wall, lunges with a swept mane and open water jaw, then tears into streaming spray and a foamy wake.",
   tags: ["water", "dragon", "ultimate", "charge", "one-shot"],
   size: [736, 208],
   origin: [48, 144],
@@ -107,15 +107,14 @@ function hollow(x, y, t, s) {
 // connected pixel clusters instead of a static granular fill or smooth gradient.
 function body(p, C, t, s, seed) {
   const tops = Array.from({length: 321}, (_, x) => waveTop(x, t, s));
-  const survival = Array.from({length: 81}, (_, x) =>
-    Array.from({length: 33}, (_, y) => cohesion(x * 4, y * 3 - 90, t, s, seed)));
+  const survival = Array.from({length: 81}, (_, x) => cohesion(x * 4, 0, t, s, seed));
   const fronts = Array.from({length: 96}, (_, y) => 311 + Math.sin((y - 90) * .08 + t * 6) * 3);
   const sample = (x, y, out) => {
     const top = tops[clamp(Math.floor(x), 0, 320)];
     const floor = (1 + Math.sin(x * .075 + t * 5) * 2) * lift(s);
     const tip = fronts[clamp(Math.floor(y + 90), 0, 95)] - 8 * smooth(.4, 1, -y / (72 * lift(s)));
     if (y < top || y > floor || x > tip || hollow(x, y, t, s) < 1) return;
-    const k = survival[clamp(Math.floor(x / 4), 0, 80)][clamp(Math.floor((y + 90) / 3), 0, 32)];
+    const k = survival[clamp(Math.floor(x / 4), 0, 80)];
     if (k < .02) return;
     const v = (y - top) / (floor - top);
     const bend = Math.atan2((y / lift(s) + 23) / 23, (x - 304) / 28);
@@ -138,7 +137,10 @@ function body(p, C, t, s, seed) {
   // Broad water planes are authored on 2px clusters; 1px foam and caustics are
   // overlaid separately. Cache each cluster once instead of repeating its noise.
   const cells = new Array(160 * 48);
-  softShade(p, 0, -88, 320, 5, (x, y, out) => {
+  for(let block=0;block<320;block+=8) {
+    const top=Math.min(...tops.slice(block,block+9))-2;
+    softShade(p, block, top, block+8, 5, (x, y, out) => {
+    if(x<block||x>=block+8)return;
     const ix = Math.floor(x / 2), iy = Math.floor((y + 88) / 2);
     const index = iy * 160 + ix;
     let cell = cells[index];
@@ -149,7 +151,8 @@ function body(p, C, t, s, seed) {
     }
     out.c = cell.c;
     out.a = cell.a;
-  });
+    });
+  }
 }
 
 // Foam follows several asynchronous rolling ridges, not an animal's dorsal fins.
@@ -177,41 +180,6 @@ function crest(p, C, t, s, seed) {
       previous = [x, y];
     }
   }
-}
-
-function head(p, C, t, s, seed) {
-  const k = smooth(.05, .2, t) * (1 - smooth(.76, .98, t));
-  if (k < .01) return;
-  // A broad curling brow and rounded drooping lip are the only dragon cues.
-  // No eyes, teeth, horns, limbs, separate head sphere or outlined mouth.
-  const top = waveTop(285, t, s);
-  for (let lane = 0; lane < 3; lane++) {
-    let last = null;
-    for (let i = 0; i <= 35; i++) {
-      const u = i / 35;
-      const x = 253 + 61 * u - 8 * u ** 4;
-      const y = top + (-Math.sin(u * Math.PI) * 8 + u ** 4 * (22 + s[4] * 5) + lane * 3) * lift(s);
-      const n = noise2(i * .31 - t * 7, lane * 2, seed + 27);
-      if (last) {
-        p.beam(last[0], last[1] + 2, x, y + 2, (5 - lane * .7) * Math.sqrt(lift(s)), C[4], k * .8);
-        p.line(last[0], last[1], x, y, C[n > .12 ? 7 : 5], k);
-      }
-      if (i % 4 === 0) billow(p, x, y, (1.5 + Math.max(0, n) * 2) * Math.sqrt(lift(s)), C, k * .9);
-      last = [x, y];
-    }
-  }
-  // Wind tears two low wisps from the water lip. Their lag differs from the crest.
-  for (let side = 0; side < 2; side++) {
-    let last = null;
-    for (let i = 0; i < 24; i++) {
-      const u = i / 23;
-      const x = 302 - u * (34 + side * 17);
-      const y = top + (19 + side * 8 + Math.sin(u * Math.PI * 1.4 - t * 5) * (5 + s[6] * 2)) * lift(s);
-      if (last) p.line(last[0], last[1], x, y, C[4], k * (1 - u) * .5);
-      last = [x, y];
-    }
-  }
-  p.glow(280, top + 6, 22, C[4], k * s[7] * .16);
 }
 
 // Broken curtains of foam slide down the face, branching into droplets.
@@ -259,58 +227,138 @@ function breakingLip(p, C, t, s, seed) {
   }
 }
 
-// A water-neck rises from the main surge and folds forward into its lip.
-// The silhouette is suggested by flowing negative space, not anatomical detail.
+// A serpentine water body uncoils above the lower tidal wall. The two cubic
+// sections leave a large dark hollow under the neck so the dragon reads at 1x.
+function dragonPath(u, t, s) {
+  const stretch = smooth(.22, .7, t), L = Math.sqrt(lift(s));
+  const cubic = (a,b,c,d,v) => (1-v)**3*a+3*(1-v)**2*v*b+3*(1-v)*v*v*c+v**3*d;
+  let x,y;
+  if(u<.55) {
+    const v=u/.55;
+    x=cubic(20, -5+stretch*65, 55+stretch*25, 153,v);
+    y=cubic(-6,-46,-132+stretch*72,-111+stretch*57,v);
+  } else {
+    const v=(u-.55)/.45;
+    x=cubic(153,207,224,278,v);
+    y=cubic(-111+stretch*57,-122+stretch*65,-64+stretch*16,-67+stretch*25,v);
+  }
+  y+=Math.sin(u*10-t*13)*2*Math.sin(u*Math.PI);
+  return [x,y*L];
+}
+
 function dragonCurrent(p, C, t, s, seed) {
-  const k = smooth(.09, .28, t) * (1 - smooth(.65, .95, t));
-  if (k < .01) return;
-  const L = lift(s);
-  const path = u => {
-    const a = 3.35 - u * 3.65;
-    return [244 + Math.cos(a) * (35 + 14 * u) + 14 * u,
-      (-32 - Math.sin(a) * 39 + 7 * u + Math.sin(t * 10 + u * 5) * 3) * L];
-  };
-  // A dark hollow separates the crown from the lower wave. Shaded bands remain
-  // connected while white foam slips along them at a different speed.
-  let last = null;
-  for (let j = 0; j <= 36; j++) {
-    const u = j / 36, [x, y] = path(u);
-    const thickness = (5 + 7 * Math.sin(u * Math.PI)) * Math.sqrt(L);
-    const n = noise2(u * 17 - t * 8, 0, seed + 702);
-    if (last) {
-      p.beam(last[0], last[1], x, y, thickness,
-        (along, across) => C[across > .8 ? 2 : across > .5 ? 3 : n > .15 ? 5 : 4], k);
-      if (n > -.2) p.line(last[0], last[1] - thickness * .4, x, y - thickness * .4, C[n > .28 ? 7 : 5], k);
-      p.line(last[0], last[1] + 1, x, y + 1, C[5], k * .65);
-    }
-    last = [x, y];
+  const k=smooth(.055,.19,t)*(1-smooth(.71,.97,t));
+  if(k<.01)return;
+  const L=Math.sqrt(lift(s)), nodes=[];
+  const dissolve=smooth(.66,.96,t);
+  // Broad flowing ribbons are shaded across the body, with broken ivory veins
+  // travelling lengthwise. The underside remains cyan, not a solid white rod.
+  for(let i=0;i<=100;i++) {
+    const u=i/100,[x,y]=dragonPath(u,t,s);
+    const [xx,yy]=dragonPath(Math.min(1,u+.004),t,s);
+    const len=Math.hypot(xx-x,yy-y)||1;
+    nodes.push({x,y,u,nx:-(yy-y)/len,ny:(xx-x)/len,
+      w:(2+Math.sin(u*Math.PI*.85)*15)*L});
   }
-  // Backward streaming mane: unequal curved water tongues peel from the neck.
-  for (let i = 0; i < 9; i++) {
-    const u = .18 + i * .072, [x, y] = path(u);
-    const phase = (t * (2 + i % 3 * .25) + i * .217) % 1;
-    const length = (8 + i % 4 * 4) * Math.sin(phase * Math.PI) * L;
-    let last = [x, y];
-    for (let j = 1; j <= 9; j++) {
-      const v = j / 9;
-      const xx = x - length * v, yy = y - Math.sin(v * 2.2) * length * .55;
-      p.beam(last[0], last[1] + 1, xx, yy + 1, (1 - v) * 2.4 * L, C[4], k);
-      p.line(last[0], last[1], xx, yy, C[6], k * (1 - v * .7));
-      last = [xx, yy];
+  const columns=new Array(321);
+  for(let i=1;i<nodes.length;i++) {
+    const a=nodes[i-1],b=nodes[i];
+    for(let x=Math.ceil(a.x);x<=b.x;x++) {
+      const v=(x-a.x)/(b.x-a.x||1);
+      columns[x]={y:a.y+(b.y-a.y)*v,u:a.u+(b.u-a.u)*v,
+        w:Math.min(32*L,(a.w+(b.w-a.w)*v)/Math.max(.25,Math.abs(a.ny)))};
     }
   }
-  // The muzzle is a soft rounded water fold; two streamers lag beneath it.
-  const [hx, hy] = path(.94);
-  billow(p, hx + 2, hy, 4 * Math.sqrt(L), C, k);
-  for (let lane = 0; lane < 2; lane++) {
-    let last = [hx, hy + (3 + lane * 2) * L];
-    for (let j = 1; j <= 25; j++) {
-      const u = j / 25;
-      const x = hx - u * (31 + lane * 11);
-      const y = hy + (5 + lane * 4 + Math.sin(u * 4 - t * 10 + lane) * 5 * u) * L;
-      p.line(last[0], last[1], x, y, C[5], k * (1 - u));
-      last = [x, y];
+  const flowCells=new Map();
+  // Clip each eight-pixel strip to occupied water instead of shading the large
+  // hollow beneath the dragon. This also bounds CPU cost for traveling previews.
+  for(let block=0;block<280;block+=8) {
+    let top=Infinity,bottom=-Infinity;
+    for(let i=block;i<block+8;i++)if(columns[i]) {
+      top=Math.min(top,columns[i].y-columns[i].w);
+      bottom=Math.max(bottom,columns[i].y+columns[i].w);
     }
+    if(top===Infinity)continue;
+    softShade(p,block,top,block+8,bottom,(x,y,out)=>{
+    if(x<block||x>=block+8)return;
+    const c=columns[Math.floor(x)];
+    if(!c)return;
+    const across=(y-c.y)/c.w;
+    if(Math.abs(across)>1)return;
+    const cellX=Math.floor(x/3),cellY=Math.floor(y/2),key=cellX*256+cellY;
+    let cell=flowCells.get(key);
+    if(!cell) {
+      cell=[Math.sin(c.u*35-t*24+across*9+Math.sin(c.u*13)*2),
+        dissolve>0?noise2(cellX*.22,cellY*.27-t*7,seed+801):1];
+      flowCells.set(key,cell);
+    }
+    const [flow,tear]=cell;
+    if(dissolve>0&&tear<dissolve*1.25-.7)return;
+    let level=across<-.72?7:across<-.4?5:across<.25?4:across<.72?3:2;
+    if(flow>.72&&across>-.6&&across<.6)level+=2;
+    out.c=C[level];out.a=k;
+    out.l=C[4];out.k=across<-.7?k*.12:0;
+    });
+  }
+  for(let i=15;i<95;i+=12) {
+    const a=nodes[i];p.glow(a.x,a.y,16*L,C[4],k*.1);
+  }
+  // Thin curtains pulled from the belly join the dragon to its bow wave.
+  for(let i=0;i<7;i++) {
+    const u=.35+i*.085,[x,y]=dragonPath(u,t,s);
+    const phase=(t*2.5+i*.19)%1,alpha=k*Math.sin(phase*Math.PI)*.52;
+    const end=waveTop(x+15,t,s),length=Math.max(0,end-y);
+    for(let dy=phase*length;dy<Math.min(length,phase*length+18*L);dy++) {
+      const v=dy/(length||1),xx=x+v*22+Math.sin(v*5-t*12+i)*v*4;
+      const yy=y+dy,fade=alpha*(1-v*.7)*(1-(dy-phase*length)/(18*L));
+      p.blend(xx-1,yy,C[3],fade*.55);
+      p.blend(xx,yy,C[5],fade);
+      p.blend(xx+1,yy,C[6],fade*.45);
+    }
+  }
+  // Long swept-back mane fins are fluid tongues: curved roots, tapered tips,
+  // asynchronous bending, and white leading edges over darker turquoise folds.
+  for(let i=0;i<19;i++) {
+    const u=.28+i*.034,[x,y]=dragonPath(u,t,s);
+    const wave=.5+.5*Math.sin(t*22+i*1.8);
+    const length=(9+i%4*4+wave*8)*L;
+    const root=3.5*L, tipX=x-length*(.65+u*.6),tipY=y-length*.85;
+    p.poly([[x-5,y+2],[x+root,y-5*L],[tipX+5,tipY+6*L],[tipX,tipY],[x-9,y-3]],C[4],k);
+    p.poly([[x,y-3*L],[x+root,y-5*L],[tipX,tipY],[tipX+6,tipY+8*L]],C[6],k);
+    p.line(x+root,y-5*L,tipX,tipY,C[7],k*.8);
+  }
+  const [hx,hy]=dragonPath(1,t,s);
+  // Distinct forehead, nose, open jaw and swept horn distinguish the head from
+  // the rolling sea below. All geometry is water, with a dark mouth cutout.
+  const head=(pts,c,alpha=k)=>p.poly(pts.map(([x,y])=>[hx+x,hy+y*L]),c,alpha);
+  head([[-17,-10],[-5,-20],[8,-15],[17,-5],[33,-2],[36,5],[27,9],[12,6],[0,16],[-17,9]],C[4]);
+  head([[-16,-10],[-5,-20],[8,-15],[17,-5],[32,-2],[33,2],[12,0],[0,-7]],C[7]);
+  head([[-12,-12],[-28,-37],[-12,-25],[0,-15]],C[6]);
+  head([[-12,-12],[-28,-37],[-20,-20]],C[3]);
+  head([[1,5],[27,9],[18,12],[10,18],[-3,17]],C[2]);
+  head([[-3,17],[10,18],[23,10],[18,18],[5,23],[-12,18]],C[5]);
+  head([[2,-7],[12,-4],[7,0],[0,-1]],C[1]);
+  p.beam(hx+3,hy-4*L,hx+10,hy-3*L,1,C[7],k);
+  p.glow(hx+7,hy-4*L,7,C[5],k*.4);
+  // Whiskers lag far behind the head and lash downward during the surge.
+  for(let lane=0;lane<3;lane++) {
+    let last=[hx+10,hy+(6+lane*3)*L];
+    for(let j=1;j<=24;j++) {
+      const v=j/24,x=hx+10-v*(48+lane*12);
+      const y=hy+(6+lane*3+Math.sin(v*4-t*15+lane)*v*12)*L;
+      p.line(last[0],last[1],x,y,C[lane===0?7:5],k*(1-v*.85));
+      last=[x,y];
+    }
+  }
+  // Water sheds from the moving dragon into the wall underneath; late breakup
+  // preserves forward momentum instead of shrinking the animal in place.
+  const R=new Rng(seed+904);
+  for(let i=0;i<35;i++) {
+    const u=R.range(.14,.94),phase=(t*2+R.next())%1;
+    const [x,y]=dragonPath(u,t,s),speed=R.range(10,35);
+    const xx=x+phase*speed,yy=y+phase*phase*45*L;
+    const a=k*Math.sin(phase*Math.PI)*(.3+dissolve*.7);
+    bead(p,xx,yy,speed,90*phase,1+i%3*.4,C,a);
   }
 }
 
@@ -431,7 +479,7 @@ export function draw(p, t, o) {
   const C = fit(o.palette, 8), s = pose(t), q = movingPainter(p, t, o);
   body(q, C, t, s, o.seed);
   crest(q, C, t, s, o.seed);
-  head(q, C, t, s, o.seed);
+  // The dragon head now leads the upper current; the lower lip stays a wave.
   dragonCurrent(q, C, t, s, o.seed);
   fallingLace(q, C, t, s, o.seed);
   breakingLip(q, C, t, s, o.seed);

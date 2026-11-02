@@ -172,3 +172,19 @@ Validation: three render/look/refine passes, 50ms preview, clean pixelfx check,
 loop/facing/pulse and lifecycle tests. Parent combat tests verify exact schedules
 at1/2/4 playback batching, rune upgrades,1/5/10 targets, shock, P3 exclusion,
 recast/control/death and old0.5s zones. Total parent suite266 tests and build pass.
+
+## Sea dragon silhouette revision (2026-11-03)
+
+Supersedes the wave-only silhouette above. The supplied reference informs the
+large curled neck, streaming mane, long muzzle and uncoiling rush; it is not traced.
+The upper dragon rises above the lower tidal wall with a dark hollow between them.
+At .05–.20 the neck gathers upward; .20–.35 shows the broad ivory crest and head;
+.35–.65 lowers and extends the neck into the forward surge. Thin falling water
+connects the belly to the bow wave. At .66–.97 the body opens into irregular gaps
+and sheds forward-moving spray; at 1.00 both buffers are empty. The mane, whiskers,
+water veins and shed droplets have separate motion.
+
+The existing one-second timeline, travelDistance/host-anchor contract and preview
+size remain unchanged. Pure draw/drawBack, seeded palette and mirror support remain.
+Reference techniques: water/wave-crash's dark barrel and pale moving water rims.
+Review artifacts: records/water/aorbion-seadragon/{anim.gif,contact.png}.
