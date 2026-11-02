@@ -118,6 +118,26 @@
         44
       ],
       "loop": false
+    },
+    "transform-in": {
+      "path": "characters/vesper/runtime/transform-in.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        28,
+        47
+      ],
+      "loop": false
+    },
+    "transform-out": {
+      "path": "characters/vesper/runtime/transform-out.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        27,
+        49
+      ],
+      "loop": false
     }
   }
 }

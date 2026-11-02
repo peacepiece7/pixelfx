@@ -63,6 +63,26 @@
         39
       ],
       "loop": false
+    },
+    "dive": {
+      "path": "characters/aorbion/runtime/dive.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        30,
+        48
+      ],
+      "loop": false
+    },
+    "emerge": {
+      "path": "characters/aorbion/runtime/emerge.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        32,
+        47
+      ],
+      "loop": false
     }
   }
 }
