@@ -10,30 +10,49 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/adelvin-gabriel/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "characters/adelvin-gabriel/runtime/idle.png",
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        23,
-        64
+        39,
+        62
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
     },
     "attack": {
-      "path": "characters/adelvin-gabriel/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "characters/adelvin-gabriel/runtime/attack.png",
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        23,
-        64
+        37,
+        59
       ],
-      "loop": true,
-      "sequence": [
-        2
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        26,
+        -36
       ]
+    },
+    "appear": {
+      "path": "characters/adelvin-gabriel/runtime/appear.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        40,
+        59
+      ],
+      "loop": false
+    },
+    "depart": {
+      "path": "characters/adelvin-gabriel/runtime/depart.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        27,
+        57
+      ],
+      "loop": false
     }
   }
 }

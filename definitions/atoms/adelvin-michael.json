@@ -10,30 +10,79 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/adelvin-michael/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "characters/adelvin-michael/runtime/idle.png",
+      "frames": 8,
+      "fps": 24.0,
       "pivot": [
-        22,
-        57
+        14,
+        53
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
     },
     "attack": {
-      "path": "characters/adelvin-michael/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "characters/adelvin-michael/runtime/attack.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        34,
+        52
+      ],
+      "loop": false,
+      "hitFrame": 8,
+      "tip": [
+        39,
+        -26
+      ]
+    },
+    "appear": {
+      "path": "characters/adelvin-michael/runtime/appear.png",
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
         22,
-        57
+        54
       ],
-      "loop": true,
-      "sequence": [
-        2
-      ]
+      "loop": false
+    },
+    "move": {
+      "path": "characters/adelvin-michael/runtime/move.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        21,
+        53
+      ],
+      "loop": true
+    },
+    "hit": {
+      "path": "characters/adelvin-michael/runtime/hit.png",
+      "frames": 8,
+      "fps": 24.0,
+      "pivot": [
+        17,
+        54
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/adelvin-michael/runtime/death.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        40,
+        50
+      ],
+      "loop": false
+    },
+    "depart": {
+      "path": "characters/adelvin-michael/runtime/depart.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        18,
+        51
+      ],
+      "loop": false
     }
   }
 }
