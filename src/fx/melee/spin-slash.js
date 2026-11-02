@@ -5,11 +5,11 @@ import { swing, onSwing, travel, smear, trace, glowAlong } from "./_lib.js";
 
 export const meta = {
   name: "Spin slash",
-  desc: "The blade whirls once round the waist on a tilted plane, behind the body and back in front; the closed ring flares white, dissolves into a dotted trace and throws sparks.",
+  desc: "Four broad waist-high sweeps follow in distinct beats; each ring flares, cools into a dotted trace and throws sparks behind and in front of the body.",
   tags: ["melee", "slash", "spin", "sword", "aoe", "combat", "one-shot"],
-  size: [208, 104],
-  origin: [104, 84],
-  duration: 0.8,
+  size: [240, 120],
+  origin: [120, 96],
+  duration: 2.6,
   loop: false,
   fps: 30,
   bg: "ground",
@@ -17,7 +17,8 @@ export const meta = {
   options: {
     palette: ["#16224a", "#1f4a86", "#2a7fc0", "#48b8ec", "#9fe2ff", "#e2f7ff", "#ffffff"],
     sparks: ["#fff3a6", "#ffe26b", "#ff8a2a", "#f2561d"],
-    radius: 46,
+    radius: 60,
+    spins: 4,
     seed: 3,
   },
 };
@@ -32,15 +33,17 @@ export const act = {
     [-0.46, STANCE],
     [-0.2, WOUND],
     [-0.02, { ...WOUND, crouch: 7, yaw: 1.3 }],
-    [0, { ...WIDE, sa: -0.1, ghost: 1 }, "snap"],
-    [0.05, { ...WIDE, yaw: -1.57, ghost: 1 }, "snap"],
-    [0.09, { ...WIDE, yaw: -3.14, ghost: 1 }, "snap"],
-    [0.13, { ...WIDE, yaw: -4.71, ghost: 1 }, "snap"],
-    [0.17, WIDE, "snap"],
-    [0.56, { ...WIDE, crouch: 4, lean: 2 }],
-    [0.92, STANCE],
+    ...Array.from({ length: 4 }, (_, i) => [
+      [i * 0.6, { ...WIDE, sa: -0.1, ghost: 1 }, "snap"],
+      [i * 0.6 + 0.05, { ...WIDE, yaw: -1.57, ghost: 1 }, "snap"],
+      [i * 0.6 + 0.09, { ...WIDE, yaw: -3.14, ghost: 1 }, "snap"],
+      [i * 0.6 + 0.13, { ...WIDE, yaw: -4.71, ghost: 1 }, "snap"],
+      [i * 0.6 + 0.17, WIDE, "snap"],
+    ]).flat(),
+    [2.36, { ...WIDE, crouch: 4, lean: 2 }],
+    [2.6, STANCE],
   ],
-  hits: [{ t: 0.17, stop: 0.12, shake: 0.16, amp: 2, push: 2.4, straw: 16 }],
+  hits: Array.from({ length: 4 }, (_, i) => ({ t: i * 0.6 + 0.17, stop: 0.12, shake: 0.16, amp: 2, push: 2.4, straw: 16 })),
   dust: [{ t: 0, x: 0, n: 6 }, { t: 0.17, x: 12, n: 6, dir: 1 }],
 };
 
@@ -49,7 +52,7 @@ const FLARE = 0.3; // the closed ring flares and dissolves
 const turn = (t) => 1 - Math.pow(1 - clamp(t / SW), 1.6); // fraction of the turn the edge has made
 const passedAt = (f) => SW * (1 - Math.pow(1 - clamp(f), 1 / 1.6)); // when the edge passed fraction f
 
-export function create(o) {
+function singleSpin(o) {
   const C = fit(o.palette, 7), n = C.length, Rg = new Rng(o.seed), R0 = o.radius;
   const ps = new Particles({ rng: Rg, ground: () => 0, sparks: o.sparks }), lights = new Lights();
   // the spin starts front-right, goes up the right side, behind the body, down the left and back across the front
@@ -156,6 +159,34 @@ export function create(o) {
       }
       ps.draw(p, "front");
       lights.draw(p);
+    },
+  };
+}
+
+// Reuse the original sweep, with independent particles and a readable beat per turn.
+const INTERVAL = 0.6, SWEEP_DURATION = 0.8;
+export function create(o) {
+  const spins = Array.from({ length: Math.min(4, Math.max(1, Math.round(o.spins))) }, (_, i) => ({
+    start: i * INTERVAL,
+    fx: singleSpin({ ...o, seed: o.seed + i }),
+  }));
+  let t = 0;
+  return {
+    update(dt) {
+      const prev = t;
+      t += dt;
+      for (const { start, fx } of spins) {
+        const step = Math.min(t, start + SWEEP_DURATION) - Math.max(prev, start);
+        if (step > 0) fx.update(step);
+      }
+    },
+    drawBack(p) {
+      for (const { start, fx } of spins)
+        if (t >= start && t < start + SWEEP_DURATION) fx.drawBack(p);
+    },
+    draw(p) {
+      for (const { start, fx } of spins)
+        if (t >= start && t < start + SWEEP_DURATION) fx.draw(p);
     },
   };
 }
