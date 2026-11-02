@@ -2,7 +2,7 @@ import { Rng, fit, smooth, clamp, TAU, band, sparkle } from "../../core/index.js
 
 export const meta = {
   name: "Rosilia support shot",
-  desc: "A compact ground reticle marks the fixed strike point. Each external pulse drives a heavy round down from the upper left, fractures the ground and throws stone, brass and dust outward.",
+  desc: "A compact reticle marks the strike point. Each external pulse drives a heavy round from the upper left, fractures the ground and throws stone, brass and dust outward.",
   tags: ["projectiles", "impact", "debris", "loop"],
   size: [200, 120], origin: [100, 87], duration: 2, loop: true, fps: 30, bg: "ground",
   options: {
