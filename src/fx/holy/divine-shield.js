@@ -38,8 +38,8 @@ function onSphere(r, lat, lon) {
 // the sheen: a diagonal band crossing the bubble once a loop, then a rest
 const sheen = (t, T) => -1.7 + 3.4 * clamp(((t / T) % 1) / 0.55);
 
-function lattice(p, t, o, back) {
-  const C = fit(o.palette, 8), r = o.radius, T = meta.duration, phi = (t / T) * (Math.PI / N), sw = sheen(t, T), seen = new Map();
+function latticePoints(t, r, back) {
+  const T = meta.duration, phi = (t / T) * (Math.PI / N), sw = sheen(t, T), seen = new Map();
   // gather the lines' pixels first, so each is drawn once
   const dot = (x, y, z) => {
     if (z < 0 !== back) return;
@@ -53,9 +53,21 @@ function lattice(p, t, o, back) {
   }
   // the equator
   for (let lon = 0; lon < TAU; lon += 0.7 / r) dot(...onSphere(r, 0, lon));
+  return [...seen.values()];
+}
+
+// Only the latest geometry is retained. Position, palette, actor, fade and seed are not cached.
+let latticeCache, filmCache;
+export function clearCache() { latticeCache = filmCache = undefined; }
+function lattice(p, t, o, back) {
+  const C = fit(o.palette, 8), r = o.radius;
+  const cached = o.cacheGeometry !== false && r > 0 && r <= 128;
+  if (cached && (!latticeCache || latticeCache.t !== t || latticeCache.r !== r)) latticeCache = {t,r};
+  const key = back ? "back" : "front";
+  const points = cached ? (latticeCache[key] ??= latticePoints(t,r,back)) : latticePoints(t,r,back);
   // behind: faint and broken. In front: bright where the surface turns away, a translucent wash of gold
   // where it faces us, so the character still shows through
-  for (const [x, y, f, hot] of seen.values()) {
+  for (const [x, y, f, hot] of points) {
     if (back) p.blend(x, y, C[4], 0.32);
     else if (hot) p.px(x, y, WHITE);
     else if (f < 0.4) p.px(x, y, C[6]);
@@ -63,13 +75,24 @@ function lattice(p, t, o, back) {
   }
 }
 
+function filmGeometry(x, y, r) {
+  if (!filmCache || filmCache.r !== r) filmCache = {r, extent:Math.ceil(r)+3, values:[]};
+  const key = (Math.floor(y)+filmCache.extent)*(2*filmCache.extent+1)+Math.floor(x)+filmCache.extent;
+  let v = filmCache.values[key];
+  if (!v) { const d = Math.hypot(x,y)/r; v = [d,(x-y)/(r*1.414),Math.pow(d,6)]; filmCache.values[key]=v; }
+  return v;
+}
 function film(p, t, o, back) {
   const C = fit(o.palette, 8), r = o.radius, sw = sheen(t, meta.duration);
   p.each(-r - 1, CY - r - 1, r + 1, CY + r + 1, (x, y, sx, sy) => {
-    const d = Math.hypot(x, y - CY) / r;
+    // Cache only half-pixel samples; rotated/fractional placement keeps the original shader math.
+    const half = v => Math.abs(v % 1) === 0.5;
+    const g = o.cacheGeometry !== false && r <= 128 && half(x) && half(y-CY) ? filmGeometry(x,y-CY,r) : undefined;
+    const d = g ? g[0] : Math.hypot(x,y-CY)/r;
     if (d >= 1) return;
-    const q = (x - (y - CY)) / (r * 1.414), hot = Math.max(0, 1 - Math.abs(q - sw) / 0.22);
-    const a = (back ? 0.07 : 0.03) + 0.26 * Math.pow(d, 6) + 0.2 * hot * (back ? 0.3 : 1);
+    const q = g ? g[1] : (x-(y-CY))/(r*1.414), d6 = g ? g[2] : Math.pow(d,6);
+    const hot = Math.max(0, 1 - Math.abs(q - sw) / 0.22);
+    const a = (back ? 0.07 : 0.03) + 0.26 * d6 + 0.2 * hot * (back ? 0.3 : 1);
     p.blendPx(sx, sy, hot > 0.5 && !back ? C[6] : C[5], a);
   });
 }
