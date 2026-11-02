@@ -1,0 +1,40 @@
+{
+  "id": "vesper-runes",
+  "name": "베스퍼 스킬·직업 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "ui/vesper-runes/runtime/runes-common.png",
+  "icons": [
+    "vesper-nobility-rune",
+    "vesper-night-rune",
+    "vesper-contract-rune",
+    "vesper-requiem-rune",
+    "vesper-shroud-rune",
+    "vesper-glory-rune",
+    "vesper-flurry-rune",
+    "vesper-blade-rune",
+    "vesper-afterhunt-rune",
+    "vesper-wide-shroud-rune",
+    "vesper-gaze-rune",
+    "vesper-voracity-rune",
+    "vesper-reactive-rune",
+    "vesper-blood-mark-rune",
+    "vesper-eternal-rune",
+    "vesper-thirst-rune",
+    "vesper-threshold-rune"
+  ],
+  "sheets": {
+    "common": {
+      "path": "ui/vesper-runes/runtime/runes-common.png",
+      "size": 48
+    },
+    "rare": {
+      "path": "ui/vesper-runes/runtime/runes-rare.png",
+      "size": 48
+    },
+    "unique": {
+      "path": "ui/vesper-runes/runtime/runes-unique.png",
+      "size": 48
+    }
+  }
+}

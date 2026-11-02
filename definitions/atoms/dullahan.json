@@ -3,37 +3,66 @@
   "name": "듀라한",
   "kind": "monster",
   "renderer": "sprite",
-  "assetPath": "monsters/dullahan/runtime/concept.png",
+  "assetPath": "monsters/dullahan/runtime/walk.png",
   "pivot": [
-    38,
-    55
+    32,
+    56
   ],
   "animations": {
     "walk": {
-      "path": "monsters/dullahan/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/dullahan/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
-        38,
-        55
+        32,
+        56
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
     },
     "attack": {
-      "path": "monsters/dullahan/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/dullahan/runtime/attack.png",
+      "frames": 5,
+      "fps": 12.0,
       "pivot": [
-        38,
+        40,
+        54
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -40,
+        -30
+      ]
+    },
+    "charge": {
+      "path": "monsters/dullahan/runtime/charge.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        40,
+        44
+      ],
+      "loop": true
+    },
+    "hit": {
+      "path": "monsters/dullahan/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        53
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/dullahan/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        37,
         55
       ],
-      "loop": true,
-      "sequence": [
-        2
-      ]
+      "loop": false
     }
   }
 }

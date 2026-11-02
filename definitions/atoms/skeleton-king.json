@@ -3,36 +3,84 @@
   "name": "백골왕 오스칼",
   "kind": "monster",
   "renderer": "sprite",
-  "assetPath": "monsters/skeleton-king/runtime/concept.png",
+  "assetPath": "monsters/skeleton-king/runtime/walk.png",
   "pivot": [
-    37,
-    104
+    39,
+    83
   ],
   "animations": {
     "walk": {
-      "path": "monsters/skeleton-king/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/skeleton-king/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
-        37,
-        104
+        39,
+        83
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
     },
     "attack": {
-      "path": "monsters/skeleton-king/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/skeleton-king/runtime/attack.png",
+      "frames": 5,
+      "fps": 12.0,
       "pivot": [
-        37,
-        104
+        56,
+        90
       ],
-      "loop": true,
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -46,
+        -9
+      ]
+    },
+    "hit": {
+      "path": "monsters/skeleton-king/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        42,
+        77
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/skeleton-king/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        53,
+        81
+      ],
+      "loop": false
+    },
+    "ultimate": {
+      "path": "monsters/skeleton-king/runtime/ultimate.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        36,
+        84
+      ],
+      "loop": false,
+      "hitFrame": 3
+    },
+    "revive": {
+      "path": "monsters/skeleton-king/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        53,
+        81
+      ],
+      "loop": false,
       "sequence": [
-        2
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
       ]
     }
   }
