@@ -1,0 +1,27 @@
+{
+  "id": "status-extra",
+  "name": "상태이상·버프 추가 아이콘",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/status-extra/runtime/status-extra-16.png",
+  "icons": [
+    "bleed",
+    "taunt",
+    "holy-blessing",
+    "fighting-release",
+    "frenzy",
+    "reflect",
+    "mana-shield",
+    "weakness-after-effect"
+  ],
+  "sheets": {
+    "16": {
+      "path": "icons/status-extra/runtime/status-extra-16.png",
+      "size": 16
+    },
+    "32": {
+      "path": "icons/status-extra/runtime/status-extra-32.png",
+      "size": 32
+    }
+  }
+}

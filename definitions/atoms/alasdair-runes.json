@@ -1,0 +1,39 @@
+{
+  "id": "alasdair-runes",
+  "name": "알라스데어 룬 각인",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/alasdair-runes/runtime/runes-common.png",
+  "icons": [
+    "alasdair-thirst-rune",
+    "alasdair-wounds-rune",
+    "alasdair-sacrifice-rune",
+    "alasdair-roar-rune",
+    "alasdair-mince-rune",
+    "alasdair-bloodboom-rune",
+    "alasdair-frenzy-rune",
+    "alasdair-masochist-rune",
+    "alasdair-job-orb",
+    "alasdair-job-speed",
+    "alasdair-job-bleed-damage",
+    "alasdair-job-repeat",
+    "alasdair-job-duration",
+    "alasdair-job-potency",
+    "alasdair-job-roar",
+    "alasdair-job-extra-hit"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/alasdair-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/alasdair-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/alasdair-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}
