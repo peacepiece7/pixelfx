@@ -2,7 +2,7 @@ import { Rng, fit, clamp, smooth, band, READY } from "../../core/index.js";
 
 export const meta = {
   name: "Blood boom",
-  desc: "Swelling crimson cracks erupt into a dense, rounded blood explosion that engulfs the caster; forty ballistic droplets splash into pools that dry inside a ground ring.",
+  desc: "Swelling crimson cracks erupt into a broad upward blood fountain that engulfs the caster; forty ballistic droplets splash into pools that dry inside a ground ring.",
   tags: ["blood", "eruption", "aoe", "magic", "one-shot"],
   size: [120, 140], origin: [60, 116], duration: 1.4, loop: false, fps: 30,
   bg: "ground", actor: 2,
@@ -17,6 +17,7 @@ export const act = {
 
 export function create(o) {
   const C = fit(o.palette, 7), R = new Rng(o.seed);
+  const spraySpeeds = Array.from({ length: 12 }, () => R.range(0, 55));
   // The 70-unit combat radius is projected to 56 px to fit the requested canvas.
   const cracks = Array.from({ length: 11 }, (_, i) => {
     const a = i * Math.PI * 2 / 11 + R.range(-0.12, 0.12);
@@ -25,14 +26,9 @@ export function create(o) {
       return [Math.cos(a) * d, Math.sin(a) * d * 0.22 + R.range(-1, 1)];
     });
   });
-  // Broad overlapping lobes form one opaque blast, rather than narrow branching jets.
-  const lobes = Array.from({ length: 10 }, (_, i) => {
-    const a = i * Math.PI * 2 / 10;
-    return { x: Math.cos(a) * R.range(17, 25), y: Math.sin(a) * R.range(18, 25), r: R.range(13, 18) };
-  });
   const drops = Array.from({ length: 40 }, () => {
-    const flight = R.range(0.42, 0.8), vx = R.range(-57, 57);
-    return { start: R.range(0.27, 0.46), flight, vx, vy: (24 - 210 * flight * flight) / flight,
+    const vy = -R.range(190, 280), flight = -vy / 260, vx = R.range(-57, 57);
+    return { start: R.range(0.27, 0.46), flight, vx, vy,
       floor: R.range(-9, 12), s: R.range(0.8, 2.2), c: R.int(2, 4) };
   });
   let t = 0;
@@ -68,21 +64,32 @@ export function create(o) {
       if (t >= meta.duration) return;
       ground(p, false);
       const age = t - 0.25;
-      if (age > 0 && age < 0.75) {
-        const expand = smooth(0, 0.12, age), collapse = smooth(0.32, 0.75, age);
-        const size = expand * (1 - collapse * 0.25), cy = -25 + collapse * 12;
-        const opacity = 1 - smooth(0.35, 0.75, age);
-        // A filled central mass hides the entire 48px hero at the explosion's peak.
-        p.shade(-52, -82, 52, 14, (x, y, out) => {
-          let d = Math.hypot(x / (30 * size), (y - cy) / (32 * size));
-          for (const l of lobes)
-            d = Math.min(d, Math.hypot(x - l.x * size, y - cy - l.y * size) / (l.r * size));
-          if (d > 1) return;
-          out.c = d > 0.88 ? C[1] : d > 0.68 ? C[4] : d > 0.5 ? C[3] : C[2];
+      if (age > 0 && age < 0.8) {
+        const rise = smooth(0, 0.13, age), collapse = smooth(0.3, 0.8, age);
+        const height = 108 * rise * (1 - collapse), opacity = 1 - smooth(0.44, 0.8, age);
+        // One connected, opaque sheet rises from the floor. Broad torn crests replace tendrils.
+        p.shade(-43, -112, 43, 3, (x, y, out) => {
+          if (y > 1 || height < 1) return;
+          const q = Math.max(0, -y / height);
+          if (q < 0 || q > 1) return;
+          const width = (34 - 18 * q) * rise + Math.sin(y * 0.22 + age * 32) * 2;
+          const crest = height * (0.78 + 0.12 * Math.cos(x * 0.3) + 0.09 * Math.sin(x * 0.65 + age * 18));
+          if (Math.abs(x) > width || -y > crest) return;
+          const edge = Math.abs(x) / Math.max(1, width);
+          const flow = Math.sin(x * 0.47 + Math.sin(y * 0.06 + age * 20) * 0.9);
+          out.c = edge > 0.9 ? C[1] : edge > 0.73 ? C[3] : flow > 0.55 ? C[5] : flow > -0.15 ? C[4] : C[2];
           out.a = opacity;
           out.l = C[4];
-          out.k = Math.max(0, 1 - Math.hypot(x / 20, (y - cy) / 25)) * 0.25 * opacity;
+          out.k = (1 - edge) * 0.2 * opacity;
         });
+        // Short detached sheets move upward and spread, then fall away as spray.
+        for (let i = 0; i < 12; i++) {
+          const u = age - i * 0.014;
+          if (u < 0 || u > 0.42) continue;
+          const side = i % 2 ? 1 : -1, x = side * (12 + u * (45 + i * 3));
+          const y = -u * (190 + spraySpeeds[i]) + 200 * u * u;
+          p.beam(x - side * 3, y + 8, x, y, 2.5, C[i % 3 === 0 ? 4 : 3], opacity);
+        }
       }
       const flash = clamp(1 - (t - 0.25) / 0.1);
       if (t >= 0.25 && flash > 0) {
@@ -92,11 +99,11 @@ export function create(o) {
       for (const d of drops) {
         const u = t - d.start;
         if (u < 0 || u >= d.flight) continue;
-        const x = d.vx * u, y = d.floor - 24 + d.vy * u + 210 * u * u;
-        const vy = d.vy + 420 * u;
-        p.beam(x - d.vx * 0.018, y - vy * 0.018, x, y, d.s, C[d.c]);
-        p.dot(x - 0.5, y - 1, C[5], 0.9);
-        p.glow(x, y, 3, C[4], 0.16);
+        const x = d.vx * u, y = d.floor + d.vy * u + 260 * u * u;
+        const vy = d.vy + 520 * u;
+        p.beam(x - d.vx * 0.018, y - vy * 0.018, x, y, d.s, C[d.c], fade());
+        p.dot(x - 0.5, y - 1, C[5], 0.9 * fade());
+        p.glow(x, y, 3, C[4], 0.16 * fade());
       }
     },
   };
