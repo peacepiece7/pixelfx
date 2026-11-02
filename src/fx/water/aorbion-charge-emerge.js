@@ -1,3 +1,4 @@
+import { haze, pool } from "../_soft.js";
 import { Rng, fit, smooth, clamp, ease, noise2, TAU } from "../../core/index.js";
 import { Drops, Ripples, lace, billow } from "./_lib.js";
 
@@ -28,6 +29,7 @@ export function create(o) {
     drawBack(p) {
       if (elapsed >= meta.duration) return;
       const head = 100 * ease.outCubic(clamp(elapsed / 0.18)), k = fade();
+      pool(p,head*.5,0,Math.max(1,head*.5),9,C[3],k*.18);
       // Narrow footprint and broken foam persist after the forward crest passes.
       p.ellipse(head * 0.5, 0, Math.max(0.1, head * 0.5), 8, C[1], k * 0.25);
       lace(p, head * 0.5, 0, head * 0.5, 9, k * 0.35, C, elapsed * 8, o.seed);
@@ -53,6 +55,7 @@ export function create(o) {
         for (const f of foam)
           billow(p, head - 5 + Math.sin(f.phase + t * 25) * 3, f.y - 10, f.size * surge, C, surge);
       }
+      haze(p,head-8,-8,13,C[3],surge*.19);
       // Three tapered lens-shaped claws open quickly, then close from both ends.
       for (let j = 0; j < 3; j++) {
         const u = t - j * 0.024;

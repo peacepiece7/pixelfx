@@ -45,7 +45,8 @@ export function create(o) {
         p.line(...at(-L * 0.3, -W * 1.7), ...at(-L * 0.12, -W), C[4], fade);
         p.line(...at(0, -0.5), ...tip, C[5], fade);
         p.dot(...tip, u < 0.12 ? C[6] : C[5], fade);
-        const wake = Math.min(7, travel * 0.45);
+        const wake = Math.min(13, travel * 0.65);
+        p.glowLine(x - ca * (L + wake), y - sa * (L + wake), ...tip, 5, C[3], fade * (1 - smooth(.08, .28, u)) * .3);
         p.line(x - ca * (L * 0.65 + wake), y - sa * (L * 0.65 + wake), ...tail, C[2], fade * 0.5);
         p.glow(...tip, 4, C[4], fade * 0.24);
       }

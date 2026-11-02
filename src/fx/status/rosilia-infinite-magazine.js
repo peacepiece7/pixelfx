@@ -22,7 +22,7 @@ export function drawBack(p, t, o) {
   const { actor: a, C, breath, intro } = state(t, o);
   const [cx, cy] = a.chest ?? [0, a.y + a.h * 0.45];
   // Light sits behind the silhouette, leaving the face and muzzle readable.
-  p.glow(cx, cy, 17, C[3], 0.11 + breath * 0.1 + intro * 0.12);
+  p.glow(cx, cy, 23, C[3], 0.08 + breath * 0.22 + intro * 0.28);
   p.glow(cx, cy + a.h * 0.22, 12, C[4], 0.035 + breath * 0.025);
 }
 
@@ -32,9 +32,9 @@ export function draw(p, t, o) {
   for (const [mx, my] of S.body) {
     const x = a.x + mx, y = a.y + my;
     // A translucent sheen follows the actual body/rifle pixels, never replacing them.
-    const band = Math.max(0, 1 - Math.abs(y - scan + mx * 0.18) / 4) * scanFade;
-    p.blend(x, y, C[4], 0.05 + breath * 0.06 + intro * 0.1);
-    if (band > 0) p.blend(x, y, C[5], band * 0.3 + band * intro * 0.12);
+    const band = Math.max(0, 1 - Math.abs(y - scan + mx * 0.18) / 6) * scanFade;
+    p.blend(x, y, C[4], 0.025 + breath * 0.09 + intro * 0.1);
+    if (band > 0) p.blend(x, y, C[5], band * 0.52 + band * intro * 0.08);
     // Broken highlights along upward/left-facing edges; no full-body neon outline.
     if ((!S.on(mx, my - 1) || !S.on(mx - 1, my)) && (mx + my) % 3 === 0) {
       p.blend(x, y, C[5], 0.16 + breath * 0.18 + intro * 0.22);

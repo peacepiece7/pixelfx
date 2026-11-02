@@ -1,4 +1,5 @@
-import { Rng, fit, smooth, band, TAU, READY } from "../../core/index.js";
+import { haze, pool, softBand } from "../_soft.js";
+import { Rng, fit, smooth,  TAU, READY } from "../../core/index.js";
 
 export const meta = {
   name: "Vampire awaken",
@@ -27,8 +28,8 @@ export function create(o) {
   function ring(p, back) {
     if (t >= meta.duration) return;
     const k = smooth(0.12, 0.45, t), fade = 1 - smooth(1.05, 1.6, t);
-    band(p, 0, 0, 90 * k, 0.22, 7, fade * k, [C[0], C[0], C[1], C[2]], a => (Math.sin(a) < 0) === back);
-    band(p, 0, 0, 90 * k, 0.22, 0.8, fade * k * 0.65, [C[1], C[2], C[3], C[4]], a => (Math.sin(a) < 0) === back);
+    softBand(p, 0, 0, 90 * k, 0.22, 7, fade * k, [C[0], C[0], C[1], C[2]], a => (Math.sin(a) < 0) === back);
+    softBand(p, 0, 0, 90 * k, 0.22, 0.8, fade * k * 0.65, [C[1], C[2], C[3], C[4]], a => (Math.sin(a) < 0) === back);
   }
   function flock(p) {
     if (t >= meta.duration) return;
@@ -39,6 +40,10 @@ export function create(o) {
       const fade = smooth(0, 0.025, u) * (1 - smooth(0.72, 1, u));
       const flap = [ -1, -0.3, 0.7, 0.1 ][Math.floor((t - b.start) * 28 + b.phase) % 4];
       const s = b.scale, body = C[2], edge = C[4];
+      if (b.scale > 1.35) {
+        haze(p,x-b.side*5,y+2,7+u*4,C[2],fade*.22);
+        p.glow(x,y,6,C[3],fade*.06);
+      }
       for (const side of [-1, 1]) {
         const points = [[0, 0], [side * 3 * s, -2 * s], [side * 7 * s, flap * 4 * s],
           [side * 4.5 * s, (flap * 2 + 1.5) * s], [side * 3 * s, 1.1 * s], [side * 1.5 * s, 2 * s]];
@@ -55,6 +60,7 @@ export function create(o) {
     update(dt) { elapsed += dt; t = Math.round(elapsed * 1e9) / 1e9; },
     drawBack(p) {
       if (t >= meta.duration) return;
+      pool(p,0,-1,74,18,C[3],smooth(0,.2,t)*(1-smooth(.6,1.6,t))*.28);
       ring(p, true);
       ring(p, false);
     },

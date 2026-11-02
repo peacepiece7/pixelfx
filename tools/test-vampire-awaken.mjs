@@ -11,7 +11,7 @@ function frame({ time = 0.5, fps = 120, flip = false, ...options } = {}) {
 assert.deepEqual(frame(), frame());
 assert.notDeepEqual(frame(), frame({ seed: 42 }));
 assert.notDeepEqual(frame(), frame({ palette: ["#123", "#48a", "#cff"] }));
-assert.notDeepEqual(frame({ time: 0.2 }), frame({ time: 0.2, moonlight: ["#123", "#48a", "#cff"] }));
+assert.notDeepEqual(frame({ time: 0.5, bats: 30 }), frame({ time: 0.5, bats: 90 }));
 assert.deepEqual(frame({ time: 0.4, fps: 30 }), frame({ time: 0.4, fps: 120 }));
 for (const time of [1.6, 1.7]) {
   const f = frame({ time });
@@ -28,11 +28,11 @@ for (let seed = 1; seed <= 10; seed++) {
   const sim = fx.create(resolveOptions(fx.meta, { seed })); sim.update(0.5);
   const p = new Proxy({}, { get: (_, key) => key === "poly" ? () => wings++ : () => {} });
   sim.drawBack(p); sim.draw(p);
-  assert(wings / 2 >= 20 && wings / 2 <= 30, "20–30 bats with two wing polygons each");
+  assert(wings / 2 >= 45 && wings / 2 <= fx.meta.options.bats, "overlapping waves of the configured 90-bat swarm");
   for (const time of [0.2, 0.5, 0.9, 1.2]) {
     const f = frame({ seed, time });
     for (let x = 0; x < 200; x++) { assert.equal(f.color[x], 0); assert.equal(f.color[159 * 200 + x], 0); }
     for (let y = 0; y < 160; y++) { assert.equal(f.color[y * 200], 0); assert.equal(f.color[y * 200 + 199], 0); }
   }
 }
-console.log("Vampire awaken: flock count, seed, both palettes, mirror, rates, bounds and empty endpoint pass.");
+console.log("Vampire awaken: flock count, seed, palette, mirror, rates, bounds and empty endpoint pass.");

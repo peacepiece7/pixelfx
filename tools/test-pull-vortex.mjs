@@ -20,15 +20,16 @@ const centroid = f => {
 assert(Math.abs(centroid(frame(0.25)) + centroid(frame(0.25, {}, true)) - 259) < 2);
 // Ensure the soft dust volumes are present alongside the solid leaf and grit shapes.
 const centres = t => {
-  const discs = [], p = new Proxy({}, { get: (_, k) => k === "disc" ? (x, y, r, c, a) => { if (a > 0.001) discs.push([x, y]); } : () => {} });
+  const discs = [], p = new Proxy({}, { get: (_, k) => k === "disc" ? (x, y, r, c, a) => { if ((typeof a === "function" ? a(0,0) : a) > 0.001) discs.push([x, y]); } : () => {} });
   const o = resolveOptions(fx.meta);
   fx.drawBack(p, t, o); fx.draw(p, t, o); return discs;
 };
 assert(centres(0.25).length > 20);
 for (let i = 0; i < 60; i++) {
-  const f = createFrame(120, 80), p = painterFor(f).place(8, 61), o = resolveOptions(fx.meta);
+  const [w,h]=fx.meta.size, [ox,oy]=fx.meta.origin;
+  const f = createFrame(w,h), p = painterFor(f).place(ox,oy), o = resolveOptions(fx.meta);
   fx.drawBack(p, i / 30, o); fx.draw(p, i / 30, o);
-  for (let x = 0; x < 120; x++) { assert.equal(f.color[x], 0); assert.equal(f.color[79 * 120 + x], 0); }
-  for (let y = 0; y < 80; y++) { assert.equal(f.color[y * 120], 0); assert.equal(f.color[y * 120 + 119], 0); }
+  for (let x = 0; x < w; x++) { assert.equal(f.color[x], 0); assert.equal(f.color[(h-1)*w+x], 0); }
+  for (let y = 0; y < h; y++) { assert.equal(f.color[y*w], 0); assert.equal(f.color[y*w+w-1], 0); }
 }
 console.log("Pull vortex: deterministic seed, palette, mirrored fan, loop endpoints and canvas bounds pass.");

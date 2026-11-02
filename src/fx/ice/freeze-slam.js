@@ -1,4 +1,5 @@
-import { Rng, fit, crystal, band, sparkle, smooth, READY, TAU } from "../../core/index.js";
+import { haze, pool, softBand } from "../_soft.js";
+import { Rng, fit, crystal,  sparkle, smooth, READY, TAU } from "../../core/index.js";
 
 export const meta = {
   name: "Freeze slam",
@@ -32,14 +33,14 @@ export function create(o) {
   function layer(p, back) {
     if (t >= meta.duration) return;
     const floorFade = 1 - smooth(1.12, 1.6, t), spread = smooth(0, 0.28, t);
-    band(p, 0, 0, 90 * spread, 0.19, 1.5, (1 - smooth(0.25, 0.65, t)) * spread, C, a => (Math.sin(a) < 0) === back);
+    softBand(p, 0, 0, 90 * spread, 0.19, 1.5, (1 - smooth(0.25, 0.65, t)) * spread, C, a => (Math.sin(a) < 0) === back);
     for (const s of sites) {
       if (s.back !== back || t < s.born) continue;
       const rise = smooth(s.born, s.born + 0.09, t), age = t - s.break;
-      if (back) p.line(0, 0, s.x * spread, s.y * spread, C[3], floorFade * 0.4);
+      pool(p, s.x, s.y, 13, 4, C[4], floorFade * rise * .25);
       p.ellipse(s.x, s.y, s.w * 0.65, 1.5, C[3], floorFade * rise * 0.3);
       if (age < 0) {
-        crystal(p, s.x, s.y, s.h * rise, s.w * rise, s.lean * rise, C, { a: back ? 0.85 : 1, glint: (t - s.born) * 1.8 });
+        crystal(p, s.x, s.y, s.h * rise, s.w * rise, s.lean * rise, C, { a: back ? 0.85 : 1, white: t - s.born < .035, glint: (t - s.born) * 1.8 });
         p.glow(s.x + s.lean, s.y - s.h * rise, 5, C[4], rise * 0.12);
         const crack = smooth(s.break - 0.24, s.break - 0.03, t);
         if (crack > 0) {
@@ -49,6 +50,7 @@ export function create(o) {
         }
       } else if (age < 0.45) {
         const fade = 1 - smooth(0.16, 0.45, age);
+        haze(p,s.x,s.y-s.h*.35,8+age*20,C[5],(1-smooth(0,.2,age))*.28);
         for (const b of s.chips) {
           const x = s.x + s.lean * b.q + (b.vx - s.x * 0.12) * age, y = Math.min(s.y, s.y - s.h * b.q + b.vy * age + 150 * age * age);
           const a = age * b.spin, dx = Math.cos(a) * b.size, dy = Math.sin(a) * b.size;
@@ -63,8 +65,8 @@ export function create(o) {
       if (age < 0) continue;
       const k = smooth(0, 0.16, age) * (1 - smooth(0.65, 1.05, age));
       const x = m.x + Math.sin(m.phase + age * 2) * 4, y = m.y - age * 8, r = m.size * (0.7 + age * 0.7);
-      p.disc(x, y, r, C[3], k * 0.17);
-      p.disc(x - 1, y - r * 0.35, r * 0.7, C[5], k * 0.15);
+      haze(p, x, y, r, C[3], k * 0.17);
+      haze(p, x - 1, y - r * 0.35, r * 0.7, C[5], k * 0.15);
     }
   }
   return {

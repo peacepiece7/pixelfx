@@ -11,8 +11,8 @@ Every effect accepts `seed`, `palette` and the painter's standard `flip`.
 | `projectiles/rosilia-target-reticle` | `pulse`: 0–1, default 0. Create/follow each target separately; remove when its real mark ends. |
 | `status/rosilia-reload-ready` | No gameplay clock or automatic consumption. Remove when the reservation is actually consumed or the caster dies. |
 | `status/rosilia-infinite-magazine` | `intro`: 0–1, default 0; feed a short descending envelope on refill. The marker never refills ammunition itself. |
-| `projectiles/rosilia-support-shot` | `pulse`: 0–1, default 0. Feed a descending envelope from 1 to 0 on each actual shot. At zero, only drawBack's fixed reticle remains. No four-shot schedule is embedded. |
-| `water/aorbion-submerge` | Exports `actorAlpha() = 0`. Host and previews must honor this while active; removing it restores the normal actor. |
+| `projectiles/rosilia-support-shot` | `pulse`: 0–1, default 0. Feed a descending envelope from 1 to 0 on each actual shot. The visual reticle defaults to radius 62 (combat radius is host-owned). At zero, only drawBack's fixed reticle remains. No four-shot schedule is embedded. |
+| `water/aorbion-submerge` | Exports `actorAlpha() = 0`; it renders supplied actor pixels at the waterline during entry/exit. `speed` is host travel speed (default 240), used for trailing ripples. Removing it restores the normal actor. |
 | `water/aorbion-charge-emerge` | Render once per emergence, with the saved direction. No target-count duplication. |
 | `water/aorbion-tail-pillars` | `count`: integer 1–12, default 3, spacing 35. Export canvas metadata fits up to 5; use a taller host/export viewport for larger counts. |
 | `water/aorbion-seadragon` | Pure one-shot, empty at 1s. Host moves the fixed-direction 300px body using the real traveling state; this file does not advance its world position. |

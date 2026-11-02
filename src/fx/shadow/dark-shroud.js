@@ -1,3 +1,4 @@
+import { haze } from "../_soft.js";
 import { Rng, fit, smooth, clamp, TAU } from "../../core/index.js";
 
 export const meta = {
@@ -24,14 +25,14 @@ function paint(p, t, o, back) {
       const u = j / 16, sway = Math.sin(phase + drift + u * 4) * 4 * u;
       const x = bx + sway, y = by - h * u;
       const alpha = (1 - u ** 2) * (back ? 0.46 : 0.23);
-      p.disc(x, y, 2.2 + (1 - u) * 1.5, C[2], alpha * 0.55);
+      haze(p, x, y, 2.2 + (1 - u) * 1.5, C[2], alpha * 0.8);
       if (i % 3 === 0) {
-        if (pts.length) p.line(pts.at(-1)[0], pts.at(-1)[1], x, y, C[u > 0.65 ? 2 : 1]);
+        if (pts.length) p.line(pts.at(-1)[0], pts.at(-1)[1], x, y, C[u > 0.65 ? 3 : 1], (1-u)*.6);
         pts.push([x, y]);
         if (j > 7 && j < 14) p.blend(x - 1, y, C[3], (back ? 0.4 : 0.6) * (1 - u));
       }
     }
-    if (i % 4 === 0) p.glow(bx, by - h * 0.4, 9, C[3], 0.05 + pulse * 0.025);
+    if (i % 4 === 0) p.glow(bx, by - h * 0.4, 9, C[3], 0.07 + pulse * 0.14);
   }
   const hem = [];
   for (let i = 0; i <= 80; i++) {
@@ -62,7 +63,8 @@ function paint(p, t, o, back) {
     }
     // The hooked thumb gives the silhouette a hand rather than a four-pronged tendril.
     p.polyline([[x - nx * 3, y - ny * 3], [x + dx * 3 - nx * 5, y - ny * 5], [x + dx * 5 - nx * 3, y - ny * 3]], C[4], pulse * 0.7);
-    p.glow(x, y, 7, C[4], pulse * 0.14);
+    p.glow(x, y, 12, C[4], pulse * 0.22);
+    haze(p,x-dx*5,y+2,8,C[2],pulse*.3);
   }
 }
 export function drawBack(p, t, o) { paint(p, t, o, true); }

@@ -1,3 +1,4 @@
+import { haze, softShade } from "../_soft.js";
 import { Rng, fit, smooth, clamp, sparkle, TAU, READY } from "../../core/index.js";
 
 export const meta = {
@@ -27,7 +28,7 @@ export function create(o) {
     if (t >= meta.duration || t < RELEASE) return;
     const r = radius(t), fade = 1 - smooth(0.52, 0.9, t), width = 7 + r * 0.17;
     if (fade > 0 && r > 1) {
-      p.shade(-r - 4, CY - r * SY - 3, r + 4, CY + r * SY + 3, (x, y, out) => {
+      softShade(p, -r - 4, CY - r * SY - 3, r + 4, CY + r * SY + 3, (x, y, out) => {
         if ((y < CY) !== back) return;
         const d = Math.hypot(x, (y - CY) / SY), a = Math.atan2((y - CY) / SY, x);
         const edge = r + Math.sin(a * 17 + phase + t * 7) * 1.5;
@@ -35,12 +36,12 @@ export function create(o) {
         const u = (edge - d) / thickness;
         if (u < 0 || u > 1) return;
         out.c = u < 0.08 ? C[5] : u < 0.2 ? C[4] : u < 0.45 ? C[3] : u < 0.7 ? C[2] : C[1];
-        out.a = fade * (back ? 0.85 : 0.95) * (u < 0.6 ? 1 : (1 - u) / 0.4);
+        out.a = fade * (back ? 0.7 : 0.85) * (u < 0.6 ? 1 : (1 - u) / 0.4);
       });
       for (let i = 0; i < 28; i++) {
         const a = i * TAU / 28;
         if ((Math.sin(a) < 0) !== back) continue;
-        p.glow(Math.cos(a) * r, CY + Math.sin(a) * r * SY, 6, C[3], fade * 0.17);
+        p.glow(Math.cos(a) * r, CY + Math.sin(a) * r * SY, 11, C[3], fade * 0.16);
       }
     }
     for (const [i, e] of embers.entries()) {
@@ -51,11 +52,11 @@ export function create(o) {
       const x = Math.cos(e.a) * r, y = CY + Math.sin(e.a) * r * SY - e.lift * age + 10 * age * age;
       const fade = smooth(0, 0.08, u) * (1 - smooth(0.4, 1, u));
       if (i < 18) {
-        p.disc(x, y + 1, 3 + u * 3, C[1], fade * 0.25);
-        p.disc(x, y - 1, 2 + u * 2, C[3], fade * 0.12);
+        haze(p, x, y + 1, 3 + u * 3, C[1], fade * 0.25);
+        haze(p, x, y - 1, 2 + u * 2, C[3], fade * 0.12);
       }
       p.line(x - Math.cos(e.a) * 2.5, y + 1, x, y, C[3], fade);
-      p.disc(x, y, e.size, C[4], fade * 0.7);
+      haze(p, x, y, e.size, C[4], fade * 0.7);
       p.dot(x, y, u < 0.5 ? C[5] : C[4], fade);
       p.glow(x, y, 3, C[4], fade * 0.22);
     }
@@ -65,6 +66,10 @@ export function create(o) {
     drawBack(p) { layer(p, true); },
     draw(p) {
       layer(p, false);
+      if(t < RELEASE) {
+        const k=smooth(0,RELEASE,t);
+        p.glow(0,CY,10+16*k,C[3],k*.45);
+      }
       const age = t - RELEASE;
       if (t >= meta.duration || age < 0 || age >= 0.12) return;
       const k = 1 - age / 0.12;

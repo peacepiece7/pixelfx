@@ -67,14 +67,14 @@ splashes, falls, fountains, waves.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
-| Aorbion charge emerge | `water/aorbion-charge-emerge` | one-shot 0.65s | 144×88 | A single narrow 100px forward surge breaks the surface with three claw tracks and a trailing spray; fixed to the chosen emergence direction. |
+| Aorbion charge emerge | `water/aorbion-charge-emerge` | one-shot 0.65s | 176×104 | A foaming bow wave races 100px forward as three sharp water-claw ribbons rake through it; spray arcs down into ripples and a lacy wake drains away. |
 | Aorbion Poseidon | `water/aorbion-poseidon` | loop 6s | 168×144 | Three water pillars orbit an attached radius-70 zone; pulse is brightness only and never adds visual hits. The host retains or removes the zone. |
 | Aorbion sea response | `water/aorbion-sea-response` | loop 5s | 80×80 | mode travel shows a small sea-dragon crest; mode claw rims the actor claws with water light. Host-owned buff lifetime, not an extra attack. |
-| Aorbion sea dragon | `water/aorbion-seadragon` | one-shot 1s | 336×104 | A translucent 300px water dragon faces right along a 50px travel lane; the host owns its position, direction and stored speed. |
-| Aorbion submerge | `water/aorbion-submerge` | loop 0.5s | 80×64 | The actor vanishes under thin surface ripples and bubbles at the host position. Removing the effect restores the actor immediately. |
-| Aorbion tail pillars | `water/aorbion-tail-pillars` | one-shot 0.8s | 92×260 | Three or count supplied water geysers rise 35px apart along the target vertical line, each with a radius-30 foaming footprint. |
+| Aorbion sea dragon | `water/aorbion-seadragon` | one-shot 1s | 360×160 | A water dragon gathers from soft pixel clusters, surges with a bright crest, then unravels into drifting spray along a 300px lane. |
+| Aorbion submerge | `water/aorbion-submerge` | loop 0.5s | 200×80 | The actor sinks through the surface, leaves spreading ripples along its travel path, then rises through a small crown of water. The host owns movement and interruption. |
+| Aorbion tail pillars | `water/aorbion-tail-pillars` | one-shot 0.8s | 208×320 | Foaming geysers erupt along a vertical line, 35px apart. Layered water cores burst into churning crowns, falling spray and ripples before draining away. |
 | Bubbles | `water/bubbles` | loop 4s | 104×112 | Bubbles stream up from a vent of pebbles, wobbling and swelling as they rise, flare as they cross shafts of light from the surface, then dome up and pop there. |
-| Drip | `water/drip` | loop 1.6s | 72×88 | A bead swells under a wet stone tip and catches the light, pinches off, falls stretched by its speed and plinks into a puddle with a crown, a ring and a tiny rebound. |
+| Drip | `water/drip` | loop 1.6s | 72×88 | Small water beads fall from the torso like bleeding droplets. Stacks increase frequency, not size. Set status:false for the ambient drip. |
 | Fountain | `water/fountain` | loop 2s | 120×104 | A stone basin; a jet rises from its spout and blooms into glassy arcs that break into beads, fall back and plink into the water with rings. |
 | Geyser | `water/geyser` | one-shot 5s | 184×168 | A pool heaves and burbles faster and faster, then blasts a white column of water skyward with a churning foam head; it rains back down in drops and steam, slumps and sputters out. |
 | Rain splash | `water/rain-splash` | loop 2.4s | 176×80 | A low close-up on one puddle in the rain: big drops land in crowns that throw beads and a rebound jet, rings spread and interfere, a lamp's reflection wobbles on the water. |
@@ -197,7 +197,7 @@ bullets, rockets, lasers, arrows.
 | SMG burst | `projectiles/muzzle-smg` | loop 1s | 112×72 | Sustained fire at twelve rounds a second: each shot a different spiky flash with a white core, sparks, smoke wisps piling up and drifting, brass casings bouncing on the floor. |
 | Plasma shot | `projectiles/plasma-shot` | loop 0.8s | 144×60 | A glowing plasma blob: hot knots churning in its core, a corona crackling over its skin, its tail necking into droplets that tear off, cool and wink out behind. |
 | Rocket | `projectiles/rocket` | loop 1.2s | 288×76 | A steel rocket roars along: a flickering jet with shock diamonds and a white-hot nozzle, a thick billowing smoke trail lit by the flame, sparks shed behind. |
-| Rosilia support shot | `projectiles/rosilia-support-shot` | loop 2s | 200×120 | A compact reticle marks the strike point. Each external pulse drives a heavy round from the upper left, fractures the ground and throws stone, brass and dust outward. |
+| Rosilia support shot | `projectiles/rosilia-support-shot` | loop 2s | 200×120 | A falling ivory tracer snaps into a bright contact, then a low dust skirt expands over warm clustered impact marks and settles inside a quiet compact ground reticle. |
 | Rosilia target reticle | `projectiles/rosilia-target-reticle` | loop 1s | 48×56 | A small brass crosshair tracks a marked target; only an external pulse brightens the current shot target. |
 
 ## spawn & death
@@ -280,7 +280,7 @@ curses, voids, tendrils, souls.
 | Eclipse | `shadow/eclipse` | loop 4s | 160×144 | A black moon over the sun: a breathing pearl corona with long streamers, a thin white rim, and one diamond bead blazing on its edge. |
 | Grasping hands | `shadow/grasping-hands` | one-shot 3.1s | 200×116 | Shadow arms burst up out of a dark pool with a splash, clench their hands into claws, strain, and are dragged back under, fingers clawing at the air. |
 | Hex sigil | `shadow/hex-sigil` | one-shot 4.2s | 168×128 | A burning pen traces a cursed sigil in the air, its glyphs pop in one by one, then it flares white and crumbles into falling embers. |
-| King's decree | `shadow/kings-decree` | one-shot 1.8s | 320×160 | A cracked bone crown rises above the field; five or fewer curse chains strike supplied target x coordinates, leaving dark seals and bone dust. |
+| King's decree | `shadow/kings-decree` | one-shot 1.8s | 320×160 | A spectral bone crown gathers, fractures in a flash, and casts staggered curse chains. Bone fragments and violet dust settle over small ground seals. |
 | Life steal | `shadow/life-steal` | one-shot 2.2s | 184×100 | A target on the right is struck and bleeds red orbs; they hang a moment, then whip home as comet streaks and flood the caster crimson. |
 | Necro skulls | `shadow/necro-skulls` | loop 3s | 136×116 | Spectral skulls circle a cold green flame on a tilted orbit, passing behind and before it, eyes lit, trailing curls of ghost smoke. |
 | Shadow flames | `shadow/shadow-flames` | loop 2.4s | 104×112 | Inside-out fire on the floor: a black heart wrapped in violet flame with pale skin and tips, shedding embers and dark smoke. |

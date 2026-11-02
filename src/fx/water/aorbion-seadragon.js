@@ -1,3 +1,4 @@
+import { haze, pool, softShade } from "../_soft.js";
 import { Rng, fit, smooth, noise2, TAU } from "../../core/index.js";
 import { billow, bead, lace } from "./_lib.js";
 
@@ -24,7 +25,7 @@ export function drawBack(p, t, o) {
   if (t <= 0 || t >= meta.duration) return;
   const C = fit(o.palette, 8), k = strength(t);
   // Thin textured wake anchors the creature to water instead of a floating neon ribbon.
-  p.ellipse(151, 1, 148, 12, C[1], k * 0.2);
+  pool(p,151,1,148,12,C[2],k*.14);
   lace(p, 151, 0, 148, 13, k * 0.28, C, t * 18, o.seed);
   const R = new Rng(o.seed);
   for (let i = 0; i < 24; i++) {
@@ -48,7 +49,7 @@ export function draw(p, t, o) {
   const columns = Array.from({ length: 279 }, (_, x) => ({
     w: width(x + 0.5), y: spine(x + 0.5, t), flow: noise2(x * 0.19 - t * 9, t * 7, o.seed),
   }));
-  p.shade(0, -68, 278, 2, (x, y, out) => {
+  softShade(p, 0, -68, 278, 2, (x, y, out) => {
     x = Math.floor(x / 2) * 2 + 1; y = Math.floor(y / 2) * 2 + 1;
     const column = columns[Math.max(0, Math.min(278, Math.floor(x)))];
     const w = column.w, dy = y - column.y, q = dy / w;
@@ -57,7 +58,7 @@ export function draw(p, t, o) {
     const belly = q > 0.27;
     out.c = Math.abs(q) > 0.92 ? C[1] : q < -0.65 ? C[5] : q < -0.25 ? C[4]
       : belly ? C[2] : flow > 0.28 ? C[4] : C[3];
-    out.a = 1;
+    out.a = k * (.68 + .25 * (1-Math.abs(q)));
   });
   // Loose water streamers suggest fins without outlining individual limbs or claws.
   for (const x of [150, 210, 245]) {
@@ -90,7 +91,8 @@ export function draw(p, t, o) {
   for (let i = 0; i < 10; i++) {
     const x = 22 + i * 27;
     if (!visible(x, spine(x, t), t)) continue;
-    p.disc(x, spine(x, t) + 5, 9 + i % 3, C[3], k * 0.12);
+    haze(p,x,spine(x,t)+5,12+i%3,C[3],k*.2);
+    p.glow(x,spine(x,t)-3,15,C[3],k*.07);
   }
   // Bow crest and the mane break into shaded water beads streaming backward.
   for (let i = 0; i < 18; i++) {

@@ -1,3 +1,4 @@
+import { pool } from "../_soft.js";
 import { fit, Rng, smooth, stockActor } from "../../core/index.js";
 import { shape } from "../status/_lib.js";
 
@@ -40,7 +41,7 @@ export function draw(p, t, o) {
     } else {
       const hit = age - land, fade = 1 - smooth(0.22, 0.49, hit), lx = x + vx * fall;
       if (fade <= 0) continue;
-      const spread = smooth(0, 0.07, hit), width = size * (1.4 + spread * 1.6);
+      const spread = smooth(0, 0.07, hit), width = size * (1.4 + spread * 1.6) * (1 - smooth(.25,.49,hit)*.45);
       p.ellipse(lx, ground, width, 0.9, C[hit < 0.12 ? 2 : 1], fade);
       p.line(lx - width * 0.6, ground - 1, lx + width * 0.4, ground - 1, C[3], fade * 0.8);
       if (hit < 0.2) {
@@ -50,7 +51,7 @@ export function draw(p, t, o) {
           p.line(lx + dx * 0.6, ground + dy * 0.5, lx + dx, ground + dy, C[3], 1 - hit / 0.2);
           p.dot(lx + dx, ground + dy, hit < 0.06 ? C[5] : C[4], 1 - hit / 0.2);
         }
-        p.glow(lx, ground, 3, C[3], 0.1 * (1 - hit / 0.2));
+        pool(p, lx, ground, 6 + hit * 12, 2, C[3], 0.2 * (1 - hit / 0.2));
       }
     }
   }

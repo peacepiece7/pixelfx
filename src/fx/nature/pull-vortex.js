@@ -1,3 +1,4 @@
+import { haze } from "../_soft.js";
 import { Rng, fit, smooth, TAU } from "../../core/index.js";
 import { drawLeaf } from "./_lib.js";
 
@@ -26,6 +27,7 @@ export function drawBack(p, t, o) {
     const phase = i * TAU / 30 + R.range(-0.08, 0.08), born = R.next();
     const u = wrap(time * 2 - born), fade = smooth(0, 0.12, u) * (1 - smooth(0.88, 1, u));
     let prev = point(u, phase, o);
+    p.glow(prev.x, prev.y, 5, C[3], fade * .08);
     for (let j = 1; j <= 10; j++) {
       const age = u - j * 0.009;
       if (age < 0) break;
@@ -39,8 +41,8 @@ export function drawBack(p, t, o) {
     const u = wrap(time * (i % 3 === 0 ? 1 : 2) - born), v = point(u, phase, o);
     const fade = smooth(0, 0.12, u) * (1 - smooth(0.87, 1, u));
     if (i < 30) {
-      p.disc(v.x, v.y - 1, size, C[2], fade * 0.28);
-      p.dot(v.x, v.y - 1, C[3], fade * 0.45);
+      haze(p, v.x, v.y - 1, size * (1 + u * 1.7), C[2], fade * 0.38);
+      p.blend(v.x, v.y - 1, C[3], fade * 0.25);
     } else if (i < 38) {
       drawLeaf(p, v.x, v.y - 1, 4, 0.7, phase + u * 8, u * 9 + phase, [C[0], C[3], C[1], C[2]], fade);
     } else {
@@ -50,7 +52,7 @@ export function drawBack(p, t, o) {
   }
   // Low dust at the impact point stays flat against the floor and behind the hero.
   p.ellipse(o.centerX, 0, 5, 2, C[1], 0.5);
-  p.disc(o.centerX, -1, 3, C[2], 0.22);
+  haze(p, o.centerX, -1, 3, C[2], 0.22);
 }
 
 // This is entirely a floor effect, including particles on the near side.

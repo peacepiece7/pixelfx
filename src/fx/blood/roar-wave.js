@@ -1,4 +1,5 @@
-import { Rng, fit, band, sparkle, smooth, READY } from "../../core/index.js";
+import { haze, softBand } from "../_soft.js";
+import { Rng, fit, sparkle, smooth, READY } from "../../core/index.js";
 
 export const meta = {
   name: "Roar wave",
@@ -33,15 +34,15 @@ export function create(o) {
       if (u < 0 || u >= 1) continue;
       const r = 4 + 96 * (1 - (1 - u) ** 2), fade = 1 - smooth(0.48, 1, u);
       const width = (5 - i * 0.7) * (1 - u * 0.55);
-      band(p, ...mouth, r, 0.36, width, fade * (back ? 0.65 : 1), [C[0], C[1], C[2], C[3], C[4]],
+      softBand(p, ...mouth, r, 0.36, width, fade * (back ? 0.65 : 1), [C[0], C[1], C[2], C[3], C[4]],
         a => (Math.sin(a) < 0) === back);
       for (let j = 0; j < 18; j++) {
         const a = j * Math.PI * 2 / 18;
         if ((Math.sin(a) < 0) !== back) continue;
-        p.glow(mouth[0] + Math.cos(a) * r, mouth[1] + Math.sin(a) * r * 0.36, 5, C[3], fade * 0.12);
+        p.glow(mouth[0] + Math.cos(a) * r, mouth[1] + Math.sin(a) * r * 0.36, 9, C[3], fade * 0.15);
       }
       // A fine hot leading lip over the darker pressure band.
-      band(p, ...mouth, r + 0.7, 0.36, 0.7, fade * 0.65, [C[2], C[3], C[4], C[5]],
+      softBand(p, ...mouth, r + 0.7, 0.36, 0.7, fade * 0.65, [C[2], C[3], C[4], C[5]],
         a => (Math.sin(a) < 0) === back);
     }
   }
@@ -58,9 +59,9 @@ export function create(o) {
         p.dot(x, y - 1, C[4], fade);
       } else {
         const size = d.size * (0.7 + u);
-        p.disc(x, y, size, C[1], fade * 0.35);
-        p.disc(x - d.side, y - size * 0.35, size * 0.75, C[3], fade * 0.2);
-        p.disc(x - d.side * 1.5, y - size * 0.6, size * 0.45, C[4], fade * 0.12);
+        haze(p, x, y, size, C[1], fade * 0.35);
+        haze(p, x - d.side, y - size * 0.35, size * 0.75, C[3], fade * 0.2);
+        haze(p, x - d.side * 1.5, y - size * 0.6, size * 0.45, C[4], fade * 0.12);
       }
     }
   }
@@ -79,6 +80,11 @@ export function create(o) {
     draw(p) {
       if (t >= meta.duration - 1e-9) return;
       rings(p, false); floor(p, false);
+      if (t < RELEASE) {
+        const charge = smooth(0, RELEASE, t);
+        p.glow(...mouth, 8 + charge * 9, C[3], charge * .4);
+        p.disc(...mouth, 2 + charge * 2, C[5], charge * .55);
+      }
       const age = t - RELEASE;
       if (age >= 0 && age < 0.16) {
         const k = 1 - age / 0.16;

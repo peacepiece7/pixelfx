@@ -78,6 +78,7 @@ export function create(o) {
         const age = t - (.56 + i * .045 + .13);
         if (age < 0) return;
         const k = 1 - smooth(.45, .95, age), r = 5 + 10 * smooth(0, .15, age);
+        pool(p,x,100,25,7,K[2],k*.24);
         sealRing(p, x, r, K[3], k * .65);
         sealRing(p, x, 7 + 14 * smooth(0, .3, age), K[2], k * (1 - smooth(.16, .4, age)) * .5);
         p.polyline([[x - 6, 100], [x, 97], [x + 6, 100], [x, 103], [x - 6, 100]], K[2], k);
@@ -116,6 +117,7 @@ export function create(o) {
         if (u < 0) return;
         const impact = Math.max(0, 1 - u / .13);
         p.glow(x, 98, 16, K[3], impact * .55);
+        haze(p,x,99-u*10,5+u*15,K[2],smooth(0,.04,u)*(1-smooth(.2,.6,u))*.3);
         if (impact > 0) sparkle(p, x, 99, 9 * impact, C[5], K[3]);
         for (const d of dust[i]) {
           if (u >= d.life) continue;
