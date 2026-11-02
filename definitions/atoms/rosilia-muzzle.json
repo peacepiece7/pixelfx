@@ -1,0 +1,18 @@
+{
+  "id": "rosilia-muzzle",
+  "name": "로실리아 소총 총구 섬광",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "projectiles/muzzle-pistol",
+  "options": {
+    "palette": [
+      "#251b19",
+      "#564239",
+      "#866a46",
+      "#b59a63",
+      "#ddc98a",
+      "#f7e9bd",
+      "#ffffff"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "brynhild-blessing-halo",
+  "name": "성스러운 축복 유지 광륜",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/halo",
+  "options": {}
+}
