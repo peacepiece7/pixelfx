@@ -3,7 +3,7 @@ import { Rng, fit, clamp, smooth, lerp, sparkle, TAU, READY } from "../../core/i
 
 export const meta = {
   name: "Blood boom",
-  desc: "A ground strike snaps five layered blood sheets skyward in 50ms; bright torn ridges, forty curved droplet trails and falling membranes collapse onto a fading crimson seal.",
+  desc: "A ground strike hurls five torn blood membranes skyward: curling split crests, moving wet folds, arcing beads and stretched falling sheets over a hot fractured seal.",
   tags: ["blood", "eruption", "aoe", "magic", "one-shot"],
   size: [120, 140], origin: [60, 116], duration: 1.4, loop: false, fps: 60,
   bg: "ground", actor: 2,
@@ -171,7 +171,14 @@ export function create(o) {
         pts.push([lerp(a[0], b[0], f), lerp(a[1], b[1], f)]);
       }
       wetLine(p, pts, C[1], charge * fade);
-      wetLine(p, pts.map(([x, y]) => [x, y - .7]), C[t < .3 ? 4 : 2], heat * fade);
+      wetLine(p, pts.map(([x, y]) => [x, y - .7]), C[t < .3 ? 4 : 3], heat * fade);
+      const hot = smooth(.24,.27,t)*(1-smooth(.36,.65,t));
+      wetLine(p,pts.slice(0,3).map(([x,y])=>[x,y-.7]),C[5],hot*.85);
+      if(pts.length>2) {
+        const [x,y]=pts[2];
+        pool(p,x,y,8,2,C[4],hot*.3);
+        wetLine(p,[[x,y],[x*.9+3,y+2],[x*.8+4,y+3]],C[3],heat*fade*.8);
+      }
     }
     // Compressed mound flattens into the first upward sheet on release.
     if (t < .3) {
@@ -228,6 +235,9 @@ export function create(o) {
       const core = Math.abs(x - row.centre) / hotWidth;
       out.c = edge > .88 ? C[1] : edge > .67 ? C[2] : folded > .2 ? C[3] : C[2];
       if (core < 1 && q < .95) out.c = core < .72 ? C[3] : C[2];
+      const ripple = Math.sin(h * .15 - t * 34 + x * .20);
+      if (ripple > .82 && edge < .75) out.c = C[4];
+      if (ripple < -.9 && edge > .25) out.c = C[1];
       if (core > 1 && core < 1.5 && folded > -.5) out.c = C[3];
       if (cap - h < 1.2) out.c = C[4];
       // Several dark channels cut into the hot ribbon so it reads as liquid, not a laser.
@@ -252,35 +262,55 @@ export function create(o) {
       const top = rise * attack - 280 * fall * fall;
       const detached = smooth(.10, .32, age) * .88;
       const fade = 1 - smooth(.24, .48, age);
-      const points = [], left = [], right = [], innerLeft = [], innerRight = [];
-      for (let j = 0; j <= 14; j++) {
-        const q = detached + (1 - detached) * j / 14;
-        const x = reach * q ** 1.35 * attack + Math.sin(q * 8 + phase + i) * q * 3;
-        const y = -top * q;
-        const fold = 1 + .20 * Math.sin(q * 19 - age * 36 + i);
-        const tornBase = detached > .04 ? smooth(detached, detached + .14, q) : 1;
-        const w = width * (.45 + .55 * Math.sin(q * Math.PI)) * (1 - smooth(.78, 1, q)) * fold * attack * tornBase;
-        const notch = j % 4 === 2 ? 1.8 : 0;
-        left.push([x - w, y]); right.push([x + w - notch, y]);
-        innerLeft.push([x - w * .45, y]); innerRight.push([x + w * .18, y]);
-        points.push([x - w * .18, y]);
+      // Each sheet has its own moving cross-section, scalloped lip, split crest
+      // and fold highlights. These are liquid surfaces, not tapered spear polygons.
+      const rows = Array.from({length: Math.ceil(top) + 2}, (_, j) => {
+        const q = j / Math.max(1, top);
+        const curl = Math.sin(q * 7 + i * 1.8 + phase) * q * 4;
+        const x = reach * q ** 1.25 * attack + curl;
+        const fold = .85 + .24 * Math.sin(q * 23 - age * 29 + i);
+        const base = detached > .04 ? smooth(detached, detached + .10, q) : 1;
+        const w = width * (.65 + .35 * Math.sin(q * Math.PI)) * fold * attack * base;
+        return {x, w};
+      });
+      const leftBound = Math.min(0, reach) - width - 6;
+      const rightBound = Math.max(0, reach) + width + 6;
+      softShade(p, leftBound, -top, rightBound, -top * detached, (x, y, out) => {
+        const q = -y / Math.max(1, top), row = rows[Math.min(rows.length - 1, Math.floor(-y))];
+        if (!row || row.w < .1) return;
+        const u = (x - row.x) / row.w, edge = Math.abs(u);
+        // Three uneven fingers tear out of a blunt, curling liquid crest.
+        const crest = .91 + .075 * Math.sin(u * 7 + i) + .025 * Math.sin(u * 17 + phase);
+        if (edge > 1 || q > crest) return;
+        const hole = Math.sin(q * 21 + age * 19 + i) * Math.sin(u * 6 - q * 5);
+        if (age > .14 && q > .38 && edge > .25 && hole > .88 - smooth(.14,.40,age)*.3) return;
+        const channel = Math.sin(q * 13 - age * 24 + i) * .32;
+        const core = Math.abs(u - channel);
+        out.c = edge > .86 ? C[1] : edge > .62 ? C[2] : C[3];
+        if (core < .52) out.c = C[4];
+        if (core < .24 && Math.sin(q * 19 + i) < .7) out.c = C[back ? 4 : 5];
+        if (core < .065 && q < .86) out.c = C[back ? 5 : 6];
+        // A wet crease runs across each fold, not uniformly up its whole length.
+        if (Math.sin(q * 29 - age * 38 + u * 2) > .96 && edge < .72) out.c = C[5];
+        if (crest - q < .012 && edge < .8) out.c = C[5];
+        out.a = fade;
+        out.l = C[4]; out.k = core < .4 ? fade * .16 : 0;
+      });
+      const tipX = reach * attack, tipY = -top * .96;
+      p.glow(tipX, tipY + 7, 9, C[4], fade * .2);
+      // Pieces shear from the torn rim, curve away and descend independently.
+      for (let k = 0; k < 3; k++) {
+        const free = age - .045 - k * .015;
+        if (free <= 0 || free > .3) continue;
+        const sign = i < 2 ? -1 : 1;
+        const x = reach + sign * (k - 1) * 2 + sign * free * 13;
+        const y = -rise * (.88 - k * .08) - free * (25 + k * 8) + 280 * free * free;
+        const strength = 1 - smooth(.18,.3,free);
+        p.beam(x - sign, y + 3, x, y, 1.3 + k * .2, C[3], strength);
+        p.blend(x - .5, y - .5, C[5], strength);
+        wetLine(p, [[x-sign*2,y+6],[x-sign,y+3],[x,y]], C[4], strength*.55);
       }
-      membrane(p, [...left, ...right.reverse()], C[back ? 2 : 3], fade);
-      membrane(p, [...innerLeft, ...innerRight.reverse()], C[back ? 4 : 5], fade * .95);
-      // Interrupted hot ridges follow the sheet, revealing several separate layers.
-      for (let j = 2; j < points.length - 1; j++) {
-        if ((j + i) % 5 === 0) continue;
-        wetLine(p, [points[j], points[j + 1]], C[back ? 5 : 6], fade);
-      }
-      const tip = points.at(-1);
-      p.glowLine(...points[3], ...tip, 5, C[4], fade * .17);
-      // A torn bead runs ahead of the membrane during the first upward impulse.
-      if (age > .04 && age < .19) {
-        const free = age - .04, x = tip[0] + reach * free * .16;
-        const y = Math.max(-112, tip[1] - free * 24 + free * free * 180);
-        p.beam(x, y + 3, x + .5, y, 1.3, C[4], fade);
-        p.blend(x, y, C[5], fade);
-      }
+
     });
   }
 
@@ -322,14 +352,24 @@ export function create(o) {
       }
       const opening = smooth(0, .055, age), thin = 1 - smooth(.13, .38, age);
       const landing = clamp((s.floor-y)/12);
-      const w = s.w * opening * (.4 + thin * .6), h = (3 + age * 14) * landing;
+      const w = s.w * opening * (.3 + thin * .7), h = (4 + age * 25) * landing;
       const tilt = Math.sin(s.phase + age * 8) * 2;
-      const pts = [[x-w,y-h], [x+w*.2,y-h-2], [x+w,y-h*.5],
-        [x+w*.7,y+h], [x+tilt,y+h+3], [x-w*.5,y+h*.2]];
-      membrane(p,pts,C[2],ending());
-      membrane(p,[pts[0],pts[1],pts[2],[x,y+h]],C[3],ending());
-      wetLine(p, [pts[0],[x-w*.3,y],[x+tilt,y+h]], C[5], .65 * ending());
-      haze(p,x,y,8,C[3],.1*thin*ending());
+      // Falling membranes stretch into pendant drops with folded, perforated tops.
+      softShade(p, x-w-3, y-h-2, x+w+3, Math.min(s.floor,y+h+2), (px,py,out) => {
+        const q = (py-y) / Math.max(.1,h);
+        if (Math.abs(q)>1) return;
+        const centre = x + tilt*q + Math.sin(q*4+s.phase)*.7;
+        const localWidth = w * Math.sqrt(Math.max(0,1-q*q)) * (.7+.25*Math.sin(q*6-age*15+s.phase));
+        const u = (px-centre)/Math.max(.2,localWidth);
+        if(Math.abs(u)>1) return;
+        if(age>.14&&q<-.1&&Math.sin(q*9+u*5+s.phase)>.82) return;
+        out.c = Math.abs(u)>.8?C[1]:u<-.25?C[4]:u<.3?C[3]:C[2];
+        if(u>-.55&&u<-.30)out.c=C[5];
+        out.a=ending();
+        out.l=C[4];out.k=u<-.25?.10*ending():0;
+      });
+      haze(p,x,y,8,C[3],.08*thin*ending());
+
     }
   }
 

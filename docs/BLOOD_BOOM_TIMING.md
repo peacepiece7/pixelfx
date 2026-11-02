@@ -44,3 +44,11 @@ The impact is an upward response to a ground strike: five sheets launch 4ms apar
 each reaching its own 64–110px apex in 45ms. Their lower membranes tear free
 before the tips fall. Forty primary beads launch in a 44ms burst and leave
 64ms curved trails sampled from their own ballistic paths. No hit is added.
+
+Liquid-surface refinement: each of the five launch sheets now has an independent
+moving cross-section, uneven split crest, dark edge, advected highlights and
+late perforations. Fifteen small secondary fragments shear from those crests.
+The twelve descending membranes use changing liquid silhouettes instead of rigid
+polygons: their folded tops open holes while the lower ends stretch toward landing.
+Ground cracks briefly carry a pale inner highlight, secondary branches and local
+reflections, then cool. The 50ms impulse and 1.4s empty endpoint remain unchanged.
