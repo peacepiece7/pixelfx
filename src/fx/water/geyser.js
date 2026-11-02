@@ -25,7 +25,6 @@ export function create(o) {
   const C = fit(o.palette, 8), R = new Rng(o.seed), HMAX = o.height, S = o.seed;
   const ps = new Particles({ rng: R }), mist = new Mist(), lights = new Lights(), rings = new Ripples({ sy: SY });
   const plinks = [], pops = [];
-  const V0 = Math.sqrt(2 * G * HMAX);
   let t = 0;
   const poolR = (tt) => (12 + 7 * smooth(0, 1, tt) + 15 * ease.outCubic(clamp((tt - ERUPT) / 1.2))) * (1 - 0.25 * smooth(GONE, 4.6, tt));
   const poolK = (tt) => smooth(0, 0.2, tt) * (1 - smooth(4.0, 4.85, tt));
@@ -57,57 +56,8 @@ export function create(o) {
   const done = new Set(), once = (key, at) => !done.has(key) && t >= at && done.add(key);
   const emit = (rate, dt) => R.chance(Math.min(1, rate * dt));
 
-  // the column: a white core banded out to blue edges, shadowed on the right; 1 px strands whose streaks run up
-  // in jet time (fast and long low down, bunching where the water slows near the top); it spreads as it rises,
-  // its sides ragged and running, a sway through it, light all the way up
-  function column(p, H, thin) {
-    if (H < 1) return;
-    const tau = (h) => (V0 - Math.sqrt(Math.max(0, V0 * V0 - 2 * G * Math.min(h, HMAX * 0.96)))) / G;
-    p.shade(-22, -H - 2, 22, 0, (x, y, out) => {
-      const h = -y, v = h / H, sway = noise(t * 1.6 + h * 0.025, S + 5) * 2.5 * v;
-      const rag = noise2(h * 0.2 - t * 11, x < sway ? 3 : 7, S + 6) * (0.5 + 1.8 * v);
-      const cap = o.jetOnly ? Math.sqrt(1 - smooth(.76, 1, v)) : 1;
-      if (o.jetOnly && h > H) return;
-      const w = ((3.6 + 7.5 * Math.pow(v, 1.8)) * thin + rag) * cap, q = (x - sway) / Math.max(1, w), aq = Math.abs(q);
-      if (aq > 1) return;
-      const X = Math.floor(x), streak = noise2(X * 1.618 + 0.3, (tau(h) - t) * 14, S), body = noise2(Math.floor((x + 40) / 2) * 2.3, (tau(h) - t) * 5, S + 1);
-      let lvl = aq < 0.42 ? 0 : aq < 0.7 ? 1 : aq < 0.9 ? 2 : 3;
-      if (q > 0.38) lvl++;
-      if (streak > 0.28) lvl--;
-      if (body < -0.4) lvl++;
-      out.c = o.jetOnly ? [C[6], C[5], C[4], C[3], C[2]][clamp(lvl, 0, 4)] : [WHITE, C[6], C[5], C[4], C[3]][clamp(lvl, 0, 4)];
-    });
-    p.glowLine(0, 0, 0, -H, 16 + 8 * thin, C[5], 0.12 * thin);
-  }
-
-  // the head: water boiling over at the top and falling back round the column in an umbrella of streaks, foam
-  // billows churning in it, shadowed underneath, lit on top
-  function foamHead(p, H, k, back) {
-    if (k <= 0.01 || H < 4) return;
-    if (back) {
-      // the umbrella: streaks pouring off the rim of the head, running down and thinning out
-      for (let i = 0; i < 16; i++) {
-        const side = i % 2 ? 1 : -1, x0 = side * (5 + 9 * rand(i, S + 20)) * k, len = (14 + 26 * rand(i, S + 21)) * k, speed = 70 + 50 * rand(i, S + 22);
-        for (let j = 0; j < 3; j++) {
-          const f = (t * speed / len + j / 3 + rand(i, S + 23)) % 1, y0 = -H + 2 + f * len, x = x0 + side * f * f * 6, L = 1 + 4 * f * (1 - f) * 2;
-          if (f < 0.85) p.line(x, y0, x + side * 0.6, y0 + L, f < 0.4 ? C[6] : f < 0.7 ? C[5] : C[4]);
-        }
-      }
-    }
-    for (let i = 0; i < 12; i++) {
-      const a = (i / 12) * TAU + t * (i % 2 ? 1.3 : -1.1), z = Math.sin(a);
-      if (z < 0 !== back) continue;
-      const rho = (3 + 7 * rand(i, S)) * k, x = Math.cos(a) * rho * 1.25 + noise(t * 3 + i, S + 8) * 2.5;
-      const y = -H + z * rho * 0.45 + (rho / 10) * 4 - 4 * (1 - rho / (10 * k)) + noise(t * 3 + i + 50, S + 9) * 2.5, r = (2 + 2.6 * rand(i, S + 2) + 0.7 * Math.sin(t * 7 + i)) * k;
-      if (back) billow(p, x, y, r, [C[0], C[1], C[2], C[3], C[3], C[4], C[5], C[5]]);
-      else {
-        p.circle(x + r * 0.15, y + r * 0.25, r, C[4]);
-        p.circle(x, y, r * 0.82, rho > 6 * k ? C[5] : C[6]);
-        p.circle(x - r * 0.25, y - r * 0.3, r * 0.5, WHITE);
-      }
-    }
-    if (!back) p.glow(0, -H - 2, 38, C[5], 0.34 * k);
-  }
+  const column = (p, H, thin) => drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly: o.jetOnly });
+  const foamHead = (p, H, k, back) => drawGeyserFoam(p, H, k, back, { C, t, S });
 
   // Compact skill variant: retain the rising, textured column without the overflowing
   // foam head, lateral spray, secondary spurts or large landing ripples.
@@ -283,3 +233,57 @@ export function create(o) {
     },
   };
 }
+
+// Shared rendering primitives keep combat variants on the same water recipe.
+  // the column: a white core banded out to blue edges, shadowed on the right; 1 px strands whose streaks run up
+  // in jet time (fast and long low down, bunching where the water slows near the top); it spreads as it rises,
+  // its sides ragged and running, a sway through it, light all the way up
+export function drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly = false }) {
+    const V0 = Math.sqrt(2 * G * HMAX);
+    if (H < 1) return;
+    const tau = (h) => (V0 - Math.sqrt(Math.max(0, V0 * V0 - 2 * G * Math.min(h, HMAX * 0.96)))) / G;
+    p.shade(-22, -H - 2, 22, 0, (x, y, out) => {
+      const h = -y, v = h / H, sway = noise(t * 1.6 + h * 0.025, S + 5) * 2.5 * v;
+      const rag = noise2(h * 0.2 - t * 11, x < sway ? 3 : 7, S + 6) * (0.5 + 1.8 * v);
+      const cap = jetOnly ? Math.sqrt(1 - smooth(.76, 1, v)) : 1;
+      if (jetOnly && h > H) return;
+      const w = ((3.6 + 7.5 * Math.pow(v, 1.8)) * thin + rag) * cap, q = (x - sway) / Math.max(1, w), aq = Math.abs(q);
+      if (aq > 1) return;
+      const X = Math.floor(x), streak = noise2(X * 1.618 + 0.3, (tau(h) - t) * 14, S), body = noise2(Math.floor((x + 40) / 2) * 2.3, (tau(h) - t) * 5, S + 1);
+      let lvl = aq < 0.42 ? 0 : aq < 0.7 ? 1 : aq < 0.9 ? 2 : 3;
+      if (q > 0.38) lvl++;
+      if (streak > 0.28) lvl--;
+      if (body < -0.4) lvl++;
+      out.c = jetOnly ? [C[6], C[5], C[4], C[3], C[2]][clamp(lvl, 0, 4)] : [WHITE, C[6], C[5], C[4], C[3]][clamp(lvl, 0, 4)];
+    });
+    p.glowLine(0, 0, 0, -H, 16 + 8 * thin, C[5], 0.12 * thin);
+  }
+
+  // the head: water boiling over at the top and falling back round the column in an umbrella of streaks, foam
+  // billows churning in it, shadowed underneath, lit on top
+export function drawGeyserFoam(p, H, k, back, { C, t, S }) {
+    if (k <= 0.01 || H < 4) return;
+    if (back) {
+      // the umbrella: streaks pouring off the rim of the head, running down and thinning out
+      for (let i = 0; i < 16; i++) {
+        const side = i % 2 ? 1 : -1, x0 = side * (5 + 9 * rand(i, S + 20)) * k, len = (14 + 26 * rand(i, S + 21)) * k, speed = 70 + 50 * rand(i, S + 22);
+        for (let j = 0; j < 3; j++) {
+          const f = (t * speed / len + j / 3 + rand(i, S + 23)) % 1, y0 = -H + 2 + f * len, x = x0 + side * f * f * 6, L = 1 + 4 * f * (1 - f) * 2;
+          if (f < 0.85) p.line(x, y0, x + side * 0.6, y0 + L, f < 0.4 ? C[6] : f < 0.7 ? C[5] : C[4]);
+        }
+      }
+    }
+    for (let i = 0; i < 12; i++) {
+      const a = (i / 12) * TAU + t * (i % 2 ? 1.3 : -1.1), z = Math.sin(a);
+      if (z < 0 !== back) continue;
+      const rho = (3 + 7 * rand(i, S)) * k, x = Math.cos(a) * rho * 1.25 + noise(t * 3 + i, S + 8) * 2.5;
+      const y = -H + z * rho * 0.45 + (rho / 10) * 4 - 4 * (1 - rho / (10 * k)) + noise(t * 3 + i + 50, S + 9) * 2.5, r = (2 + 2.6 * rand(i, S + 2) + 0.7 * Math.sin(t * 7 + i)) * k;
+      if (back) billow(p, x, y, r, [C[0], C[1], C[2], C[3], C[3], C[4], C[5], C[5]]);
+      else {
+        p.circle(x + r * 0.15, y + r * 0.25, r, C[4]);
+        p.circle(x, y, r * 0.82, rho > 6 * k ? C[5] : C[6]);
+        p.circle(x - r * 0.25, y - r * 0.3, r * 0.5, WHITE);
+      }
+    }
+    if (!back) p.glow(0, -H - 2, 38, C[5], 0.34 * k);
+  }

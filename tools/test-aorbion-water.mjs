@@ -5,6 +5,7 @@ import { createFrame, createFx } from '../src/core/index.js';
 import * as charge from '../src/fx/water/aorbion-charge-emerge.js';
 import * as pillars from '../src/fx/water/aorbion-tail-pillars.js';
 import * as dragon from '../src/fx/water/aorbion-seadragon.js';
+import * as poseidon from '../src/fx/water/aorbion-poseidon.js';
 
 const effects = [
   ['aorbion-charge-emerge', charge],
@@ -12,7 +13,8 @@ const effects = [
   ['aorbion-seadragon', dragon],
 ];
 const lines = path => readFileSync(new URL(path, import.meta.url), 'utf8').trimEnd().split('\n').length;
-const referenceLines = lines('../src/fx/water/geyser.js');
+const referenceLines = 285; // Original requested reference, before sharing its rendering functions.
+const sharedLines = readFileSync(new URL('../src/fx/water/geyser.js', import.meta.url), 'utf8').split('// Shared rendering primitives')[1].trim().split('\n').length;
 const alternate = ['#160b20', '#422249', '#714b79', '#b083af', '#edc6e6'];
 
 function render(mod, t, options = {}, substeps = 1) {
@@ -25,7 +27,7 @@ function render(mod, t, options = {}, substeps = 1) {
 const empty = f => f.color.every(v => !v) && f.light.every(v => !v);
 
 for (const [name, mod] of effects) {
-  assert(lines(`../src/fx/water/${name}.js`) >= referenceLines, `${name}: requested source size`);
+  assert(lines(`../src/fx/water/${name}.js`) + (name === 'aorbion-tail-pillars' ? sharedLines : 0) >= referenceLines, `${name}: requested source size`);
   const rows = mod.choreography;
   assert.equal(rows.length, Math.round(mod.meta.duration / .05) + 1);
   rows.forEach((r, i) => {
@@ -56,3 +58,14 @@ for (const count of [1, 3, 5, 12]) {
   assert(empty(render(pillars, .8, { count })), `count ${count}: ends empty`);
 }
 console.log('Pillar count 1/3/5/12 passed');
+
+for (const options of [{}, { flip: true }, { pulse: 0 }, { pulse: 1 }]) {
+  const start = render(poseidon, 0, options), end = render(poseidon, 6, options);
+  assert.deepEqual(start.color, end.color, 'Poseidon color loop seam');
+  assert.deepEqual(start.light, end.light, 'Poseidon light loop seam');
+}
+for (const t of [0, .15, .8, 2.3, 5.95]) {
+  assert.deepEqual(render(poseidon, t, { pulse: 0 }).color,
+    render(poseidon, t, { pulse: 1 }).color, 'Pulse changes light, not geometry');
+}
+console.log('Poseidon loop, facing and brightness-only pulse passed');

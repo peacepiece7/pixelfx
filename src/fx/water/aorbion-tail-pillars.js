@@ -1,7 +1,8 @@
-// The layered column and moving jet-time veins follow water/geyser's technique.
-// Its umbrella overflow is deliberately absent: these are overlapping combat jets.
+// The water column and foam crown directly reuse water/geyser.
+// Reduced crown strength and restrained spray keep these combat jets compact.
 import { Rng, fit, clamp, smooth, noise2 } from "../../core/index.js";
 import { bead, ring, billow } from "./_lib.js";
+import { drawGeyserColumn, drawGeyserFoam } from "./geyser.js";
 import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
@@ -75,47 +76,12 @@ function film(p, C, s, age) {
 }
 
 function column(p, C, s, age, seed, heightScale) {
-  const H = s[1] * heightScale, pressure = s[2];
-  if (H < 1 || pressure <= 0) return;
-  const shift = noise2(age * 5, seed, seed + 1) * 1.8;
-  // Dark translucent sheath is wider than the opaque moving veins.
-  softShade(p, -19, -H - 3, 19, 1, (x, y, out) => {
-    const v = -y / H;
-    if (v < 0 || v > 1) return;
-    const sway = shift * v * v;
-    const crest = Math.sqrt(Math.max(0, 1 - smooth(.8, 1, v)));
-    const w = (5 + 7 * v) * pressure * crest;
-    const q = Math.abs(x - sway) / Math.max(1, w + 2);
-    if (q > 1) return;
-    out.c = q > .8 ? C[2] : C[3];
-    out.a = (.36 + .2 * (1 - q)) * (1 - smooth(.48, .6, age));
-  });
-  // Different-height neighboring streams climb through the translucent sheath.
-  p.shade(-16, -H - 2, 16, 0, (x, y, out) => {
-    const h = -y, v = h / H;
-    if (v < 0 || v > 1) return;
-    const sway = shift * v * v;
-    const rag = noise2(Math.floor(h / 2) * .3 - age * 18, x < sway ? 2 : 8, seed);
-    const cap = Math.sqrt(Math.max(0, 1 - smooth(.77, 1, v)));
-    const w = ((4 + 5.5 * v) * pressure + rag * 1.1) * cap;
-    const q = (x - sway) / Math.max(.7, w);
-    if (Math.abs(q) > 1) return;
-    const flight = Math.sqrt(Math.max(0, h)) * .035;
-    const vein = noise2(Math.floor(x / 2) * 1.7, (age - flight) * 21, seed + 4);
-    const body = noise2(x * .22, h * .1 - age * 8, seed + 6);
-    let index = Math.abs(q) > .84 ? 3 : q > .35 ? 4 : 5;
-    if (vein > .24 && Math.abs(q) < .7) index++;
-    if (body < -.3) index--;
-    if (s[3] > .75 && q > -.4 && q < -.1) index = 7;
-    out.c = C[clamp(index, 2, 7)];
-  });
-  // Unequal cap lobes: no umbrella and no radial cascade.
-  for (const [dx, dh, size] of [[-3, -1, 2.1], [1, -3, 1.7], [4, 2, 1.3]]) {
-    const y = -H + dh + noise2(age * 17, dx, seed) * 1.5;
-    const k = pressure * (.4 + s[3] * .4);
-    if (s[4] > .05) billow(p, dx * pressure, y + 3, size * k, C, .8);
-  }
-  p.glowLine(-1, -3, shift - 1, -H + 4, 9, C[4], s[3] * .09);
+  const H = s[1] * heightScale;
+  if (H < 1 || s[2] <= 0) return;
+  // Use the actual geyser core and foam renderer; reduce its crown, not its texture.
+  const water = { C, t: 1.15 + age * 2.5, HMAX: 66, S: seed };
+  drawGeyserColumn(p, H, s[2], water);
+  drawGeyserFoam(p, H, Math.min(.62, s[4] * 1.3), false, water);
 }
 
 function veins(p, C, s, age, seed, heightScale) {
@@ -262,6 +228,8 @@ export function create(o) {
         p.ty = ty + pillar.y * p.cs;
         if (!front) {
           film(p, C, s, age);
+          drawGeyserFoam(p, s[1] * pillar.heightScale, Math.min(.62, s[4] * 1.3), true,
+            { C, t: 1.15 + age * 2.5, S: pillar.seed });
           waterline(p, C, s[5], 1 - smooth(.25, .8, age), pillar.seed, false);
         } else {
           column(p, C, s, age, pillar.seed, pillar.heightScale);

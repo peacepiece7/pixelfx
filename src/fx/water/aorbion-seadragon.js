@@ -4,7 +4,7 @@ import { haze, pool, softShade } from "../_soft.js";
 
 export const meta = {
   name: "Aorbion sea dragon",
-  desc: "A flowing water dragon unfurls horn, whisker and claw layers; asymmetric body pulses carry illuminated veins over rolling foam, spray and a dissolving wake.",
+  desc: "A legless water spirit flows through translucent currents; a soft indistinct head and trailing wisps dissolve into foam, spray and ripples.",
   tags: ["water", "dragon", "ultimate", "charge", "one-shot"],
   size: [368, 176],
   origin: [24, 128],
@@ -18,8 +18,8 @@ export const meta = {
   },
 };
 
-// 50ms keys: formation, heave, body bend, jaw, near hand, far hand, light, foam, erosion.
-// Opposite hands, jaw, horns and whiskers never share one repeating oscillator.
+// 50ms keys: formation, heave, body bend, three retired anatomical channels, light, foam, erosion.
+// Retired columns retain the timeline layout; only the water body and wisps are rendered.
 export const choreography = [
   [0.00, .00,  0, -.20, .00, -.30,  .10, .00, .00, .00],
   [0.05, .16,  5, -.35, .00, -.25,  .20, .12, .12, .00],
@@ -98,42 +98,6 @@ function whisker(p, C, pts, k) {
   }
 }
 
-function horns(p, C, y, t, s, back) {
-  const delayed = pose(t - (back ? .04 : .015));
-  const flex = delayed[2] - s[2];
-  const k = smooth(.1, .2, t) * (1 - smooth(.74, .84, t));
-  if (!k) return;
-  const x = back ? 264 : 277, length = back ? 25 : 31;
-  const tipX = x - 13 - flex * .7, tipY = y - length - 9;
-  waterPoly(p, [[x - 4, y - 14], [x - 10, y - 24], [tipX, tipY],
-    [tipX + 4, tipY + 3], [x + 3, y - 18]], C[back ? 2 : 3], k);
-  waterPoly(p, [[x - 2, y - 16], [x - 8, y - 26], [tipX, tipY],
-    [tipX + 3, tipY + 4], [x + 1, y - 18]], C[back ? 4 : 5], k);
-  p.line(tipX, tipY, x - 8, y - 25, C[6], k * .8);
-  if (!back) p.glow(tipX + 2, tipY + 4, 5, C[4], s[7] * .16);
-}
-
-function hand(p, C, x, t, s, near, rear, seed) {
-  const y = spine(x, s) + 4;
-  const local = pose(t - (rear ? .045 : near ? 0 : .025));
-  const reach = local[near ? 5 : 6], k = cohesion(x, y, t, s, seed);
-  if (k < .03) return;
-  const side = near ? 1 : -1, ex = x + 9 + reach * 8;
-  const ey = y + side * (10 + reach * 3);
-  const wx = ex - 9 + reach * 7, wy = ey + side * (9 - reach * 3);
-  waterPoly(p, [[x - 4, y], [x + 5, y - 2], [ex + 3, ey],
-    [wx + 3, wy], [wx - 3, wy + 2], [ex - 3, ey + 3]], C[near ? 3 : 2], k);
-  p.polyline([[x + 2, y], [ex, ey], [wx, wy]], C[near ? 5 : 4], k * .9);
-  const grip = smooth(-.2, .75, reach);
-  for (let j = 0; j < 3; j++) {
-    const fx = wx + (j - 1) * 3, fy = wy + side * (2 + j % 2);
-    const tx = fx + 5 - grip * 5, ty = fy + side * (6 - grip * 2);
-    p.polyline([[fx, fy], [tx, ty], [tx + 3, ty - side * (2 + grip * 3)]], C[near ? 6 : 4], k);
-    p.blend(tx, ty + 1, C[2], k * .7);
-  }
-  if (near) haze(p, wx, wy, 5, C[3], k * .1);
-}
-
 function dorsal(p, C, t, s, seed) {
   const fins = [[38, 10], [66, 13], [95, 9], [127, 16], [159, 12], [188, 17], [216, 13], [242, 10]];
   for (let i = 0; i < fins.length; i++) {
@@ -181,32 +145,26 @@ function body(p, C, t, s, seed) {
 function head(p, C, t, s) {
   const y = spine(272, s), k = smooth(.11, .2, t) * (1 - smooth(.78, .9, t));
   if (k <= 0) return;
-  const jaw = s[4] * 5, lag = pose(t - .045)[2] - s[2];
-  horns(p, C, y, t, s, true);
-  waterPoly(p, [[254, y + 8], [255, y - 12], [267, y - 21], [282, y - 18],
-    [291, y - 10], [309, y - 7], [315, y], [308, y + 4], [285, y + 3], [274, y + 13]], C[2], k);
-  waterPoly(p, [[257, y - 7], [270, y - 17], [281, y - 15], [292, y - 6],
-    [308, y - 4], [302, y], [282, y - 1], [268, y + 6]], C[4], k);
-  p.polyline([[259, y - 10], [270, y - 19], [281, y - 17], [291, y - 9]], C[6], k);
-  waterPoly(p, [[280, y + 5], [293, y + 10 + jaw], [308, y + 7 + jaw],
-    [313, y + 2], [298, y + 5], [286, y + 1]], C[2], k);
-  p.polyline([[282, y + 6], [293, y + 10 + jaw], [307, y + 7 + jaw]], C[5], k);
-  waterPoly(p, [[259, y - 7], [271, y - 14], [280, y - 12],
-    [277, y - 7], [264, y + 3]], C[5], k * .55);
-  waterPoly(p, [[284, y - 8], [294, y - 5], [309, y - 4],
-    [306, y - 1], [290, y - 2]], C[6], k * .55);
-  p.line(278, y - 9, 286, y - 7, C[1], k);
-  p.line(280, y - 9, 285, y - 8, C[7], k);
-  p.glow(283, y - 8, 5, C[4], k * s[7] * .3);
-  horns(p, C, y, t, s, false);
-  whisker(p, C, [[302, y + 1], [327, y - 17 - lag], [318, y - 29 + lag], [289, y - 27 + lag * 2]], k);
-  whisker(p, C, [[299, y + 3], [324, y + 19 + lag], [305, y + 29], [278, y + 20 - lag]], k * .8);
-  // Soft beard threads stretch behind the lower jaw with a different delay.
-  const chin = pose(t - .075)[3] * 4;
-  for (const [x, len] of [[287, 13], [294, 19], [301, 11]]) {
-    p.polyline([[x, y + 8 + jaw], [x - len * .45, y + 16 + jaw],
-      [x - len, y + 18 + chin]], C[4], k * .75);
+  // A soft water mass only suggests a head: no eye sockets, jaw plates or facial lines.
+  softShade(p, 250, y - 27, 320, y + 19, (x, yy, out) => {
+    const crown = ((x - 274) / 21) ** 2 + ((yy - y + 5) / 17) ** 2;
+    const muzzle = ((x - 296) / 20) ** 2 + ((yy - y + 1) / 11) ** 2;
+    const flow = noise2(Math.floor(x / 2) * .23 - t * 7, Math.floor(yy / 2) * .2, 47);
+    const d = Math.min(crown, muzzle) + flow * .1;
+    if (d > 1) return;
+    const upper = (yy - y + 22) / 40;
+    out.c = C[d > .78 ? 2 : upper < .3 ? 5 : flow > .25 ? 4 : upper > .68 ? 2 : 3];
+    out.a = k * (.42 + .5 * (1 - smooth(.6, 1, d)));
+  });
+  for (let i = 0; i < 6; i++) {
+    const x = 263 + i * 8, yy = y - 8 + Math.sin(i * 1.7 + s[3]) * 4;
+    haze(p, x, yy, 8 + i % 3, C[4], k * .11);
+    if (i % 2 === 0) billow(p, x, yy - 4, 1.2 + s[8], C, k * .5);
   }
+  const lag = pose(t - .045)[2] - s[2];
+  whisker(p, C, [[298, y + 1], [315, y - 12], [300, y - 21 + lag], [278, y - 18]], k * .38);
+  whisker(p, C, [[298, y + 3], [313, y + 13], [297, y + 20], [278, y + 14 - lag]], k * .3);
+  p.glow(284, y - 7, 14, C[4], k * s[7] * .1);
 }
 
 function droplets(seed) {
@@ -340,8 +298,6 @@ export function drawBack(p, t, o) {
   waterSheets(p, C, t, s, o.seed, false);
   wake(p, C, t, s, o.seed, false);
   for (const d of droplets(o.seed)) spray(p, C, d, t, false);
-  hand(p, C, 162, t, s, false, true, o.seed);
-  hand(p, C, 234, t, s, false, false, o.seed);
   bowFoam(p, C, t, s, o.seed, false);
 }
 
@@ -351,8 +307,6 @@ export function draw(p, t, o) {
   const C = fit(o.palette, 8), s = pose(t);
   dorsal(p, C, t, s, o.seed);
   body(p, C, t, s, o.seed);
-  hand(p, C, 180, t, s, true, true, o.seed);
-  hand(p, C, 244, t, s, true, false, o.seed);
   head(p, C, t, s);
   // Underbody haze follows the articulated spine, never a full-screen glow.
   for (const x of [48, 108, 172, 232]) {
