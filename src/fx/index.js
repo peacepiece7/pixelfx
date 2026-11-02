@@ -149,6 +149,17 @@ import * as arcane_rune_circle from "./arcane/rune-circle.js";
 import * as arcane_spell_charge from "./arcane/spell-charge.js";
 import * as arcane_star_fall from "./arcane/star-fall.js";
 import * as arcane_time_stop from "./arcane/time-stop.js";
+import * as holy_adelvin_aurora_impact from "./holy/adelvin-aurora-impact.js";
+import * as holy_adelvin_bolt from "./holy/adelvin-bolt.js";
+import * as holy_adelvin_heal_impact from "./holy/adelvin-heal-impact.js";
+import * as holy_adelvin_healing_lance from "./holy/adelvin-healing-lance.js";
+import * as holy_adelvin_healing_pulse from "./holy/adelvin-healing-pulse.js";
+import * as holy_adelvin_impact from "./holy/adelvin-impact.js";
+import * as holy_adelvin_lance from "./holy/adelvin-lance.js";
+import * as holy_adelvin_meteor from "./holy/adelvin-meteor.js";
+import * as holy_adelvin_orb_array from "./holy/adelvin-orb-array.js";
+import * as holy_adelvin_orbiting_shields from "./holy/adelvin-orbiting-shields.js";
+import * as holy_adelvin_summon_seal from "./holy/adelvin-summon-seal.js";
 import * as holy_blessing from "./holy/blessing.js";
 import * as holy_divine_shield from "./holy/divine-shield.js";
 import * as holy_feather_burst from "./holy/feather-burst.js";
@@ -421,6 +432,17 @@ export const effects = {
   "arcane/spell-charge": arcane_spell_charge,
   "arcane/star-fall": arcane_star_fall,
   "arcane/time-stop": arcane_time_stop,
+  "holy/adelvin-aurora-impact": holy_adelvin_aurora_impact,
+  "holy/adelvin-bolt": holy_adelvin_bolt,
+  "holy/adelvin-heal-impact": holy_adelvin_heal_impact,
+  "holy/adelvin-healing-lance": holy_adelvin_healing_lance,
+  "holy/adelvin-healing-pulse": holy_adelvin_healing_pulse,
+  "holy/adelvin-impact": holy_adelvin_impact,
+  "holy/adelvin-lance": holy_adelvin_lance,
+  "holy/adelvin-meteor": holy_adelvin_meteor,
+  "holy/adelvin-orb-array": holy_adelvin_orb_array,
+  "holy/adelvin-orbiting-shields": holy_adelvin_orbiting_shields,
+  "holy/adelvin-summon-seal": holy_adelvin_summon_seal,
   "holy/blessing": holy_blessing,
   "holy/divine-shield": holy_divine_shield,
   "holy/feather-burst": holy_feather_burst,
