@@ -42,11 +42,11 @@ export const act = {
 const TOP = -140;
 // the story: the light pours, life climbs the body, wings and halo, the beat, the wings come apart
 const POUR = 0.34, CL0 = 0.5, CL1 = 1.15, W0 = 1.1, H0 = 1.24, H1 = 1.5, B0 = 1.95, B1 = 2.25, B2 = 2.37, B3 = 2.8, SC = 2.95, GONE = 3.85;
-const HX = 0, HY = -47, HRX = 9.5, HRY = 2.6;
+
 
 // the right wing (the left mirrors it), from its shoulder: the arm folded and spread, then each feather
 // [where along the arm 0..1, angle spread, length, width, kind]: 0 primary, 1 secondary, 2 covert
-const SHOULDER = [4, -20];
+
 const ARM_OPEN = [[0, 0], [7, -9], [15, -19], [20, -27]];
 const ARM_FOLD = [[0, 0], [2, -2], [3, -3], [4, -3]];
 const QUILLS = [
@@ -81,6 +81,10 @@ function beat(t) {
 
 export function create(o) {
   const C = fit(o.palette, 8), AS = fit(o.ash, 6), A = o.actor, S = shapeOf(A), R = new Rng(o.seed);
+  // Anchor highlights to the supplied sprite, rather than the 38px stock actor.
+  const bodyHeight = Math.max(1, S.bottom - S.top), wingScale = Math.max(1, Math.min(1.6, bodyHeight / 38));
+  const HX = 0, HY = S.top - 9, HRX = 9.5 * wingScale, HRY = 2.6 * wingScale;
+  const SHOULDER = [4 * wingScale, S.top + bodyHeight * 18 / 38];
   const WING = [C[2], C[3], C[4], C[5], C[6], WHITE];
   const ps = new Particles({ rng: R, ground: () => 0, sparks: [WHITE, C[6], C[5], C[3]], haze: C[4] });
   const lights = new Lights(), loose = new Feathers(R, 0);
@@ -108,13 +112,13 @@ export function create(o) {
   function wing(tt, side) {
     const oa = ease.outBack(seg(tt, W0, W0 + 0.4), 1.6), rot = beat(tt), om = (beat(tt) - beat(tt - 0.03)) / 0.03;
     const arm = ARM_FOLD.map((f, i) => [lerp(f[0], ARM_OPEN[i][0], oa), lerp(f[1], ARM_OPEN[i][1], oa)]);
-    const cr = Math.cos(rot), sr = Math.sin(rot), place = ([x, y]) => [side * (SHOULDER[0] + x * cr - y * sr), SHOULDER[1] + x * sr + y * cr];
+    const cr = Math.cos(rot), sr = Math.sin(rot), place = ([x, y]) => [side * (SHOULDER[0] + (x * cr - y * sr) * wingScale), SHOULDER[1] + (x * sr + y * cr) * wingScale];
     const a0 = smooth(W0, W0 + 0.1, tt), out = [];
     quills.forEach((q, i) => {
       if (tt >= q.off[side > 0 ? 0 : 1] + 0.05) return;
       const of = ease.outBack(seg(tt, W0 + q.open, W0 + q.open + 0.42), 2), [bx, by] = place(along(arm, q.s));
       const ang = lerp(q.fold, q.ang, of) + rot - clamp(om * 0.045 * FLEX[q.kind], -0.5, 0.5);
-      out.push({ i, q, x: bx, y: by, ang: side > 0 ? ang : Math.PI - ang, len: q.len * lerp(0.3, 1, of), wid: q.wid, a: a0, hot: tt < W0 + q.open + 0.07 || tt >= q.off[side > 0 ? 0 : 1] ? 1 : 0 });
+      out.push({ i, q, x: bx, y: by, ang: side > 0 ? ang : Math.PI - ang, len: q.len * lerp(0.3, 1, of) * wingScale, wid: q.wid * wingScale, a: a0, hot: tt < W0 + q.open + 0.07 || tt >= q.off[side > 0 ? 0 : 1] ? 1 : 0 });
     });
     return { out, arm: arm.map(place) };
   }
