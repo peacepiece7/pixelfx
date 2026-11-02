@@ -11,24 +11,28 @@
   "animations": {
     "walk": {
       "path": "monsters/ghoul/runtime/walk.png",
-      "frames": 6,
-      "fps": 8.0,
+      "frames": 16,
+      "fps": 20.0,
       "pivot": [
-        21,
-        37
+        16,
+        34
       ],
       "loop": true
     },
     "attack": {
       "path": "monsters/ghoul/runtime/attack.png",
-      "frames": 4,
-      "fps": 10.0,
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        36,
-        34
+        23,
+        35
       ],
       "loop": false,
-      "hitFrame": 2
+      "hitFrame": 6,
+      "tip": [
+        -23,
+        -26
+      ]
     },
     "hit": {
       "path": "monsters/ghoul/runtime/hit.png",

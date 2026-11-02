@@ -21,27 +21,27 @@
     },
     "move": {
       "path": "characters/brynhild/runtime/move.png",
-      "frames": 6,
-      "fps": 10.0,
+      "frames": 16,
+      "fps": 24.0,
       "pivot": [
-        30,
-        49
+        28,
+        46
       ],
       "loop": true
     },
     "attack": {
       "path": "characters/brynhild/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        34,
-        58
+        30,
+        59
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        28,
-        -4
+        38,
+        -18
       ]
     },
     "hit": {
@@ -93,6 +93,36 @@
         66
       ],
       "loop": false
+    },
+    "attack-side": {
+      "path": "characters/brynhild/runtime/attack-side.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        33,
+        47
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        32,
+        -27
+      ]
+    },
+    "attack-return": {
+      "path": "characters/brynhild/runtime/attack-return.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        28,
+        50
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        24,
+        -35
+      ]
     }
   },
   "portraitPath": "characters/brynhild/runtime/portrait.png",
