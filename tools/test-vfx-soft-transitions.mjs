@@ -4,7 +4,7 @@ import {createFrame,painterFor,resolveOptions} from '../src/core/index.js';
 import {haze,pool,softBand} from '../src/fx/_soft.js';
 import * as support from '../src/fx/projectiles/rosilia-support-shot.js';
 const render=pulse=>{
- const f=createFrame(200,120),p=painterFor(f).place(100,87),o=resolveOptions(support.meta,{pulse});
+ const f=createFrame(...support.meta.size),p=painterFor(f).place(...support.meta.origin),o=resolveOptions(support.meta,{pulse});
  support.drawBack(p,.2,o);support.draw(p,.2,o);return f;
 };
 const light=f=>f.light.reduce((n,c)=>n+(c&255)+(c>>>8&255)+(c>>>16&255),0);

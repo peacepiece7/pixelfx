@@ -3,9 +3,9 @@ import { Rng, fit, smooth, clamp, TAU, sparkle } from '../../core/index.js';
 
 export const meta = {
   name: 'Rosilia support shot',
-  desc: 'A brass round buries into the reticle: an ivory impact fan, twin pressure waves, flying stone and brass, and a rising dust plume. The wake fades oldest first.',
+  desc: 'A long tapered wake follows a brass round into a hollow, drifting rifle sight; an ivory blast, twin pressure waves, stone and dust erupt on contact.',
   tags: ['projectiles', 'impact', 'debris', 'loop'],
-  size: [200, 120], origin: [100, 87], duration: 2, loop: true, fps: 30, bg: 'ground',
+  size: [240, 180], origin: [128, 148], duration: 2, loop: true, fps: 30, bg: 'ground',
   options: {
     palette: ['#251b19', '#564239', '#866a46', '#b59a63', '#ddc98a', '#f7e9bd', '#ffffff'],
     radius: 62, seed: 17, pulse: 0,
@@ -40,26 +40,33 @@ function pose(o) {
 function sight(p, t, o, C) {
   const phase = ((t % meta.duration) + meta.duration) % meta.duration * TAU / meta.duration;
   const breath = .5 - .5 * Math.cos(phase);
-  const radius = (o.radius ?? 62) + Math.sin(phase) * 1.25;
-  const rotation = Math.sin(phase) * .035;
-  const ramp = C.slice(1, 5);
-  softBand(p, 0, 0, radius, .24, 1.6, .38, ramp,
-    a => Math.cos((a - rotation) * 4) < .91);
-  // Overlapping pale rim changes colour smoothly, without a palette step.
-  softBand(p, 0, 0, radius, .24, 1.1, breath * .26, C.slice(3, 6),
-    a => Math.cos((a - rotation) * 4) < .91);
-  pool(p, 0, 0, radius, 19, C[3], .055 + breath * .045);
-  for (let i = 0; i < 4; i++) {
-    const a = i * TAU / 4 + rotation;
-    const x = Math.cos(a), y = Math.sin(a) * .24;
-    p.line(x * (radius - 8), y * (radius - 8), x * (radius - 2), y * (radius - 2), C[4], .7);
+  const radius = (o.radius ?? 62) * (1 + .025 * Math.sin(phase));
+  const cx = Math.sin(phase) * 2.5, cy = Math.sin(phase * 2) * .5;
+  const rotation = Math.sin(phase) * .045;
+  // Simplified Valhalla rim construction: hollow brass sight, without runes/fill.
+  const keep = a => Math.cos((a - rotation) * 4) < .94;
+  softBand(p, cx, cy, radius, .30, 2.8, .95, C.slice(3, 6), keep);
+  softBand(p, cx, cy, radius - 5, .30, 1.2, .7, C.slice(2, 5), keep);
+  // Large moving plus; gaps before the perimeter and short transverse end bars.
+  const crossX = cx + Math.sin(phase * 2) * 5;
+  const crossY = cy + Math.sin(phase) * 1.2;
+  const arm = radius * (.72 + breath * .05);
+  p.line(crossX - arm, crossY, crossX + arm, crossY, C[5]);
+  p.line(crossX, crossY - arm * .30, crossX, crossY + arm * .30, C[5]);
+  for (const side of [-1, 1]) {
+    const x = crossX + side * arm, y = crossY + side * arm * .30;
+    p.line(x, crossY - 2.5, x, crossY + 2.5, C[5]);
+    p.line(crossX - 5, y, crossX + 5, y, C[5]);
+    // Separate outer ticks cross the rim gap, like a rifle scope's range marks.
+    p.line(cx + side * (radius - 1), cy, cx + side * (radius + 5), cy, C[5]);
+    p.line(cx, cy + side * (radius * .30 - 1), cx, cy + side * (radius * .30 + 3), C[5]);
   }
-  // Four short travelling accents, not a rotating solid magic disc.
-  for (let i = 0; i < 4; i++) {
-    const a = i * TAU / 4 + phase;
-    const x = Math.cos(a) * radius, y = Math.sin(a) * radius * .24;
-    p.glow(x, y, 3, C[4], .12);
+  for (let i = 0; i < 8; i++) {
+    const a = i * TAU / 8 + rotation;
+    const x = cx + Math.cos(a) * radius, y = cy + Math.sin(a) * radius * .30;
+    p.glow(x, y, 5, C[4], .10 + breath * .06);
   }
+
 }
 
 function fractures(p, seconds, strength, C, seed) {
@@ -105,38 +112,37 @@ export function drawBack(p, t, o) {
 }
 
 // A local coordinate along the descending round and its perpendicular.
-const DX = .716, DY = .698;
+const DX = 108 / Math.hypot(108, 130), DY = 130 / Math.hypot(108, 130);
 function point(x, y, along, across) {
   return [x + DX * along - DY * across, y + DY * along + DX * across];
 }
 
 function wake(p, seconds, C) {
-  // Each piece is born when the projectile passes it, never ahead of the tip.
-  // The upstream pieces are older and disappear first; the endpoint persists.
-  for (let i = 0; i < 24; i++) {
-    const q = i / 24, born = .05 * (q <= .42 ? q / .42 : 1 + (q - .42) / .58);
+  const flight = seconds <= .05 ? seconds / .05 * .42 : .42 + (seconds - .05) / .05 * .58;
+  const head = clamp(flight);
+  // The newest part at the bullet is thick; the old upstream tail narrows to a hair.
+  // Age erases the upstream end first after contact, without moving the strike.
+  softShade(p, -113, -135, 6, 6, (x, y, out) => {
+    const along = (x + 108) * DX + (y + 130) * DY;
+    const length = Math.hypot(108, 130), q = along / length;
+    if (q < 0 || q > head) return;
+    const born = .05 * (q <= .42 ? q / .42 : 1 + (q - .42) / .58);
     const age = seconds - born;
-    if (age < 0) continue;
-    const fade = (1 - smooth(.075, .17, age)) * smooth(0, .012, age);
-    if (!fade) continue;
-    const x = -73 * (1 - q), y = -71 * (1 - q);
-    const end = point(x, y, 4.5, 0);
-    // Narrow opaque-ish copper wake under a very restrained soft halo.
-    p.glowLine(x, y, ...end, 3, C[3], fade * .10);
-    softShade(p, x - 2, y - 2, end[0] + 2, end[1] + 2, (px, py, out) => {
-      const along = (px - x) * DX + (py - y) * DY;
-      const across = Math.abs(-(px - x) * DY + (py - y) * DX);
-      if (along < 0 || along > 4.5 || across > 1.7) return;
-      out.c = across < .55 ? C[5] : C[3];
-      out.a = fade * .65 * (1 - across / 1.7);
-    });
-  }
+    const fade = 1 - smooth(.13, .25, age);
+    const across = Math.abs(-(x + 108) * DY + (y + 130) * DX);
+    const width = .2 + 5.4 * (q / Math.max(.001, head)) ** 1.7;
+    if (across >= width || fade <= 0) return;
+    const edge = across / width;
+    out.c = edge < .25 ? C[6] : edge < .58 ? C[5] : C[3];
+    out.a = fade * (1 - edge * .7) * smooth(0, .025, q);
+    out.l = C[4]; out.k = fade * (1 - edge) * .16;
+  });
 }
 
 function round(p, flight, burial, C) {
   if (burial >= 1) return;
-  const x = -73 * (1 - flight) + burial * 14;
-  const y = -71 * (1 - flight) + burial * 14;
+  const x = -108 * (1 - flight) + burial * 14;
+  const y = -130 * (1 - flight) + burial * 14;
   const at = (along, across) => {
     const [px, py] = point(x, y, along, across);
     return [px, Math.min(2, py)];
