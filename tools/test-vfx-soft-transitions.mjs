@@ -8,8 +8,8 @@ const render=pulse=>{
  support.drawBack(p,.2,o);support.draw(p,.2,o);return f;
 };
 const light=f=>f.light.reduce((n,c)=>n+(c&255)+(c>>>8&255)+(c>>>16&255),0);
-assert(light(render(.88))>light(render(.3))*2,'contact flashes brighter than settling dust');
-assert.notDeepEqual(render(.98),render(.88),'travelling tracer is distinct from ground contact');
+assert(light(render(1-.1/.35))>light(render(.3))*2,'contact flashes brighter than settling dust');
+assert.notDeepEqual(render(.98),render(1-.1/.35),'travelling tracer is distinct from ground contact');
 assert.notDeepEqual(render(.65),render(.25),'dust expands and settles instead of holding a sticker');
 const f=createFrame(100,50),p=painterFor(f).place(50,25);
 haze(p,0,0,9,0xffffffff,.6);
