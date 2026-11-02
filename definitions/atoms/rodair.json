@@ -63,6 +63,36 @@
         41
       ],
       "loop": false
+    },
+    "charge": {
+      "path": "characters/rodair/runtime/charge.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        21,
+        55
+      ],
+      "loop": false
+    },
+    "slam": {
+      "path": "characters/rodair/runtime/slam.png",
+      "frames": 3,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        40
+      ],
+      "loop": false
+    },
+    "spin": {
+      "path": "characters/rodair/runtime/spin.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        27,
+        41
+      ],
+      "loop": true
     }
   }
 }
