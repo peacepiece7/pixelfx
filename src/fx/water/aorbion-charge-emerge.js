@@ -1,14 +1,74 @@
-import { Rng, fit, smooth, clamp, TAU, band, sparkle } from "../../core/index.js";
+import { Rng, fit, smooth, clamp, ease, noise2, TAU } from "../../core/index.js";
+import { Drops, Ripples, lace, billow } from "./_lib.js";
 
-export const meta = {"name": "Aorbion charge emerge", "desc": "A single narrow 100px forward surge breaks the surface with three claw tracks and a trailing spray; fixed to the chosen emergence direction.", "tags": ["water", "one-shot"], "size": [144, 88], "origin": [25, 61], "duration": 0.65, "loop": false, "fps": 30, "bg": "ground", options: { palette: ["#071e38", "#0c4169", "#147d9c", "#32b9d0", "#8de8ed", "#e3ffff"], seed: 17 } };
+export const meta = {
+  name: "Aorbion charge emerge",
+  desc: "A foaming bow wave races 100px forward as three sharp water-claw ribbons rake through it; spray arcs down into ripples and a lacy wake drains away.",
+  tags: ["water", "charge", "claw", "splash", "one-shot"],
+  size: [176, 104], origin: [30, 76], duration: 0.65, loop: false, fps: 30, bg: "ground",
+  options: { palette: ["#071e38", "#0c4169", "#147d9c", "#32b9d0", "#8de8ed", "#e3ffff"], seed: 17 },
+};
 
-export function create(o){const C=fit(o.palette,6),R=new Rng(o.seed),drops=Array.from({length:24},()=>({x:R.range(0,85),vx:R.range(-12,14),vy:R.range(-50,-15)}));let e=0,t=0;
- return {update(dt){e+=dt;t=Math.round(e*1e9)/1e9;},draw(p){if(t>=meta.duration)return;
-  const grow=smooth(0,.12,t),fade=1-smooth(.2,.65,t);
-  for(let i=0;i<45;i++){const x=i*2.2*grow,w=Math.sin(i/45*Math.PI)*5;
-   p.line(x,-4-w,x,-4+w,C[2],fade*.45);p.blend(x,-4-w,C[4],fade*.8);}
-  for(let j=0;j<3;j++){const pts=[];for(let i=0;i<=40;i++){const x=i*2.5*grow,y=-4+(j-1)*7+Math.sin(i/40*Math.PI)*(-9-j*2);pts.push([x,y]);}
-   p.polyline(pts,C[j===1?5:3],fade);if(j===1)p.glowLine(0,-4,95*grow,-4,5,C[3],fade*.17);}
-  for(const d of drops){const y=d.vy*t+100*t*t;if(y>4)continue;p.line(d.x+d.vx*t,y-2,d.x+d.vx*t,y,C[3],fade);p.dot(d.x+d.vx*t,y,C[5],fade);}
-  if(t<.12)sparkle(p,3,-3,8*(1-t/.12),C[5],C[3]);
- }};}
+export function create(o) {
+  const C = fit(o.palette, 8), R = new Rng(o.seed), rings = new Ripples({ sy: 0.25 });
+  const drops = new Drops({ sy: 0.25, g: 840, onLand: d => {
+    rings.add(d.x, d.z, 1, 2 + d.s, 0.18, { n: 1, k: 0.65 });
+  } });
+  for (let i = 0; i < 42; i++) {
+    const x = R.range(1, 98), side = R.sign();
+    drops.add({ x, z: side * R.range(2, 24), h: R.range(1, 6), vx: R.range(15, 62),
+      vz: side * R.range(10, 38), vh: R.range(50, 130), s: R.int(1, 3),
+      delay: x / 100 * 0.13, life: 0.5 });
+  }
+  const foam = Array.from({ length: 11 }, () => ({ y: R.range(-9, 7), size: R.range(1.8, 3.6), phase: R.range(0, TAU) }));
+  let elapsed = 0;
+  const fade = () => 1 - smooth(0.28, 0.65, elapsed);
+  return {
+    update(dt) { elapsed += dt; drops.update(dt); rings.update(dt); },
+    drawBack(p) {
+      if (elapsed >= meta.duration) return;
+      const head = 100 * ease.outCubic(clamp(elapsed / 0.18)), k = fade();
+      // Narrow footprint and broken foam persist after the forward crest passes.
+      p.ellipse(head * 0.5, 0, Math.max(0.1, head * 0.5), 8, C[1], k * 0.25);
+      lace(p, head * 0.5, 0, head * 0.5, 9, k * 0.8, C, elapsed * 8, o.seed);
+      rings.draw(p, C, "back"); drops.draw(p, C, "back");
+    },
+    draw(p) {
+      if (elapsed >= meta.duration) return;
+      const t = elapsed, k = fade(), head = 100 * ease.outCubic(clamp(t / 0.18));
+      const surge = 1 - smooth(0.16, 0.36, t);
+      // Shaded, curling front: deep underside, bright rolling lip, and running water texture.
+      if (surge > 0 && head > 1) {
+        p.shade(0, -24, head + 4, 10, (x, y, out) => {
+          const u = x / head;
+          if (u < 0 || u > 1) return;
+          const height = 3 + 15 * Math.exp(-(((x - head + 7) / 10) ** 2));
+          const width = 8 * Math.sin(Math.PI * u) + 2;
+          if (y > width * 0.5 || y < -height) return;
+          const rim = y < -height + 1.5;
+          const flow = noise2(x * 0.3 - t * 30, y * 0.5, o.seed);
+          out.c = rim ? C[7] : y < -height * 0.65 ? C[5] : flow > 0.2 ? C[4] : C[2];
+          out.a = surge;
+        });
+        for (const f of foam)
+          billow(p, head - 5 + Math.sin(f.phase + t * 25) * 3, f.y - 10, f.size * surge, C, surge);
+      }
+      // Three tapered lens-shaped claws open quickly, then close from both ends.
+      for (let j = 0; j < 3; j++) {
+        const u = t - j * 0.024;
+        if (u < 0) continue;
+        const progress = ease.outCubic(clamp(u / 0.11)), close = smooth(0.14, 0.4, u);
+        const lo = 8 + close * 40, hi = Math.min(100 * progress, 100 - close * 40);
+        if (hi <= lo) continue;
+        p.shade(lo, -37, hi, 7, (x, y, out) => {
+          const q = (x - 8) / 92, cy = (j - 1) * 6 - 6 - Math.sin(Math.PI * q) * (12 + j * 2);
+          const w = 2.7 * Math.sin(Math.PI * q) * (1 - close);
+          const d = Math.abs(y - cy) / Math.max(0.1, w);
+          if (d > 1) return;
+          out.c = d < 0.32 ? C[7] : d < 0.7 ? C[5] : C[3]; out.a = k;
+        });
+      }
+      drops.draw(p, C, "front"); rings.draw(p, C, "front");
+    },
+  };
+}
