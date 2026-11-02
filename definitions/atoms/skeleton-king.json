@@ -1,0 +1,39 @@
+{
+  "id": "skeleton-king",
+  "name": "백골왕 오스칼",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/skeleton-king/runtime/concept.png",
+  "pivot": [
+    37,
+    104
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/skeleton-king/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        37,
+        104
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "monsters/skeleton-king/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        37,
+        104
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}
