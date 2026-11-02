@@ -17,7 +17,10 @@ export const act = {
 
 export function create(o) {
   const C = fit(o.palette, 7), R = new Rng(o.seed);
-  const spraySpeeds = Array.from({ length: 12 }, () => R.range(0, 55));
+  const sheets = Array.from({ length: 8 }, (_, i) => ({
+    side: i % 2 ? 1 : -1, reach: R.range(28, 48), height: R.range(35, 84),
+    delay: i * 0.012, width: R.range(7, 12), speed: R.range(190, 240),
+  }));
   // The 70-unit combat radius is projected to 56 px to fit the requested canvas.
   const cracks = Array.from({ length: 11 }, (_, i) => {
     const a = i * Math.PI * 2 / 11 + R.range(-0.12, 0.12);
@@ -28,8 +31,8 @@ export function create(o) {
   });
   const drops = Array.from({ length: 40 }, () => {
     const vy = -R.range(190, 280), flight = -vy / 260, vx = R.range(-57, 57);
-    return { start: R.range(0.27, 0.46), flight, vx, vy,
-      floor: R.range(-9, 12), s: R.range(0.8, 2.2), c: R.int(2, 4) };
+    return { start: R.range(0.25, 0.4), flight, vx, vy,
+      floor: R.range(-9, 12), s: R.range(1.1, 2.8), c: R.int(2, 4) };
   });
   let t = 0;
   const fade = () => 1 - smooth(1.08, 1.4, t);
@@ -45,7 +48,7 @@ export function create(o) {
       const end = Math.min(4, Math.floor(swell * 5));
       p.polyline(pts.slice(0, end + 1), C[3], a);
       if (end >= 3) p.line(pts[2][0], pts[2][1], pts[3][0] - 5, pts[3][1] + 3, C[2], a);
-      if (t < 0.55) p.polyline(pts.slice(0, end + 1), C[5], swell * (1 - smooth(0.25, 0.55, t)));
+      if (t < 0.55) p.polyline(pts.slice(0, end + 1), C[4], swell * (1 - smooth(0.25, 0.55, t)));
     }
     p.glow(0, -2, 35, C[3], 0.32 * swell * a);
     for (const d of drops) {
@@ -64,37 +67,57 @@ export function create(o) {
       if (t >= meta.duration) return;
       ground(p, false);
       const age = t - 0.25;
-      if (age > 0 && age < 0.8) {
-        const rise = smooth(0, 0.13, age), collapse = smooth(0.3, 0.8, age);
-        const height = 108 * rise * (1 - collapse), opacity = 1 - smooth(0.44, 0.8, age);
-        // One connected, opaque sheet rises from the floor. Broad torn crests replace tendrils.
+      // A fast succession of broad torn splash sheets opens like a crown from the floor.
+      for (const sheet of sheets) {
+        const u = age - sheet.delay;
+        if (u <= 0 || u >= 0.52) continue;
+        const open = 1 - (1 - clamp(u / 0.085)) ** 3;
+        const fall = smooth(0.15, 0.52, u), k = 1 - smooth(0.24, 0.52, u);
+        const sx = sheet.side, x = sheet.reach * open, h = sheet.height * open * (1 - fall * 0.65), w = sheet.width;
+        const pts = [[sx * 4, 1], [sx * (x * 0.4 - w), -h * 0.42],
+          [sx * (x * 0.68 - w * 0.5), -h * 0.83], [sx * x, -h],
+          [sx * (x - 3), -h * 0.77], [sx * (x * 0.66 + w * 0.35), -h * 0.62],
+          [sx * (x * 0.6 + w), -h * 0.24], [sx * 20, 1]];
+        p.poly(pts, C[1], k);
+        p.poly(pts.map(([px, py]) => [px * 0.91, py * 0.94]), C[3], k);
+        p.polyline([[sx * 7, 0], [sx * x * 0.58, -h * 0.48], [sx * (x - 3), -h * 0.91]], C[4], k);
+      }
+      if (age > 0 && age < 0.63) {
+        const rise = smooth(0, 0.12, age), collapse = smooth(0.28, 0.78, age);
+        const height = 104 * rise * (1 - collapse);
+        // The fountain falls back down, rather than turning into transparent flames.
+        const opacity = 1 - smooth(0.68, 0.8, age);
         p.shade(-43, -112, 43, 3, (x, y, out) => {
           if (y > 1 || height < 1) return;
           const q = Math.max(0, -y / height);
-          if (q < 0 || q > 1) return;
-          const width = (34 - 18 * q) * rise + Math.sin(y * 0.22 + age * 32) * 2;
-          const crest = height * (0.78 + 0.12 * Math.cos(x * 0.3) + 0.09 * Math.sin(x * 0.65 + age * 18));
-          if (Math.abs(x) > width || -y > crest) return;
-          const edge = Math.abs(x) / Math.max(1, width);
-          const flow = Math.sin(x * 0.47 + Math.sin(y * 0.06 + age * 20) * 0.9);
-          out.c = edge > 0.9 ? C[1] : edge > 0.73 ? C[3] : flow > 0.55 ? C[5] : flow > -0.15 ? C[4] : C[2];
+          if (q > 1) return;
+          const drift = Math.sin(y * 0.09 + age * 17) * 3 * q;
+          const width = (32 - 8 * q) * rise + Math.sin(y * 0.26 + age * 27) * 2;
+          const crest = height * (0.8 + 0.1 * Math.sin(x * 0.22 + age * 10) + 0.07 * Math.cos(x * 0.51));
+          if (Math.abs(x - drift) > width || -y > crest) return;
+          const edge = Math.abs(x - drift) / Math.max(1, width);
+          const flow = Math.sin(x * 0.29 + Math.sin((y + age * 160) * 0.1) * 1.7);
+          out.c = edge > 0.9 ? C[1] : edge > 0.72 ? C[2] : flow > 0.82 ? C[4] : flow > -0.25 ? C[3] : C[2];
           out.a = opacity;
-          out.l = C[4];
-          out.k = (1 - edge) * 0.2 * opacity;
+          out.l = C[3];
+          out.k = (1 - edge) * 0.12 * opacity;
         });
-        // Short detached sheets move upward and spread, then fall away as spray.
-        for (let i = 0; i < 12; i++) {
-          const u = age - i * 0.014;
-          if (u < 0 || u > 0.42) continue;
-          const side = i % 2 ? 1 : -1, x = side * (12 + u * (45 + i * 3));
-          const y = -u * (190 + spraySpeeds[i]) + 200 * u * u;
-          p.beam(x - side * 3, y + 8, x, y, 2.5, C[i % 3 === 0 ? 4 : 3], opacity);
+        // Broad torn sheets peel off the connected fountain, then fall under gravity.
+        for (const sheet of sheets) {
+          const u = age - sheet.delay;
+          if (u < 0 || u > 0.5) continue;
+          const x = sheet.side * (18 + (sheet.reach - 18) * smooth(0, .5, u));
+          const y = -sheet.height * Math.sin(u / .55 * Math.PI);
+          const w = sheet.width * (1 - u / 0.6), h = 9 * Math.sin(u / 0.5 * Math.PI);
+          const points = [[x - w, y + h], [x - w * .7, y - h], [x, y - h * 1.3], [x + w, y - h * .3], [x + w * .6, y + h]];
+          p.poly(points, C[2], opacity);
+          p.line(x - w * .5, y - h * .6, x + w * .5, y + h * .3, C[4], opacity);
         }
       }
       const flash = clamp(1 - (t - 0.25) / 0.1);
       if (t >= 0.25 && flash > 0) {
-        p.ellipse(0, -25, 12 * flash, 16 * flash, C[5], flash);
-        p.glow(0, -12, 36, C[5], flash * 0.7);
+        p.ellipse(0, -2, 27 * flash, 5 * flash, C[6], flash);
+        p.glow(0, -3, 30, C[4], flash * 0.5);
       }
       for (const d of drops) {
         const u = t - d.start;
