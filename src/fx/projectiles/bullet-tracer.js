@@ -16,13 +16,16 @@ export const meta = {
   options: {
     palette: ["#4a1712", "#8a1f17", "#c9281f", "#f2561d", "#ff8a2a", "#ffc23d", "#ffe26b", "#fff3a6", "#ffffff"],
     smoke: ["#2e2a36", "#46404f", "#625b6b", "#817a8a", "#a39caa"],
-    length: 120,
+    length: 60,
+    thickness: 0.5,
+    smokeCount: 0,
+    sparkCount: 3,
     speed: 520,
     seed: 4,
   },
 };
 
-const SLUG = ["..oyyp..", ".ypwwwwp", "ywwwwwww", ".ypwwwwp", "..oyyp.."];
+const SLUG = [".yp.", "ywww", ".yp."];
 
 export function draw(p, t, o) {
   const F = fit(o.palette, 9), SM = fit(o.smoke, 5), S = o.seed, D = meta.duration, L = o.length, V = o.speed;
@@ -30,7 +33,7 @@ export function draw(p, t, o) {
 
   // a thread of smoke off the cool end of the trace, wavering as it thins
   const puffs = [];
-  beat(t, D, 18, S + 7, (r) => r.range(0.5, 0.7), (age, life, r) => {
+  beat(t, D, o.smokeCount, S + 7, (r) => r.range(0.5, 0.7), (age, life, r) => {
     const k = age / life, x = -L * r.range(0.45, 0.8) - age * 90, y = 0.5 + Math.sin(age * 6 + r.range(0, TAU)) * age * 3 - age * age * 8;
     if (x < left + 6) return;
     puffs.push({ x, y, r: 1.2 + age * 4, a: 0.55 * (1 - k) * Math.min(1, age * 8) * smooth(left, left + 30, x), b: 0.95 - k * 0.4, w: 0 });
@@ -45,7 +48,7 @@ export function draw(p, t, o) {
   p.shade(-HOT - 1, -4, 1, 5, (x, y) => {
     const d = -x, u = d / HOT;
     if (u < 0 || u > 1) return;
-    const w = 0.7 + 2.3 * Math.pow(1 - u, 1.4) * (0.9 + 0.1 * Math.sin(d * 0.8 - ph * 12)), v = Math.abs(y - yAt(d)) / w;
+    const w = (0.7 + 2.3 * Math.pow(1 - u, 1.4) * (0.9 + 0.1 * Math.sin(d * 0.8 - ph * 12))) * o.thickness, v = Math.abs(y - yAt(d)) / w;
     if (v > 1) return;
     const h = heat(d);
     return v < 0.38 ? (h > 0.8 ? WHITE : F[7]) : v < 0.7 ? (h > 0.75 ? F[7] : h > 0.6 ? F[6] : F[5]) : u < 0.5 ? F[5] : F[4];
@@ -56,18 +59,18 @@ export function draw(p, t, o) {
     const c = h > 0.55 ? F[6] : h > 0.42 ? F[5] : h > 0.3 ? F[4] : h > 0.18 ? F[3] : h > 0.08 ? F[2] : F[1];
     p.dot(-d, yAt(d), c, u < 0.85 ? 1 : (1 - u) / 0.15);
   }
-  p.glowLine(-2, 1, -L * 0.45, 1, 6, F[4], 0.35);
-  p.glowLine(-2, 1, -L * 0.2, 1, 3, F[7], 0.3);
+  p.glowLine(-2, 1, -L * 0.45, 1, 3, F[4], 0.16);
+  p.glowLine(-2, 1, -L * 0.2, 1, 2, F[7], 0.15);
 
   // sparks of burning compound shed off the trace, dropping and cooling as they fall behind
   const SP = [F[7], F[6], F[4], F[3]];
-  beat(t, D, 16, S + 2, (r) => r.range(0.1, 0.28), (age, life, r) => {
+  beat(t, D, o.sparkCount, S + 2, (r) => r.range(0.1, 0.28), (age, life, r) => {
     const [x, y, vx, vy] = wake(-r.range(4, L * 0.5), 0.5 + r.range(-0.5, 1), -r.range(10, 80), r.range(-60, 50), age, V * 0.35, 3, 260);
     if (x > left + 8) spark(p, x, y, vx, vy, 1 - age / life, SP, 0.45, 0.012, 6);
   });
 
   // the slug: a white-hot pointed round, pale-rimmed, its nose a point of light
   p.sprite(SLUG, { w: WHITE, p: F[7], y: F[6], o: F[5] }, -1, -1);
-  p.glow(2, 1, 24, F[4], 0.5);
-  p.glow(3, 1, 8, WHITE, 0.55);
+  p.glow(2, 1, 10, F[4], 0.2);
+  p.glow(3, 1, 4, WHITE, 0.25);
 }
