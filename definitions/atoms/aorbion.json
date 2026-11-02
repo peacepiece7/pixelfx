@@ -31,17 +31,17 @@
     },
     "attack": {
       "path": "characters/aorbion/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        32,
-        46
+        31,
+        47
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        41,
-        -26
+        30,
+        -28
       ]
     },
     "hit": {

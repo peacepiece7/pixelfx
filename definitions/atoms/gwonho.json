@@ -21,11 +21,11 @@
     },
     "move": {
       "path": "characters/gwonho/runtime/move.png",
-      "frames": 6,
-      "fps": 10.0,
+      "frames": 16,
+      "fps": 24.0,
       "pivot": [
-        22,
-        45
+        25,
+        46
       ],
       "loop": true
     },

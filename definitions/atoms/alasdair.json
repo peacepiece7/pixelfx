@@ -21,11 +21,11 @@
     },
     "move": {
       "path": "characters/alasdair/runtime/move.png",
-      "frames": 6,
-      "fps": 10.0,
+      "frames": 16,
+      "fps": 24.0,
       "pivot": [
-        48,
-        49
+        28,
+        45
       ],
       "loop": true
     },

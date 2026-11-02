@@ -21,11 +21,11 @@
     },
     "move": {
       "path": "characters/vesper/runtime/move.png",
-      "frames": 6,
-      "fps": 10.0,
+      "frames": 16,
+      "fps": 24.0,
       "pivot": [
-        44,
-        53
+        23,
+        43
       ],
       "loop": true
     },

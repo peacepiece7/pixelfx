@@ -21,16 +21,16 @@
     },
     "attack": {
       "path": "characters/adelvin/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        22,
-        53
+        27,
+        46
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        39,
+        25,
         -30
       ]
     },
