@@ -1,6 +1,6 @@
 # Catalog
 
-246 effects in 21 categories. Every one is a file in
+247 effects in 22 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -395,3 +395,11 @@ slimes, bats, ghosts, frogs.
 | Slime | `critters/slime` | loop 1.8s | 112×88 | A glossy slime hops in place: it squashes to wind up, stretches into the jump, rounds out in the air, splats down flinging droplets that creep back, then wobbles and blinks. |
 | Snake | `critters/snake` | loop 2.4s | 136×56 | A snake slithers along the floor, head raised: humps rise and roll back down its patterned body to the tail, dust puffs where it touches down, its forked tongue flicks. |
 | Wisp | `critters/wisp` | loop 3.2s | 128×104 | A will-o'-the-wisp loops a figure-eight over the floor: a little soul-flame with a face, its flame tail licking up and streaming behind, shedding puffs and sparks. |
+
+## blood
+
+Crimson eruptions, droplets and blood magic.
+
+| effect | id | | size | what it does |
+|---|---|---|---|---|
+| Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | Swelling crimson cracks erupt into a branching blood column; forty ballistic droplets splash into pools that dry inside a ground ring. |

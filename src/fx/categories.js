@@ -14,6 +14,7 @@ export const categories = [
   { id: "spawn", name: "spawn & death", blurb: "poofs, portals, souls, shatters" },
   { id: "arcane", name: "arcane", blurb: "portals, runes, missiles, beams" },
   { id: "holy", name: "holy", blurb: "heals, halos, pillars of light" },
+  { id: "blood", name: "blood", blurb: "crimson eruptions, droplets and blood magic" },
   { id: "shadow", name: "shadow", blurb: "curses, voids, tendrils, souls" },
   { id: "status", name: "status", blurb: "burning, frozen, poisoned, asleep" },
   { id: "nature", name: "nature", blurb: "poison, vines, thorns, quakes" },
