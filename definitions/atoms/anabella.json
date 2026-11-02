@@ -53,6 +53,51 @@
         34
       ],
       "loop": false
+    },
+    "idle-wand": {
+      "path": "characters/anabella/runtime/idle-wand.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        24,
+        49
+      ],
+      "loop": true
+    },
+    "attack-wand": {
+      "path": "characters/anabella/runtime/attack-wand.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        28,
+        49
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        25,
+        -33
+      ]
+    },
+    "hit-wand": {
+      "path": "characters/anabella/runtime/hit-wand.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        24,
+        40
+      ],
+      "loop": false
+    },
+    "death-wand": {
+      "path": "characters/anabella/runtime/death-wand.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        36,
+        35
+      ],
+      "loop": false
     }
   }
 }
