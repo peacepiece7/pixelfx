@@ -3,7 +3,7 @@ import { create as createGeyser, meta as geyserMeta } from "./geyser.js";
 
 export const meta = {
   name: "Aorbion tail pillars",
-  desc: "Foaming geysers erupt along a vertical line, 35px apart. Layered water cores burst into churning crowns, falling spray and ripples before draining away.",
+  desc: "Overlapping water jets rise along a vertical line, 35px apart. Narrow textured columns surge upward and recede without overflowing foam or wide spray.",
   tags: ["water", "geyser", "splash", "one-shot"],
   size: [208, 320], origin: [104, 220], duration: 0.8, loop: false, fps: 30, bg: "ground",
   options: {
@@ -12,7 +12,7 @@ export const meta = {
   },
 };
 
-// Reuse the full geyser's shaded water, foam, ballistic spray and landing ripples.
+// Reuse the geyser's rising water core; suppress its ambient overflow and spray.
 // Metadata fits up to five pillars; larger counts need a taller host viewport.
 export function create(o) {
   const n = clamp(Math.floor(Number.isFinite(o.count) ? o.count : 3), 1, 12);
@@ -20,7 +20,7 @@ export function create(o) {
   const clock = u => u < 0.16 ? warmup + u / 0.16 * 1.5
     : 2.6 + (u - 0.16) / (meta.duration - delay * (n - 1) - 0.16) * 2.4;
   const pillars = Array.from({ length: n }, (_, i) => {
-    const fx = createGeyser({ ...geyserMeta.options, palette: o.palette, height: 44, seed: o.seed + i * 31 });
+    const fx = createGeyser({ ...geyserMeta.options, palette: o.palette, height: 58, jetOnly: true, seed: o.seed + i * 31 });
     // Start just before eruption; the slower ambient buildup is omitted for this combat skill.
     for (let t = 0; t < warmup - 1e-9; t += 1 / 120) fx.update(Math.min(1 / 120, warmup - t));
     return { y: (i - (n - 1) / 2) * 35, start: i * delay, fx };

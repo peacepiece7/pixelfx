@@ -14,7 +14,7 @@ export const meta = {
   loop: false,
   fps: 30,
   bg: "ground",
-  options: { palette: WATER, height: 100, seed: 4 },
+  options: { palette: WATER, height: 100, seed: 4, jetOnly: false },
 };
 
 const SY = 0.22, G = 820, ERUPT = 1.15, FALL = 2.6, GONE = 3.3;
@@ -66,14 +66,16 @@ export function create(o) {
     p.shade(-22, -H - 2, 22, 0, (x, y, out) => {
       const h = -y, v = h / H, sway = noise(t * 1.6 + h * 0.025, S + 5) * 2.5 * v;
       const rag = noise2(h * 0.2 - t * 11, x < sway ? 3 : 7, S + 6) * (0.5 + 1.8 * v);
-      const w = (3.6 + 7.5 * Math.pow(v, 1.8)) * thin + rag, q = (x - sway) / Math.max(1, w), aq = Math.abs(q);
+      const cap = o.jetOnly ? Math.sqrt(1 - smooth(.76, 1, v)) : 1;
+      if (o.jetOnly && h > H) return;
+      const w = ((3.6 + 7.5 * Math.pow(v, 1.8)) * thin + rag) * cap, q = (x - sway) / Math.max(1, w), aq = Math.abs(q);
       if (aq > 1) return;
       const X = Math.floor(x), streak = noise2(X * 1.618 + 0.3, (tau(h) - t) * 14, S), body = noise2(Math.floor((x + 40) / 2) * 2.3, (tau(h) - t) * 5, S + 1);
       let lvl = aq < 0.42 ? 0 : aq < 0.7 ? 1 : aq < 0.9 ? 2 : 3;
       if (q > 0.38) lvl++;
       if (streak > 0.28) lvl--;
       if (body < -0.4) lvl++;
-      out.c = [WHITE, C[6], C[5], C[4], C[3]][clamp(lvl, 0, 4)];
+      out.c = o.jetOnly ? [C[6], C[5], C[4], C[3], C[2]][clamp(lvl, 0, 4)] : [WHITE, C[6], C[5], C[4], C[3]][clamp(lvl, 0, 4)];
     });
     p.glowLine(0, 0, 0, -H, 16 + 8 * thin, C[5], 0.12 * thin);
   }
@@ -106,6 +108,32 @@ export function create(o) {
     }
     if (!back) p.glow(0, -H - 2, 38, C[5], 0.34 * k);
   }
+
+  // Compact skill variant: retain the rising, textured column without the overflowing
+  // foam head, lateral spray, secondary spurts or large landing ripples.
+  if (o.jetOnly) return {
+    update(dt) { t += dt; },
+    drawBack(p) {
+      const k = smooth(ERUPT, ERUPT + .15, t) * (1 - smooth(FALL, GONE + .2, t));
+      if (k <= 0) return;
+      p.each(-30, -10, 30, 10, (x, y, sx, sy) => {
+        const d = (x / 30) ** 2 + (y / 10) ** 2;
+        if (d < 1) p.blendPx(sx, sy, C[d > .82 ? 3 : 2], k * .16 * (1 - d * .5));
+      });
+    },
+    draw(p) {
+      const H = top(t), thin = smooth(ERUPT, ERUPT + .12, t) * (1 - .55 * smooth(FALL, GONE, t));
+      column(p, H, thin * 1.35);
+      if (H > 2) {
+        // A few short upward flecks make the jet read as water without pouring over.
+        for (let i = 0; i < 5; i++) {
+          const u = (t * 2 + i / 5) % 1, x = (i - 2) * 3;
+          const y = -H + 4 - u * 7;
+          p.blend(x, y, C[5], Math.sin(u * Math.PI) * thin * .65);
+        }
+      }
+    },
+  };
 
   return {
     update(dt) {
