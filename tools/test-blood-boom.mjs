@@ -26,3 +26,10 @@ for (const time of [1.4, 1.5]) {
   assert(end.color.every((c) => c === 0) && end.light.every((c) => c === 0), "direct simulation ends empty in both layers");
 }
 console.log("Blood boom: deterministic scatter, recolor, mirror and empty endpoint pass.");
+
+// The opaque foreground must cover a 48px hero at the eruption peak.
+const peak = frame({ time: .4 });
+for (let y = -48; y < 0; y++) for (let x = -12; x <= 12; x++) {
+  assert.equal(peak.color[(116 + y) * 120 + 60 + x] >>> 24, 255, `uncovered hero at ${x},${y}`);
+}
+console.log("Peak fountain covers the full 48px hero silhouette.");
