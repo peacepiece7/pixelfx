@@ -1,0 +1,17 @@
+{
+  "id": "wet-status",
+  "name": "젖음 상태",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "water/drip",
+  "options": {
+    "palette": [
+      "#071e38",
+      "#0c4169",
+      "#147d9c",
+      "#32b9d0",
+      "#8de8ed",
+      "#e3ffff"
+    ]
+  }
+}

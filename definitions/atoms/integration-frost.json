@@ -1,0 +1,8 @@
+{
+  "id": "integration-frost",
+  "name": "얼음 광역기",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ice/frost-nova",
+  "options": {}
+}

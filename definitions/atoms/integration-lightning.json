@@ -1,0 +1,8 @@
+{
+  "id": "integration-lightning",
+  "name": "번개 연쇄 공격",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "lightning/chain-lightning",
+  "options": {}
+}

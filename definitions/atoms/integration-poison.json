@@ -1,0 +1,8 @@
+{
+  "id": "integration-poison",
+  "name": "독 지속 효과",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "status/poisoned",
+  "options": {}
+}

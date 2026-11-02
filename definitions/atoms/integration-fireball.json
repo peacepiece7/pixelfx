@@ -1,0 +1,8 @@
+{
+  "id": "integration-fireball",
+  "name": "화염 투사체와 충돌",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "moves/fireball-throw",
+  "options": {}
+}

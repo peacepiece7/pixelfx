@@ -1,0 +1,8 @@
+{
+  "id": "integration-shield",
+  "name": "방어막과 버프 오라",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/divine-shield",
+  "options": {}
+}
