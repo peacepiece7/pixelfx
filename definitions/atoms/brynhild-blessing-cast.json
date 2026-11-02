@@ -1,0 +1,19 @@
+{
+  "id": "brynhild-blessing-cast",
+  "name": "성스러운 축복 시전",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/blessing",
+  "options": {
+    "palette": [
+      "#3b1d2a",
+      "#7a3a2c",
+      "#c4652e",
+      "#f0a040",
+      "#ffd25e",
+      "#fff0a0",
+      "#fffbe0",
+      "#ffffff"
+    ]
+  }
+}
