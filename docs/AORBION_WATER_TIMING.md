@@ -137,3 +137,11 @@ The default preview is 736×208 to contain the full path. The checker now permit
 wide canvases up to 960px on either side while preserving its original 480×480 total
 pixel budget. Tests measure actual rendered forward motion and growing/shrinking
 water height, plus the host-driven option, deterministic substeps and clean ending.
+
+## Poseidon researched rebuild
+
+Supersedes the earlier shared surge-column appearance for Poseidon only. It now
+uses independent rising pixel lanes, falling crown curtains, ballistic spray,
+short curling foot splashes and a connected rotating water belt. All motion
+remains a deterministic six-second loop; pulse changes light only. See
+`POSEIDON_RESEARCH.md` for sources, interpretation limits and visual iterations.
