@@ -2,18 +2,20 @@
 // (https://www.spritefusion.com/pixel-art-vfx/blood), MIT License, Copyright (c) 2026 Hugo Duprez.
 import { fit, clamp, smooth, ease, TAU, WHITE } from "../../core/index.js";
 import { WATER, bead, ring, rock } from "./_lib.js";
+import { draw as drawBleeding, meta as bleedingMeta } from "../blood/bleeding.js";
 
 export const meta = {
   name: "Drip",
-  desc: "A bead swells under a wet stone tip and catches the light, pinches off, falls stretched by its speed and plinks into a puddle with a crown, a ring and a tiny rebound.",
-  tags: ["water", "drip", "drop", "puddle", "cave", "ambient", "loop"],
+  desc: "Small water beads fall from the torso like bleeding droplets. Stacks increase frequency, not size. Set status:false for the ambient drip.",
+  tags: ["water", "drip", "drop", "puddle", "status", "wet", "loop"],
   size: [72, 88],
   origin: [36, 78],
   duration: 1.6,
   loop: true,
   fps: 30,
   bg: "ground",
-  options: { palette: WATER, height: 62, source: true, seed: 1 },
+  actor: 2,
+  options: { palette: WATER, status: true, stacks: 1, height: 30, source: false, seed: 1 },
 };
 
 const D = meta.duration, SY = 0.28, G = 760, LET = 0.78, PRX = 20;
@@ -54,6 +56,7 @@ function puddle(p, C) {
 }
 
 export function drawBack(p, t, o) {
+  if (o.status !== false) return;
   const C = fit(o.palette, 8);
   puddle(p, C);
   const u = t - landAt(o.height);
@@ -66,6 +69,13 @@ const landAt = (H) => LET + Math.sqrt((2 * H) / G);
 const REBOUND = 0.06, BACK = 0.2;
 
 export function draw(p, t, o) {
+  if (o.status !== false) {
+    // Reuse the small actor-attached bleed droplets; no overhead source or large puddle.
+    // Saturate visual density at three stacks, keeping one effect instance per target.
+    const stacks = Number.isFinite(o.stacks) ? clamp(Math.floor(o.stacks), 0, 3) : 1;
+    drawBleeding(p, t * bleedingMeta.duration / meta.duration, { ...o, stacks });
+    return;
+  }
   const C = fit(o.palette, 8), H = o.height, land = landAt(H);
   if (o.source) dripstone(p, H);
   // the bead swells at the tip, wobbling, and catches the light; its neck stretches before it lets go
