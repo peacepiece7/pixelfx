@@ -1,0 +1,39 @@
+{
+  "id": "adelvin-gabriel",
+  "name": "가브리엘 소환체",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/adelvin-gabriel/runtime/concept.png",
+  "pivot": [
+    23,
+    64
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/adelvin-gabriel/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        23,
+        64
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "characters/adelvin-gabriel/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        23,
+        64
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}

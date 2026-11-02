@@ -1,0 +1,37 @@
+{
+  "id": "adelvin-skills-runes",
+  "name": "아델빈 능력 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/adelvin-skills-runes/runtime/runes-common.png",
+  "icons": [
+    "adelvin-light-lance-rune",
+    "adelvin-healing-lance-rune",
+    "adelvin-light-shield-rune",
+    "adelvin-light-orbs-rune",
+    "adelvin-gabriel-rune",
+    "adelvin-michael-rune"
+  ],
+  "labels": {
+    "adelvin-light-lance-rune": "빛의 창",
+    "adelvin-healing-lance-rune": "치유의 창",
+    "adelvin-light-shield-rune": "빛의 방패",
+    "adelvin-light-orbs-rune": "빛의 구체",
+    "adelvin-gabriel-rune": "가브리엘",
+    "adelvin-michael-rune": "미카엘"
+  },
+  "sheets": {
+    "common": {
+      "path": "icons/adelvin-skills-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/adelvin-skills-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/adelvin-skills-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "id": "adelvin-michael",
+  "name": "미카엘 소환체",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/adelvin-michael/runtime/concept.png",
+  "pivot": [
+    22,
+    57
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/adelvin-michael/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        22,
+        57
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "characters/adelvin-michael/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        22,
+        57
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}

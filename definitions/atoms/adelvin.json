@@ -66,17 +66,17 @@
     },
     "attack-wand": {
       "path": "characters/adelvin/runtime/attack-wand.png",
-      "frames": 6,
-      "fps": 12.0,
+      "frames": 12,
+      "fps": 24.0,
       "pivot": [
-        24,
-        47
+        19,
+        46
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        26,
-        -31
+        21,
+        -27
       ]
     },
     "hit-wand": {
@@ -98,6 +98,66 @@
         46
       ],
       "loop": false
+    },
+    "cast-shield": {
+      "path": "characters/adelvin/runtime/cast-shield.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        22,
+        46
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        20,
+        -37
+      ]
+    },
+    "cast-orbs": {
+      "path": "characters/adelvin/runtime/cast-orbs.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        23,
+        46
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        20,
+        -38
+      ]
+    },
+    "cast-michael": {
+      "path": "characters/adelvin/runtime/cast-michael.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        22,
+        48
+      ],
+      "loop": false,
+      "hitFrame": 8,
+      "tip": [
+        23,
+        -45
+      ]
+    },
+    "cast-shield-wand": {
+      "path": "characters/adelvin/runtime/cast-shield-wand.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        21,
+        46
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        18,
+        -28
+      ]
     }
   }
 }

@@ -1,0 +1,41 @@
+{
+  "id": "adelvin-jobs-runes",
+  "name": "아델빈 직업 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/adelvin-jobs-runes/runtime/runes-common.png",
+  "icons": [
+    "adelvin-gabriel-duration-job",
+    "adelvin-gabriel-power-job",
+    "adelvin-michael-duration-job",
+    "adelvin-michael-healing-job",
+    "adelvin-michael-hp-job",
+    "adelvin-michael-power-job",
+    "adelvin-shield-count-job",
+    "adelvin-orb-count-job"
+  ],
+  "labels": {
+    "adelvin-gabriel-duration-job": "가브리엘 지속",
+    "adelvin-gabriel-power-job": "가브리엘 위력",
+    "adelvin-michael-duration-job": "미카엘 지속",
+    "adelvin-michael-healing-job": "미카엘 치유",
+    "adelvin-michael-hp-job": "미카엘 체력",
+    "adelvin-michael-power-job": "미카엘 위력",
+    "adelvin-shield-count-job": "방패 추가",
+    "adelvin-orb-count-job": "구체 추가"
+  },
+  "sheets": {
+    "common": {
+      "path": "icons/adelvin-jobs-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/adelvin-jobs-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/adelvin-jobs-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}
