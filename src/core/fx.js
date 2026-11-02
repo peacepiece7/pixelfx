@@ -53,7 +53,7 @@ export function createFx(mod, o = {}) {
   const opts = resolveOptions(meta, o);
   const impl = mod.create ? mod.create(opts) : mod;
   const D = meta.duration ?? 1;
-  let t = 0, stopAt = Infinity;
+  let t = 0, timeError = 0, stopAt = Infinity;
   return {
     meta,
     options: opts,
@@ -61,7 +61,12 @@ export function createFx(mod, o = {}) {
       return t;
     },
     update(dt) {
-      t += dt;
+      // Compensated summation keeps equal elapsed times equal at 30/60 Hz.
+      // Pixel boundaries (floor/sin) can otherwise turn a few ulps into a different pixel.
+      const elapsed = dt - timeError;
+      const next = t + elapsed;
+      timeError = (next - t) - elapsed;
+      t = next;
       if (!impl.update) return;
       // simulations step at 120 Hz or finer whatever the caller's frame rate, so they look the same everywhere
       const n = Math.max(1, Math.ceil(dt * 120 - 1e-9));
