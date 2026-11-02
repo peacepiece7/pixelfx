@@ -1,0 +1,39 @@
+{
+  "id": "dullahan",
+  "name": "듀라한",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/dullahan/runtime/concept.png",
+  "pivot": [
+    38,
+    55
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/dullahan/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        38,
+        55
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "monsters/dullahan/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        38,
+        55
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}

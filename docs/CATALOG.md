@@ -1,6 +1,6 @@
 # Catalog
 
-250 effects in 22 categories. Every one is a file in
+251 effects in 22 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -303,6 +303,7 @@ poison, vines, thorns, quakes.
 | Tornado | `nature/tornado` | loop 2s | 196×168 | A snaking funnel of spinning wind bands under a flared, churning top that flickers with lightning; leaves and debris whirl round it front and back, dust boils at its foot. |
 | Toxic puddle | `nature/toxic-puddle` | loop 4s | 176×100 | Black tar lit from inside by chartreuse veins and a glowing rim, an oily sheen drifting on it; glossy bubbles dome, stretch and pop, vapour curls up in fraying ribbons. |
 | Vine whip | `nature/vine-whip` | one-shot 1.4s | 216×128 | A thorny vine bursts from the floor, rears back coiled, then lashes out right in a whip crack that sprays sap and tears off leaves, before sliding back into the ground. |
+| Pull vortex | `nature/pull-vortex` | loop 2s | 120×80 | Earth-coloured wind, dust, grit and dry grass spiral leftward into the caster from a widening forward fan. |
 
 ## weather
 

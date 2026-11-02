@@ -1,0 +1,44 @@
+{
+  "id": "general-runes",
+  "name": "일반 룬 각인",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/general-runes/runtime/runes-common.png",
+  "icons": [
+    "general-indomitable-will",
+    "general-blue-eye",
+    "general-mana-heart",
+    "general-mana-compressor",
+    "general-sharp-fang",
+    "general-magic-syringe",
+    "general-marathoner-heart",
+    "general-swift-move",
+    "general-one-shot",
+    "general-triangle-claw",
+    "general-assassin-glove",
+    "general-amber-ring",
+    "general-keen-eye",
+    "general-range",
+    "general-vision",
+    "general-tumbler-doll",
+    "general-afterimage",
+    "general-iron-grip",
+    "general-fountain-of-wisdom",
+    "general-elemental-echo",
+    "general-wind-hands"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/general-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/general-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/general-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

@@ -3,10 +3,10 @@
   "name": "브린휠드",
   "kind": "character",
   "renderer": "sprite",
-  "assetPath": "characters/brynhild/runtime/leap.png",
+  "assetPath": "characters/brynhild/runtime/idle.png",
   "pivot": [
-    46,
-    57
+    28,
+    49
   ],
   "animations": {
     "idle": {

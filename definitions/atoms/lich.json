@@ -1,0 +1,39 @@
+{
+  "id": "lich",
+  "name": "리치",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/lich/runtime/concept.png",
+  "pivot": [
+    26,
+    47
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/lich/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        26,
+        47
+      ],
+      "loop": true,
+      "sequence": [
+        0
+      ]
+    },
+    "attack": {
+      "path": "monsters/lich/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        26,
+        47
+      ],
+      "loop": true,
+      "sequence": [
+        2
+      ]
+    }
+  }
+}

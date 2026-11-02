@@ -3,37 +3,76 @@
   "name": "로데어 초원 형태",
   "kind": "character",
   "renderer": "sprite",
-  "assetPath": "characters/rodair-wolf/runtime/concept.png",
+  "assetPath": "characters/rodair-wolf/runtime/idle.png",
   "pivot": [
-    30,
-    56
+    31,
+    58
   ],
   "animations": {
     "idle": {
-      "path": "characters/rodair-wolf/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "characters/rodair-wolf/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
       "pivot": [
-        30,
-        56
+        31,
+        58
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
     },
     "attack": {
-      "path": "characters/rodair-wolf/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "characters/rodair-wolf/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
       "pivot": [
-        30,
+        34,
+        57
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        27,
+        -17
+      ]
+    },
+    "move": {
+      "path": "characters/rodair-wolf/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        50,
+        44
+      ],
+      "loop": true
+    },
+    "hit": {
+      "path": "characters/rodair-wolf/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        31,
         56
       ],
-      "loop": true,
-      "sequence": [
-        2
-      ]
+      "loop": false
+    },
+    "death": {
+      "path": "characters/rodair-wolf/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        44,
+        53
+      ],
+      "loop": false
+    },
+    "roar": {
+      "path": "characters/rodair-wolf/runtime/roar.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        33,
+        58
+      ],
+      "loop": false
     }
   }
 }

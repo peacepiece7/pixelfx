@@ -1,3 +1,4 @@
+import * as nature_pull_vortex from "./nature/pull-vortex.js";
 import * as blood_thorn_reflect from "./blood/thorn-reflect.js";
 import * as blood_roar_wave from "./blood/roar-wave.js";
 import * as blood_bleeding from "./blood/bleeding.js";
@@ -254,6 +255,7 @@ import * as critters_wisp from "./critters/wisp.js";
 export { categories } from "./categories.js";
 
 export const effects = {
+  "nature/pull-vortex": nature_pull_vortex,
   "blood/thorn-reflect": blood_thorn_reflect,
   "blood/roar-wave": blood_roar_wave,
   "blood/bleeding": blood_bleeding,

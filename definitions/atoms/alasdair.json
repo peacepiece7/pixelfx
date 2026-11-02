@@ -63,6 +63,36 @@
         44
       ],
       "loop": false
+    },
+    "roar": {
+      "path": "characters/alasdair/runtime/roar.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        30,
+        49
+      ],
+      "loop": false
+    },
+    "mince": {
+      "path": "characters/alasdair/runtime/mince.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        30,
+        47
+      ],
+      "loop": false
+    },
+    "blood-boom": {
+      "path": "characters/alasdair/runtime/blood-boom.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        64
+      ],
+      "loop": false
     }
   }
 }
