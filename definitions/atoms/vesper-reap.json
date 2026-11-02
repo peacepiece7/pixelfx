@@ -1,0 +1,7 @@
+{
+  "id": "vesper-reap",
+  "name": "낫 거두기",
+  "kind": "vfx",
+  "renderer": "pixelfx",
+  "effectId": "melee/scythe-reap"
+}
