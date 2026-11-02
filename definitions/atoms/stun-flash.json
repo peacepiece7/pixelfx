@@ -1,0 +1,8 @@
+{
+  "id": "stun-flash",
+  "name": "stun-flash",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/sunburst",
+  "options": {}
+}

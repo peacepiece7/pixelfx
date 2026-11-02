@@ -1,0 +1,8 @@
+{
+  "id": "brynhild-sprint",
+  "name": "brynhild-sprint",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "moves/dash-strike",
+  "options": {}
+}

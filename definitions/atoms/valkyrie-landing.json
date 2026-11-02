@@ -1,0 +1,8 @@
+{
+  "id": "valkyrie-landing",
+  "name": "valkyrie-landing",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/valkyrie-landing",
+  "options": {}
+}

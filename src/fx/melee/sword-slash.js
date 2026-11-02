@@ -18,6 +18,7 @@ export const meta = {
     sparks: ["#fff3a6", "#ffe26b", "#ff8a2a", "#f2561d"],
     radius: 42,
     seed: 2,
+    accents: true,
   },
 };
 
@@ -106,7 +107,7 @@ export function create(o) {
   return {
     update(dt) {
       t += dt;
-      if (!landed && t >= A.sweep) {
+      if (o.accents !== false && !landed && t >= A.sweep) {
         landed = true;
         // sparks off the edge where it stops, and bright shavings flung off the arc
         for (let i = 0; i < 10; i++) {
@@ -126,7 +127,7 @@ export function create(o) {
       drawSlash(p, A, t);
       // the tip glints as the edge arrives
       const g = t - A.sweep * 0.6;
-      if (g > 0 && g < 0.22) sparkle(p, tip.x, tip.y, 9 * ease.outBack(Math.min(1, g / 0.05)) * (1 - g / 0.22), C[5], C[3], 0.6);
+      if (o.accents !== false && g > 0 && g < 0.22) sparkle(p, tip.x, tip.y, 9 * ease.outBack(Math.min(1, g / 0.05)) * (1 - g / 0.22), C[5], C[3], 0.6);
       // light rides the head of the swing
       if (t < 0.3) {
         const [x, y] = onArc(A, A.R - 4, A.a0 + (A.a1 - A.a0) * ease.outExpo(clamp(t / A.sweep)));

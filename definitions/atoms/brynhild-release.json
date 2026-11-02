@@ -1,0 +1,18 @@
+{
+  "id": "brynhild-release",
+  "name": "brynhild-release",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "status/blood-armor",
+  "options": {
+    "palette": [
+      "#2a0710",
+      "#5c0b1a",
+      "#8e1424",
+      "#c0202e",
+      "#e8483f",
+      "#ff8a6a",
+      "#fff1e8"
+    ]
+  }
+}

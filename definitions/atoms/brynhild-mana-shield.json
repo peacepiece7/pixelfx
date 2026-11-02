@@ -1,0 +1,17 @@
+{
+  "id": "brynhild-mana-shield",
+  "name": "brynhild-mana-shield",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/divine-shield",
+  "options": {
+    "palette": [
+      "#0a1430",
+      "#16306a",
+      "#2a5cb0",
+      "#4f8ee0",
+      "#9cc8ff",
+      "#e8f4ff"
+    ]
+  }
+}

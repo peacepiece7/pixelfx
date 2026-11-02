@@ -1,0 +1,8 @@
+{
+  "id": "brynhild-basic",
+  "name": "brynhild-basic",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "moves/brynhild-basic",
+  "options": {}
+}
