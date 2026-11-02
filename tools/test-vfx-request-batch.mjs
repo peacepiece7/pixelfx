@@ -12,7 +12,8 @@ function frame(id,time,options={},flip=false,layer){
 for(const id of ids){const m=modules.get(id),time=m.meta.duration*.35;
  assert.deepEqual(frame(id,time),frame(id,time),`${id}: deterministic`);
  const pal={palette:['#220a08','#aa4433','#ffe0bb']};assert.notDeepEqual(frame(id,time),frame(id,time,pal),`${id}: palette`);
- if(m.meta.loop)assert.deepEqual(frame(id,0),frame(id,m.meta.duration),`${id}: loop seam`);
+ // Support has a one-time birth; compare consecutive steady-state cycles.
+ if(m.meta.loop){const start=id==='projectiles/rosilia-support-shot'?m.meta.duration:0;assert.deepEqual(frame(id,start),frame(id,start+m.meta.duration),`${id}: loop seam`);}
  else for(const t of [m.meta.duration,m.meta.duration+.1]){const f=frame(id,t);assert(f.color.every(c=>!c)&&f.light.every(c=>!c),`${id}: empty ending`);}
  // Dithered thin rings can shift centroid by a few pixels; asymmetric markers must still mirror.
  const centroid=f=>{let sum=0,n=0;f.color.forEach((c,i)=>{if(c>>>24){sum+=i%f.w;n++;}});assert(n);return sum/n;};

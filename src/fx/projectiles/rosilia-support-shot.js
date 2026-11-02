@@ -4,7 +4,7 @@ import { Rng, fit, smooth, clamp, TAU, sparkle } from '../../core/index.js';
 
 export const meta = {
   name: 'Rosilia support shot',
-  desc: 'A layered brass rifle sight: moving range marks, counter-moving brackets, rim glints and a hollow crosshair. A long luminous round strikes with twin shock waves and debris.',
+  desc: 'A brass sight assembles, then sheds glowing engraving before a long round hits. An ivory blast, twin pressure waves, lit dust lobes and flying debris fill the cleared ground.',
   tags: ['projectiles', 'impact', 'debris', 'loop'],
   size: [240, 180], origin: [128, 148], duration: 2, loop: true, fps: 30, bg: 'ground',
   options: {
@@ -37,11 +37,33 @@ function pose(o) {
   return result;
 }
 
+// Preserve the pure drawing API; the runtime adapter supplies one-time birth age
+// because the library wraps loop time. Creation must not repeat every two seconds.
+export function create(options) {
+  let elapsed = 0, rawTime = 0, born = 0, previousPulse = 0;
+  return {
+    update(dt, current = options) {
+      rawTime += dt;
+      elapsed = Math.round(rawTime * 1e9) / 1e9;
+      if (previousPulse > 0 && !(current.pulse > 0)) born = elapsed;
+      previousPulse = current.pulse ?? 0;
+    },
+    drawBack(p, _t, current = options) { drawBack(p, elapsed, {...current, age: elapsed-born}); },
+    draw(p, _t, current = options) { draw(p, elapsed, {...current, age: elapsed-born}); },
+  };
+}
+
 // Reticle motion never moves the actual impact centre or combat radius.
 function sight(p, t, o, C) {
   const phase = ((t % meta.duration) + meta.duration) % meta.duration * TAU / meta.duration;
   const breath = .5 - .5 * Math.cos(phase);
-  const radius = (o.radius ?? 62) * (1 + .025 * Math.sin(phase));
+  const birth = smooth(0, .20, o.age ?? 1);
+  const shot = o.pulse > 0 ? pose(o)[0] : -1;
+  const vanish = shot < 0 ? 0 : smooth(.015, .085, shot);
+  if (vanish >= 1 || birth <= 0) return;
+  const savedFade = p.fade;
+  p.fade *= (1 - vanish) * smooth(0, .07, o.age ?? 1);
+  const radius = (o.radius ?? 62) * (1 + .025 * Math.sin(phase)) * (.4 + .6 * birth + vanish * .18);
   const cx = Math.sin(phase) * 2.3, cy = Math.sin(phase * 2) * .6;
   const tilt = .38, rotation = Math.sin(phase) * .055;
   const at = (a, d, centreX = cx, centreY = cy) =>
@@ -49,7 +71,7 @@ function sight(p, t, o, C) {
   const tick = o.pulse > 0 ? pose(o)[3] : 0;
   // Valhalla's nested rim / independent compass / local light structure, recast
   // as engraved brass range-finding hardware. The entire centre is transparent.
-  const gap = a => Math.cos((a - rotation) * 4) < .965;
+  const gap = a => Math.cos((a - rotation) * 4) < .965 && ((a % TAU) + TAU) % TAU / TAU < birth;
   for (const [scale, color, alpha] of [[1, 5, 1], [.95, 2, 1], [.70, 4, 1], [.66, 2, 1]]) {
     oval(p, cx, cy, radius * scale, radius * scale * tilt, C[color], alpha, gap);
   }
@@ -69,6 +91,7 @@ function sight(p, t, o, C) {
     const bank = i < 12 ? 1 : -1;
     const a = i * TAU / 24 + bank * dial;
     const major = i % 3 === 0;
+    if (birth < .35 + (i % 6) * .10) continue;
     p.line(...at(a, major ? .75 : .85), ...at(a, .91), C[major ? 5 : 2]);
     if (major) {
       p.polyline([at(a - .045, .84), at(a, .75), at(a + .045, .84)], C[4]);
@@ -102,7 +125,7 @@ function sight(p, t, o, C) {
   // separated terminal bars and four floating tips through the perimeter gaps.
   const crossX = cx + Math.sin(phase * 2) * 4;
   const crossY = cy + Math.sin(phase) * 1.1;
-  const arm = radius * (.56 + breath * .04);
+  const arm = radius * (.56 + breath * .04) * smooth(.35, 1, birth);
   for (const side of [-1, 1]) {
     p.line(crossX + side * 3, crossY + 1, crossX + side * arm, crossY + 1, C[1]);
     p.line(crossX + side * 3, crossY, crossX + side * arm, crossY, C[5]);
@@ -121,7 +144,26 @@ function sight(p, t, o, C) {
   // A four-pixel centre aperture keeps the impact point easy to locate.
   p.polyline([[crossX, crossY-2],[crossX+3,crossY],[crossX,crossY+2],
     [crossX-3,crossY],[crossX,crossY-2]], C[5]);
+  p.fade = savedFade;
 
+}
+
+function sightRelease(p, o, C) {
+  if (!(o.pulse > 0)) return;
+  const seconds = pose(o)[0];
+  if (seconds < .015 || seconds >= .095) return;
+  const q = (seconds - .015) / .08, fade = Math.sin(q * Math.PI);
+  const radius = o.radius ?? 62;
+  // Ring engraving bursts into short tangential strips, then clears before contact.
+  for (let i = 0; i < 24; i++) {
+    const a = i * TAU / 24 + q * .14;
+    const r = radius * (1 + q * .28);
+    const x = Math.cos(a) * r, y = Math.sin(a) * r * .32 - q * 5;
+    const tx = -Math.sin(a), ty = Math.cos(a) * .32;
+    p.line(x-tx*3, y-ty*3, x+tx*3, y+ty*3, C[5], fade);
+    p.glow(x, y, 5, C[4], fade * .35);
+  }
+  softBand(p,0,0,radius*(1+q*.2),.32,2,fade*.65,C.slice(3,7));
 }
 
 function fractures(p, seconds, strength, C, seed) {
@@ -148,8 +190,10 @@ function fractures(p, seconds, strength, C, seed) {
 export function drawBack(p, t, o) {
   const C = fit(o.palette, 7);
   sight(p, t, o, C);
+  sightRelease(p, o, C);
   if (!(o.pulse > 0)) return;
   const [seconds, , , flash, crack, dust, residue] = pose(o);
+  if (seconds < .10) return; // crater and fractures are born at contact
   const spread = smooth(.10, .29, seconds);
   // Deep contact pocket: dark centre below a broken raised lip.
   haze(p, 2, 2, 11, C[0], residue * .9);
@@ -314,6 +358,28 @@ function impactBurst(p, seconds, C, seed) {
   pool(p, 0, 1, 79, 13, C[5], fade * .65);
 }
 
+function blastCrown(p, seconds, C, seed) {
+  const age = seconds - .10;
+  if (age <= 0 || age >= .25) return;
+  const R = new Rng(seed + 251), q = age / .25;
+  for (let i = 0; i < 12; i++) {
+    const a = -Math.PI + (i + .5) * Math.PI / 12 + R.range(-.08,.08);
+    const reach = R.range(45,75), radius = R.range(6,10);
+    const travel = 1 - Math.exp(-age * 19);
+    const x = Math.cos(a) * reach * travel;
+    const y = Math.sin(a) * reach * travel * .7 + age*age*120;
+    const fade = smooth(0,.10,q)*(1-smooth(.35,1,q));
+    const r = radius * (.5 + q * 1.2);
+    haze(p,x,y,r,C[2],fade*.8);
+    haze(p,x-1,y-r*.25,r*.7,C[4],fade*.65);
+    haze(p,x-1,y-r*.4,r*.4,C[5],fade*.5);
+    p.glow(x,y,r+3,C[4],fade*.32);
+    const endX=x*1.25,endY=y*1.25;
+    p.line(x,y,endX,endY,C[5],fade);
+    p.blend(endX,endY,C[6],fade);
+  }
+}
+
 function soilPlume(p, seconds, C, seed) {
   const R = new Rng(seed + 181);
   for (let i = 0; i < 14; i++) {
@@ -343,6 +409,7 @@ export function draw(p, t, o) {
     p.glow(0, -1, 8, C[5], flash * .65);
     sparkle(p, 0, -1, 9 * flash, C[6], C[4], flash);
   }
+  blastCrown(p, seconds, C, o.seed);
   soilPlume(p, seconds, C, o.seed);
   dustSkirt(p, seconds, dust, C, o.seed);
   debris(p, seconds, C, o.seed);

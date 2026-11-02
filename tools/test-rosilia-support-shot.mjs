@@ -29,3 +29,15 @@ for(const seed of [1,7,17,31])for(let step=0;step<=21;step++) {
   assert.equal(f.color[y*f.w+x],0,`canvas bounds: seed ${seed}, frame ${step}`);
 }
 console.log('Flight, sequential wake, hollow scope, impact timing and four-seed bounds pass.');
+
+const runtimeFrame=time=>{
+ const o=resolveOptions(fx.meta),sim=fx.create(o);sim.update(time);
+ const f=createFrame(...fx.meta.size);sim.drawBack(painterFor(f).place(...fx.meta.origin));return f;
+};
+assert(runtimeFrame(0).color.every(c=>!c),'new reticle starts empty');
+assert.notDeepEqual(runtimeFrame(.08),runtimeFrame(.2),'creation progressively assembles');
+assert.deepEqual(runtimeFrame(2),runtimeFrame(4),'birth never repeats on a loop boundary');
+const beforeContact=createFrame(...fx.meta.size);
+fx.drawBack(painterFor(beforeContact).place(...fx.meta.origin),.3,resolveOptions(fx.meta,{pulse:1-.095/.35}));
+assert.equal(mass(beforeContact,-65,-26,65,28),0,'sight and its fragments clear before contact');
+console.log('One-time birth, steady repeat and pre-impact sight clearance pass.');
