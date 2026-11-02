@@ -1,0 +1,58 @@
+{
+  "id": "hilding",
+  "name": "힐딩",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/hilding/runtime/idle.png",
+  "pivot": [
+    17,
+    48
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/hilding/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        17,
+        48
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/hilding/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        19,
+        49
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        27,
+        -32
+      ]
+    },
+    "hit": {
+      "path": "characters/hilding/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        28,
+        48
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/hilding/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        27,
+        46
+      ],
+      "loop": false
+    }
+  }
+}

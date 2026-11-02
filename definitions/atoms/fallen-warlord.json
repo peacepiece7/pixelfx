@@ -1,0 +1,65 @@
+{
+  "id": "fallen-warlord",
+  "name": "몰락한 군주",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/fallen-warlord/runtime/walk.png",
+  "pivot": [
+    30,
+    81
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/fallen-warlord/runtime/walk.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        30,
+        81
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/fallen-warlord/runtime/attack.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        58,
+        87
+      ],
+      "loop": false,
+      "hitFrame": 3
+    },
+    "hit": {
+      "path": "monsters/fallen-warlord/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        41,
+        67
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/fallen-warlord/runtime/death.png",
+      "frames": 6,
+      "fps": 7.0,
+      "pivot": [
+        7,
+        62
+      ],
+      "loop": false
+    },
+    "ultimate": {
+      "path": "monsters/fallen-warlord/runtime/ultimate.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        50,
+        108
+      ],
+      "loop": false,
+      "hitFrame": 3
+    }
+  }
+}

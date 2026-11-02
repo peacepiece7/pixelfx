@@ -1,0 +1,68 @@
+{
+  "id": "aorbion",
+  "name": "아오르비온",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/aorbion/runtime/idle.png",
+  "pivot": [
+    28,
+    46
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/aorbion/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        28,
+        46
+      ],
+      "loop": true
+    },
+    "move": {
+      "path": "characters/aorbion/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        30,
+        46
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/aorbion/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        32,
+        46
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        41,
+        -26
+      ]
+    },
+    "hit": {
+      "path": "characters/aorbion/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        33,
+        43
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/aorbion/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        48,
+        39
+      ],
+      "loop": false
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "arcane-bolt",
+  "name": "실험용 마법탄",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "projectiles/magic-missile"
+}

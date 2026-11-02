@@ -1,0 +1,47 @@
+{
+  "id": "castle-wall",
+  "name": "성벽",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/castle-wall/runtime/wall.png",
+  "attachments": {
+    "walkway": [
+      28,
+      0
+    ],
+    "groundEdge": [
+      86,
+      0
+    ]
+  },
+  "geometry": {
+    "size": [
+      92,
+      360
+    ],
+    "walkwayX": 28,
+    "groundEdgeX": 86,
+    "wallSlots": [
+      [
+        28,
+        36
+      ],
+      [
+        28,
+        108
+      ],
+      [
+        28,
+        180
+      ],
+      [
+        28,
+        252
+      ],
+      [
+        28,
+        324
+      ]
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "id": "vesper",
+  "name": "베스퍼",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/vesper/runtime/idle.png",
+  "pivot": [
+    26,
+    53
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/vesper/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        26,
+        53
+      ],
+      "loop": true
+    },
+    "move": {
+      "path": "characters/vesper/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        44,
+        53
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/vesper/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        42,
+        58
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        40,
+        -23
+      ]
+    },
+    "hit": {
+      "path": "characters/vesper/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        53
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/vesper/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        59,
+        51
+      ],
+      "loop": false
+    }
+  }
+}

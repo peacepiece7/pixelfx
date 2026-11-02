@@ -1,0 +1,58 @@
+{
+  "id": "skeleton-archer",
+  "name": "해골 궁수",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/skeleton-archer/runtime/walk.png",
+  "pivot": [
+    24,
+    44
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/skeleton-archer/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        24,
+        44
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/skeleton-archer/runtime/attack.png",
+      "frames": 5,
+      "fps": 10.0,
+      "pivot": [
+        31,
+        49
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -26,
+        -31
+      ]
+    },
+    "hit": {
+      "path": "monsters/skeleton-archer/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        30,
+        41
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/skeleton-archer/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        15,
+        41
+      ],
+      "loop": false
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "id": "dark-burst",
+  "name": "암흑 폭발",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "shadow/dark-explosion"
+}

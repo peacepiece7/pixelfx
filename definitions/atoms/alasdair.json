@@ -1,0 +1,68 @@
+{
+  "id": "alasdair",
+  "name": "알라스데어",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/alasdair/runtime/idle.png",
+  "pivot": [
+    33,
+    48
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/alasdair/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        33,
+        48
+      ],
+      "loop": true
+    },
+    "move": {
+      "path": "characters/alasdair/runtime/move.png",
+      "frames": 6,
+      "fps": 10.0,
+      "pivot": [
+        48,
+        49
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/alasdair/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        48,
+        57
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        43,
+        -5
+      ]
+    },
+    "hit": {
+      "path": "characters/alasdair/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        44,
+        48
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/alasdair/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        51,
+        44
+      ],
+      "loop": false
+    }
+  }
+}

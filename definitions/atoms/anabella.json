@@ -1,0 +1,58 @@
+{
+  "id": "anabella",
+  "name": "아나벨라",
+  "kind": "character",
+  "renderer": "sprite",
+  "assetPath": "characters/anabella/runtime/idle.png",
+  "pivot": [
+    24,
+    49
+  ],
+  "animations": {
+    "idle": {
+      "path": "characters/anabella/runtime/idle.png",
+      "frames": 4,
+      "fps": 6.0,
+      "pivot": [
+        24,
+        49
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "characters/anabella/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        28,
+        49
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        22,
+        -27
+      ]
+    },
+    "hit": {
+      "path": "characters/anabella/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        27,
+        47
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "characters/anabella/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        7,
+        34
+      ],
+      "loop": false
+    }
+  }
+}
