@@ -145,3 +145,30 @@ uses independent rising pixel lanes, falling crown curtains, ballistic spray,
 short curling foot splashes and a connected rotating water belt. All motion
 remains a deterministic six-second loop; pulse changes light only. See
 `POSEIDON_RESEARCH.md` for sources, interpretation limits and visual iterations.
+
+## Poseidon wave storm — approved A revision (2026-11-03)
+
+Supersedes every three-column Poseidon description above and in the earlier
+POSEIDON_RESEARCH.md study. The three vertical jets and their crowns are removed.
+Spiral water, curling splash sheets, ballistic falling spray and surface bubbles
+remain. Local folds cycle at four beats per second; three larger sheets stagger
+by half a second without introducing extra combat hits. External `pulse` changes
+light only. The loop remains six seconds and is independent of upgraded lifetimes.
+
+Optional `elapsed` and `remaining` (seconds, null by default) supply a 0.3-second
+unfold/settle envelope; zero or negative values draw nothing. Null values preserve
+the seamless gallery loop. Hosts must pass lifecycle values when integrating;
+this change does not activate combat VFX. The painter is derived rather than
+mutated so transforms, fades and lights do not leak to another effect.
+
+Combat A contract: radius70, mana100, first hit0.25s, interval0.25s, duration6s;
+magic0.175 + elemental0.125 each hit, wet15%/4s. Upgrade adds0.5s / two hits:
+24/34/44 at +0/+5/+10. The combat clock rounds absolute pulse deadlines rather
+than repeatedly rounding 7.5 ticks to8. Direct-hit shock counting is retained;
+P1/P2/P3 and tail-only job rune eligibility are unchanged. These combat changes
+live in the parent repository; the VFX requires renewed /vfx user review.
+
+Validation: three render/look/refine passes, 50ms preview, clean pixelfx check,
+loop/facing/pulse and lifecycle tests. Parent combat tests verify exact schedules
+at1/2/4 playback batching, rune upgrades,1/5/10 targets, shock, P3 exclusion,
+recast/control/death and old0.5s zones. Total parent suite266 tests and build pass.

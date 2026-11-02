@@ -104,3 +104,12 @@ for (const t of [.2, .5, .8]) {
 }
 assert(!empty(render(dragon, .45, { travelDistance: 0 })), 'Host-driven crest visible');
 console.log('Sea wave advances, grows, shrinks and supports a host-driven anchor');
+
+// Lifecycle controls are independent of the seamless six-second animation clock.
+for (const options of [{elapsed:0},{remaining:0},{elapsed:-1},{remaining:-1}]) {
+  assert(empty(render(poseidon, 2, options)), 'Storm lifecycle endpoint is empty');
+}
+assert(!empty(render(poseidon, 2, {elapsed:.15,remaining:6})), 'Storm unfolds');
+assert(!empty(render(poseidon, 2, {remaining:.15})), 'Storm settles before removal');
+assert.deepEqual(render(poseidon, 2).color, render(poseidon, 2, {elapsed:1,remaining:1}).color, 'Full lifecycle preserves loop');
+console.log('Poseidon lifecycle endpoints and unfolding passed');

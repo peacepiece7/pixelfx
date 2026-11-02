@@ -1,14 +1,14 @@
 import { Rng, fit, clamp, smooth, tileNoise, TAU } from "../../core/index.js";
 import { bead, ring, billow } from "./_lib.js";
-import { haze, pool, softBand, softShade } from "../_soft.js";
+import { pool, softShade } from "../_soft.js";
 // Flow-lane technique follows the local waterfall/whirlpool recipes, adapted
 // from Sprite Fusion bubbles/black-hole (MIT, Copyright 2026 Hugo Duprez).
 // Research and design notes: docs/POSEIDON_RESEARCH.md.
 
 export const meta = {
-  name: "Aorbion Poseidon",
-  desc: "Three orbiting jets weave through rising spiral water, curling splash sheets and drifting foam; bright crowns shed falling spray into a churning wake.",
-  tags: ["water", "geyser", "orbit", "loop"],
+  name: "Aorbion Poseidon wave storm",
+  desc: "An open water storm: layered spiral waves, curling splash sheets, foam and falling spray, with a four-beat local shimmer. No pillars.",
+  tags: ["water", "storm", "orbit", "loop"],
   size: [256, 208],
   origin: [128, 150],
   duration: 6,
@@ -20,6 +20,9 @@ export const meta = {
     palette: ["#071e38", "#0c4169", "#147d9c", "#32b9d0", "#8de8ed", "#e3ffff"],
     seed: 17,
     pulse: null,
+    // Host lifecycle envelopes: elapsed since activation and remaining seconds.
+    elapsed: null,
+    remaining: null,
   },
 };
 
@@ -28,11 +31,8 @@ const wrap = (t, d = 6) => ((t % d) + d) % d;
 function site(t, i, seed) {
   const offset = new Rng(seed).range(0, TAU);
   const angle = t / 6 * TAU + i * TAU / 3 + offset;
-  // Orbital movement is slow; the column renews much faster. Harmonics close
-  // exactly at six seconds, without reversing a scrolling noise clock.
-  const breath = Math.sin(t * TAU + i * 2.1) * 4 + Math.sin(t / 2 * TAU + i * .7) * 2;
-  return { x: Math.cos(angle) * 57, y: Math.sin(angle) * 57 * .34,
-    angle, height: 61 + breath, pressure: .88 + .1 * Math.sin(t * TAU + i * 2.1) };
+  // Orbiting release points distribute falling spray around the entire storm.
+  return { x: Math.cos(angle) * 57, y: Math.sin(angle) * 57 * .34, angle };
 }
 
 // Static floor geometry is reused; motion lives in the shading fields.
@@ -62,7 +62,7 @@ function zone(p, C, t, front, pulse, seed) {
     out.c = C[level];
     out.a = edge * (level > 3 ? .85 : .42) * (.72 + .28 * Math.sin(bend * 3) ** 2);
   });
-  // Three asymmetric rolling lips connect each jet to the next one's wake.
+  // Three asymmetric rolling lips carry the floor current around the storm.
   for (let i = 0; i < 3; i++) {
     const s = site(t, i, seed);
     let previous = null;
@@ -84,109 +84,6 @@ function zone(p, C, t, front, pulse, seed) {
   if (!front) pool(p, 0, 0, 72, 25, C[3], .07 + pulse * .045);
 }
 
-function movingFilm(p, C, t, i, seed, front) {
-  for (let j = 0; j < 4; j++) {
-    const age = .04 + j * .06;
-    const s = site(wrap(t - age), i, seed);
-    if ((s.y >= 0) !== front) continue;
-    const k = (1 - j / 4) * .28;
-    softBand(p, s.x, s.y, 6 + j * 1.9, .25, 1.2, k, C.slice(0, 6));
-  }
-}
-
-function foot(p, C, t, s, i, front) {
-  const side = front ? 1 : -1;
-  for (let j = 0; j < 6; j++) {
-    const a = (j / 6) * Math.PI + (front ? 0 : Math.PI);
-    const wave = Math.sin(t / 1.5 * TAU + j * 1.3 + i);
-    const x = Math.cos(a) * (11 + wave), y = Math.sin(a) * 2.1;
-    billow(p, x, y - .5, 2.1 + .7 * wave, C, front ? 1 : .8);
-    // Short outward folds carry the jet pressure into the circulating surface.
-    // Each fold rises, curls over and settles independently of the crown.
-    const q = wrap(t + j * .103 + i * .19, .75) / .75;
-    const spread = 7 + 14 * q;
-    const lift = Math.sin(q * Math.PI) * (3 + (j % 3));
-    const tipX = Math.cos(a) * spread;
-    const tipY = Math.sin(a) * spread * .27 - lift;
-    const k = Math.sin(q * Math.PI);
-    if (k > .15) {
-      p.beam(x * .55, y, tipX, tipY + 1, 2.1 * k, C[3], .85);
-      p.line(x * .75, y - 1, tipX, tipY, C[5], k);
-      billow(p, tipX, tipY, .7 + 1.6 * k, C, .95);
-      p.blend(tipX - 1, tipY - 1, C[7], k);
-    }
-  }
-  const age = wrap(t + i * .17, .75), q = age / .75;
-  ring(p, 0, 0, 9 + 15 * q, .25, Math.sin(q * Math.PI) * .3, C, {
-    n: 1,
-    half: side,
-    seed: i + 31,
-    hot: false,
-    wob: .4,
-  });
-}
-
-function column(p, C, t, s, i, seed, pulse) {
-  const H = s.height, ph = t / 6, S = seed + i * 71;
-  const lean = -Math.sin(s.angle) * 6;
-  const axis = v => lean * v * v + Math.sin(v * 5 + t * TAU + i) * 1.4 * v;
-  // Backfall curtains: off-axis water drains from the crown while the dense
-  // main jet continues upward. Different directions are visible simultaneously.
-  for (let side of [-1, 1]) for (let lane = 0; lane < 5; lane++) {
-    const u = wrap(t + lane * .117 + i * .13 + (side > 0 ? .2 : 0), .6) / .6;
-    const fall = 5 + u * u * 30;
-    const x = lean + side * (7 + lane * 1.7 + u * 5);
-    const y = -H + fall;
-    const alpha = Math.sin(u * Math.PI) * (.65 - lane * .08);
-    p.line(x, y, x + side * .8, y + 2 + u * 5, C[lane < 2 ? 4 : 3], alpha);
-    p.blend(x, y, C[5], alpha);
-  }
-  // Pixel lanes stretch along rising jet-time: broad dark channels underneath,
-  // fast narrow pale filaments above. Top width flares without a rigid tube rim.
-  const rows = Array.from({ length: Math.ceil(H) + 5 }, (_, row) => {
-    const y = -row + .5, v = clamp(-y / H);
-    return { v, cx: axis(v), transport: Math.sqrt(Math.max(1, H + y)) * 1.35 + ph * 96,
-      width: (7.2 + 6.8 * v ** 1.8) * s.pressure,
-      left: tileNoise(v * 13, ph * 24, 0, 24, S + 2) * (1 + v),
-      right: tileNoise(v * 13, ph * 24, 0, 24, S + 9) * (1 + v) };
-  });
-  p.shade(-23, -H - 3, 23, 1, (x, y, out) => {
-    const row = rows[clamp(Math.round(.5 - y), 0, rows.length - 1)];
-    const { v, cx, transport } = row;
-    const width = row.width + (x < cx ? row.left : row.right);
-    const q = (x - cx) / width;
-    const cap = -H + tileNoise(x * .3, ph * 18, 0, 18, S + 7) * 2 + (x - lean) * .12;
-    if (Math.abs(q) > 1 || y < cap) return;
-    const fine = tileNoise(Math.floor(x - cx) * 1.618, transport, 0, 96, S);
-    const broad = tileNoise(Math.floor((x - cx + 32) / 3) * 2.3, transport * .5, 0, 48, S + 1);
-    let level = Math.abs(q) < .25 ? 5 : Math.abs(q) < .65 ? 4 : 2;
-    if (q > .25) level--;
-    if (fine > .18) level++;
-    if (broad < -.28) level--;
-    if (fine > .45 && Math.abs(q) < .65) level = 7;
-    if (y < cap + 2) level = 5;
-    out.c = C[clamp(level, 1, 7)];
-  });
-  // Unequal lobes boil across a broad crown; the lower fringe breaks into
-  // falling teeth. It must read as aerated water, not three rigid curled horns.
-  for (let j = 0; j < 13; j++) {
-    const q = (j - 6) / 6;
-    const n = tileNoise(j * .87, ph * 30, 0, 30, S + 41);
-    const x = lean + q * (12 + s.pressure * 3);
-    const y = -H - (1 - q * q) * (3 + 2 * Math.sin(t * TAU + i)) + n * 3 + q * (2 + Math.sin(t * TAU + i) * 2);
-    const radius = 2.1 + (1 - Math.abs(q)) * 1.1 + n * .8;
-    billow(p, x + 1, y + 2, radius + .8, [C[0],C[1],C[2],C[3],C[4],C[4],C[5],C[5]], .95);
-    billow(p, x, y, radius, C, 1);
-    if (j % 2 === 0) {
-      p.line(x, y + radius, x + q * 1.8, y + radius + 3 + n * 3, C[4]);
-      p.blend(x - 1, y - radius * .5, C[7], .9);
-    }
-  }
-  p.glowLine(-1, -4, lean - 1, -H + 4, 13, C[4], .14 + pulse * .11);
-  p.glow(lean, -H, 21, C[4], .16 + pulse * .08);
-  haze(p, lean - 1, -H + 5, 12, C[3], .08);
-}
-
 function spray(p, C, t, i, seed, front) {
   const R = new Rng(seed + i * 71 + 19);
   for (let j = 0; j < 22; j++) {
@@ -196,7 +93,7 @@ function spray(p, C, t, i, seed, front) {
     const dx = R.range(-12, 12), z = R.range(-5, 5);
     const vx = R.range(-28, 28) - Math.sin(s.angle) * 30;
     const vy = R.range(-4, 4) + Math.cos(s.angle) * 5;
-    const vh = R.range(12, 35), h = s.height - R.range(1, 7);
+    const vh = R.range(12, 35), h = 20 + R.range(0, 35);
     const land = (vh + Math.sqrt(vh * vh + 1400 * h)) / 700;
     const life = land + .13;
     if (age > life) continue;
@@ -233,7 +130,7 @@ function bubbles(p, C, t, i, seed, front) {
 
 // Reference-study addition: open, rising helices, never a solid cylinder.
 // Two broad pitches leave windows between the storm and the orbiting jets.
-function storm(p, C, t, seed, front) {
+function storm(p, C, t, seed, front, pulse) {
   for (let lane = 0; lane < 2; lane++) {
     let last = null;
     for (let j = 0; j <= 56; j++) {
@@ -246,12 +143,13 @@ function storm(p, C, t, seed, front) {
       if ((floor >= 0) !== front) { last = null; continue; }
       const edge = Math.sin(u * Math.PI) ** .6;
       const flow = tileNoise(u * 24 - t * 4, lane * 7, 24, 0, seed + 301);
-      const thick = (2.4 + 6 * Math.max(0, flow + .35)) * edge;
+      const beat = Math.max(0, Math.cos(t * TAU * 4 - u * TAU * 2 - lane));
+      const thick = (2.4 + 6 * Math.max(0, flow + .35) + beat * 1.3) * edge;
       if (last && flow > -.48) {
         if (thick > 2.8) p.beam(last[0], last[1] + 2, x, y + 2, thick + 2, C[2], edge);
         p.beam(last[0], last[1], x, y, thick, C[4], edge);
         p.line(last[0], last[1] - 1, x, y - 1, C[flow > .18 ? 7 : 5], edge);
-        if (j % 14 === 0 && flow > .12) p.glow(x, y, 6, C[4], edge * .16);
+        if (j % 14 === 0 && flow > .12) p.glow(x, y, 6, C[4], edge * (.16 + pulse * .12));
       }
       // Broad water folds terminate in a feather of foam, with a dark underside.
       if (j % 9 === 0 && flow > .05) {
@@ -267,13 +165,13 @@ function storm(p, C, t, seed, front) {
   // Water sheets lift out of the ground, curl inward, then separate into beads.
   // All periods divide six; no particles teleport at the loop seam.
   for (let i = 0; i < 12; i++) {
-    const age = wrap(t + i * .139, 1.5), u = age / 1.5;
+    const age = wrap(t + (i < 3 ? i * .5 : i * .139), 1.5), u = age / 1.5;
     const a = i * TAU / 12 - t * TAU / 6;
     const r = 65 + Math.sin(i * 7) * 4;
     const baseX = Math.cos(a) * r, baseY = Math.sin(a) * r * .34;
     if ((baseY >= 0) !== front) continue;
     const k = Math.sin(u * Math.PI) ** 1.3;
-    const height = (15 + i % 4 * 4) * k;
+    const height = (i < 3 ? 30 : 15 + i % 4 * 4) * k;
     let last = null;
     for (let j = 0; j <= 13; j++) {
       const v = j / 13;
@@ -293,34 +191,29 @@ function storm(p, C, t, seed, front) {
   }
 }
 
-function layer(p, time, o, front) {
+function layer(base, time, o, front) {
+  const enter = Number.isFinite(o.elapsed) ? smooth(0, .3, o.elapsed) : 1;
+  const leave = Number.isFinite(o.remaining) ? smooth(0, .3, o.remaining) : 1;
+  const envelope = enter * leave;
+  if (envelope <= 0) return;
+  // Shrink vertically into the water surface, preserving host rotation and flip.
+  // A derived painter prevents lifecycle placement/fade leaking to other effects.
+  const p = Object.create(base), height = .12 + .88 * envelope;
+  p.toX = (x, y) => base.toX(x, y * height);
+  p.toY = (x, y) => base.toY(x, y * height);
+  p.fromX = (x, y) => base.fromX(x, y);
+  p.fromY = (x, y) => base.fromY(x, y) / height;
+  p.fade = base.fade * envelope;
   const t = Math.round(wrap(time) * 1e9) / 1e9;
   const C = fit(o.palette, 8);
-  const pulse = Number.isFinite(o.pulse) ? clamp(o.pulse) : .5 + .5 * Math.cos(t * TAU * 2);
+  const pulse = Number.isFinite(o.pulse) ? clamp(o.pulse) : .5 + .5 * Math.cos(t * TAU * 4);
   zone(p, C, t, front, pulse, o.seed);
-  if (!front) storm(p, C, t, o.seed, false);
-  const sites = [0, 1, 2].map(i => ({ i, ...site(t, i, o.seed) })).sort((a, b) => a.y - b.y);
-  for (const s of sites) {
-    movingFilm(p, C, t, s.i, o.seed, front);
-    spray(p, C, t, s.i, o.seed, front);
-    bubbles(p, C, t, s.i, o.seed, front);
-    if ((s.y >= 0) !== front) continue;
-    const tx = p.tx, ty = p.ty, light = p.lightK;
-    p.tx = tx + s.x * p.fx * p.cs - s.y * p.sn;
-    p.ty = ty + s.x * p.fx * p.sn + s.y * p.cs;
-    p.lightK *= front ? .8 : .6;
-    try {
-      pool(p, 0, 0, 17, 5, C[3], .1 + pulse * .06);
-      foot(p, C, t, s, s.i, false);
-      column(p, C, t, s, s.i, o.seed, pulse);
-      foot(p, C, t, s, s.i, true);
-    } finally {
-      p.tx = tx;
-      p.ty = ty;
-      p.lightK = light;
-    }
+  if (!front) storm(p, C, t, o.seed, false, pulse);
+  for (let i = 0; i < 3; i++) {
+    spray(p, C, t, i, o.seed, front);
+    bubbles(p, C, t, i, o.seed, front);
   }
-  if (front) storm(p, C, t, o.seed, true);
+  if (front) storm(p, C, t, o.seed, true, pulse);
 }
 
 export function drawBack(p, t, o) { layer(p, t, o, false); }
