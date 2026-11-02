@@ -1,236 +1,160 @@
 // The column (a banded white core, strands running through it, light down its length) and the slam with its
 // floor ring follow Sprite Fusion's open-source holy-light (https://www.spritefusion.com/pixel-art-vfx/holy-light),
 // MIT License, Copyright (c) 2026 Hugo Duprez.
-import { Particles, Lights, P, Rng, fit, clamp, smooth, ease, noise, noise2, rand, TAU, WHITE } from "../../core/index.js";
-import { WATER, Drops, Ripples, Mist, ring, lace, billow } from "./_lib.js";
+import { Rng, fit, clamp, smooth, ease, noise, noise2, rand, TAU, WHITE } from "../../core/index.js";
+import { WATER, bead, ring, lace, billow } from "./_lib.js";
+import { haze, pool } from "../_soft.js";
 
 export const meta = {
   name: "Geyser",
-  desc: "A pool heaves and burbles faster and faster, then blasts a white column of water skyward with a churning foam head; it rains back down in drops and steam, slumps and sputters out.",
+  desc: "One fast water strike: a dense rising jet, a brilliant foam crown, then a single collapse into ballistic spray and fading landing ripples.",
   tags: ["water", "geyser", "eruption", "steam", "column", "nature", "one-shot"],
   size: [184, 168],
   origin: [92, 146],
-  duration: 5,
+  duration: .85,
   loop: false,
-  fps: 30,
+  fps: 60,
   bg: "ground",
   options: { palette: WATER, height: 100, seed: 4, jetOnly: false, channelDepth: .45 },
 };
 
-const SY = 0.22, G = 820, ERUPT = 1.15, FALL = 2.6, GONE = 3.3;
-// small spurts while it builds, and the sputters after: [time, height]
-const SPURTS = [[0.46, 7], [0.72, 12], [0.92, 9], [1.04, 15], [GONE + 0.15, 15], [GONE + 0.55, 8]];
+const SY = .22, G = 820;
+const DROP_G = 1800;
+
+// A single attack envelope. The maximum is the impact, never a sustained beam.
+// [time, height, pressure, crown, ground foam, light]
+export const choreography = [
+  [.00, .00, .00, .00, .00, .00],
+  [.05, .30, .75, .18, .45, .65],
+  [.10, .94, 1.0, .95, 1.0, 1.0],
+  [.15, 1.0, .96, 1.0, .90, .72],
+  [.20, .87, .87, .85, .75, .50],
+  [.25, .65, .73, .65, .62, .32],
+  [.30, .39, .54, .40, .48, .20],
+  [.35, .16, .31, .15, .34, .11],
+  [.40, .00, .00, .00, .24, .06],
+  [.45, .00, .00, .00, .18, .04],
+  [.50, .00, .00, .00, .13, .025],
+  [.55, .00, .00, .00, .09, .015],
+  [.60, .00, .00, .00, .06, .01],
+  [.65, .00, .00, .00, .035, .005],
+  [.70, .00, .00, .00, .015, .00],
+  [.75, .00, .00, .00, .005, .00],
+  [.80, .00, .00, .00, .00, .00],
+  [.85, .00, .00, .00, .00, .00],
+];
+
+function state(t) {
+  const f = clamp(t / .05, 0, choreography.length - 1);
+  const i = Math.min(choreography.length - 2, Math.floor(f));
+  const u = smooth(0, 1, f - i);
+  return choreography[i].map((v, j) => v + (choreography[i + 1][j] - v) * u);
+}
 
 export function create(o) {
   const C = fit(o.palette, 8), R = new Rng(o.seed), HMAX = o.height, S = o.seed;
-  const ps = new Particles({ rng: R }), mist = new Mist(), lights = new Lights(), rings = new Ripples({ sy: SY });
-  const plinks = [], pops = [];
-  let t = 0;
-  const poolR = (tt) => (12 + 7 * smooth(0, 1, tt) + 15 * ease.outCubic(clamp((tt - ERUPT) / 1.2))) * (1 - 0.25 * smooth(GONE, 4.6, tt));
-  const poolK = (tt) => smooth(0, 0.2, tt) * (1 - smooth(4.0, 4.85, tt));
-  const drops = new Drops({
-    sy: SY,
-    g: G,
-    onLand: (d) => {
-      const inPool = Math.hypot(d.x, d.z) < poolR(t);
-      rings.add(d.x, d.z, 0.6, (inPool ? 2.5 : 1.5) + d.s * 1.6, 0.32 + d.s * 0.1, { n: 1, k: inPool ? 0.95 : 0.7, hot: 0.05 });
-      plinks.push({ x: d.x, y: d.z * SY, s: d.s, age: 0 });
-      if (d.s > 1 && !d.small)
-        for (let i = 0; i < 2; i++) {
-          const a = R.range(0, TAU), v = R.range(8, 28);
-          drops.add({ x: d.x, z: d.z, h: 0.5, vx: Math.cos(a) * v, vz: Math.sin(a) * v, vh: R.range(45, 95), s: 1, small: true, life: 1 });
-        }
-    },
+  // Pre-authored burst births make stepping independent of rendering rate.
+  // The second group is water shed by that same crown, not a second eruption.
+  const drops = Array.from({ length: o.jetOnly ? 18 : 72 }, (_, i) => {
+    const crown = i >= 40, birth = crown ? R.range(.12, .23) : R.range(.035, .105);
+    const a = R.range(0, TAU), speed = R.range(22, crown ? 75 : 100);
+    const h = crown ? HMAX * state(birth)[1] * R.range(.72, .96) : R.range(2, 9);
+    const vh = crown ? R.range(-95, -20) : R.range(180, 360);
+    const land = (vh + Math.sqrt(vh * vh + 2 * DROP_G * h)) / DROP_G;
+    return { birth, h, vh, land, x: R.range(-7, 7), z: R.range(-4, 4),
+      vx: Math.cos(a) * speed, vz: Math.sin(a) * speed,
+      size: R.next() < .24 ? 2 : 1, seed: R.int(0, 10000) };
   });
-  // how tall the column stands: a fast blast, surging while it holds, slumping when the pressure goes
-  const top = (tt) => {
-    if (tt < ERUPT || tt > GONE) return 0;
-    return HMAX * ease.outCubic(clamp((tt - ERUPT) / 0.3)) * (0.93 + 0.07 * noise(tt * 2.2, S)) * (1 - ease.inQuad(clamp((tt - FALL) / (GONE - FALL))));
-  };
-  const head = (tt) => smooth(ERUPT + 0.08, ERUPT + 0.3, tt) * (1 - smooth(FALL + 0.1, FALL + 0.45, tt));
-  const spurt = (tt) => {
-    let h = 0;
-    for (const [s0, hs] of SPURTS) h = Math.max(h, hs * Math.sin(Math.PI * clamp((tt - s0) / 0.2)));
-    return h;
-  };
-  const done = new Set(), once = (key, at) => !done.has(key) && t >= at && done.add(key);
-  const emit = (rate, dt) => R.chance(Math.min(1, rate * dt));
+  let elapsed = 0;
 
-  const column = (p, H, thin) => drawGeyserColumn(p, H, thin, { C, t, HMAX, S, jetOnly: o.jetOnly, channelDepth: o.channelDepth });
-  const foamHead = (p, H, k, back) => drawGeyserFoam(p, H, k, back, { C, t, S });
-
-  // Compact skill variant: retain the rising, textured column without the overflowing
-  // foam head, lateral spray, secondary spurts or large landing ripples.
-  if (o.jetOnly) return {
-    update(dt) { t += dt; },
-    drawBack(p) {
-      const k = smooth(ERUPT, ERUPT + .15, t) * (1 - smooth(FALL, GONE + .2, t));
-      if (k <= 0) return;
-      p.each(-30, -10, 30, 10, (x, y, sx, sy) => {
-        const d = (x / 30) ** 2 + (y / 10) ** 2;
-        if (d < 1) p.blendPx(sx, sy, C[d > .82 ? 3 : 2], k * .16 * (1 - d * .5));
-      });
-    },
-    draw(p) {
-      const H = top(t), thin = smooth(ERUPT, ERUPT + .12, t) * (1 - .55 * smooth(FALL, GONE, t));
-      column(p, H, thin * 1.35);
-      if (H > 2) {
-        // A few short upward flecks make the jet read as water without pouring over.
-        for (let i = 0; i < 5; i++) {
-          const u = (t * 2 + i / 5) % 1, x = (i - 2) * 3;
-          const y = -H + 4 - u * 7;
-          p.blend(x, y, C[5], Math.sin(u * Math.PI) * thin * .65);
-        }
+  function droplet(p, d, t, front) {
+    const age = t - d.birth;
+    if (age < 0 || age > d.land + .14) return;
+    const floorAge = Math.min(age, d.land);
+    const x = d.x + d.vx * floorAge, z = d.z + d.vz * floorAge;
+    if ((z >= 0) !== front) return;
+    const end = 1 - smooth(.66, .84, t);
+    if (age < d.land) {
+      const h = d.h + d.vh * age - DROP_G * age * age / 2;
+      const y = z * SY - h;
+      bead(p, x, y, d.vx, d.vz * SY - d.vh + DROP_G * age, d.size, C, end);
+      if (d.size > 1) p.glow(x, y, 4, C[4], end * .1);
+    } else {
+      const u = age - d.land, k = (1 - smooth(.02, .14, u)) * end;
+      ring(p, x, z * SY, 1 + u * 24, .26, k * .7, C,
+        { n: 1, seed: d.seed, half: front ? 1 : -1, hot: u < .025 });
+      if (u < .065 && d.size > 1) {
+        const hop = Math.sin(u / .065 * Math.PI) * 2;
+        p.line(x - 2, z * SY - hop, x, z * SY, C[5], k);
+        p.blend(x + 2, z * SY - hop, C[6], k);
       }
-    },
-  };
+    }
+  }
+
+  function ground(p, t, s, front) {
+    const age = t - .025;
+    if (age <= 0) return;
+    const k = smooth(0, .035, age) * (1 - smooth(.2, .65, t));
+    const radius = 5 + 30 * ease.outCubic(clamp(age / .32));
+    if (!front) {
+      p.each(-radius, -radius * SY, radius, radius * SY, (x, y, sx, sy) => {
+        const q = (x / radius) ** 2 + (y / (radius * SY)) ** 2;
+        if (q < 1) p.blendPx(sx, sy, C[1], (1 - q) * k * .36);
+      });
+      pool(p, 0, 0, 36, 9, C[3], s[5] * .2);
+    }
+    ring(p, 0, 0, radius, SY, k * .85, C,
+      { n: 2, gap: 2, half: front ? 1 : -1, hot: age < .08, seed: S, wob: .6 });
+    if (front && s[4] > .01 && !o.jetOnly) {
+      const foamRadius = 8 + 9 * smooth(.04, .24, t);
+      lace(p, 0, 0, foamRadius, foamRadius * SY + .5, s[4], C, 1.15 + t * 2.4, S);
+    }
+    if (s[4] > .01) {
+      for (let i = 0; i < 9; i++) {
+        const a = i / 9 * TAU + t * 2, side = Math.sin(a);
+        if ((side >= 0) !== front) continue;
+        const r = 7 + 7 * smooth(.06, .32, t);
+        billow(p, Math.cos(a) * r, side * r * SY - 1,
+          (1.8 + rand(i, S) * 1.4) * Math.sqrt(s[4]), C, Math.min(1, s[4] * 1.6));
+      }
+    }
+  }
+
+  function layer(p, front) {
+    const t = Math.round(elapsed * 1e9) / 1e9;
+    if (t <= 0 || t >= meta.duration) return;
+    const s = state(t), H = HMAX * s[1];
+    // Use the original detailed column and crown with their own flowing clock.
+    // Texture keeps moving while the attack envelope compresses the lifecycle.
+    const water = { C, t: 1.15 + t * 2.4, HMAX, S, jetOnly: o.jetOnly, channelDepth: o.channelDepth };
+    ground(p, t, s, front);
+    if (!front && !o.jetOnly) drawGeyserFoam(p, H, s[3], true, water);
+    if (front) {
+      drawGeyserColumn(p, H, s[2], water);
+      if (!o.jetOnly) drawGeyserFoam(p, H, s[3], false, water);
+      if (H > 1) p.glowLine(0, -2, 0, -H, 20, C[4], s[5] * .17);
+      const flash = smooth(.015, .04, t) * (1 - smooth(.055, .1, t));
+      if (flash > 0) {
+        p.ellipse(0, -2, 7, 2, C[6], flash);
+        p.glow(0, -4, 23, C[5], flash * .5);
+      }
+      // Fine low vapour follows the collapsing water, with no late upward jet.
+      for (let i = 0; i < 6; i++) {
+        const age = t - .16 - i * .012;
+        if (age < 0 || age > .42) continue;
+        const u = age / .42, k = Math.sin(u * Math.PI) * (1 - u);
+        const side = i % 2 ? 1 : -1;
+        haze(p, side * (5 + age * (20 + i * 3)), -2 - age * 5,
+          4 + u * 5, C[4], k * .12);
+      }
+    }
+    for (const d of drops) droplet(p, d, t, front);
+  }
 
   return {
-    update(dt) {
-      t += dt;
-      const H = top(t), hk = head(t), k = t / ERUPT;
-      // building: bubbles burst on the heaving mound, faster and faster, steam starts to lift
-      if (t < ERUPT && emit(1.5 + 9 * k * k, dt)) {
-        const a = R.range(0, TAU), r = R.range(0, 7), x = Math.cos(a) * r, z = Math.sin(a) * r;
-        pops.push({ x, y: z * SY - R.range(1, 3), age: 0, r: R.range(1, 2) });
-        rings.add(x, z, 1, R.range(5, 9), 0.55, { n: 1, k: 0.85 });
-        for (let i = 0; i < R.int(1, 3); i++) drops.add({ x, z, h: 2, vx: R.range(-25, 25), vz: R.range(-15, 15), vh: R.range(50, 120), s: 1, small: true, life: 1 });
-      }
-      if (t < ERUPT && emit(3 + 7 * k, dt)) mist.add(R.range(-8, 8), -R.range(1, 5), R.range(-10, 10), -R.range(6, 18), 2, R.range(5, 9), R.range(0.9, 1.5), C[6], 0.22);
-      for (const [s0, hs] of SPURTS)
-        if (once("spurt" + s0, s0 + 0.08))
-          for (let i = 0; i < 3 + Math.round(hs / 4); i++) {
-            const a = R.range(0, TAU), v = R.range(10, 40);
-            drops.add({ x: 0, z: 0, h: hs * 0.8, vx: Math.cos(a) * v, vz: Math.sin(a) * v, vh: R.range(20, 90), s: R.chance(0.3) ? 2 : 1 });
-          }
-      if (once("erupt", ERUPT)) {
-        // the blast: light, a ring thrown across the ground, water flung high, steam rolling out
-        lights.add(0, -26, 64, C[5], 0.85, 0.6);
-        lights.add(0, -4, 28, WHITE, 0.75, 0.1);
-        rings.add(0, 0, 6, 40, 1.2, { n: 2, gap: 3, k: 1.2, hot: 0.12, glint: 1 });
-        for (let i = 0; i < 44; i++) {
-          const a = R.range(0, TAU), v = R.range(30, 120);
-          drops.add({ x: Math.cos(a) * 3, z: Math.sin(a) * 3, h: R.range(2, 10), vx: Math.cos(a) * v, vz: Math.sin(a) * v, vh: R.range(180, 400), s: R.chance(0.15) ? 3 : R.chance(0.35) ? 2 : 1, delay: R.range(0, 0.12) });
-        }
-        for (let i = 0; i < 12; i++) {
-          const s = i % 2 ? 1 : -1;
-          mist.add(s * R.range(3, 9), -R.range(1, 6), s * R.range(30, 80), -R.range(4, 18), 3, R.range(9, 14), R.range(1.2, 1.9), R.chance(0.5) ? C[6] : WHITE, 0.3, R.range(0, 0.15));
-        }
-        for (let i = 0; i < 14; i++) ps.spawn(P.STAR, R.range(-16, 16), -R.range(8, 80), R.range(-10, 10), -6, R.range(0.3, 0.7), R.chance(0.5) ? WHITE : C[6], R.range(1, 2.6), R.range(0.05, 0.5));
-      }
-      // holding: the head sheds drops that rain back down, spray hangs off the column, steam pours off the top
-      if (hk > 0) {
-        if (emit(60 * hk, dt)) {
-          const a = R.range(0, TAU), v = R.range(10, 60);
-          drops.add({ x: R.range(-9, 9), z: R.range(-4, 4), h: H + R.range(-8, 3), vx: Math.cos(a) * v, vz: Math.sin(a) * v, vh: R.range(-40, 60), s: R.chance(0.08) ? 3 : R.chance(0.3) ? 2 : 1 });
-        }
-        if (emit(9 * hk, dt)) mist.add(R.range(-8, 8), -H + R.range(-6, 2), R.range(-34, 34), -R.range(14, 34), 3, R.range(8, 13), R.range(0.9, 1.4), R.chance(0.6) ? C[6] : WHITE, 0.2);
-        if (emit(5 * hk, dt)) mist.add(R.sign() * R.range(3, 9), -R.range(1, 6), R.sign() * R.range(20, 50), -R.range(2, 10), 3, R.range(8, 12), R.range(1, 1.6), C[6], 0.22);
-        if (emit(40 * hk, dt)) {
-          const s = R.sign(), hh = R.range(8, H * 0.95);
-          ps.spawn(P.FLAKE, s * (3 + 6 * Math.pow(hh / H, 1.8)), -hh, s * R.range(10, 45), R.range(-20, 10), R.range(0.6, 1.2), R.chance(0.5) ? WHITE : C[6], R.range(0.6, 1.3));
-        }
-        if (emit(4 * hk, dt)) rings.add(R.range(-2, 2), R.range(-2, 2), 4, poolR(t) * R.range(0.7, 1), 0.9, { n: 1, k: 0.8 });
-        if (emit(7 * hk, dt)) ps.spawn(P.STAR, R.range(-14, 14), -R.range(10, H + 8), R.range(-6, 6), -4, R.range(0.25, 0.55), R.chance(0.4) ? WHITE : C[6], R.range(0.8, 2.2), 0);
-      }
-      if (once("collapse", FALL + 0.12)) {
-        // the head falls apart: a heavy rain of drops all at once
-        for (let i = 0; i < 40; i++) {
-          const a = R.range(0, TAU), v = R.range(15, 80);
-          drops.add({ x: R.range(-6, 6), z: R.range(-3, 3), h: top(t) + R.range(-8, 4), vx: Math.cos(a) * v, vz: Math.sin(a) * v, vh: R.range(-40, 60), s: R.chance(0.12) ? 3 : R.chance(0.35) ? 2 : 1, delay: R.range(0, 0.25) });
-        }
-        for (let i = 0; i < 6; i++) mist.add(R.range(-8, 8), -top(t) + R.range(-6, 6), R.range(-34, 34), -R.range(10, 26), 4, R.range(9, 13), R.range(0.8, 1.2), C[6], 0.18);
-      }
-      for (let i = pops.length - 1; i >= 0; i--) if ((pops[i].age += dt) > 0.12) pops.splice(i, 1);
-      for (let i = plinks.length - 1; i >= 0; i--) if ((plinks[i].age += dt) > 0.14) plinks.splice(i, 1);
-      drops.update(dt);
-      rings.update(dt);
-      mist.update(dt);
-      ps.update(dt);
-      lights.update(dt);
-    },
-    drawBack(p) {
-      // the pool: dark see-through water, a lit far rim
-      const pr = poolR(t), pk = poolK(t);
-      if (pk > 0)
-        p.each(-pr, -pr * SY, pr, pr * SY, (x, y, sx, sy) => {
-          const d = (x / pr) ** 2 + (y / (pr * SY)) ** 2;
-          if (d > 1) return;
-          p.blendPx(sx, sy, d < 0.15 ? C[2] : C[1], 0.6 * pk * Math.min(1, (1 - d) * 4));
-          if (y < 0 && d > 0.78 && d < 0.95) p.blendPx(sx, sy, C[4], 0.7 * pk);
-        });
-      rings.draw(p, C, -1);
-      const u = (t - ERUPT) / 0.4;
-      if (u > 0 && u < 1) ring(p, 0, 0.5, 6 + 42 * ease.outCubic(u), SY, 1.5 * (1 - u), C, { n: 3, gap: 1.6 + 2 * u, half: -1, hot: u < 0.3, seed: 9 });
-      foamHead(p, top(t), head(t), true);
-      drops.draw(p, C, "back");
-    },
-    draw(p) {
-      const H = top(t), hk = head(t), k = clamp(t / ERUPT), thin = smooth(ERUPT, ERUPT + 0.12, t) * (1 - 0.55 * smooth(FALL, GONE, t));
-      rings.draw(p, C, 1);
-      const u = (t - ERUPT) / 0.4;
-      if (u > 0 && u < 1) ring(p, 0, 0.5, 6 + 42 * ease.outCubic(u), SY, 1.5 * (1 - u), C, { n: 3, gap: 1.6 + 2 * u, half: 1, hot: u < 0.3, seed: 9 });
-      // foam rides the pool round the foot of the column
-      const fk = smooth(ERUPT, ERUPT + 0.3, t) * (1 - smooth(GONE - 0.3, 4.4, t));
-      if (fk > 0) lace(p, 0, 0, 8 + 10 * fk, (8 + 10 * fk) * SY + 0.5, fk, C, t, S);
-      // the heaving mound while it builds, beating faster
-      if (t < ERUPT + 0.05) {
-        const beat = Math.pow(Math.max(0, Math.sin(t * (8 + 18 * k * k))), 3), rd = 4 + 3.5 * k + 1.5 * beat, hd = 1.5 + 3 * k + 3 * beat;
-        p.shade(-rd - 1, -hd - 1, rd + 1, 0.5, (x, y, out) => {
-          const dx = x / rd, dy = y / hd, d = dx * dx + dy * dy;
-          if (d > 1 || y > 0.5) return;
-          // water heaving up: a white rim where it faces the light, a tinted body, shadow low on the right
-          const lit = -dx * 0.7 - dy * 0.7, rim = d > 0.68;
-          out.c = rim ? (lit > 0.3 ? WHITE : lit > -0.15 ? C[6] : C[4]) : lit > 0.55 ? C[6] : lit > 0.12 ? C[5] : lit > -0.3 ? C[4] : C[3];
-        });
-        p.px(-rd * 0.35, -hd * 0.6, WHITE);
-        p.glow(0, -5, 16 + 16 * k + 8 * beat, C[5], 0.06 + 0.12 * k + 0.12 * beat);
-      }
-      // spurts while it builds and sputters as it dies: a short white jet with a bead on top
-      const sp = spurt(t);
-      if (sp > 1 && H < 1) {
-        p.shade(-2, -sp - 1, 2, 0, (x, y, out) => {
-          const q = x / (1 + 0.8 * (1 + y / sp));
-          if (Math.abs(q) > 1) return;
-          out.c = q < -0.3 ? C[6] : q < 0.35 ? WHITE : C[5];
-        });
-        p.circle(0, -sp, 1.3, C[6]);
-        p.px(0, -sp - 1, WHITE);
-        p.glowLine(0, 0, 0, -sp, 8, C[5], 0.3);
-      }
-      column(p, H, thin);
-      // the foot: billows boil out round it
-      if (hk > 0 || (H > 1 && t < GONE))
-        for (let i = 0; i < 7; i++) {
-          const a = (i / 7) * TAU + t * 2.1, r = 4 + 2 * Math.sin(t * 5 + i * 1.7), x = Math.cos(a) * r * 1.3, y = Math.sin(a) * r * SY - 2;
-          billow(p, x, y, (1.6 + 1.2 * rand(i, S + 4)) * Math.max(hk, thin * 0.6), C);
-        }
-      foamHead(p, H, hk, false);
-      for (const q of pops) {
-        const g = q.age / 0.12;
-        for (const [dx, dy] of [[1, 0], [-1, 0], [0.7, -0.7], [-0.7, -0.7], [0, -1]]) p.dot(q.x + dx * (q.r + 3 * g), q.y + dy * (q.r + 3 * g), C[6], 1 - g);
-      }
-      for (const q of plinks) {
-        const g = q.age / 0.14;
-        if (g < 0.5) p.px(q.x, q.y, WHITE);
-        if (q.s > 1) p.line(q.x, q.y - 1, q.x, q.y - 1 - 3 * (1 - g), g < 0.4 ? WHITE : C[6]);
-        p.glow(q.x, q.y, 4, C[5], 0.25 * (1 - g));
-      }
-      drops.draw(p, C, "front");
-      // the blast's first two frames: a white burst at the vent
-      const f = (t - ERUPT) / 0.07;
-      if (f >= 0 && f < 1) {
-        p.circle(0, -4, 7 * (1 - f * 0.4), WHITE);
-        p.ellipse(0, 0, 12, 2.6, (d) => (d < 0.6 ? WHITE : C[6]));
-      }
-      ps.draw(p);
-      mist.draw(p, C[5]);
-      lights.draw(p);
-      // light: the column and its head, the pool round its foot
-      if (H > 1) p.glowLine(0, 0, 0, -H, 26, C[4], 0.2 * thin);
-      p.glow(0, -2, 46, C[4], 0.24 * Math.max(hk, 0.3 * k * (t < ERUPT ? 1 : 0)));
-      p.glow(0, 2, 60, C[3], 0.12 * poolK(t));
-    },
+    update(dt) { elapsed = Math.min(meta.duration, elapsed + dt); },
+    drawBack(p) { layer(p, false); },
+    draw(p) { layer(p, true); },
   };
 }
 

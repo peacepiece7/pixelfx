@@ -105,3 +105,17 @@ independently delayed low foam/ripples carry the lost height into a spreading wa
 Rear and leading water edges taper inside an expanded 400×200 preview viewport
 (origin 40,144); the attack's 300px local span and one-second contract are unchanged.
 A regression check verifies all three lane sections remain visible while settling.
+
+## Geyser single-hit revision
+
+`water/geyser` now lasts 0.85 seconds instead of 5 seconds. The user clarified that
+one column represents one hit. Its original exported column/foam drawing primitives
+are retained, but the lifecycle is rebuilt: .00–.15 rise, .15 peak, .15–.40 collapse,
+then ballistic droplets and short landing ripples only. There are no preparatory
+spurts, sustained emission, rebound jets or late eruption. The ground ring reaches
+radius 35. Seventy-two seeded droplets belong to the one burst/crown collapse;
+their analytic trajectories remain independent of update partitioning.
+
+`tools/test-geyser-strike.mjs` checks the single peak, empty endings, 50ms keys,
+height/jetOnly/facing variants and partition-independent rendering. This changes
+visual timing only; hit count and damage remain owned by combat code.
