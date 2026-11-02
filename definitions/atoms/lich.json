@@ -3,37 +3,67 @@
   "name": "리치",
   "kind": "monster",
   "renderer": "sprite",
-  "assetPath": "monsters/lich/runtime/concept.png",
+  "assetPath": "monsters/lich/runtime/walk.png",
   "pivot": [
-    26,
-    47
+    23,
+    44
   ],
   "animations": {
     "walk": {
-      "path": "monsters/lich/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/lich/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
-        26,
-        47
+        23,
+        44
       ],
-      "loop": true,
-      "sequence": [
-        0
-      ]
+      "loop": true
     },
     "attack": {
-      "path": "monsters/lich/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/lich/runtime/attack.png",
+      "frames": 5,
+      "fps": 12.0,
       "pivot": [
-        26,
-        47
+        40,
+        44
       ],
-      "loop": true,
-      "sequence": [
-        2
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -40,
+        -31
       ]
+    },
+    "raise": {
+      "path": "monsters/lich/runtime/raise.png",
+      "frames": 4,
+      "fps": 8.0,
+      "pivot": [
+        27,
+        48
+      ],
+      "loop": false,
+      "reviveFrame": 2
+    },
+    "hit": {
+      "path": "monsters/lich/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        29,
+        43
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/lich/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        34,
+        46
+      ],
+      "loop": false
     }
   }
 }
