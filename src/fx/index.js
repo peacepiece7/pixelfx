@@ -1,3 +1,4 @@
+import * as shadow_dark_shroud from "./shadow/dark-shroud.js";
 import * as ice_freeze_slam from "./ice/freeze-slam.js";
 import * as nature_pull_vortex from "./nature/pull-vortex.js";
 import * as blood_thorn_reflect from "./blood/thorn-reflect.js";
@@ -256,6 +257,7 @@ import * as critters_wisp from "./critters/wisp.js";
 export { categories } from "./categories.js";
 
 export const effects = {
+  "shadow/dark-shroud": shadow_dark_shroud,
   "ice/freeze-slam": ice_freeze_slam,
   "nature/pull-vortex": nature_pull_vortex,
   "blood/thorn-reflect": blood_thorn_reflect,
