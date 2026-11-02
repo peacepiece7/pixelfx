@@ -12,4 +12,3 @@ export function create(o){const C=fit(o.palette,6),R=new Rng(o.seed),drops=Array
   for(const d of drops){const y=d.vy*t+100*t*t;if(y>4)continue;p.line(d.x+d.vx*t,y-2,d.x+d.vx*t,y,C[3],fade);p.dot(d.x+d.vx*t,y,C[5],fade);}
   if(t<.12)sparkle(p,3,-3,8*(1-t/.12),C[5],C[3]);
  }};}
-

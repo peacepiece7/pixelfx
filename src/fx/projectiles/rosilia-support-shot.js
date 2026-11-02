@@ -7,7 +7,7 @@ export const meta = {
   size: [200, 120], origin: [100, 87], duration: 2, loop: true, fps: 30, bg: "ground",
   options: {
     palette: ["#251b19", "#564239", "#866a46", "#b59a63", "#ddc98a", "#f7e9bd", "#ffffff"],
-    radius: 62, seed: 17, pulse: 0,
+    radius: 90, seed: 17, pulse: 0,
   },
 };
 

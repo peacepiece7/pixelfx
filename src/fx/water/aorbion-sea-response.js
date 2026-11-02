@@ -11,4 +11,3 @@ export function draw(p,t,o){const C=fit(o.palette,6),R=new Rng(o.seed),k=.7+.2*M
   p.line(x+1,y-4,x,y-7,C[3],k);p.dot(x+4,y-2,C[5],k);p.glow(x,y,7,C[3],k*.1);
  }
 }
-

@@ -16,4 +16,3 @@ export function draw(p,t,o){
  for(let i=0;i<=48;i++){const a=i*TAU/48;pts.push([-19+5*Math.cos(a),-43+2*Math.sin(2*a)]);}p.polyline(pts,C[4],.75);
  const k=clamp(o.intro??0);if(k){p.glow(-19,-43,10,C[5],k*.3);p.glowLine(-24,-43,-14,-43,3,C[6],k*.25);}
 }
-

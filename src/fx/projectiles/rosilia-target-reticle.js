@@ -9,4 +9,3 @@ export function draw(p,t,o){
  p.arc(0,y,17,1,a,a+.5,C[5],.45+pulse*.5);
  if(pulse>0){p.glowRing(0,y,19,3,C[4],pulse*.35);p.line(-3,y,3,y,C[6],pulse);p.line(0,y-3,0,y+3,C[6],pulse);}
 }
-

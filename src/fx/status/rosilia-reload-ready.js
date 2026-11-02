@@ -12,4 +12,3 @@ export function draw(p,t,o){
  p.tri(x-5,y+5,x-8,y+3,x-5,y+2,C[4],k);p.tri(x+5,y-5,x+8,y-3,x+5,y-2,C[4],k);
  p.glow(x,y,8,C[3],k*.08);
 }
-

@@ -13,4 +13,3 @@ export function draw(p,t,o){if(t<0||t>=meta.duration)return;const C=fit(o.palett
  p.dot(x-5,y-4,C[5],fade);p.glow(x-5,y-4,5,C[4],fade*.25);
  for(let j=0;j<16;j++){const q=R.next(),xx=q*280,yy=-20+Math.sin(q*TAU*2-t*TAU*2+phase)*(3+8*(1-q));p.line(xx,yy,xx-6,yy-7,C[3],fade*.7);}
 }
-

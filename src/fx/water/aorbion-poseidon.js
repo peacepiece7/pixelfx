@@ -16,4 +16,3 @@ function layer(p,t,o,back){const C=fit(o.palette,6),R=new Rng(o.seed),phase=R.ra
 }
 export function drawBack(p,t,o){layer(p,t,o,true);}
 export function draw(p,t,o){layer(p,t,o,false);}
-

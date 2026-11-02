@@ -15,4 +15,3 @@ export function create(o){const C=fit(o.palette,6),R=new Rng(o.seed),n=clamp(Mat
    for(let j=0;j<6;j++){const a=j*TAU/6+phases[i],x=Math.cos(a)*u*25,dy=-32*u+70*u*u;p.dot(x,y-h*.4+dy,C[4],k);}
   }
  }};}
-
