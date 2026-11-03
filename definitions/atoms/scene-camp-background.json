@@ -1,0 +1,9 @@
+{
+  "id": "scene-camp-background",
+  "name": "[재생성] 메인 야영지 · 모닥불과 고정 생활석 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-camp-background/runtime/art.png",
+  "width": 910,
+  "height": 512
+}

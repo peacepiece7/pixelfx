@@ -1,0 +1,25 @@
+{
+  "id": "scene-camp-props",
+  "name": "야영지 생활 소품 · 고정 6석",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "environments/scene-camp-props/runtime/icons-64.png",
+  "icons": [
+    "fireside",
+    "grill",
+    "blade",
+    "watch",
+    "book",
+    "rest"
+  ],
+  "sheets": {
+    "32": {
+      "path": "environments/scene-camp-props/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "environments/scene-camp-props/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}
