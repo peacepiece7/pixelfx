@@ -93,6 +93,16 @@
         64
       ],
       "loop": false
+    },
+    "camp-grill": {
+      "path": "characters/alasdair/runtime/camp-grill.png",
+      "frames": 8,
+      "fps": 3.0,
+      "pivot": [
+        19,
+        38
+      ],
+      "loop": true
     }
   }
 }

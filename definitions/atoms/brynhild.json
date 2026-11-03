@@ -123,6 +123,16 @@
         24,
         -35
       ]
+    },
+    "camp-fireside": {
+      "path": "characters/brynhild/runtime/camp-fireside.png",
+      "frames": 8,
+      "fps": 4.0,
+      "pivot": [
+        20,
+        37
+      ],
+      "loop": true
     }
   },
   "portraitPath": "characters/brynhild/runtime/portrait.png",

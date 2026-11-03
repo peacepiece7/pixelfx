@@ -108,6 +108,16 @@
         32
       ],
       "loop": false
+    },
+    "camp-blade": {
+      "path": "characters/hilding/runtime/camp-blade.png",
+      "frames": 8,
+      "fps": 4.0,
+      "pivot": [
+        18,
+        36
+      ],
+      "loop": true
     }
   }
 }

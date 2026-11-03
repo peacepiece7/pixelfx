@@ -53,6 +53,16 @@
         43
       ],
       "loop": false
+    },
+    "camp-watch": {
+      "path": "characters/akasha/runtime/camp-watch.png",
+      "frames": 8,
+      "fps": 4.0,
+      "pivot": [
+        17,
+        37
+      ],
+      "loop": true
     }
   }
 }

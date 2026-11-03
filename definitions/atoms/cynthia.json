@@ -143,6 +143,16 @@
         41
       ],
       "loop": false
+    },
+    "camp-watch": {
+      "path": "characters/cynthia/runtime/camp-watch.png",
+      "frames": 8,
+      "fps": 4.0,
+      "pivot": [
+        17,
+        37
+      ],
+      "loop": true
     }
   }
 }

@@ -138,6 +138,16 @@
         49
       ],
       "loop": false
+    },
+    "camp-blade": {
+      "path": "characters/vesper/runtime/camp-blade.png",
+      "frames": 8,
+      "fps": 4.0,
+      "pivot": [
+        21,
+        37
+      ],
+      "loop": true
     }
   }
 }

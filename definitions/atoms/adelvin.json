@@ -218,6 +218,16 @@
         17,
         -13
       ]
+    },
+    "camp-book": {
+      "path": "characters/adelvin/runtime/camp-book.png",
+      "frames": 8,
+      "fps": 2.0,
+      "pivot": [
+        18,
+        37
+      ],
+      "loop": true
     }
   }
 }

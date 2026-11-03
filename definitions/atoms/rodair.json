@@ -93,6 +93,16 @@
         41
       ],
       "loop": true
+    },
+    "camp-grill": {
+      "path": "characters/rodair/runtime/camp-grill.png",
+      "frames": 8,
+      "fps": 3.0,
+      "pivot": [
+        21,
+        38
+      ],
+      "loop": true
     }
   }
 }

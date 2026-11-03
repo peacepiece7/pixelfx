@@ -83,6 +83,16 @@
         47
       ],
       "loop": false
+    },
+    "camp-rest": {
+      "path": "characters/aorbion/runtime/camp-rest.png",
+      "frames": 8,
+      "fps": 3.0,
+      "pivot": [
+        18,
+        38
+      ],
+      "loop": true
     }
   }
 }

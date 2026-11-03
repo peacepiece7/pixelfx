@@ -53,6 +53,16 @@
         38
       ],
       "loop": false
+    },
+    "camp-rest": {
+      "path": "characters/rosilia/runtime/camp-rest.png",
+      "frames": 8,
+      "fps": 3.0,
+      "pivot": [
+        17,
+        37
+      ],
+      "loop": true
     }
   }
 }
