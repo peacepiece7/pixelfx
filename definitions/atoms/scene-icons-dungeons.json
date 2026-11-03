@@ -1,0 +1,23 @@
+{
+  "id": "scene-icons-dungeons",
+  "name": "메인 던전 전용 아이콘 · 무한/테마/일일/보스",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-dungeons/runtime/icons-64.png",
+  "icons": [
+    "infinite",
+    "theme",
+    "daily",
+    "boss"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-dungeons/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-dungeons/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}
