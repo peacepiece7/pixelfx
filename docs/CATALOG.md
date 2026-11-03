@@ -1,6 +1,6 @@
 # Catalog
 
-287 effects in 23 categories. Every one is a file in
+288 effects in 23 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## moves
@@ -332,11 +332,12 @@ venom arrows, thrown daggers, fixed fog, contact mines and residual toxin.
 |---|---|---|---|---|
 | Venom mine burst | `poison/mine-burst` | one-shot 0.5s | 128×96 | One consumed mine erupts into a low liquid crown, falling venom beads, a spreading floor ripple and olive-violet gas. No fire, chain reaction or extra hits. |
 | Poison arrow | `poison/poison-arrow` | one-shot 0.4s | 128×64 | A thin physical arrow flies from the bow with a wet venom tip, dark fletching and a sparse trail of falling poison beads. No impact or damage cue. |
+| Poisoned venom drips | `poison/poison-aura` | loop 2s | 104×112 | Sticky green venom gathers beside the lower body and drips into small toxic stains, away from the central torso lanes used by bleeding and wetness. A faint body aura remains. |
 | Poison dagger | `poison/poison-dagger` | one-shot 0.4s | 128×64 | A beveled physical throwing dagger with a wrapped handle, crossguard and a few venom drops. A visual delivery cue without ammunition, return or impact logic. |
-| Poison detonation | `poison/poison-detonation` | one-shot 0.7s | 160×128 | Stored venom detonates into green liquid and a violet-crowned gas bloom. Snapshot stacks enlarge only the visual silhouette; the host owns all damage. |
+| Poison detonation | `poison/poison-detonation` | one-shot 0.7s | 160×128 | An immediate green bomb blast: dense hot puffs, radial shrapnel streaks and a short rolling smoke aftershock. Snapshot stacks change visual size only. |
 | Poison fog field | `poison/poison-fog` | loop 5s | 160×96 | A fixed olive-green miasma rolls in low translucent banks with violet crowns, oily beads and one local light pulse per second. Every area has its own clock. |
 | Venom contact mine | `poison/poison-mine` | loop 12s | 64×64 | A small barbed venom capsule settles into the ground; three olive pips charge for 0.5 seconds, then a green core breathes in a ready ring. Host-owned lifetime and contact. |
-| Residual poison transfer | `poison/poison-transfer` | one-shot 0.5s | 160×96 | A wet venom bead pulls free of a dead target and follows a shallow arc to the host-selected recipient, trailing smaller droplets. No new stacks or lifetime refresh. |
+| Residual poison skull transfer | `poison/poison-transfer` | one-shot 0.5s | 160×96 | A venom-green darkness skull rises from a dead body, flies to the host-selected recipient and dissolves into a brief body-wrap aura. No copied stacks or refreshed lifetimes. |
 
 ## nature
 

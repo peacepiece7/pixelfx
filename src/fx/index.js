@@ -211,6 +211,7 @@ import * as status_slowed from "./status/slowed.js";
 import * as status_stunned from "./status/stunned.js";
 import * as poison_mine_burst from "./poison/mine-burst.js";
 import * as poison_poison_arrow from "./poison/poison-arrow.js";
+import * as poison_poison_aura from "./poison/poison-aura.js";
 import * as poison_poison_dagger from "./poison/poison-dagger.js";
 import * as poison_poison_detonation from "./poison/poison-detonation.js";
 import * as poison_poison_fog from "./poison/poison-fog.js";
@@ -502,6 +503,7 @@ export const effects = {
   "status/stunned": status_stunned,
   "poison/mine-burst": poison_mine_burst,
   "poison/poison-arrow": poison_poison_arrow,
+  "poison/poison-aura": poison_poison_aura,
   "poison/poison-dagger": poison_poison_dagger,
   "poison/poison-detonation": poison_poison_detonation,
   "poison/poison-fog": poison_poison_fog,

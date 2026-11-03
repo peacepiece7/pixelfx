@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->287<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->288<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -42,7 +42,7 @@ the idea at library scale, with a skill to keep going.
 | **blood** | 4 | bleeding status, blood boom, roar wave, thorn reflect |
 | **shadow** | 16 | black hole, curse, dark explosion, dark shroud, dark wave, eclipse… |
 | **status** | 16 | bleeding, blood armor, burning, charmed, confused, cursed… |
-| **poison** | 7 | venom mine burst, poison arrow, poison dagger, poison detonation, poison fog field, venom contact mine… |
+| **poison** | 8 | venom mine burst, poison arrow, poisoned venom drips, poison dagger, poison detonation, poison fog field… |
 | **nature** | 14 | acid splash, boulder, earth spike, healing bloom, leaf storm, poison cloud… |
 | **weather** | 12 | aurora, blizzard, cherry blossoms, clouds, falling leaves, fireflies… |
 | **ui** | 12 | achievement, coin collect, combo counter, confetti, countdown, crit number… |
