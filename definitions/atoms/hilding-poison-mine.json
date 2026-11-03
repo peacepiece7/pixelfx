@@ -1,0 +1,18 @@
+{
+  "id": "hilding-poison-mine",
+  "name": "독지뢰 설치·준비",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "poison/poison-mine",
+  "options": {
+    "palette": [
+      "#102514",
+      "#24422a",
+      "#466736",
+      "#75964a",
+      "#a3bf65",
+      "#d3df9a",
+      "#dfccf0"
+    ]
+  }
+}

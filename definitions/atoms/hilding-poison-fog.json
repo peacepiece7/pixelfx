@@ -1,0 +1,18 @@
+{
+  "id": "hilding-poison-fog",
+  "name": "독안개 영역",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "poison/poison-fog",
+  "options": {
+    "palette": [
+      "#102514",
+      "#24422a",
+      "#466736",
+      "#75964a",
+      "#a3bf65",
+      "#d3df9a",
+      "#dfccf0"
+    ]
+  }
+}

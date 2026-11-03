@@ -1,0 +1,18 @@
+{
+  "id": "hilding-poison-transfer",
+  "name": "잔독 전이",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "poison/poison-transfer",
+  "options": {
+    "palette": [
+      "#102514",
+      "#24422a",
+      "#466736",
+      "#75964a",
+      "#a3bf65",
+      "#d3df9a",
+      "#dfccf0"
+    ]
+  }
+}
