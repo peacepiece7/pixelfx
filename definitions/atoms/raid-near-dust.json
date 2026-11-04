@@ -1,0 +1,17 @@
+{
+  "id": "raid-near-dust",
+  "name": "레이드 · 큰 전경 바위 파편·먼지",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "raid/near-dust",
+  "options": {
+    "palette": [
+      "#111126",
+      "#24203f",
+      "#45316b",
+      "#7844a4",
+      "#b66ce0",
+      "#e4bcff"
+    ]
+  }
+}

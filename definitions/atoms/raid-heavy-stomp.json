@@ -1,0 +1,19 @@
+{
+  "id": "raid-heavy-stomp",
+  "name": "엔드리스 드래곤 · 지면 강타 (후보)",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "raid/heavy-stomp",
+  "options": {
+    "palette": [
+      "#102316",
+      "#1b3925",
+      "#2b5734",
+      "#467b43",
+      "#72a951",
+      "#a7cf70",
+      "#dcf2ac",
+      "#f2ffda"
+    ]
+  }
+}

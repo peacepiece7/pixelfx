@@ -1,0 +1,20 @@
+{
+  "id": "raid-dragon-breath",
+  "name": "엔드리스 드래곤 · 전장 전체 보라색 화염 브레스",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "raid/dragon-breath",
+  "options": {
+    "palette": [
+      "#190b2e",
+      "#39104f",
+      "#65177c",
+      "#8d259f",
+      "#b63fca",
+      "#d563ef",
+      "#ef9aff",
+      "#f7ceff",
+      "#fff3ff"
+    ]
+  }
+}

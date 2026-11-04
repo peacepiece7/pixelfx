@@ -1,0 +1,19 @@
+{
+  "id": "cynthia-satellite-trail",
+  "name": "새틀라이트 · 번개 바닥과 잔불",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/satellite-trail-showcase",
+  "options": {
+    "palette": [
+      "#39252a",
+      "#744436",
+      "#ad6847",
+      "#db955c",
+      "#f8bb7b",
+      "#ffd6a2",
+      "#ffe9cb",
+      "#fff8ec"
+    ]
+  }
+}

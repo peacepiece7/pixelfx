@@ -1,0 +1,19 @@
+{
+  "id": "cynthia-satellite",
+  "name": "새틀라이트 · 마법진·레이저·잔불",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/satellite-showcase",
+  "options": {
+    "palette": [
+      "#39252a",
+      "#744436",
+      "#ad6847",
+      "#db955c",
+      "#f8bb7b",
+      "#ffd6a2",
+      "#ffe9cb",
+      "#fff8ec"
+    ]
+  }
+}

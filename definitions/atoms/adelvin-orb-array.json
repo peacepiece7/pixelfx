@@ -3,16 +3,16 @@
   "name": "아델빈 빛의 구체 비축 배열",
   "kind": "vfx",
   "renderer": "effect",
-  "effectId": "holy/adelvin-orb-array",
+  "effectId": "holy/adelvin-orb-array-showcase",
   "options": {
     "palette": [
-      "#162c48",
-      "#27536e",
-      "#3c879b",
-      "#68bfce",
-      "#b8e3df",
-      "#e9ce8d",
-      "#fff4d8",
+      "#200c40",
+      "#3a1465",
+      "#60249b",
+      "#893bd0",
+      "#b365ec",
+      "#d5a2ff",
+      "#efdaff",
       "#ffffff"
     ]
   }

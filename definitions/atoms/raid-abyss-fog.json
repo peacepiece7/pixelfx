@@ -1,0 +1,19 @@
+{
+  "id": "raid-abyss-fog",
+  "name": "레이드 · 대형 독안개 (weather/fog 기반)",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "raid/abyss-fog",
+  "options": {
+    "palette": [
+      "#102316",
+      "#1b3925",
+      "#2b5734",
+      "#467b43",
+      "#72a951",
+      "#a7cf70",
+      "#dcf2ac",
+      "#f2ffda"
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": "cynthia-overheat",
+  "name": "과열 · 붉은 Glitch 상승 기운",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/overheat-showcase",
+  "options": {
+    "palette": [
+      "#24030a",
+      "#4b0710",
+      "#89101d",
+      "#bd1b2b",
+      "#e93642",
+      "#ff6066",
+      "#ff8a83"
+    ]
+  }
+}
