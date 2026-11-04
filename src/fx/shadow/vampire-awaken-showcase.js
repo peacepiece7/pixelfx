@@ -2,10 +2,11 @@
 // MIT, Copyright (c) 2026 Hugo Duprez). No floor ring or teleport destination.
 import { fit, smooth, clamp, Rng, TAU, stockActor, READY } from '../../core/index.js';
 import { shades, squeezed } from '../arcane/_lib.js';
+import * as original from './vampire-awaken.js';
 import { transform } from '../_showcase-transform.js';
-export const meta={name:'Vampire awaken · dark blink transformation',desc:'Darkness gathers into the body, compresses it into a violet slit and releases an enlarged shadow silhouette; reverse plays the exact untransform sequence.',
- tags:['shadow','vampire','transform','character','one-shot'],size:[192,160],origin:[96,132],duration:1.6,loop:false,fps:30,bg:'ground',actor:2,
- options:{palette:['#090312','#160724','#2d0b46','#511078','#822db1','#b875dc','#e3c2fa','#ffffff'],seed:11,reverse:false}};
+export const meta={name:'Vampire awaken · dark blink transformation',desc:'Dark Blink transformation inside the original ninety-bat swarm, without a floor ring. Reversing time restores the body and reverses every bat flight.',
+ tags:['shadow','vampire','transform','character','one-shot'],size:[208,168],origin:[104,136],duration:1.6,loop:false,fps:30,bg:'ground',actor:2,
+ options:{palette:['#090312','#160724','#2d0b46','#511078','#822db1','#b875dc','#e3c2fa','#ffffff'],seed:15,bats:90,reverse:false}};
 export const act={onBody:true,poses:[[0,READY],[.3,{...READY,crouch:4,fx:-2,fy:-25,bx:2,by:-25}],[.8,{...READY,fx:-13,fy:-25,bx:13,by:-25}],[1.6,READY]]};
 const clock=(t,o)=>Math.round((o.reverse?meta.duration-t:t)*1e9)/1e9;
 export const actorAlpha=(time,o)=>{const t=clock(time,o);return 1-smooth(.24,.34,t)+smooth(.92,1.3,t);};
@@ -33,4 +34,10 @@ export function draw(p,time,o){
   p.line(x-Math.cos(a)*4,y-Math.sin(a)*3,x,y,C[i%5?4:6],k*.8);
   p.glow(x,y,3,C[3],k*.18);
  }
+ // Original flock is analytic in time: sample its front layer only, preserving
+ // all ninety flight paths and wingbeats without its ground ring or floor pool.
+ const flock=original.create({...o,bats:o.bats??90});
+ flock.update(t);
+ flock.draw(p);
+
 }

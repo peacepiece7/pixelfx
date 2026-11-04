@@ -26,6 +26,8 @@ for(const t of [.2,.4,.7,1,1.4]) {
  assert.deepEqual(frame(awaken,t),frame(revert,1.6-t),'release exactly reverses transformation');
  assert.equal(awaken.actorAlpha(t,awaken.meta.options),revert.actorAlpha(1.6-t,revert.meta.options),'actor visibility also reverses');
 }
+assert.notDeepEqual(frame(awaken,.5),frame(awaken,.5,{bats:0}),'original bat flock remains visible');
+assert.notDeepEqual(frame(revert,1.1),frame(revert,1.1,{bats:0}),'reverse transformation retains the flock');
 const span=f=>{let lo=f.w,hi=0;f.color.forEach((c,i)=>{if(c>>>24>100){lo=Math.min(lo,i%f.w);hi=Math.max(hi,i%f.w);}});return hi-lo;};
 assert(span(frame(wave,.5))>=span(frame(oldWave,.5))*1.25,'ellipse is about 30% longer');
 assert.notDeepEqual(frame(detonation,.25),frame(detonation,1.3),'smoke and burst dissipate');
