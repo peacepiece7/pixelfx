@@ -55,12 +55,12 @@
       "loop": false
     },
     "death": {
-      "path": "characters/aorbion/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/aorbion/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        48,
-        39
+        32,
+        48
       ],
       "loop": false
     },

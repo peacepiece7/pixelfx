@@ -10,67 +10,67 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/hilding/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/hilding/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        17,
-        48
+        31,
+        47
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/hilding/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/hilding/runtime/remake-v2/attack.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        19,
-        49
+        31,
+        47
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        27,
-        -32
+        18,
+        -29
       ]
     },
     "hit": {
-      "path": "characters/hilding/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/hilding/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        28,
-        48
+        31,
+        47
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/hilding/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/hilding/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        27,
-        46
+        31,
+        47
       ],
       "loop": false
     },
     "idle-dagger": {
-      "path": "characters/hilding/runtime/idle-dagger.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/hilding/runtime/remake-v2/idle-dagger.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        17,
-        49
+        31,
+        47
       ],
       "loop": true
     },
     "move-dagger": {
-      "path": "characters/hilding/runtime/move-dagger.png",
-      "frames": 6,
-      "fps": 10.0,
+      "path": "characters/hilding/runtime/remake-v2/move-dagger.png",
+      "frames": 12,
+      "fps": 20,
       "pivot": [
-        16,
-        41
+        31,
+        47
       ],
       "loop": true
     },

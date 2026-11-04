@@ -45,51 +45,51 @@
       ]
     },
     "hit": {
-      "path": "characters/brynhild/runtime/hit.png",
-      "frames": 3,
-      "fps": 10.0,
+      "path": "characters/brynhild/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 40,
       "pivot": [
-        31,
-        48
+        32,
+        66
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/brynhild/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/brynhild/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        21,
-        45
+        32,
+        66
       ],
       "loop": false
     },
     "leap": {
-      "path": "characters/brynhild/runtime/leap.png",
-      "frames": 6,
-      "fps": 8.0,
+      "path": "characters/brynhild/runtime/remake-v2/leap.png",
+      "frames": 12,
+      "fps": 16,
       "pivot": [
-        46,
-        57
+        32,
+        66
       ],
       "loop": false
     },
     "dash": {
-      "path": "characters/brynhild/runtime/dash.png",
-      "frames": 4,
-      "fps": 8.0,
+      "path": "characters/brynhild/runtime/remake-v2/dash.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        24,
-        49
+        32,
+        66
       ],
       "loop": false
     },
     "cast": {
-      "path": "characters/brynhild/runtime/cast.png",
-      "frames": 4,
-      "fps": 8.0,
+      "path": "characters/brynhild/runtime/remake-v2/cast.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        29,
+        32,
         66
       ],
       "loop": false

@@ -65,32 +65,32 @@
       "loop": false
     },
     "roar": {
-      "path": "characters/alasdair/runtime/roar.png",
-      "frames": 4,
-      "fps": 8.0,
+      "path": "characters/alasdair/runtime/remake-v2/roar.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        30,
-        49
+        38,
+        62
       ],
       "loop": false
     },
     "mince": {
-      "path": "characters/alasdair/runtime/mince.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/alasdair/runtime/remake-v2/mince.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        30,
-        47
+        38,
+        62
       ],
       "loop": false
     },
     "blood-boom": {
-      "path": "characters/alasdair/runtime/blood-boom.png",
-      "frames": 4,
-      "fps": 8.0,
+      "path": "characters/alasdair/runtime/remake-v2/blood-boom.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        26,
-        64
+        38,
+        62
       ],
       "loop": false
     },
