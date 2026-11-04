@@ -10,57 +10,57 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/alasdair/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/alasdair/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
         33,
-        48
+        65
       ],
       "loop": true
     },
     "move": {
-      "path": "characters/alasdair/runtime/move.png",
+      "path": "characters/alasdair/runtime/remake-v2/move.png",
       "frames": 16,
-      "fps": 24.0,
+      "fps": 24,
       "pivot": [
-        28,
-        45
+        33,
+        65
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/alasdair/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/alasdair/runtime/remake-v2/attack.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        48,
-        57
+        33,
+        65
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        43,
-        -5
+        39,
+        -10
       ]
     },
     "hit": {
-      "path": "characters/alasdair/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/alasdair/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        44,
-        48
+        33,
+        65
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/alasdair/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/alasdair/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        51,
-        44
+        33,
+        65
       ],
       "loop": false
     },

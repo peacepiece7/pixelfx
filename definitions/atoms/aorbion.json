@@ -10,47 +10,47 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/aorbion/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/aorbion/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        28,
-        46
+        33,
+        52
       ],
       "loop": true
     },
     "move": {
-      "path": "characters/aorbion/runtime/move.png",
-      "frames": 6,
-      "fps": 10.0,
+      "path": "characters/aorbion/runtime/remake-v2/move.png",
+      "frames": 12,
+      "fps": 20,
       "pivot": [
-        30,
-        46
+        33,
+        52
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/aorbion/runtime/attack.png",
+      "path": "characters/aorbion/runtime/remake-v2/attack.png",
       "frames": 12,
-      "fps": 24.0,
+      "fps": 24,
       "pivot": [
-        31,
-        47
+        33,
+        52
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
-        30,
+        32,
         -28
       ]
     },
     "hit": {
-      "path": "characters/aorbion/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/aorbion/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
         33,
-        43
+        52
       ],
       "loop": false
     },

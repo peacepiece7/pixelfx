@@ -30,18 +30,18 @@
       "loop": true
     },
     "attack": {
-      "path": "characters/brynhild/runtime/attack.png",
+      "path": "characters/brynhild/runtime/remake-v3/attack.png",
       "frames": 12,
-      "fps": 24.0,
+      "fps": 24,
       "pivot": [
-        30,
-        59
+        34,
+        57
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
-        38,
-        -18
+        33,
+        -11
       ]
     },
     "hit": {

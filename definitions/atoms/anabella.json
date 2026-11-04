@@ -10,73 +10,73 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/anabella/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/anabella/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        24,
-        49
+        30,
+        50
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/anabella/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/anabella/runtime/remake-v2/attack.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        28,
-        49
+        30,
+        50
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        22,
-        -27
+        29,
+        -30
       ]
     },
     "hit": {
-      "path": "characters/anabella/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/anabella/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        27,
-        47
+        30,
+        50
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/anabella/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/anabella/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        7,
-        34
+        30,
+        50
       ],
       "loop": false
     },
     "idle-wand": {
-      "path": "characters/anabella/runtime/idle-wand.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/anabella/runtime/remake-v2/idle-wand.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        24,
-        49
+        30,
+        50
       ],
       "loop": true
     },
     "attack-wand": {
-      "path": "characters/anabella/runtime/attack-wand.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/anabella/runtime/remake-v2/attack-wand.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        28,
-        49
+        30,
+        50
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        25,
-        -33
+        27,
+        -30
       ]
     },
     "hit-wand": {
