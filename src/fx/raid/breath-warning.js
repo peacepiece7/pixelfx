@@ -1,4 +1,0 @@
-import {ABYSS,colors,allowed,masked} from '../../core/raid-visuals.js';
-export const meta={"name": "Breath warning", "desc": "Crisp violet boundary of supplied platform mask; no filled screen overlay.", "tags": ["raid", "abyss"], "size": [320, 120], "origin": [160, 60], "duration": 0.5, "loop": false, "fps": 30, "bg": "ground", "options": {"seed": 7, "maskRects": [[-130, -8, 260, 16]], "reducedMotion": false}};
-meta.options.palette=ABYSS;
-export function draw(p,t,o){if(t<0||t>=meta.duration)return;const C=colors(o);const k=Math.min(1,t*20,(.5-t)*30);masked(p,o,[-160,-60,160,60],[[-130,-8,260,16]],(x,y,out)=>{const edge=!allowed(x-2,y,o,[[-130,-8,260,16]])||!allowed(x+2,y,o,[[-130,-8,260,16]])||!allowed(x,y-2,o,[[-130,-8,260,16]])||!allowed(x,y+2,o,[[-130,-8,260,16]]);if(edge){out.c=C[4];out.a=k;}else if((Math.floor(x/8)+Math.floor(y/8))%5===0){out.c=C[2];out.a=k*.12;}});}

@@ -1,6 +1,6 @@
 # Catalog
 
-304 effects in 25 categories. Every one is a file in
+303 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## cynthia
@@ -25,13 +25,12 @@ masked abyss ambience and dragon encounter cues.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
-| Abyss distant fog | `raid/abyss-fog` | loop 6s | 640×360 | Low-contrast drifting fog confined below the platform depth mask. |
-| Breath ground impact | `raid/breath-impact` | one-shot 0.6s | 192×128 | Brief violet fragments confined to supplied platform surface. |
-| Breath warning | `raid/breath-warning` | one-shot 0.5s | 320×120 | Crisp violet boundary of supplied platform mask; no filled screen overlay. |
-| Dragon abyss breath | `raid/dragon-breath` | one-shot 0.8s | 320×192 | Tapered abyss stream from local source to target, with a restrained broken rim. |
-| Near cliff dust | `raid/near-dust` | loop 5s | 640×360 | Sparse low-contrast ash at foreground edges; central fight and HUD remain clear. |
-| Dragon phase surge | `raid/phase-surge` | one-shot 1.2s | 192×192 | One restrained neck/chest outline surge; host coalesces skipped phases into one cue. |
-| Distant rift flow | `raid/rift-flow` | loop 8s | 192×192 | Local thin rift strands behind ruins; slow flow without screen flashes. |
+| Abyss distant fog | `raid/abyss-fog` | loop 12s | 640×360 | Large poisonous green fog banks at three depths, derived from weather/fog; spans the full raid width with thick, readable lit crests. |
+| Dragon abyss breath | `raid/dragon-breath` | one-shot 3.2s | 640×360 | Screen-wide roaring purple fire: a huge sustained cone, boiling tongues, sparks and rolling smoke. Full-party attack, no ground warning. |
+| Dragon heavy stomp | `raid/heavy-stomp` | one-shot 2.4s | 640×280 | Optional dragon ground-slam: massive Heavy landing-derived cracks, two dust rings and airborne rocks. No gameplay pattern is added by this effect. |
+| Near cliff dust | `raid/near-dust` | loop 8s | 640×360 | Readable foreground stone shards, ash and wisps along the cliff edges; larger and faster than the distant fog while keeping the center free. |
+| Dragon phase surge | `raid/phase-surge` | one-shot 5.8s | 640×360 | Long poisonous dragon roar: eight huge rolling pressure waves and green dust, trembling for several seconds. A phase-strengthening cue, never a damage or difficulty calculation. |
+| Distant rift flow | `raid/rift-flow` | loop 8s | 640×360 | A large broken violet rift behind the ruins: thick luminous edges, drifting interior haze and light flowing along its circumference. |
 
 ## moves
 

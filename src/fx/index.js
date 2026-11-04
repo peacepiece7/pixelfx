@@ -10,9 +10,8 @@ import * as cynthia_overheat from "./cynthia/overheat.js";
 import * as cynthia_satellite from "./cynthia/satellite.js";
 import * as cynthia_satellite_trail from "./cynthia/satellite-trail.js";
 import * as raid_abyss_fog from "./raid/abyss-fog.js";
-import * as raid_breath_impact from "./raid/breath-impact.js";
-import * as raid_breath_warning from "./raid/breath-warning.js";
 import * as raid_dragon_breath from "./raid/dragon-breath.js";
+import * as raid_heavy_stomp from "./raid/heavy-stomp.js";
 import * as raid_near_dust from "./raid/near-dust.js";
 import * as raid_phase_surge from "./raid/phase-surge.js";
 import * as raid_rift_flow from "./raid/rift-flow.js";
@@ -318,9 +317,8 @@ export const effects = {
   "cynthia/satellite": cynthia_satellite,
   "cynthia/satellite-trail": cynthia_satellite_trail,
   "raid/abyss-fog": raid_abyss_fog,
-  "raid/breath-impact": raid_breath_impact,
-  "raid/breath-warning": raid_breath_warning,
   "raid/dragon-breath": raid_dragon_breath,
+  "raid/heavy-stomp": raid_heavy_stomp,
   "raid/near-dust": raid_near_dust,
   "raid/phase-surge": raid_phase_surge,
   "raid/rift-flow": raid_rift_flow,

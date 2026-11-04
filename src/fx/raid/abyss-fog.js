@@ -1,4 +1,6 @@
-import {ABYSS,colors,allowed,masked} from '../../core/raid-visuals.js';
-export const meta={"name": "Abyss distant fog", "desc": "Low-contrast drifting fog confined below the platform depth mask.", "tags": ["raid", "abyss"], "size": [640, 360], "origin": [320, 180], "duration": 6, "loop": true, "fps": 30, "bg": "ground", "options": {"seed": 7, "maskRects": [[-320, 70, 640, 110]], "protectRects": [[-320, -180, 640, 60]], "reducedMotion": false}};
-meta.options.palette=ABYSS;
-export function draw(p,t,o){const C=colors(o),phase=o.reducedMotion?0:t/6*Math.PI*2;for(let y=70;y<180;y+=4)for(let x=-320;x<320;x+=4){const v=Math.sin(x*.018+Math.sin(phase)*.7)+Math.sin(y*.055+Math.cos(phase)*.5)+Math.sin(x*.008+y*.017+phase);for(let dy=0;dy<4;dy++)for(let dx=0;dx<4;dx++)if(allowed(x+dx,y+dy,o,[[-320,70,640,110]]))p.blend(x+dx,y+dy,C[v>1?2:1],Math.max(0,.12+v*.035));}}
+// Reuses the Sprite Fusion-derived fog banks credited in weather/fog.js.
+import * as fog from '../weather/fog.js';
+import {TOXIC,surface,paint,stamp} from './_scale.js';
+export const meta={name:'Abyss distant fog',desc:'Large poisonous green fog banks at three depths, derived from weather/fog; spans the full raid width with thick, readable lit crests.',tags:['raid','fog','poison','environment'],size:[640,360],origin:[320,180],duration:12,loop:true,fps:30,bg:'dark',options:{palette:TOXIC,seed:7,opacity:1.4,protectRects:[[-320,-180,640,55]],reducedMotion:false}};
+const frame=surface(fog);
+export function draw(p,t,o){if(t<0)return;paint(frame,fog,o.reducedMotion?0:t,{...fog.meta.options,...o});stamp(p,frame,-320,-52,640,232,o.opacity??1.4,o,[0,64,320,116]);}

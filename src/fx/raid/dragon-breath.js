@@ -1,4 +1,12 @@
-import {ABYSS,colors,allowed,masked} from '../../core/raid-visuals.js';
-export const meta={"name": "Dragon abyss breath", "desc": "Tapered abyss stream from local source to target, with a restrained broken rim.", "tags": ["raid", "abyss"], "size": [320, 192], "origin": [280, 60], "duration": 0.8, "loop": false, "fps": 30, "bg": "ground", "options": {"seed": 7, "source": [0, 0], "target": [-230, 65], "reducedMotion": false}};
-meta.options.palette=ABYSS;
-export function draw(p,t,o){if(t<0||t>=.8)return;const C=colors(o),a=o.source??[0,0],b=o.target??[-230,65],k=Math.min(1,t/.12,(.8-t)/.22),dx=b[0]-a[0],dy=b[1]-a[1],len=Math.max(1,Math.hypot(dx,dy)),nx=-dy/len,ny=dx/len;const upper=[],lower=[];for(let j=0;j<=32;j++){const u=j/32,x=a[0]+dx*u,y=a[1]+dy*u,w=(2+u*12)*k,noise=o.reducedMotion?0:Math.sin(j*.9-t*18+(o.seed??7))*1.2;upper.push([x+nx*(w+noise),y+ny*(w+noise)]);lower.push([x-nx*w,y-ny*w]);}for(let j=0;j<32;j++){const u=j/32;p.beam(a[0]+dx*u,a[1]+dy*u,a[0]+dx*(u+1/32),a[1]+dy*(u+1/32),(2+u*12)*k*1.7,C[2],k*.6);}p.polyline(upper,C[4],k*.7);p.beam(a[0],a[1],b[0],b[1],2*k,C[5],k*.65);for(let i=0;i<9;i++){const u=(t*2+i/9)%1,x=a[0]+dx*u,y=a[1]+dy*u;p.beam(x,y,x-dx*.05,y-dy*.05,1+u*3,C[3],k*Math.sin(u*Math.PI)*.7);}}
+// Reuses the Sprite Fusion-derived flame/smoke recipe credited in fire/fire-breath.js.
+import * as fire from '../fire/fire-breath.js';
+import {surface,paint,stamp} from './_scale.js';
+const PURPLE=['#190b2e','#39104f','#65177c','#8d259f','#b63fca','#d563ef','#ef9aff','#f7ceff','#fff3ff'];
+export const meta={name:'Dragon abyss breath',desc:'Screen-wide roaring purple fire: a huge sustained cone, boiling tongues, sparks and rolling smoke. Full-party attack, no ground warning.',tags:['raid','breath','fire','purple','screen-wide'],size:[640,360],origin:[12,220],duration:3.2,loop:false,fps:30,bg:'dark',options:{palette:PURPLE,seed:7,spread:.32,speed:460,reducedMotion:false}};
+const frame=surface(fire);
+export function draw(p,t,o){
+ if(t<0||t>=meta.duration)return;
+ const fade=Math.min(1,t/.14,(meta.duration-t)/.65);
+ paint(frame,fire,o.reducedMotion ? .5 : t,{...fire.meta.options,...o});
+ stamp(p,frame,0,-204,620,340,fade,o,[12,15,140,95]);
+}
