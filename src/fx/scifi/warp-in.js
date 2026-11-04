@@ -52,7 +52,7 @@ export function create(o) {
   const ps = new Particles({ rng: R, ground: () => 0, sparks: [WHITE, C[6], C[5], C[3]], haze: C[5] }), lights = new Lights();
   // the body: each filled pixel, its own color, whether it's on the outline, and each row's extent
   const body = [], rows = new Map();
-  for (let my = 0; my < A.h; my++)
+  for (let my = 0; !o.beamOnly && my < A.h; my++)
     for (let mx = 0; mx < A.w; mx++) {
       const i = my * A.w + mx;
       if (!A.mask.data[i]) continue;
@@ -63,6 +63,7 @@ export function create(o) {
       rows.set(y, [Math.min(r[0], x), Math.max(r[1], x)]);
     }
   const rings = [];
+  let elapsed = 0;
   let t = 0, slammed = false, snapped = false, nextRing = SLAM + 0.08, lastRow = A.y - 3;
 
   const column = (p) => {
@@ -73,7 +74,7 @@ export function create(o) {
     // the core hollows out from the middle into a tube of light, and the tube's walls close into a thread
     const hero = t - SLAM < 0.07, hollow = 0.78 * smooth(OPEN - 0.16, OPEN, t), thin = 1 - clamp((w - 1.5) / (W - 1.5));
     for (let y = Math.floor(TOP); y < bottom; y++) {
-      const pulse = ((((y - TOP) * 0.028 - t * 2.6) % 1) + 1) % 1 < 0.09 ? 1 : 0;
+      const pulse = ((((y - TOP) * 0.028 - elapsed * 2.6) % 1) + 1) % 1 < 0.09 ? 1 : 0;
       for (let x = Math.floor(-w * 1.35); x <= Math.ceil(w * 1.35); x++) {
         const q = Math.abs(x + 0.5) / w;
         if (q > 1.35) continue;
@@ -87,7 +88,7 @@ export function create(o) {
         }
         // strands: thin bright threads drifting inside the beam
         let strand = 0;
-        for (let s = 0; s < 5; s++) if (Math.abs((x + 0.5) / w - (rand(o.seed, s) - 0.5) * 1.3 - 0.06 * Math.sin(t * (1.5 + s) + s * 2)) < 0.05) strand = 1;
+        for (let s = 0; s < 5; s++) if (Math.abs((x + 0.5) / w - (rand(o.seed, s) - 0.5) * 1.3 - 0.06 * Math.sin(elapsed * (1.5 + s) + s * 2)) < 0.05) strand = 1;
         if (q < hollow) p.blend(x + 0.5, y + 0.5, strand || pulse ? C[6] : C[5], clamp(0.12 + 0.3 * q * q + 0.3 * strand + 0.25 * pulse + 0.7 * thin));
         else if (q < 0.78) {
           const lvl = Math.max(0, (q < 0.22 ? 0 : q < 0.45 ? 1 : 2) - pulse - strand);
@@ -108,7 +109,7 @@ export function create(o) {
   const ring = (p, near) => {
     const w = widthAt(t, W);
     for (const r of rings) {
-      const k = (t - r.t0) / 0.5;
+      const k = (elapsed - r.t0) / 0.5;
       if (k < 0 || k >= 1) continue;
       const y = lerp(TOP + 6, -1, ease.inQuad(k)), rx = w * 1.18 + 1, c = k < 0.25 ? WHITE : C[6];
       band(p, 0, y, rx, 2.6 / rx, 1.5, 1, [C[3], C[5], c, WHITE], (g) => Math.sin(g) >= 0 === near);
@@ -131,7 +132,7 @@ export function create(o) {
     }
     const keep = (g) => Math.sin(g) >= 0 === near;
     for (const r of rings) {
-      const k = (t - r.t0 - 0.5) / 0.35;
+      const k = (elapsed - r.t0 - 0.5) / 0.35;
       if (k >= 0 && k < 1) band(p, 0, 0, W * (1.2 + 1.3 * ease.outCubic(k)), 0.16, 1.5, 1 - k, [C[3], C[4], C[5], C[6]], keep);
     }
     for (const [d, s] of [[0, 1], [0.08, 0.65]]) {
@@ -175,7 +176,9 @@ export function create(o) {
 
   return {
     update(dt) {
-      t += dt;
+      elapsed += dt;
+      const hold = Math.max(0, o.hold ?? 0);
+      t = elapsed < .8 ? elapsed : elapsed < .8 + hold ? .8 : elapsed - hold;
       // gathering: energy streaks in toward the spot, vapour slides along the floor
       if (t < SLAM - 0.04) {
         if (R.chance(0.8)) {
@@ -204,7 +207,7 @@ export function create(o) {
       }
       if (slammed && t < CLOSE) {
         // rings ride down, light falls down the beam, glints wink at its walls
-        if (t >= nextRing) rings.push({ t0: nextRing }), (nextRing += 0.17);
+        if (elapsed >= nextRing) rings.push({ t0: nextRing }), (nextRing += 0.17);
         const w = widthAt(t, W);
         if (R.chance(0.5)) ps.spawn(P.STREAK, R.range(-0.8, 0.8) * w, TOP + R.range(9, 36), 0, R.range(60, 110), R.range(0.3, 0.45), R.chance(0.5) ? WHITE : C[6]);
         if (R.chance(0.18)) ps.spawn(P.STAR, R.sign() * w * R.range(0.8, 1.3), -R.range(4, 70), 0, -R.range(5, 20), R.range(0.3, 0.6), C[6], R.range(0.6, 1.8));
@@ -222,7 +225,7 @@ export function create(o) {
           if (r && R.chance(0.7)) for (const [x, s] of [[r[0], -1], [r[1] + 1, 1]]) if (R.chance(0.6)) ps.spawn(P.MOTE, x, y, s * R.range(40, 90), R.range(-20, 10), R.range(0.15, 0.3), R.chance(0.5) ? WHITE : C[6], 0.6);
         }
       }
-      if (t >= DONE && t - dt < DONE) {
+      if (!o.beamOnly && t >= DONE && t - dt < DONE) {
         // set: a glint or two on the new body
         for (let i = 0; i < 6; i++) {
           const b = body[Math.floor(R.next() * body.length)];
@@ -264,12 +267,11 @@ export function create(o) {
       ps.draw(p, "back");
     },
     draw(p) {
-      hero(p);
-      scanline(p);
+      if (!o.beamOnly) { hero(p); scanline(p); }
       ring(p, true);
       floor(p, true);
       // the set body's outline flares as it lands, then fades
-      if (t >= DONE && t < DONE + 0.3) p.outline(A.mask, A.x, A.y, C[6], 1 - (t - DONE) / 0.3);
+      if (!o.beamOnly && t >= DONE && t < DONE + 0.3) p.outline(A.mask, A.x, A.y, C[6], 1 - (t - DONE) / 0.3);
       if (t > SLAM && t < SLAM + 0.16) sparkle(p, 0, -2, 12 * (1 - (t - SLAM) / 0.16), C[6], C[5], 0.6);
       ps.draw(p, "front");
       lights.draw(p);

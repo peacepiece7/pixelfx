@@ -39,6 +39,13 @@ export function create(o) {
     spin: 2.6, spinTau: 1.7, heat: 1.2, cool: 0.42, under: 0.5, tilt: 0.22, squash: 0.72, fade: [4.4, 6.4], spread: 22,
   });
   const column = new Column(R, { w: 5, foot: 18, speed: 85, size: [7, 11], n: 28, sway: 2.5 });
+  // Reuse the settled ground aftermath without the rising mushroom cloud.
+  const groundParticles = (p, layer) => {
+    const all = ps.list;
+    if (o.groundOnly) ps.list = all.filter(q => q.y >= -32);
+    drawPs(p, ps, layer, FR);
+    ps.list = all;
+  };
   const top = () => { const S = plume.shape(); return S.y + S.tube * 0.45; };
   let t = 0, next = 0;
 
@@ -151,9 +158,11 @@ export function create(o) {
       scorch(p, HR, t, 52, 3.4, 1 - smooth(meta.duration - 1.6, meta.duration - 0.3, t), 3);
       const k = t / 0.6;
       if (k < 1) band(p, 0, 0.5, 132 * ease.outCubic(k), 0.16, Math.max(1, 6 * (1 - k)), 1.15 - k, [st.body, st.light, F[3], F[6]], (g) => Math.sin(g) < 0);
-      drawPs(p, ps, "back", FR);
-      column.draw(p, top(), FR, SM, 1 - t / 1.4, plume.hot());
-      plume.draw(p, FR, SM);
+      groundParticles(p, "back");
+      if (!o.groundOnly) {
+        column.draw(p, top(), FR, SM, 1 - t / 1.4, plume.hot());
+        plume.draw(p, FR, SM);
+      }
       blazes.drawBack(p);
     },
     draw(p) {
@@ -165,10 +174,11 @@ export function create(o) {
         p.glow(0, -30, 68, WHITE, 0.6);
       } else if (t < 0.11) dome(p, F, 0, 38 - (t - 0.04) * 120, 1 - (t - 0.04) / 0.07);
       for (const b of rocks.list) {
+        if (o.groundOnly && b.y < -32) continue;
         if (b.pts) trail(p, b.pts, t, FR, SM, 0.45, 0.6 + b.s * 0.3, b.heat);
         rock(p, b, st, FR);
       }
-      drawPs(p, ps, "front", FR);
+      groundParticles(p, "front");
       if (t < 0.24) flare(p, 0, -14, 70 * Math.pow(1 - t / 0.24, 1.4), 1 - t / 0.24, F);
       if (t < 0.5) {
         const u = t / 0.5, r = 34 + 80 * ease.outCubic(u);

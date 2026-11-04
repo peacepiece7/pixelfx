@@ -9,15 +9,15 @@ firearms, ignition and orbital fire.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
-| Cynthia · Gatling burst | `cynthia/gunfire` | one-shot 2.4s | 460×180 | Pistol shots choreography reused as a six-round gatling burst with traveling bullet tracers. |
+| Cynthia · Gatling burst | `cynthia/gunfire` | one-shot 2.4s | 460×180 | SMG burst at the muzzle, synchronized with six traveling bullet tracers. |
 | Cynthia · Sustained red plasma | `cynthia/ignition-burst` | one-shot 8s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
 | Cynthia · Laevateinn sequence | `cynthia/ignition-marker` | one-shot 9.5s | 540×300 | Silver pistol tracer bolt, embedded charge from Ice lance throw, then an eight-second red Plasma explosion. |
 | Cynthia · Expanding multi-hit plasma | `cynthia/ignition-zone` | one-shot 8s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
 | Cynthia · Direct rockets | `cynthia/jericho-flight` | one-shot 3.5s | 600×360 | Short smokeless rockets fly forward then pitch into the ground, ending in red plasma impacts. |
 | Cynthia · Smokeless rocket impact | `cynthia/jericho-impact` | one-shot 1.7s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
 | Cynthia · Overheat charge | `cynthia/overheat` | loop 1.6s | 160×110 | Energy gathers in the caster's hand: streaks and motes spiral in, rings collapse into a swelling orb that crackles with arcs, ready to fire. |
-| Cynthia · Satellite beam | `cynthia/satellite` | one-shot 9s | 520×300 | Meteor call caster circle and sustained column, Lightning call floor, lingering fire rings. |
-| Cynthia · Burning lightning floor | `cynthia/satellite-trail` | loop 6s | 280×200 | Lightning call ground layer and overlapping stock fire rings keep the ground burning. |
+| Cynthia · Satellite beam | `cynthia/satellite` | one-shot 9s | 560×340 | Pale orange Warp in beam with the caster circle and Big explosion burning aftermath. |
+| Cynthia · Burning explosion aftermath | `cynthia/satellite-trail` | one-shot 8.7s | 360×300 | Big explosion aftermath: cooling fire, smoke, scorched ground and lingering burning fragments. |
 
 ## raid
 

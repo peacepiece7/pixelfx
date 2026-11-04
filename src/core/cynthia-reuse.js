@@ -1,6 +1,7 @@
 // Cynthia contains no new particle artwork: place and retime existing PixelFX modules.
 import { resolveOptions } from './fx.js';
 export const FIRE=['#270b12','#651325','#b62528','#ed482d','#ff8c45','#ffd99c','#fff6e8'];
+export const ORANGE=['#39252a','#744436','#ad6847','#db955c','#f8bb7b','#ffd6a2','#ffe9cb','#fff8ec'];
 export const SILVER=['#161d29','#354153','#66768b','#96a6b7','#c1d0dc','#e5eff5','#ffffff'];
 export const RED=['#230510','#620923','#ab1734','#e63945','#ff7864','#ffc5a2','#fff4df'];
 export function sequence(o, cues, duration, loop=false) {
