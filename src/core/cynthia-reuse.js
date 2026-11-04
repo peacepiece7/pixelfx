@@ -46,5 +46,9 @@ export function flight(t,o,duration,arc=0,ground=false) {
   return [mx+(tx-mx)*u,my+(ey-my)*u-4*arc*u*(1-u),Math.atan2(ey-my-4*arc*(1-2*u),tx-mx)];
 }
 
-// Preserve the original plasma shape; stretch its expanding phase over six seconds.
-export const plasmaTime=t=>t<6?t*.5/6:.5+(t-6)*.6;
+export function rocketFlight(t,o) {
+ const [mx,my]=muzzle(o),[tx,ty]=target(o),u=Math.min(1,t/.65);
+ // Fly forward at muzzle height, then pitch smoothly down without climbing first.
+ const v=Math.max(0,(u-.65)/.35),drop=v*v;
+ return [mx+(tx-mx)*u,my+(ty-my)*drop,Math.atan2(v>0?(ty-my)*2*v/.35:0,tx-mx)];
+}

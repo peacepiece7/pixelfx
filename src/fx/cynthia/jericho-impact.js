@@ -1,4 +1,4 @@
-import {sequence,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
-import * as dirt from '../explosions/dirt-explosion.js';
-export const meta={...dirt.meta,name:'Cynthia · Dirt impact',tags:['cynthia','reuse']};
-export const create=o=>sequence(o,[{fx:dirt,options:{fire:FIRE}}],meta.duration);
+import {sequence,RED} from '../../core/cynthia-reuse.js';
+import * as plasma from '../explosions/plasma-explosion.js';
+export const meta={...plasma.meta,name:'Cynthia · Smokeless rocket impact',tags:['cynthia','reuse'],options:{seed:7}};
+export const create=o=>sequence(o,[{fx:plasma,options:{palette:RED,accent:RED},light:.4}],meta.duration);

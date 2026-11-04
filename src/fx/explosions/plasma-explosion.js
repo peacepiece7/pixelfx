@@ -36,10 +36,12 @@ export function create(o) {
     const a = R.range(0, TAU), sp = R.range(40, 140);
     ps.spawn(P.FLAKE, Math.cos(a) * 10, Math.sin(a) * 10, Math.cos(a) * sp, Math.sin(a) * sp, R.range(0.8, 1.5), R.pick([C[5], V[3], V[4]]), R.range(0.6, 1.6));
   }
-  let t = 0;
+  let t = 0, elapsed = 0;
+  const hold = Math.max(0, o.hold ?? 0), peak = .28;
   return {
     update(dt) {
-      t += dt;
+      elapsed += dt;
+      t = elapsed < peak ? elapsed : elapsed < peak + hold ? peak : elapsed - hold;
       // the shell sheds sparkles and motes as it thins
       if (t > 0.12 && t < 0.9 && R.chance(30 * dt)) {
         const a = R.range(0, TAU), r = shell(t);
@@ -56,14 +58,14 @@ export function create(o) {
     draw(p) {
       // the ball: a white heart, cyan and blue bands, a violet rim boiling at the edge; it swells, then hollows out
       if (t < BALL) {
-        const u = t / BALL, r = shell(t), hollow = smooth(0.35, 1, u), boil = Math.floor(t * 20);
+        const u = t / BALL, r = shell(t), hollow = smooth(0.35, 1, u), boil = Math.floor(elapsed * 20);
         p.shade(-r - 3, -r - 3, r + 3, r + 3, (x, y, out) => {
           const d = Math.hypot(x, y), a = Math.atan2(y, x), edge = r * (1 + 0.1 * noise(a * 3 + boil * 0.7, 3));
           if (d > edge) return;
           const v = d / edge;
           if (v < hollow * 0.92) return;
           // turbulent bands swirling round the heart, and bright filaments twisting through them
-          const n = noise(a * 4 + d * 0.25 + boil * 0.5, 5), w = v + n * 0.14, fil = Math.abs(Math.sin(a * 5 + d * 0.32 - t * 14 + n * 2.5)) < 0.1;
+          const n = noise(a * 4 + d * 0.25 + boil * 0.5, 5), w = v + n * 0.14, fil = Math.abs(Math.sin(a * 5 + d * 0.32 - elapsed * 14 + n * 2.5)) < 0.1;
           out.k = 0.25 * (1 - u);
           if (v > 0.9) return V[2];
           if (fil && v > 0.3) return u < 0.5 ? WHITE : C[5];
@@ -82,7 +84,7 @@ export function create(o) {
       const u2 = (t - 0.06) / 0.6;
       if (u2 > 0 && u2 < 1) p.ring(0, 0, 6 + 60 * ease.outCubic(u2), Math.max(1, 2 * (1 - u2)), V[3], 1.1 - u2);
       // arcs: lightning crackling out of the heart, re-struck every few frames, shorter as the charge runs out
-      const left = 1 - smooth(0.15, 0.85, t), strike = Math.floor(t * 18);
+      const left = 1 - smooth(0.15, 0.85, t), strike = Math.floor(elapsed * 18);
       if (left > 0) {
         const r = rng(o.seed, strike, 17), n = 2 + Math.round(4 * left);
         for (let i = 0; i < n; i++) {

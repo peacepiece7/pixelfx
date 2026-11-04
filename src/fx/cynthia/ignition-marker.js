@@ -1,4 +1,4 @@
-import {sequence,plasmaTime,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
+import {sequence,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
 import * as muzzleFx from '../projectiles/muzzle-pistol.js';
 import * as tracer from '../projectiles/bullet-tracer.js';
 import * as charge from '../arcane/spell-charge.js';

@@ -75,15 +75,17 @@ function jet(p, F, x0, y0, J, wob, fr) {
 
 export function draw(p, t, o) {
   const F = fit(o.palette, 9), M = fit(o.metal, 7), A = fit(o.paint, 5), SM = fit(o.smoke, 7), S = o.seed, D = meta.duration;
+  const bodyLength = Math.max(.5, Math.min(1, o.bodyLength ?? 1)), nozzle = NOZZLE * bodyLength;
   const V = o.speed, fr = Math.floor(t * 30 + 1e-6);
   const bob = (tt) => Math.round(Math.sin((tt / D) * TAU) * 0.62), by = bob(t);
   const J = J0 * (0.84 + 0.32 * rand(fr, S, 1)), wob = 0.92 + 0.16 * rand(fr, S, 2), fl = J / J0;
   const left = -meta.origin[0] + 2, SP = [F[7], F[6], F[4], F[3]];
 
+  if (o.trail !== false) {
   // smoke: puffs leave the tail of the flame, stream back, swell and rise, lit by the fire while young
   const list = [];
   beat(t, D, 66, S + 1, (r) => r.range(1.1, 1.45), (age, life, r) => {
-    const [x, y] = wake(NOZZLE - J0 * r.range(0.62, 0.8), bob(t - age) + r.range(-1, 1), -r.range(75, 105), r.range(-20, 20), age, V, 3, 0);
+    const [x, y] = wake(nozzle - J0 * r.range(0.62, 0.8), bob(t - age) + r.range(-1, 1), -r.range(75, 105), r.range(-20, 20), age, V, 3, 0);
     const k = age / life, rise = 0.5 * r.range(6, 16) * age * age, sway = Math.sin(age * 2.3 + r.range(0, TAU)) * age * 2;
     const rad = r.range(2.2, 3) + ((r.chance(0.25) ? r.range(14, 19) : r.range(8, 13)) - 2.6) * (1 - Math.exp(-2.2 * age));
     if (x - rad < left + 1) return;
@@ -92,12 +94,12 @@ export function draw(p, t, o) {
   });
   cloud(p, list, SM, [mix(F[0], SM[0], 0.5), mix(F[1], SM[1], 0.45), mix(F[2], SM[2], 0.35), F[3], F[4], F[6], F[7]], { dens: 1.3, lit: 1.5 });
   // the smoke right behind the flame glows from inside
-  p.glow(NOZZLE - J0 - 6, by, 26, F[4], 0.24 * fl);
+  p.glow(nozzle - J0 - 6, by, 26, F[4], 0.24 * fl);
 
   // embers carried off in the smoke, cooling and winking out
   beat(t, D, 9, S + 4, (r) => r.range(0.6, 1.1), (age, life, r) => {
     const k = 1 - age / life;
-    const [x, y] = wake(NOZZLE - J0 * 0.6, bob(t - age), -r.range(40, 120), r.range(-40, 30), age, V, 2.5, -8);
+    const [x, y] = wake(nozzle - J0 * 0.6, bob(t - age), -r.range(40, 120), r.range(-40, 30), age, V, 2.5, -8);
     if (x < left + 2 || (k < 0.3 && rand(fr, r.int(0, 999)) < 0.5)) return;
     const c = k > 0.6 ? F[6] : k > 0.3 ? F[4] : F[2];
     p.px(x, y, c);
@@ -106,7 +108,7 @@ export function draw(p, t, o) {
 
   // tongues of flame torn off the tip of the jet, cooling and shrinking as they fall behind
   beat(t, D, 30, S + 3, (r) => r.range(0.08, 0.16), (age, life, r) => {
-    const k = age / life, [x, y] = wake(NOZZLE - J0 * r.range(0.6, 0.9), bob(t - age) + r.range(-1.5, 1.5), -r.range(10, 50), r.range(-12, 12), age, V, 4, -30);
+    const k = age / life, [x, y] = wake(nozzle - J0 * r.range(0.6, 0.9), bob(t - age) + r.range(-1.5, 1.5), -r.range(10, 50), r.range(-12, 12), age, V, 4, -30);
     const idx = 7 - Math.floor(Math.pow(k, 0.7) * 4), rad = r.range(1.2, 2.2) * (1 - k * 0.6);
     p.circle(x, y, rad, F[idx - 2]);
     p.circle(x + rad * 0.25, y - rad * 0.1, rad * 0.65, F[idx]);
@@ -115,20 +117,22 @@ export function draw(p, t, o) {
 
   // sparks shed behind, streaking back and dropping
   beat(t, D, 30, S + 2, (r) => r.range(0.18, 0.45), (age, life, r) => {
-    const [x, y, vx, vy] = wake(NOZZLE - r.range(2, J0 * 0.7), bob(t - age) + r.range(-1.5, 1.5), -r.range(20, 190), r.range(-80, 50), age, V, 2.6, 160);
+    const [x, y, vx, vy] = wake(nozzle - r.range(2, J0 * 0.7), bob(t - age) + r.range(-1.5, 1.5), -r.range(20, 190), r.range(-80, 50), age, V, 2.6, 160);
     if (x > left + 10) spark(p, x, y, vx, vy, 1 - age / life, SP);
   });
   beat(t, D, 8, S + 6, (r) => r.range(0.5, 0.8), (age, life, r) => {
-    const [x, y, vx, vy] = wake(NOZZLE - r.range(4, J0 * 0.8), bob(t - age) + r.range(-1, 1), -r.range(10, 80), r.range(-60, 10), age, V, 1.8, 170);
+    const [x, y, vx, vy] = wake(nozzle - r.range(4, J0 * 0.8), bob(t - age) + r.range(-1, 1), -r.range(10, 80), r.range(-60, 10), age, V, 1.8, 170);
     if (x > left + 10) spark(p, x, y, vx, vy, 1 - age / life, SP, 0.5);
   });
 
-  jet(p, F, NOZZLE, by + 0.5, J, wob, fr + S * 31);
-  p.sprite(SHIP.rows, { o: OUTLINE, 1: M[1], 2: M[2], 3: M[3], 4: M[4], 5: M[5], 6: M[6], a: A[0], b: A[1], c: A[2], d: A[3], e: A[4], w: WHITE, h: F[5], x: F[8] }, SHIP.x0, SHIP.y0 + by);
+  }
+  jet(p, F, nozzle, by + 0.5, J, wob, fr + S * 31);
+  const rows = bodyLength === 1 ? SHIP.rows : SHIP.rows.map(row => Array.from({length:Math.round(row.length*bodyLength)},(_,x)=>row[Math.min(row.length-1,Math.floor(x/bodyLength))]).join(''));
+  p.sprite(rows, { o: OUTLINE, 1: M[1], 2: M[2], 3: M[3], 4: M[4], 5: M[5], 6: M[6], a: A[0], b: A[1], c: A[2], d: A[3], e: A[4], w: WHITE, h: F[5], x: F[8] }, SHIP.x0 * bodyLength, SHIP.y0 + by);
 
   // light: a warm pool round the tail that breathes with the jet, the flame's own glow, a white-hot nozzle
-  p.glow(NOZZLE - 10, by, 60, F[4], 0.28 * fl);
-  p.glowLine(NOZZLE - 3, by + 0.5, NOZZLE - J * 0.9, by + 0.5, 11, F[4], 0.2);
-  p.glow(NOZZLE - 1, by + 0.5, 8, F[7], 0.45);
-  p.glow(NOZZLE + 3, by + 5, 12, F[4], 0.22 * fl); // the flame lights the tail from below
+  p.glow(nozzle - 10, by, 60, F[4], 0.28 * fl);
+  p.glowLine(nozzle - 3, by + 0.5, nozzle - J * 0.9, by + 0.5, 11, F[4], 0.2);
+  p.glow(nozzle - 1, by + 0.5, 8, F[7], 0.45);
+  p.glow(nozzle + 3, by + 5, 12, F[4], 0.22 * fl); // the flame lights the tail from below
 }
