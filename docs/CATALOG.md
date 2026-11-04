@@ -1,7 +1,37 @@
 # Catalog
 
-288 effects in 23 categories. Every one is a file in
+304 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
+
+## cynthia
+
+firearms, ignition and orbital fire.
+
+| effect | id | | size | what it does |
+|---|---|---|---|---|
+| Gunfire | `cynthia/gunfire` | one-shot 0.25s | 192×192 | Compact muzzle star, short pressure ring and hot sparks. weapon selects shotgun/gatling/rifle silhouette. |
+| Ignition burst | `cynthia/ignition-burst` | one-shot 0.5s | 192×192 | Radius-75 initial ignition blast, separate from sustained zone pulses. |
+| Ignition marker | `cynthia/ignition-marker` | one-shot 1s | 192×192 | Embedded bolt with a one-second closing ignition outline. No impact damage. |
+| Ignition zone | `cynthia/ignition-zone` | loop 1s | 192×192 | Fixed flame patch; host owns eight-second lifetime and eight pulse events. |
+| Jericho flight | `cynthia/jericho-flight` | one-shot 0.3s | 192×192 | One visual missile flight; targetX/targetY are local offsets, not delayed damage. |
+| Jericho impact | `cynthia/jericho-impact` | one-shot 0.4s | 192×192 | Single radius-55 explosion, no secondary gameplay hit. |
+| Overheat vents | `cynthia/overheat` | loop 1s | 192×192 | Low orange heat from two mechanical vents. Lifetime belongs to the host. |
+| Satellite beam | `cynthia/satellite` | loop 1s | 192×192 | Moving orbital beam endpoint; host updates position and supplies pulse. |
+| Satellite trail | `cynthia/satellite-trail` | loop 1s | 192×192 | One residual radius-65 patch. Host handles sampling, refresh and per-beam pulse deduplication. |
+
+## raid
+
+masked abyss ambience and dragon encounter cues.
+
+| effect | id | | size | what it does |
+|---|---|---|---|---|
+| Abyss distant fog | `raid/abyss-fog` | loop 6s | 640×360 | Low-contrast drifting fog confined below the platform depth mask. |
+| Breath ground impact | `raid/breath-impact` | one-shot 0.6s | 192×128 | Brief violet fragments confined to supplied platform surface. |
+| Breath warning | `raid/breath-warning` | one-shot 0.5s | 320×120 | Crisp violet boundary of supplied platform mask; no filled screen overlay. |
+| Dragon abyss breath | `raid/dragon-breath` | one-shot 0.8s | 320×192 | Tapered abyss stream from local source to target, with a restrained broken rim. |
+| Near cliff dust | `raid/near-dust` | loop 5s | 640×360 | Sparse low-contrast ash at foreground edges; central fight and HUD remain clear. |
+| Dragon phase surge | `raid/phase-surge` | one-shot 1.2s | 192×192 | One restrained neck/chest outline surge; host coalesces skipped phases into one cue. |
+| Distant rift flow | `raid/rift-flow` | loop 8s | 192×192 | Local thin rift strands behind ruins; slow flow without screen flashes. |
 
 ## moves
 

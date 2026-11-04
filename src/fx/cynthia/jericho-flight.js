@@ -1,0 +1,3 @@
+import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
+export const meta={name:'Jericho flight',desc:'One visual missile flight; targetX/targetY are local offsets, not delayed damage.',tags:['cynthia','fire'],size:[192,192],origin:[96, 120],duration:0.3,loop:false,fps:30,bg:'ground',options:{palette:FIRE,seed:7,targetX:62,targetY:-12}};
+export function create(o){return visual(o,0.3,false,(p,t,C,motes,o)=>{const u=t/.3,x=(o.targetX??62)*u,y=(o.targetY??-12)*u-20*Math.sin(Math.PI*u),fade=Math.min(1,(1-u)*8);p.beam(x-16,y+2,x,y,3,C[3],fade);p.beam(x-8,y+1,x,y,1,C[6],fade);p.poly([[x-4,y-3],[x+5,y],[x-4,y+3]],C[5],fade);p.glow(x-5,y,12,C[3],fade*.3);for(let i=1;i<=6;i++)p.disc(x-i*5,y+i*.7,1+i*.4,C[1],fade*(1-i/7)*.3);});}

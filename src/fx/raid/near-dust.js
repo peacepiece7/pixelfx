@@ -1,0 +1,4 @@
+import {ABYSS,colors,allowed,masked} from '../../core/raid-visuals.js';
+export const meta={"name": "Near cliff dust", "desc": "Sparse low-contrast ash at foreground edges; central fight and HUD remain clear.", "tags": ["raid", "abyss"], "size": [640, 360], "origin": [320, 180], "duration": 5, "loop": true, "fps": 30, "bg": "ground", "options": {"seed": 7, "maskRects": [[-320, -80, 90, 260], [230, -80, 90, 260]], "protectRects": [[-320, -180, 640, 70]], "reducedMotion": false}};
+meta.options.palette=ABYSS;
+export function draw(p,t,o){const C=colors(o),q=o.reducedMotion?0:t/5*Math.PI*2;for(let i=0;i<14;i++){const x=Math.round((i%2?-1:1)*(248+(i*19%58))+Math.sin(q+i)*7),y=Math.round(-60+(i*47%215)+Math.cos(q+i)*12);for(let dy=0;dy<2;dy++)for(let dx=0;dx<3;dx++)if(allowed(x+dx,y+dy,o,[[-320,-80,90,260],[230,-80,90,260]]))p.blend(x+dx,y+dy,C[3],.28);}}

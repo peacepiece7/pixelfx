@@ -1,0 +1,3 @@
+import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
+export const meta={name:'Satellite beam',desc:'Moving orbital beam endpoint; host updates position and supplies pulse.',tags:['cynthia','fire'],size:[192,192],origin:[96, 156],duration:1,loop:true,fps:30,bg:'ground',options:{palette:FIRE,seed:7,pulse:0,height:125,active:true}};
+export function create(o){return visual(o,1,true,(p,t,C,motes,o)=>{if(o.active===false)return;const h=Math.min(140,o.height??125),w=3+Math.sin(t*Math.PI*2)*.5+Math.max(0,o.pulse??0)*2;p.beam(0,-h,0,-3,w+5,C[2],.24);p.beam(0,-h,0,-3,w,C[4],.75);p.beam(0,-h,0,-3,1,C[6],.9);p.glowLine(0,-h,0,0,12,C[3],.18);p.ellipse(0,0,17,5,C[4],.7);flames(p,t,C,motes.slice(0,14),24,24,o.pulse);});}

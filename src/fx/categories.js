@@ -1,6 +1,8 @@
 // The categories, in gallery order, with a line for each.
 
 export const categories = [
+  { id: "cynthia", name: "cynthia", blurb: "firearms, ignition and orbital fire" },
+  { id: "raid", name: "raid", blurb: "masked abyss ambience and dragon encounter cues" },
   { id: "moves", name: "moves", blurb: "whole attacks, wind-up to recovery, chained from the effects below" },
   { id: "fire", name: "fire", blurb: "torches, breath, pillars, walls of flame" },
   { id: "explosions", name: "explosions", blurb: "blasts, smoke, fireworks, mushroom clouds" },

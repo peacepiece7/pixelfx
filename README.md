@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->288<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->304<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -26,6 +26,8 @@ the idea at library scale, with a skill to keep going.
 <!-- catalog -->
 | category | effects | some of them |
 |---|---|---|
+| **cynthia** | 9 | gunfire, ignition burst, ignition marker, ignition zone, jericho flight, jericho impact… |
+| **raid** | 7 | abyss distant fog, breath ground impact, breath warning, dragon abyss breath, near cliff dust, dragon phase surge… |
 | **moves** | 13 | arrow shot, brynhild basic strike, dash strike, earth stomp, fireball throw, ground pound… |
 | **fire** | 12 | brazier, campfire, candle, fire breath, fire ring, fire tornado… |
 | **explosions** | 12 | barrel explosion, big explosion, cartoon pow, dirt explosion, firework burst, firework rocket… |

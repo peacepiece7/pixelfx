@@ -1,0 +1,3 @@
+import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
+export const meta={name:'Ignition zone',desc:'Fixed flame patch; host owns eight-second lifetime and eight pulse events.',tags:['cynthia','fire'],size:[192,192],origin:[96, 120],duration:1,loop:true,fps:30,bg:'ground',options:{palette:FIRE,seed:7,radius:75,pulse:0}};
+export function create(o){return visual(o,1,true,(p,t,C,motes,o)=>{const r=Math.min(80,o.radius??75);p.ellipse(0,0,r,r*.23,C[1],.25);const edge=[];for(let i=0;i<=40;i++){const a=i*Math.PI/40;edge.push([Math.cos(a)*r,Math.sin(a)*r*.23]);}p.polyline(edge,C[3],.4);flames(p,t,C,motes,r*.9,23,o.pulse);});}
