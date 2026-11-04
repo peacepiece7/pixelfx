@@ -10,22 +10,23 @@
   ],
   "animations": {
     "walk": {
-      "path": "monsters/dullahan/runtime/walk.png",
+      "path": "monsters/dullahan/runtime/stabilized/walk.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        32,
-        56
+        33,
+        57
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 56
     },
     "attack": {
-      "path": "monsters/dullahan/runtime/attack.png",
+      "path": "monsters/dullahan/runtime/stabilized/attack.png",
       "frames": 5,
       "fps": 12.0,
       "pivot": [
-        40,
-        54
+        41,
+        55
       ],
       "loop": false,
       "hitFrame": 3,
@@ -35,32 +36,32 @@
       ]
     },
     "charge": {
-      "path": "monsters/dullahan/runtime/charge.png",
+      "path": "monsters/dullahan/runtime/stabilized/charge.png",
       "frames": 4,
       "fps": 8.0,
       "pivot": [
-        40,
-        44
+        41,
+        45
       ],
       "loop": true
     },
     "hit": {
-      "path": "monsters/dullahan/runtime/hit.png",
+      "path": "monsters/dullahan/runtime/stabilized/hit.png",
       "frames": 2,
       "fps": 8.0,
       "pivot": [
-        26,
-        53
+        27,
+        54
       ],
       "loop": false
     },
     "death": {
-      "path": "monsters/dullahan/runtime/death.png",
+      "path": "monsters/dullahan/runtime/stabilized/death.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        37,
-        55
+        38,
+        56
       ],
       "loop": false
     }

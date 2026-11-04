@@ -10,102 +10,103 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/anabella/runtime/remake-v2/idle.png",
+      "path": "characters/anabella/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        30,
-        50
+        31,
+        55
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 50
     },
     "attack": {
-      "path": "characters/anabella/runtime/remake-v2/attack.png",
+      "path": "characters/anabella/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        30,
-        50
+        31,
+        54
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         29,
-        -30
+        -32
       ]
     },
     "hit": {
-      "path": "characters/anabella/runtime/remake-v2/hit.png",
+      "path": "characters/anabella/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        30,
-        50
+        32,
+        55
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/anabella/runtime/remake-v2/death.png",
+      "path": "characters/anabella/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        30,
-        50
+        31,
+        57
       ],
       "loop": false
     },
     "idle-wand": {
-      "path": "characters/anabella/runtime/remake-v2/idle-wand.png",
+      "path": "characters/anabella/runtime/stabilized/idle-wand.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        30,
-        50
+        31,
+        55
       ],
       "loop": true
     },
     "attack-wand": {
-      "path": "characters/anabella/runtime/remake-v2/attack-wand.png",
+      "path": "characters/anabella/runtime/stabilized/attack-wand.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        30,
-        50
+        31,
+        55
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         27,
-        -30
+        -34
       ]
     },
     "hit-wand": {
-      "path": "characters/anabella/runtime/remake-v2/hit-wand.png",
+      "path": "characters/anabella/runtime/stabilized/hit-wand.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        28,
-        49
+        29,
+        52
       ],
       "loop": false
     },
     "death-wand": {
-      "path": "characters/anabella/runtime/remake-v2/death-wand.png",
+      "path": "characters/anabella/runtime/stabilized/death-wand.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        28,
-        49
+        29,
+        55
       ],
       "loop": false
     },
     "camp-book": {
-      "path": "characters/anabella/runtime/camp-book.png",
+      "path": "characters/anabella/runtime/stabilized/camp-book.png",
       "frames": 8,
       "fps": 2.0,
       "pivot": [
-        16,
-        37
+        17,
+        42
       ],
       "loop": true
     }

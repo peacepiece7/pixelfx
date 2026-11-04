@@ -10,97 +10,98 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/alasdair/runtime/remake-v2/idle.png",
+      "path": "characters/alasdair/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        33,
-        65
+        34,
+        68
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 65
     },
     "move": {
-      "path": "characters/alasdair/runtime/remake-v2/move.png",
+      "path": "characters/alasdair/runtime/stabilized/move.png",
       "frames": 16,
       "fps": 24,
       "pivot": [
-        33,
-        65
+        34,
+        69
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/alasdair/runtime/remake-v2/attack.png",
+      "path": "characters/alasdair/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        33,
-        65
+        40,
+        72
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
-        39,
-        -10
+        45,
+        -6
       ]
     },
     "hit": {
-      "path": "characters/alasdair/runtime/remake-v2/hit.png",
+      "path": "characters/alasdair/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        33,
-        65
+        37,
+        68
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/alasdair/runtime/remake-v2/death.png",
+      "path": "characters/alasdair/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        33,
-        65
+        34,
+        75
       ],
       "loop": false
     },
     "roar": {
-      "path": "characters/alasdair/runtime/remake-v2/roar.png",
+      "path": "characters/alasdair/runtime/stabilized/roar.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        38,
-        62
+        39,
+        66
       ],
       "loop": false
     },
     "mince": {
-      "path": "characters/alasdair/runtime/remake-v2/mince.png",
+      "path": "characters/alasdair/runtime/stabilized/mince.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        38,
-        62
+        44,
+        65
       ],
       "loop": false
     },
     "blood-boom": {
-      "path": "characters/alasdair/runtime/remake-v2/blood-boom.png",
+      "path": "characters/alasdair/runtime/stabilized/blood-boom.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        38,
-        62
+        45,
+        67
       ],
       "loop": false
     },
     "camp-grill": {
-      "path": "characters/alasdair/runtime/camp-grill.png",
+      "path": "characters/alasdair/runtime/stabilized/camp-grill.png",
       "frames": 8,
       "fps": 3.0,
       "pivot": [
-        19,
-        38
+        21,
+        41
       ],
       "loop": true
     }

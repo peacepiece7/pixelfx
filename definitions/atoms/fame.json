@@ -10,112 +10,113 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/fame/runtime/remake-v2/idle.png",
+      "path": "characters/fame/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        51
+        32,
+        52
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 51
     },
     "move": {
-      "path": "characters/fame/runtime/remake-v2/move.png",
+      "path": "characters/fame/runtime/stabilized/move.png",
       "frames": 12,
       "fps": 20,
       "pivot": [
-        31,
-        51
+        32,
+        54
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/fame/runtime/remake-v2/attack.png",
+      "path": "characters/fame/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        31,
-        51
+        35,
+        55
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         31,
-        -25
+        -26
       ]
     },
     "hit": {
-      "path": "characters/fame/runtime/remake-v2/hit.png",
+      "path": "characters/fame/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        31,
-        51
+        34,
+        55
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/fame/runtime/remake-v2/death.png",
+      "path": "characters/fame/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        31,
-        51
+        32,
+        57
       ],
       "loop": false
     },
     "idle-dagger": {
-      "path": "characters/fame/runtime/remake-v2/idle-dagger.png",
+      "path": "characters/fame/runtime/stabilized/idle-dagger.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        51
+        32,
+        54
       ],
       "loop": true
     },
     "move-dagger": {
-      "path": "characters/fame/runtime/remake-v2/move-dagger.png",
+      "path": "characters/fame/runtime/stabilized/move-dagger.png",
       "frames": 12,
       "fps": 20,
       "pivot": [
-        31,
-        51
+        32,
+        55
       ],
       "loop": true
     },
     "attack-dagger": {
-      "path": "characters/fame/runtime/remake-v2/attack-dagger.png",
+      "path": "characters/fame/runtime/stabilized/attack-dagger.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        31,
-        51
+        32,
+        54
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         27,
-        -27
+        -29
       ]
     },
     "hit-dagger": {
-      "path": "characters/fame/runtime/remake-v2/hit-dagger.png",
+      "path": "characters/fame/runtime/stabilized/hit-dagger.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        29,
-        48
+        30,
+        51
       ],
       "loop": false
     },
     "death-dagger": {
-      "path": "characters/fame/runtime/remake-v2/death-dagger.png",
+      "path": "characters/fame/runtime/stabilized/death-dagger.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        29,
-        48
+        30,
+        54
       ],
       "loop": false
     }

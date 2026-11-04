@@ -10,22 +10,23 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/rodair-snow/runtime/idle.png",
+      "path": "characters/rodair-snow/runtime/stabilized/idle.png",
       "frames": 4,
       "fps": 6.0,
       "pivot": [
-        33,
-        56
+        34,
+        57
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 56
     },
     "attack": {
-      "path": "characters/rodair-snow/runtime/attack.png",
+      "path": "characters/rodair-snow/runtime/stabilized/attack.png",
       "frames": 6,
       "fps": 12.0,
       "pivot": [
-        38,
-        59
+        39,
+        60
       ],
       "loop": false,
       "hitFrame": 3,
@@ -35,42 +36,42 @@
       ]
     },
     "move": {
-      "path": "characters/rodair-snow/runtime/move.png",
+      "path": "characters/rodair-snow/runtime/stabilized/move.png",
       "frames": 6,
       "fps": 10.0,
       "pivot": [
-        32,
-        56
+        33,
+        57
       ],
       "loop": true
     },
     "hit": {
-      "path": "characters/rodair-snow/runtime/hit.png",
+      "path": "characters/rodair-snow/runtime/stabilized/hit.png",
       "frames": 2,
       "fps": 8.0,
       "pivot": [
-        40,
-        54
+        41,
+        55
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/rodair-snow/runtime/death.png",
+      "path": "characters/rodair-snow/runtime/stabilized/death.png",
       "frames": 5,
       "fps": 8.0,
       "pivot": [
-        48,
-        48
+        49,
+        51
       ],
       "loop": false
     },
     "jump-slam": {
-      "path": "characters/rodair-snow/runtime/jump-slam.png",
+      "path": "characters/rodair-snow/runtime/stabilized/jump-slam.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        60,
-        53
+        61,
+        54
       ],
       "loop": false
     }

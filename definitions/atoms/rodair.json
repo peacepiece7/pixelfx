@@ -10,97 +10,98 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/rodair/runtime/remake-v2/idle.png",
+      "path": "characters/rodair/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        37,
-        56
+        38,
+        60
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 56
     },
     "move": {
-      "path": "characters/rodair/runtime/move.png",
+      "path": "characters/rodair/runtime/stabilized/move.png",
       "frames": 16,
       "fps": 24.0,
       "pivot": [
-        28,
-        45
+        29,
+        50
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/rodair/runtime/remake-v2/attack.png",
+      "path": "characters/rodair/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        37,
-        56
+        38,
+        60
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         36,
-        -18
+        -20
       ]
     },
     "hit": {
-      "path": "characters/rodair/runtime/remake-v2/hit.png",
+      "path": "characters/rodair/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        37,
-        56
+        42,
+        61
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/rodair/runtime/remake-v2/death.png",
+      "path": "characters/rodair/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        37,
-        56
+        38,
+        63
       ],
       "loop": false
     },
     "charge": {
-      "path": "characters/rodair/runtime/remake-v2/charge.png",
+      "path": "characters/rodair/runtime/stabilized/charge.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        37,
-        56
+        39,
+        60
       ],
       "loop": false
     },
     "slam": {
-      "path": "characters/rodair/runtime/remake-v2/slam.png",
+      "path": "characters/rodair/runtime/stabilized/slam.png",
       "frames": 12,
       "fps": 32,
       "pivot": [
-        37,
-        56
+        41,
+        59
       ],
       "loop": false
     },
     "spin": {
-      "path": "characters/rodair/runtime/remake-v2/spin.png",
+      "path": "characters/rodair/runtime/stabilized/spin.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        37,
-        56
+        38,
+        59
       ],
       "loop": true
     },
     "camp-grill": {
-      "path": "characters/rodair/runtime/camp-grill.png",
+      "path": "characters/rodair/runtime/stabilized/camp-grill.png",
       "frames": 8,
       "fps": 3.0,
       "pivot": [
-        21,
-        38
+        22,
+        41
       ],
       "loop": true
     }

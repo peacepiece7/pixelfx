@@ -10,22 +10,23 @@
   ],
   "animations": {
     "walk": {
-      "path": "monsters/lich/runtime/walk.png",
+      "path": "monsters/lich/runtime/stabilized/walk.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        23,
-        44
+        24,
+        45
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 44
     },
     "attack": {
-      "path": "monsters/lich/runtime/attack.png",
+      "path": "monsters/lich/runtime/stabilized/attack.png",
       "frames": 5,
       "fps": 12.0,
       "pivot": [
-        40,
-        44
+        41,
+        45
       ],
       "loop": false,
       "hitFrame": 3,
@@ -35,33 +36,33 @@
       ]
     },
     "raise": {
-      "path": "monsters/lich/runtime/raise.png",
+      "path": "monsters/lich/runtime/stabilized/raise.png",
       "frames": 4,
       "fps": 8.0,
       "pivot": [
-        27,
-        48
+        28,
+        49
       ],
       "loop": false,
       "reviveFrame": 2
     },
     "hit": {
-      "path": "monsters/lich/runtime/hit.png",
+      "path": "monsters/lich/runtime/stabilized/hit.png",
       "frames": 2,
       "fps": 8.0,
       "pivot": [
-        29,
-        43
+        30,
+        44
       ],
       "loop": false
     },
     "death": {
-      "path": "monsters/lich/runtime/death.png",
+      "path": "monsters/lich/runtime/stabilized/death.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        34,
-        46
+        35,
+        47
       ],
       "loop": false
     }

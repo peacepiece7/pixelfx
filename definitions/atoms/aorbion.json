@@ -10,107 +10,108 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/aorbion/runtime/remake-v2/idle.png",
+      "path": "characters/aorbion/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        33,
-        52
+        34,
+        56
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 52
     },
     "move": {
-      "path": "characters/aorbion/runtime/remake-v2/move.png",
+      "path": "characters/aorbion/runtime/stabilized/move.png",
       "frames": 12,
       "fps": 20,
       "pivot": [
-        33,
-        52
+        34,
+        54
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/aorbion/runtime/remake-v2/attack.png",
+      "path": "characters/aorbion/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        33,
-        52
+        35,
+        55
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         32,
-        -28
+        -27
       ]
     },
     "hit": {
-      "path": "characters/aorbion/runtime/remake-v2/hit.png",
+      "path": "characters/aorbion/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        33,
-        52
+        38,
+        55
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/aorbion/runtime/remake-v2/death.png",
+      "path": "characters/aorbion/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        32,
-        48
+        33,
+        61
       ],
       "loop": false
     },
     "dive": {
-      "path": "characters/aorbion/runtime/dive.png",
+      "path": "characters/aorbion/runtime/stabilized/dive.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        30,
-        48
+        31,
+        49
       ],
       "loop": false
     },
     "emerge": {
-      "path": "characters/aorbion/runtime/emerge.png",
+      "path": "characters/aorbion/runtime/stabilized/emerge.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        32,
-        47
+        33,
+        48
       ],
       "loop": false
     },
     "camp-rest": {
-      "path": "characters/aorbion/runtime/camp-rest.png",
+      "path": "characters/aorbion/runtime/stabilized/camp-rest.png",
       "frames": 8,
       "fps": 3.0,
       "pivot": [
-        18,
-        38
+        19,
+        41
       ],
       "loop": true
     },
     "tail": {
-      "path": "characters/aorbion/runtime/remake-v2/tail.png",
+      "path": "characters/aorbion/runtime/stabilized/tail.png",
       "frames": 12,
       "fps": 16,
       "pivot": [
-        32,
-        52
+        34,
+        54
       ],
       "loop": false
     },
     "cast": {
-      "path": "characters/aorbion/runtime/remake-v2/cast.png",
+      "path": "characters/aorbion/runtime/stabilized/cast.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        32,
-        52
+        33,
+        55
       ],
       "loop": false
     }

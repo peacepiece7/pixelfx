@@ -10,22 +10,23 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/hanna/runtime/remake-v2/idle.png",
+      "path": "characters/hanna/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        49
+        32,
+        53
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 49
     },
     "attack": {
-      "path": "characters/hanna/runtime/remake-v2/attack.png",
+      "path": "characters/hanna/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        31,
-        49
+        32,
+        53
       ],
       "loop": false,
       "hitFrame": 6,
@@ -35,67 +36,67 @@
       ]
     },
     "hit": {
-      "path": "characters/hanna/runtime/remake-v2/hit.png",
+      "path": "characters/hanna/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        31,
-        49
+        32,
+        52
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/hanna/runtime/remake-v2/death.png",
+      "path": "characters/hanna/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        31,
-        49
+        32,
+        54
       ],
       "loop": false
     },
     "idle-shotgun": {
-      "path": "characters/hanna/runtime/remake-v2/idle-shotgun.png",
+      "path": "characters/hanna/runtime/stabilized/idle-shotgun.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        49
+        33,
+        53
       ],
       "loop": true
     },
     "attack-shotgun": {
-      "path": "characters/hanna/runtime/remake-v2/attack-shotgun.png",
+      "path": "characters/hanna/runtime/stabilized/attack-shotgun.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        31,
-        49
+        32,
+        51
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         22,
-        -32
+        -33
       ]
     },
     "hit-shotgun": {
-      "path": "characters/hanna/runtime/remake-v2/hit-shotgun.png",
+      "path": "characters/hanna/runtime/stabilized/hit-shotgun.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        31,
-        49
+        32,
+        54
       ],
       "loop": false
     },
     "death-shotgun": {
-      "path": "characters/hanna/runtime/remake-v2/death-shotgun.png",
+      "path": "characters/hanna/runtime/stabilized/death-shotgun.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        31,
-        49
+        32,
+        53
       ],
       "loop": false
     }

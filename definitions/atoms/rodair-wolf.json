@@ -10,22 +10,23 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/rodair-wolf/runtime/idle.png",
+      "path": "characters/rodair-wolf/runtime/stabilized/idle.png",
       "frames": 4,
       "fps": 6.0,
       "pivot": [
-        31,
-        58
+        32,
+        59
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 58
     },
     "attack": {
-      "path": "characters/rodair-wolf/runtime/attack.png",
+      "path": "characters/rodair-wolf/runtime/stabilized/attack.png",
       "frames": 6,
       "fps": 12.0,
       "pivot": [
-        34,
-        57
+        35,
+        58
       ],
       "loop": false,
       "hitFrame": 3,
@@ -35,42 +36,42 @@
       ]
     },
     "move": {
-      "path": "characters/rodair-wolf/runtime/move.png",
+      "path": "characters/rodair-wolf/runtime/stabilized/move.png",
       "frames": 6,
       "fps": 10.0,
       "pivot": [
-        50,
-        44
+        51,
+        46
       ],
       "loop": true
     },
     "hit": {
-      "path": "characters/rodair-wolf/runtime/hit.png",
+      "path": "characters/rodair-wolf/runtime/stabilized/hit.png",
       "frames": 2,
       "fps": 8.0,
       "pivot": [
-        31,
-        56
+        32,
+        57
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/rodair-wolf/runtime/death.png",
+      "path": "characters/rodair-wolf/runtime/stabilized/death.png",
       "frames": 5,
       "fps": 8.0,
       "pivot": [
-        44,
-        53
+        45,
+        54
       ],
       "loop": false
     },
     "roar": {
-      "path": "characters/rodair-wolf/runtime/roar.png",
+      "path": "characters/rodair-wolf/runtime/stabilized/roar.png",
       "frames": 4,
       "fps": 8.0,
       "pivot": [
-        33,
-        58
+        34,
+        59
       ],
       "loop": false
     }

@@ -10,22 +10,23 @@
   ],
   "animations": {
     "walk": {
-      "path": "monsters/ghoul/runtime/walk.png",
+      "path": "monsters/ghoul/runtime/stabilized/walk.png",
       "frames": 16,
       "fps": 20.0,
       "pivot": [
-        16,
-        34
+        17,
+        39
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 34
     },
     "attack": {
-      "path": "monsters/ghoul/runtime/attack.png",
+      "path": "monsters/ghoul/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        23,
-        35
+        25,
+        38
       ],
       "loop": false,
       "hitFrame": 6,
@@ -35,22 +36,22 @@
       ]
     },
     "hit": {
-      "path": "monsters/ghoul/runtime/hit.png",
+      "path": "monsters/ghoul/runtime/stabilized/hit.png",
       "frames": 2,
       "fps": 8.0,
       "pivot": [
-        21,
-        37
+        22,
+        38
       ],
       "loop": false
     },
     "death": {
-      "path": "monsters/ghoul/runtime/death.png",
+      "path": "monsters/ghoul/runtime/stabilized/death.png",
       "frames": 5,
       "fps": 8.0,
       "pivot": [
-        5,
-        36
+        6,
+        39
       ],
       "loop": false
     }

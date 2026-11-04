@@ -10,43 +10,44 @@
   ],
   "animations": {
     "walk": {
-      "path": "monsters/grave-knight/runtime/walk.png",
+      "path": "monsters/grave-knight/runtime/stabilized/walk.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        29,
-        50
+        30,
+        51
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 50
     },
     "attack": {
-      "path": "monsters/grave-knight/runtime/attack.png",
+      "path": "monsters/grave-knight/runtime/stabilized/attack.png",
       "frames": 5,
       "fps": 10.0,
       "pivot": [
-        31,
-        65
+        32,
+        67
       ],
       "loop": false,
       "hitFrame": 3
     },
     "hit": {
-      "path": "monsters/grave-knight/runtime/hit.png",
+      "path": "monsters/grave-knight/runtime/stabilized/hit.png",
       "frames": 2,
       "fps": 8.0,
       "pivot": [
-        36,
-        48
+        37,
+        49
       ],
       "loop": false
     },
     "death": {
-      "path": "monsters/grave-knight/runtime/death.png",
+      "path": "monsters/grave-knight/runtime/stabilized/death.png",
       "frames": 6,
       "fps": 8.0,
       "pivot": [
-        8,
-        48
+        9,
+        49
       ],
       "loop": false
     }

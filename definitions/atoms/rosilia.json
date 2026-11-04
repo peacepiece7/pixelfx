@@ -10,57 +10,58 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/rosilia/runtime/remake-v2/idle.png",
+      "path": "characters/rosilia/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        49
+        34,
+        53
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 49
     },
     "attack": {
-      "path": "characters/rosilia/runtime/attack.png",
+      "path": "characters/rosilia/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        21,
-        45
+        23,
+        49
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         26,
-        -30
+        -32
       ]
     },
     "hit": {
-      "path": "characters/rosilia/runtime/remake-v2/hit.png",
+      "path": "characters/rosilia/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        31,
-        49
+        36,
+        54
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/rosilia/runtime/remake-v2/death.png",
+      "path": "characters/rosilia/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        31,
-        49
+        32,
+        57
       ],
       "loop": false
     },
     "camp-rest": {
-      "path": "characters/rosilia/runtime/camp-rest.png",
+      "path": "characters/rosilia/runtime/stabilized/camp-rest.png",
       "frames": 8,
       "fps": 3.0,
       "pivot": [
-        17,
-        37
+        18,
+        40
       ],
       "loop": true
     }

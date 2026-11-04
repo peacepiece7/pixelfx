@@ -10,67 +10,68 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/gwonho/runtime/remake-v2/idle.png",
+      "path": "characters/gwonho/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        32,
-        51
+        33,
+        55
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 51
     },
     "move": {
-      "path": "characters/gwonho/runtime/move.png",
+      "path": "characters/gwonho/runtime/stabilized/move.png",
       "frames": 16,
       "fps": 24.0,
       "pivot": [
-        25,
-        46
+        26,
+        51
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/gwonho/runtime/remake-v2/attack.png",
+      "path": "characters/gwonho/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        32,
-        51
+        33,
+        55
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         30,
-        -24
+        -27
       ]
     },
     "hit": {
-      "path": "characters/gwonho/runtime/remake-v2/hit.png",
+      "path": "characters/gwonho/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        32,
-        51
+        33,
+        57
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/gwonho/runtime/remake-v2/death.png",
+      "path": "characters/gwonho/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        32,
-        51
+        33,
+        59
       ],
       "loop": false
     },
     "camp-fireside": {
-      "path": "characters/gwonho/runtime/remake-v2/camp-fireside.png",
+      "path": "characters/gwonho/runtime/stabilized/camp-fireside.png",
       "frames": 16,
       "fps": 8,
       "pivot": [
-        20,
-        38
+        24,
+        43
       ],
       "loop": true
     }

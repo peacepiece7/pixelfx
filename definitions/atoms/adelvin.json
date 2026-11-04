@@ -10,117 +10,103 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/adelvin/runtime/remake-v2/idle.png",
+      "path": "characters/adelvin/runtime/stabilized/idle.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        50
+        32,
+        53
       ],
-      "loop": true
+      "loop": true,
+      "overheadHeight": 50
     },
     "attack": {
-      "path": "characters/adelvin/runtime/attack.png",
+      "path": "characters/adelvin/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        27,
-        46
+        34,
+        49
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
-        25,
-        -30
+        30,
+        -32
       ]
     },
     "hit": {
-      "path": "characters/adelvin/runtime/remake-v2/hit.png",
+      "path": "characters/adelvin/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        31,
-        50
+        33,
+        53
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/adelvin/runtime/remake-v2/death.png",
+      "path": "characters/adelvin/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        31,
-        50
+        32,
+        55
       ],
       "loop": false
     },
     "idle-wand": {
-      "path": "characters/adelvin/runtime/remake-v2/idle-wand.png",
+      "path": "characters/adelvin/runtime/stabilized/idle-wand.png",
       "frames": 12,
       "fps": 18,
       "pivot": [
-        31,
-        50
+        32,
+        52
       ],
       "loop": true
     },
     "attack-wand": {
-      "path": "characters/adelvin/runtime/attack-wand.png",
+      "path": "characters/adelvin/runtime/stabilized/attack-wand.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        19,
-        46
+        21,
+        49
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         21,
-        -27
+        -29
       ]
     },
     "hit-wand": {
-      "path": "characters/adelvin/runtime/remake-v2/hit-wand.png",
+      "path": "characters/adelvin/runtime/stabilized/hit-wand.png",
       "frames": 12,
       "fps": 48,
       "pivot": [
-        31,
-        50
+        36,
+        52
       ],
       "loop": false
     },
     "death-wand": {
-      "path": "characters/adelvin/runtime/remake-v2/death-wand.png",
+      "path": "characters/adelvin/runtime/stabilized/death-wand.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        31,
-        50
+        32,
+        54
       ],
       "loop": false
     },
     "cast-shield": {
-      "path": "characters/adelvin/runtime/cast-shield.png",
+      "path": "characters/adelvin/runtime/stabilized/cast-shield.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        22,
-        46
-      ],
-      "loop": false,
-      "hitFrame": 6,
-      "tip": [
-        20,
-        -37
-      ]
-    },
-    "cast-orbs": {
-      "path": "characters/adelvin/runtime/cast-orbs.png",
-      "frames": 12,
-      "fps": 24.0,
-      "pivot": [
-        23,
-        46
+        25,
+        49
       ],
       "loop": false,
       "hitFrame": 6,
@@ -129,103 +115,118 @@
         -38
       ]
     },
-    "cast-michael": {
-      "path": "characters/adelvin/runtime/cast-michael.png",
-      "frames": 16,
-      "fps": 24.0,
-      "pivot": [
-        22,
-        48
-      ],
-      "loop": false,
-      "hitFrame": 8,
-      "tip": [
-        23,
-        -45
-      ]
-    },
-    "cast-shield-wand": {
-      "path": "characters/adelvin/runtime/cast-shield-wand.png",
+    "cast-orbs": {
+      "path": "characters/adelvin/runtime/stabilized/cast-orbs.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        21,
-        46
+        26,
+        49
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
-        18,
-        -28
+        21,
+        -39
       ]
     },
-    "cast-gabriel": {
-      "path": "characters/adelvin/runtime/cast-gabriel.png",
+    "cast-michael": {
+      "path": "characters/adelvin/runtime/stabilized/cast-michael.png",
       "frames": 16,
       "fps": 24.0,
       "pivot": [
-        23,
-        45
+        24,
+        53
       ],
       "loop": false,
       "hitFrame": 8,
       "tip": [
         24,
-        -42
+        -48
       ]
     },
-    "cast-orbs-wand": {
-      "path": "characters/adelvin/runtime/cast-orbs-wand.png",
+    "cast-shield-wand": {
+      "path": "characters/adelvin/runtime/stabilized/cast-shield-wand.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        16,
-        46
+        22,
+        49
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
+        18,
+        -30
+      ]
+    },
+    "cast-gabriel": {
+      "path": "characters/adelvin/runtime/stabilized/cast-gabriel.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        27,
+        51
+      ],
+      "loop": false,
+      "hitFrame": 8,
+      "tip": [
+        26,
+        -46
+      ]
+    },
+    "cast-orbs-wand": {
+      "path": "characters/adelvin/runtime/stabilized/cast-orbs-wand.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        18,
+        49
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         16,
-        -32
+        -33
       ]
     },
     "cast-gabriel-wand": {
-      "path": "characters/adelvin/runtime/cast-gabriel-wand.png",
+      "path": "characters/adelvin/runtime/stabilized/cast-gabriel-wand.png",
       "frames": 16,
       "fps": 24.0,
       "pivot": [
-        20,
-        45
+        21,
+        50
       ],
       "loop": false,
       "hitFrame": 8,
       "tip": [
         19,
-        -36
+        -39
       ]
     },
     "cast-michael-wand": {
-      "path": "characters/adelvin/runtime/cast-michael-wand.png",
+      "path": "characters/adelvin/runtime/stabilized/cast-michael-wand.png",
       "frames": 16,
       "fps": 24.0,
       "pivot": [
-        21,
-        45
+        23,
+        50
       ],
       "loop": false,
       "hitFrame": 8,
       "tip": [
         17,
-        -13
+        -16
       ]
     },
     "camp-book": {
-      "path": "characters/adelvin/runtime/camp-book.png",
+      "path": "characters/adelvin/runtime/stabilized/camp-book.png",
       "frames": 8,
       "fps": 2.0,
       "pivot": [
-        18,
-        37
+        19,
+        41
       ],
       "loop": true
     }

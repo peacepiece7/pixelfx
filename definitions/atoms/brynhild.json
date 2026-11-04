@@ -10,127 +10,129 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/brynhild/runtime/idle.png",
+      "path": "characters/brynhild/runtime/stabilized/idle.png",
       "frames": 4,
       "fps": 6.0,
       "pivot": [
-        28,
+        30,
+        50
+      ],
+      "loop": true,
+      "overheadHeight": 49
+    },
+    "move": {
+      "path": "characters/brynhild/runtime/stabilized/move.png",
+      "frames": 16,
+      "fps": 24.0,
+      "pivot": [
+        29,
         49
       ],
       "loop": true
     },
-    "move": {
-      "path": "characters/brynhild/runtime/move.png",
-      "frames": 16,
-      "fps": 24.0,
-      "pivot": [
-        28,
-        46
-      ],
-      "loop": true
-    },
     "attack": {
-      "path": "characters/brynhild/runtime/remake-v3/attack.png",
+      "path": "characters/brynhild/runtime/stabilized/attack.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        34,
-        57
+        35,
+        61
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
         33,
-        -11
+        -14
       ]
     },
     "hit": {
-      "path": "characters/brynhild/runtime/remake-v2/hit.png",
+      "path": "characters/brynhild/runtime/stabilized/hit.png",
       "frames": 12,
       "fps": 40,
       "pivot": [
-        32,
-        66
+        33,
+        69
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/brynhild/runtime/remake-v2/death.png",
+      "path": "characters/brynhild/runtime/stabilized/death.png",
       "frames": 15,
       "fps": 24,
       "pivot": [
-        32,
-        66
+        33,
+        74
       ],
       "loop": false
     },
     "leap": {
-      "path": "characters/brynhild/runtime/remake-v2/leap.png",
+      "path": "characters/brynhild/runtime/stabilized/leap.png",
       "frames": 12,
       "fps": 16,
       "pivot": [
-        32,
-        66
+        33,
+        69
       ],
-      "loop": false
+      "loop": false,
+      "verticalMotion": "sprite"
     },
     "dash": {
-      "path": "characters/brynhild/runtime/remake-v2/dash.png",
+      "path": "characters/brynhild/runtime/stabilized/dash.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        32,
-        66
+        33,
+        71
       ],
       "loop": false
     },
     "cast": {
-      "path": "characters/brynhild/runtime/remake-v2/cast.png",
+      "path": "characters/brynhild/runtime/stabilized/cast.png",
       "frames": 12,
       "fps": 24,
       "pivot": [
-        32,
-        66
+        44,
+        70
       ],
       "loop": false
     },
     "attack-side": {
-      "path": "characters/brynhild/runtime/attack-side.png",
+      "path": "characters/brynhild/runtime/stabilized/attack-side.png",
       "frames": 12,
       "fps": 24.0,
       "pivot": [
-        33,
-        47
-      ],
-      "loop": false,
-      "hitFrame": 6,
-      "tip": [
-        32,
-        -27
-      ]
-    },
-    "attack-return": {
-      "path": "characters/brynhild/runtime/attack-return.png",
-      "frames": 12,
-      "fps": 24.0,
-      "pivot": [
-        28,
+        35,
         50
       ],
       "loop": false,
       "hitFrame": 6,
       "tip": [
+        32,
+        -26
+      ]
+    },
+    "attack-return": {
+      "path": "characters/brynhild/runtime/stabilized/attack-return.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        29,
+        54
+      ],
+      "loop": false,
+      "hitFrame": 6,
+      "tip": [
         24,
-        -35
+        -37
       ]
     },
     "camp-fireside": {
-      "path": "characters/brynhild/runtime/camp-fireside.png",
+      "path": "characters/brynhild/runtime/stabilized/camp-fireside.png",
       "frames": 8,
       "fps": 4.0,
       "pivot": [
-        20,
-        37
+        21,
+        40
       ],
       "loop": true
     }
