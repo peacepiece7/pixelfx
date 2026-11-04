@@ -27,3 +27,25 @@ assert(ground.color.slice(240*ground.w,290*ground.w).some(c=>c>>>24),'persistent
 assert(ground.color.slice(0,200*ground.w).every(c=>!c),'ground trail never wraps into sky rows');
 const end=frame(satellite.meta.duration);assert(end.color.every(c=>!c)&&end.light.every(c=>!c),'ends empty');
 console.log('Satellite: sky coverage, immediate ignition, growing trail, persistence and expiry pass.');
+
+// The sky portion must be the ORIGINAL Warp in, not a look-alike shader.
+const warp=await import('../src/fx/scifi/warp-in.js');
+for(const time of [.72,1.23,3.17,5.9]){
+ const w=700,h=320,actual=frame(time),expected=createFrame(w,h),start=satellite.HIT-.34;
+ const impl=warp.create(resolveOptions(warp.meta,{palette:o.palette,seed:o.seed,beamOnly:true,width:o.width,height:270,skyConnected:true,hold:satellite.END-start-1.9}));
+ const steps=Math.ceil(time*120-1e-9);let clock=0;
+ for(let i=0;i<steps;i++){const prev=clock;clock=Math.round((clock+time/steps)*1e9)/1e9;const dt=Math.max(0,clock-start)-Math.max(0,prev-start);if(dt>0)impl.update(dt);}
+ const [x,y]=satellite.beamPosition(clock,o),p=painterFor(expected).place(100+x,270+y);
+ impl.drawBack(p);impl.draw(p);
+ assert.deepEqual(actual.color.slice(0,w*180),expected.color.slice(0,w*180),'native Warp in pixels '+time);
+ assert.deepEqual(actual.light.slice(0,w*180),expected.light.slice(0,w*180),'native Warp in light '+time);
+}
+const layered=createFrame(700,320),live=createFx(satellite,{x:100,y:270});live.update(2);
+live.draw(layered,'back');
+assert(layered.color.slice(0,700*180).every(v=>!v),'beam is not behind enemies');
+const [cx]=satellite.beamPosition(2,o),enemyX=Math.round(100+cx),enemy=0xff20ff20;
+for(let y=215;y<265;y++)layered.color.fill(enemy,y*700+enemyX-15,y*700+enemyX+15);
+live.draw(layered,'front');
+let covered=0;for(let y=215;y<265;y++)for(let x=enemyX-15;x<enemyX+15;x++)if(layered.color[y*700+x]!==enemy)covered++;
+assert(covered>500,'Warp in visibly overlays the enemy');
+console.log('Satellite: exact native Warp in sky pixels/light and foreground enemy occlusion pass.');

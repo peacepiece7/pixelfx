@@ -32,7 +32,6 @@ export const act = {
 
 // the beats: the guide thread, the slam, the tube opens, the scan, the cooling, the beam narrows, it snaps shut
 const SLAM = 0.34, OPEN = 0.52, SCAN0 = 0.62, SCAN1 = 1.4, COOL = 0.42, DONE = SCAN1 + COOL, CLOSE = 1.9, SNAP = 2.16;
-const TOP = -meta.origin[1];
 
 export const actorAlpha = (t) => (t >= DONE ? 1 : 0);
 
@@ -48,6 +47,7 @@ function widthAt(t, W) {
 }
 
 export function create(o) {
+  let TOP = -(o.height ?? meta.origin[1]);
   const C = fit(o.palette, 8), W = o.width, R = new Rng(o.seed), A = o.actor;
   const ps = new Particles({ rng: R, ground: () => 0, sparks: [WHITE, C[6], C[5], C[3]], haze: C[5] }), lights = new Lights();
   // the body: each filled pixel, its own color, whether it's on the outline, and each row's extent
@@ -248,6 +248,7 @@ export function create(o) {
       lights.update(dt);
     },
     drawBack(p) {
+      if (o.skyConnected) TOP = Math.min(p.fromY(p.ox, p.oy), p.fromY(p.ox + p.w, p.oy));
       floor(p, false);
       ring(p, false);
       column(p);
