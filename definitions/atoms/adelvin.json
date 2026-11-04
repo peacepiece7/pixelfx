@@ -10,12 +10,12 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/adelvin/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/adelvin/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        20,
-        49
+        31,
+        50
       ],
       "loop": true
     },
@@ -35,32 +35,32 @@
       ]
     },
     "hit": {
-      "path": "characters/adelvin/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/adelvin/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        25,
-        49
+        31,
+        50
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/adelvin/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/adelvin/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        39,
-        47
+        31,
+        50
       ],
       "loop": false
     },
     "idle-wand": {
-      "path": "characters/adelvin/runtime/idle-wand.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/adelvin/runtime/remake-v2/idle-wand.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        17,
-        47
+        31,
+        50
       ],
       "loop": true
     },
@@ -80,22 +80,22 @@
       ]
     },
     "hit-wand": {
-      "path": "characters/adelvin/runtime/hit-wand.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/adelvin/runtime/remake-v2/hit-wand.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        26,
-        47
+        31,
+        50
       ],
       "loop": false
     },
     "death-wand": {
-      "path": "characters/adelvin/runtime/death-wand.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/adelvin/runtime/remake-v2/death-wand.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        34,
-        46
+        31,
+        50
       ],
       "loop": false
     },
