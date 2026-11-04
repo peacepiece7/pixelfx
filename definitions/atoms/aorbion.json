@@ -93,6 +93,26 @@
         38
       ],
       "loop": true
+    },
+    "tail": {
+      "path": "characters/aorbion/runtime/remake-v2/tail.png",
+      "frames": 12,
+      "fps": 16,
+      "pivot": [
+        32,
+        52
+      ],
+      "loop": false
+    },
+    "cast": {
+      "path": "characters/aorbion/runtime/remake-v2/cast.png",
+      "frames": 12,
+      "fps": 24,
+      "pivot": [
+        32,
+        52
+      ],
+      "loop": false
     }
   }
 }

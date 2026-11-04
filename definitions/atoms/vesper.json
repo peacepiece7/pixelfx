@@ -10,12 +10,12 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/vesper/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/vesper/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        26,
-        53
+        33,
+        51
       ],
       "loop": true
     },
@@ -30,82 +30,82 @@
       "loop": true
     },
     "attack": {
-      "path": "characters/vesper/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/vesper/runtime/remake-v2/attack.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        42,
-        58
+        33,
+        51
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        40,
-        -23
+        29,
+        -17
       ]
     },
     "hit": {
-      "path": "characters/vesper/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/vesper/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        29,
-        53
+        33,
+        51
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/vesper/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/vesper/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        59,
+        33,
         51
       ],
       "loop": false
     },
     "idle-lord": {
-      "path": "characters/vesper/runtime/idle-lord.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/vesper/runtime/remake-v2/idle-lord.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        18,
-        48
+        33,
+        51
       ],
       "loop": true
     },
     "move-lord": {
-      "path": "characters/vesper/runtime/move-lord.png",
-      "frames": 6,
-      "fps": 10.0,
+      "path": "characters/vesper/runtime/remake-v2/move-lord.png",
+      "frames": 12,
+      "fps": 20,
       "pivot": [
-        34,
-        45
+        33,
+        51
       ],
       "loop": true
     },
     "attack-lord": {
-      "path": "characters/vesper/runtime/attack-lord.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/vesper/runtime/remake-v2/attack-lord.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        28,
-        47
+        33,
+        51
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        37,
-        -17
+        28,
+        -15
       ]
     },
     "hit-lord": {
-      "path": "characters/vesper/runtime/hit-lord.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/vesper/runtime/remake-v2/hit-lord.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        23,
-        46
+        33,
+        51
       ],
       "loop": false
     },

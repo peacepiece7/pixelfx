@@ -100,22 +100,22 @@
       ]
     },
     "hit-dagger": {
-      "path": "characters/fame/runtime/hit-dagger.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/fame/runtime/remake-v2/hit-dagger.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
         29,
-        43
+        48
       ],
       "loop": false
     },
     "death-dagger": {
-      "path": "characters/fame/runtime/death-dagger.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/fame/runtime/remake-v2/death-dagger.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        37,
-        44
+        29,
+        48
       ],
       "loop": false
     }

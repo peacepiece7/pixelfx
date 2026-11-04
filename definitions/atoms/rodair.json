@@ -10,12 +10,12 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/rodair/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/rodair/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        28,
-        50
+        37,
+        56
       ],
       "loop": true
     },
@@ -30,67 +30,67 @@
       "loop": true
     },
     "attack": {
-      "path": "characters/rodair/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/rodair/runtime/remake-v2/attack.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        50,
-        54
+        37,
+        56
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        37,
-        -26
+        36,
+        -18
       ]
     },
     "hit": {
-      "path": "characters/rodair/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/rodair/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        36,
-        45
+        37,
+        56
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/rodair/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/rodair/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        49,
-        41
+        37,
+        56
       ],
       "loop": false
     },
     "charge": {
-      "path": "characters/rodair/runtime/charge.png",
-      "frames": 4,
-      "fps": 8.0,
+      "path": "characters/rodair/runtime/remake-v2/charge.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        21,
-        55
+        37,
+        56
       ],
       "loop": false
     },
     "slam": {
-      "path": "characters/rodair/runtime/slam.png",
-      "frames": 3,
-      "fps": 8.0,
+      "path": "characters/rodair/runtime/remake-v2/slam.png",
+      "frames": 12,
+      "fps": 32,
       "pivot": [
-        26,
-        40
+        37,
+        56
       ],
       "loop": false
     },
     "spin": {
-      "path": "characters/rodair/runtime/spin.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/rodair/runtime/remake-v2/spin.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        27,
-        41
+        37,
+        56
       ],
       "loop": true
     },

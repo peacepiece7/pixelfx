@@ -80,22 +80,22 @@
       ]
     },
     "hit-wand": {
-      "path": "characters/anabella/runtime/hit-wand.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/anabella/runtime/remake-v2/hit-wand.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        24,
-        40
+        28,
+        49
       ],
       "loop": false
     },
     "death-wand": {
-      "path": "characters/anabella/runtime/death-wand.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/anabella/runtime/remake-v2/death-wand.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        36,
-        35
+        28,
+        49
       ],
       "loop": false
     },

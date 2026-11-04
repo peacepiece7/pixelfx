@@ -10,12 +10,12 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/rosilia/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/rosilia/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        16,
-        47
+        31,
+        49
       ],
       "loop": true
     },
@@ -35,22 +35,22 @@
       ]
     },
     "hit": {
-      "path": "characters/rosilia/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/rosilia/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        28,
-        43
+        31,
+        49
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/rosilia/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/rosilia/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        51,
-        38
+        31,
+        49
       ],
       "loop": false
     },
