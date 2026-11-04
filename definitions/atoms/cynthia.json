@@ -80,76 +80,76 @@
       ]
     },
     "hit-gatling": {
-      "path": "characters/cynthia/runtime/hit-gatling.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/cynthia/runtime/remake-v2/hit-gatling.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        20,
-        47
+        34,
+        50
       ],
       "loop": false
     },
     "death-gatling": {
-      "path": "characters/cynthia/runtime/death-gatling.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/cynthia/runtime/remake-v2/death-gatling.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        28,
-        41
+        34,
+        50
       ],
       "loop": false
     },
     "idle-rifle": {
-      "path": "characters/cynthia/runtime/idle-rifle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/cynthia/runtime/remake-v2/idle-rifle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        14,
-        47
+        34,
+        50
       ],
       "loop": true
     },
     "attack-rifle": {
-      "path": "characters/cynthia/runtime/attack-rifle.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/cynthia/runtime/remake-v2/attack-rifle.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        20,
-        47
+        34,
+        50
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
-        29,
-        -35
+        24,
+        -37
       ]
     },
     "hit-rifle": {
-      "path": "characters/cynthia/runtime/hit-rifle.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/cynthia/runtime/remake-v2/hit-rifle.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
-        20,
-        47
+        34,
+        50
       ],
       "loop": false
     },
     "death-rifle": {
-      "path": "characters/cynthia/runtime/death-rifle.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/cynthia/runtime/remake-v2/death-rifle.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        29,
-        41
+        34,
+        50
       ],
       "loop": false
     },
     "camp-watch": {
-      "path": "characters/cynthia/runtime/camp-watch.png",
-      "frames": 8,
-      "fps": 4.0,
+      "path": "characters/cynthia/runtime/remake-v2/camp-watch.png",
+      "frames": 16,
+      "fps": 8,
       "pivot": [
-        17,
+        22,
         37
       ],
       "loop": true

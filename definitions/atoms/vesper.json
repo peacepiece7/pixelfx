@@ -110,12 +110,12 @@
       "loop": false
     },
     "death-lord": {
-      "path": "characters/vesper/runtime/death-lord.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/vesper/runtime/remake-v2/death-lord.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        40,
-        44
+        25,
+        43
       ],
       "loop": false
     },

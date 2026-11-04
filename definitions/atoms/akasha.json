@@ -10,56 +10,56 @@
   ],
   "animations": {
     "idle": {
-      "path": "characters/akasha/runtime/idle.png",
-      "frames": 4,
-      "fps": 6.0,
+      "path": "characters/akasha/runtime/remake-v2/idle.png",
+      "frames": 12,
+      "fps": 18,
       "pivot": [
-        22,
-        49
+        32,
+        50
       ],
       "loop": true
     },
     "attack": {
-      "path": "characters/akasha/runtime/attack.png",
-      "frames": 6,
-      "fps": 12.0,
+      "path": "characters/akasha/runtime/remake-v2/attack.png",
+      "frames": 12,
+      "fps": 24,
       "pivot": [
-        26,
-        52
+        32,
+        50
       ],
       "loop": false,
-      "hitFrame": 3,
+      "hitFrame": 6,
       "tip": [
         22,
-        -27
+        -31
       ]
     },
     "hit": {
-      "path": "characters/akasha/runtime/hit.png",
-      "frames": 2,
-      "fps": 8.0,
+      "path": "characters/akasha/runtime/remake-v2/hit.png",
+      "frames": 12,
+      "fps": 48,
       "pivot": [
         32,
-        52
+        50
       ],
       "loop": false
     },
     "death": {
-      "path": "characters/akasha/runtime/death.png",
-      "frames": 5,
-      "fps": 8.0,
+      "path": "characters/akasha/runtime/remake-v2/death.png",
+      "frames": 15,
+      "fps": 24,
       "pivot": [
-        30,
-        43
+        32,
+        50
       ],
       "loop": false
     },
     "camp-watch": {
-      "path": "characters/akasha/runtime/camp-watch.png",
-      "frames": 8,
-      "fps": 4.0,
+      "path": "characters/akasha/runtime/remake-v2/camp-watch.png",
+      "frames": 16,
+      "fps": 8,
       "pivot": [
-        17,
+        20,
         37
       ],
       "loop": true
