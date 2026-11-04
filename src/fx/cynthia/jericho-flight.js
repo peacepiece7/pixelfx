@@ -1,3 +1,9 @@
-import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
-export const meta={name:'Jericho flight',desc:'One visual missile flight; targetX/targetY are local offsets, not delayed damage.',tags:['cynthia','fire'],size:[192,192],origin:[96, 120],duration:0.3,loop:false,fps:30,bg:'ground',options:{palette:FIRE,seed:7,targetX:62,targetY:-12}};
-export function create(o){return visual(o,0.3,false,(p,t,C,motes,o)=>{const u=t/.3,x=(o.targetX??62)*u,y=(o.targetY??-12)*u-20*Math.sin(Math.PI*u),fade=Math.min(1,(1-u)*8);p.beam(x-16,y+2,x,y,3,C[3],fade);p.beam(x-8,y+1,x,y,1,C[6],fade);p.poly([[x-4,y-3],[x+5,y],[x-4,y+3]],C[5],fade);p.glow(x-5,y,12,C[3],fade*.3);for(let i=1;i<=6;i++)p.disc(x-i*5,y+i*.7,1+i*.4,C[1],fade*(1-i/7)*.3);});}
+import {sequence,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
+import * as rocket from '../projectiles/rocket.js';
+import * as dirt from '../explosions/dirt-explosion.js';
+export const meta={name:'Cynthia · Homing rockets',desc:'Four stock rockets curve towards the target and end in stock dirt explosions.',tags:['cynthia','reuse'],size:[600,360],origin:[260,250],duration:5.4,loop:false,fps:30,bg:'ground',options:{seed:7,muzzleX:17,muzzleY:-24,targetX:180,targetY:0}};
+export const preview={motion:'jericho',hitFrame:4,muzzle:[17,-24],fireTimes:[.25,.55,.85,1.15],target:true};
+export function create(o){return sequence(o,preview.fireTimes.flatMap(start=>[
+ {fx:rocket,start,end:start+.65,position:t=>flight(t,o,.65,38,true),options:{palette:FIRE,speed:80},fadeOut:.025,light:.45},
+ {fx:dirt,start:start+.65,end:start+.65+dirt.meta.duration,position:()=>target(o),options:{fire:FIRE},light:.6},
+]),meta.duration);}

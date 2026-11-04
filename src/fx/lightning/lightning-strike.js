@@ -149,7 +149,7 @@ export function create(o) {
     drawBack(p) {
       // the scene darkens a beat before the strike: a soft veil, deepest round the bolt's path, gone at the flash
       const dark = 0.5 * smooth(0.46, 0.66, t) * (1 - smooth(S1 - 0.01, S1 + 0.02, t));
-      if (dark > 0.01)
+      if (!o.groundOnly && dark > 0.01)
         for (let y = -228; y < 36; y++)
           for (let x = -W; x < W; x++) {
             const d = Math.hypot(x / W, (y + 96) / 132), a = dark * (1 - smooth(0.55, 1, d));
@@ -189,6 +189,7 @@ export function create(o) {
         }
         p.glow(0, -2, 36, C[4], 0.12 + 0.3 * k);
       }
+      if (!o.groundOnly) {
       // the stepped leader feels down from above; a streamer climbs out of the sigil to meet it
       if (t >= LEAD0 && t < S1) {
         const u = clamp((t - LEAD0) / (S1 - LEAD0)), st = Math.min(STEPS, Math.floor(u * STEPS) + 1), fresh = 1 - ((u * STEPS) % 1);
@@ -240,6 +241,7 @@ export function create(o) {
           p.line(tr[i][0], tr[i][1], tr[i + 1][0], tr[i + 1][1], h > 0.7 ? C[5] : h > 0.4 ? C[4] : h > 0.15 ? C[3] : C[2]);
           if (i % 6 === 0 && h > 0.3 && tr[i][1] > TOP + 14) p.glow(tr[i][0], tr[i][1], 6, C[4], 0.15 * h);
         }
+      }
       }
       // arcs crawl out along the cracks as they split, and again with every flicker
       if (s && s.a < 0.4) {

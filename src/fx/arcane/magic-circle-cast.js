@@ -75,6 +75,7 @@ export function create(o) {
   }
 
   function circle(p, far) {
+    if (o.part === "column") return;
     if (t >= GONE) return;
     const lvl = level(t), keep = far ? (g) => Math.sin(g) < 0 : (g) => Math.sin(g) >= 0, a = lineA(lvl);
     const ring = (r, when, chase) => floorRing(p, 0, 0, r, SY, (g) => (chase && chase(g) ? WHITE : lineCol(lvl, t - when(g))), (g) => (t < when(g) ? 0 : a), keep);
@@ -97,6 +98,7 @@ export function create(o) {
 
   // the runes stand on the circle; dim when the inner pen passes, lit one by one, out one by one
   function runes(p, far) {
+    if (o.part === "column") return;
     for (let k = 0; k < NRUNE; k++) {
       const g = runeAngle(k);
       if (Math.sin(g) < 0 !== far) continue;
@@ -117,6 +119,7 @@ export function create(o) {
 
   // the column of light: the thread that climbs first, then the beam that fires up, holds and breaks apart
   function column(p) {
+    if (o.part === "circle") return;
     if (t < FLASH - 0.22 || t > BREAK + 0.6) return;
     if (t < FLASH) {
       const a = smooth(FLASH - 0.22, FLASH - 0.04, t), top = -(TOP - 10) * ease.outCubic(a);
@@ -160,6 +163,7 @@ export function create(o) {
   }
 
   function shock(p, far) {
+    if (o.part) return;
     for (const [d, r0, r1, th, dur] of [[0, R * 0.6, R * 2, 6, 0.5], [0.08, R * 0.4, R * 1.4, 3, 0.4]]) {
       const k = (t - FLASH - d) / dur;
       if (k < 0 || k >= 1) continue;
@@ -248,9 +252,10 @@ export function create(o) {
       circle(p, true);
       runes(p, true);
       column(p);
-      ps.draw(p, "back");
+      if (!o.part) ps.draw(p, "back");
     },
     draw(p) {
+      if (o.part === "column") return;
       shock(p, false);
       circle(p, false);
       runes(p, false);
@@ -273,13 +278,12 @@ export function create(o) {
           pen(e.p0[0] + (e.p1[0] - e.p0[0]) * s, (e.p0[1] + (e.p1[1] - e.p0[1]) * s) * SY);
         }
       // the flash
-      if (t >= FLASH && t < FLASH + 0.24) {
+      if (!o.part && t >= FLASH && t < FLASH + 0.24) {
         const a = (t - FLASH) / 0.24;
         flare(p, 0, -8, 34 * Math.pow(1 - a, 1.5), 1 - a, C);
         p.glow(0, -26, 56, WHITE, 0.5 * (1 - a));
       }
-      ps.draw(p, "front");
-      lights.draw(p);
+      if (!o.part) { ps.draw(p, "front"); lights.draw(p); }
     },
   };
 }

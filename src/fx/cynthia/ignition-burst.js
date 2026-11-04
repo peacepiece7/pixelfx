@@ -1,3 +1,5 @@
-import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
-export const meta={name:'Ignition burst',desc:'Radius-75 initial ignition blast, separate from sustained zone pulses.',tags:['cynthia','fire'],size:[192,192],origin:[96, 120],duration:0.5,loop:false,fps:30,bg:'ground',options:{palette:FIRE,seed:7,radius:75}};
-export function create(o){return visual(o,0.5,false,(p,t,C,motes,o)=>{blast(p,t,.5,C,motes,Math.min(80,o.radius??75));});}
+import {sequence,plasmaTime,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
+import * as hit from '../impacts/hit-spark.js';
+import * as plasma from '../explosions/plasma-explosion.js';
+export const meta={...plasma.meta,name:'Cynthia · Slow red plasma',duration:8,options:{seed:7}};
+export const create=o=>sequence(o,[{fx:plasma,time:plasmaTime,options:{palette:RED,accent:RED},light:.45},...Array.from({length:8},(_,i)=>({fx:hit,start:i,end:i+.5,options:{palette:RED,height:18},light:.2}))],8);

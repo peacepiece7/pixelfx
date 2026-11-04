@@ -9,15 +9,15 @@ firearms, ignition and orbital fire.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
-| Gunfire | `cynthia/gunfire` | one-shot 0.25s | 192×192 | Compact muzzle star, short pressure ring and hot sparks. weapon selects shotgun/gatling/rifle silhouette. |
-| Ignition burst | `cynthia/ignition-burst` | one-shot 0.5s | 192×192 | Radius-75 initial ignition blast, separate from sustained zone pulses. |
-| Ignition marker | `cynthia/ignition-marker` | one-shot 1s | 192×192 | Embedded bolt with a one-second closing ignition outline. No impact damage. |
-| Ignition zone | `cynthia/ignition-zone` | loop 1s | 192×192 | Fixed flame patch; host owns eight-second lifetime and eight pulse events. |
-| Jericho flight | `cynthia/jericho-flight` | one-shot 0.3s | 192×192 | One visual missile flight; targetX/targetY are local offsets, not delayed damage. |
-| Jericho impact | `cynthia/jericho-impact` | one-shot 0.4s | 192×192 | Single radius-55 explosion, no secondary gameplay hit. |
-| Overheat vents | `cynthia/overheat` | loop 1s | 192×192 | Low orange heat from two mechanical vents. Lifetime belongs to the host. |
-| Satellite beam | `cynthia/satellite` | loop 1s | 192×192 | Moving orbital beam endpoint; host updates position and supplies pulse. |
-| Satellite trail | `cynthia/satellite-trail` | loop 1s | 192×192 | One residual radius-65 patch. Host handles sampling, refresh and per-beam pulse deduplication. |
+| Cynthia · Gatling burst | `cynthia/gunfire` | one-shot 2.4s | 460×180 | Pistol shots choreography reused as a six-round gatling burst with traveling bullet tracers. |
+| Cynthia · Slow red plasma | `cynthia/ignition-burst` | one-shot 8s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
+| Cynthia · Laevateinn sequence | `cynthia/ignition-marker` | one-shot 9.5s | 540×300 | Silver pistol tracer bolt, embedded charge from Ice lance throw, then an eight-second red Plasma explosion. |
+| Cynthia · Expanding multi-hit plasma | `cynthia/ignition-zone` | one-shot 8s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
+| Cynthia · Homing rockets | `cynthia/jericho-flight` | one-shot 5.4s | 600×360 | Four stock rockets curve towards the target and end in stock dirt explosions. |
+| Cynthia · Dirt impact | `cynthia/jericho-impact` | one-shot 3.6s | 260×240 | A buried charge goes off: a flash under the floor, a V of dirt clods and grit thrown high, a brown dust plume that billows and settles, and a crater left behind. |
+| Cynthia · Overheat charge | `cynthia/overheat` | loop 1.6s | 160×110 | Energy gathers in the caster's hand: streaks and motes spiral in, rings collapse into a swelling orb that crackles with arcs, ready to fire. |
+| Cynthia · Satellite beam | `cynthia/satellite` | one-shot 9s | 520×300 | Meteor call caster circle and sustained column, Lightning call floor, lingering fire rings. |
+| Cynthia · Burning lightning floor | `cynthia/satellite-trail` | loop 6s | 280×200 | Lightning call ground layer and overlapping stock fire rings keep the ground burning. |
 
 ## raid
 

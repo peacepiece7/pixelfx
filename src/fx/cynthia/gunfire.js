@@ -1,20 +1,14 @@
-import {visual,FIRE,sparks} from '../../core/cynthia-visuals.js';
-export const meta={name:'Gunfire',desc:'Compact muzzle star, short pressure ring and hot sparks. weapon selects shotgun/gatling/rifle silhouette.',tags:['cynthia','fire'],size:[192,192],origin:[55, 96],duration:0.25,loop:false,fps:30,bg:'ground',options:{palette:FIRE,seed:7,weapon:'shotgun'}};
-// Reuse the library's ragged muzzle lobes; one event remains one shot.
-import { Rng } from '../../core/index.js';
-import { flash, flashShape } from '../projectiles/_lib.js';
-export function create(o) {
-  return visual(o, .25, false, (p,t,C,motes,o) => {
-    const u=t/.25, k=(1-u)**2, shotgun=o.weapon==='shotgun';
-    if(t<.1) {
-      const f=t<1/30?1:2;
-      const lobes=flashShape(new Rng(o.seed??7),f,{
-        spike:o.weapon==='rifle'?[32,45]:[20,30],
-        diag:shotgun?[18,27]:[5,10], cross:shotgun?[7,12]:[3,6],
-      });
-      flash(p,0,0,0,lobes,f===1?[C[6],C[5],C[4],C[2]]:[C[5],C[4],C[3],C[1]],o.seed??7);
-    }
-    p.glow(4,0,24,C[4],k*.3);
-    sparks(p,u,C,motes.slice(0,10),24,k);
-  });
+import {sequence,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
+import * as muzzleFx from '../projectiles/muzzle-pistol.js';
+import * as tracer from '../projectiles/bullet-tracer.js';
+import * as hit from '../impacts/hit-spark.js';
+export const meta={name:'Cynthia · Gatling burst',desc:'Pistol shots choreography reused as a six-round gatling burst with traveling bullet tracers.',tags:['cynthia','reuse'],size:[460,180],origin:[130,130],duration:2.4,loop:false,fps:30,bg:'ground',options:{seed:7,weapon:'gatling',muzzleX:25,muzzleY:-22,targetX:180,targetY:0}};
+export const preview={motion:'attack-gatling',fireTimes:[.25,.34,.43,.52,.61,.70],target:true};
+export function create(o){
+ const shots=o.weapon==='rifle'?[.25]:o.weapon==='shotgun'?[.25,.28,.31]:preview.fireTimes;
+ return sequence(o,shots.flatMap(start=>[
+  {fx:muzzleFx,start,end:start+.7,position:()=>[...muzzle(o),0],options:{height:0,palette:FIRE},light:.4},
+  {fx:tracer,start,end:start+.22,position:t=>flight(t,o,.22),options:{length:o.weapon==='rifle'?42:19,thickness:.8,palette:FIRE},fadeOut:.015},
+  {fx:hit,start:start+.22,end:start+.65,position:()=>target(o),options:{height:24,palette:FIRE},light:.45},
+ ]),meta.duration);
 }

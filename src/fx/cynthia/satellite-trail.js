@@ -1,3 +1,8 @@
-import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
-export const meta={name:'Satellite trail',desc:'One residual radius-65 patch. Host handles sampling, refresh and per-beam pulse deduplication.',tags:['cynthia','fire'],size:[192,192],origin:[96, 120],duration:1,loop:true,fps:30,bg:'ground',options:{palette:FIRE,seed:7,radius:65,pulse:0}};
-export function create(o){return visual(o,1,true,(p,t,C,motes,o)=>{const r=Math.min(75,o.radius??65);p.ellipse(0,0,r,r*.2,C[1],.2);flames(p,t,C,motes.slice(0,20),r,14,o.pulse);});}
+import {sequence,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
+import * as ring from '../fire/fire-ring.js';
+import * as lightning from '../lightning/lightning-strike.js';
+export const meta={name:'Cynthia · Burning lightning floor',desc:'Lightning call ground layer and overlapping stock fire rings keep the ground burning.',tags:['cynthia','reuse'],size:[280,200],origin:[140,150],duration:6,loop:true,fps:30,bg:'ground',options:{seed:7}};
+export function create(o){return sequence(o,[
+ {fx:lightning,offset:.8,repeat:.6,speed:.6,options:{groundOnly:true,palette:FIRE,sparks:FIRE},light:.35},
+ ...[.8,2.3].map(offset=>({fx:ring,offset,end:6,speed:.25,options:{palette:FIRE,reach:55},light:.3})),
+],6,true);}

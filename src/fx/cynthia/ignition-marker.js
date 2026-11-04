@@ -1,3 +1,14 @@
-import {visual,FIRE,sparks,flames,blast} from '../../core/cynthia-visuals.js';
-export const meta={name:'Ignition marker',desc:'Embedded bolt with a one-second closing ignition outline. No impact damage.',tags:['cynthia','fire'],size:[192,192],origin:[96, 120],duration:1,loop:false,fps:30,bg:'ground',options:{palette:FIRE,seed:7,radius:30}};
-export function create(o){return visual(o,1,false,(p,t,C,motes,o)=>{const k=Math.min(1,t*12,(1-t)*15);p.line(-3,0,2,-16,C[4],k);p.tri(0,-19,4,-13,-2,-13,C[5],k);p.arc(0,0,(o.radius??30)*(1-t*.6),1,0,Math.PI*2*t,C[4],k*.8);p.glow(0,-3,10+8*t,C[3],k*.2);});}
+import {sequence,plasmaTime,FIRE,SILVER,RED,muzzle,target,flight} from '../../core/cynthia-reuse.js';
+import * as muzzleFx from '../projectiles/muzzle-pistol.js';
+import * as tracer from '../projectiles/bullet-tracer.js';
+import * as charge from '../arcane/spell-charge.js';
+import * as plasma from './ignition-burst.js';
+export const meta={name:'Cynthia · Laevateinn sequence',desc:'Silver pistol tracer bolt, embedded charge from Ice lance throw, then an eight-second red Plasma explosion.',tags:['cynthia','reuse'],size:[540,300],origin:[150,190],duration:9.5,loop:false,fps:30,bg:'ground',options:{seed:7,muzzleX:18,muzzleY:-23,targetX:180,targetY:0}};
+export const preview={motion:'laevateinn',hitFrame:4,muzzle:[18,-23],fireTimes:[.25],target:true};
+export function create(o){return sequence(o,[
+ {fx:muzzleFx,start:.25,end:1,position:()=>muzzle(o),options:{height:0,palette:SILVER},light:.25},
+ {fx:tracer,start:.25,end:.6,position:t=>flight(t,o,.35,0,true),options:{palette:SILVER,length:85,thickness:1.4,sparkCount:0},fadeOut:.015,light:.2},
+ {fx:tracer,start:.6,end:1.5,position:()=>{const [x,y]=target(o);return [x,y,Math.PI/2];},options:{palette:SILVER,length:45,thickness:1.1,sparkCount:0},light:.15},
+ {fx:charge,start:.6,end:1.5,position:()=>{const [x,y]=target(o);return [x-15,y+4];},options:{palette:RED},light:.4},
+ {fx:plasma,start:1.5,end:9.5,position:()=>target(o),light:1},
+],meta.duration);}
