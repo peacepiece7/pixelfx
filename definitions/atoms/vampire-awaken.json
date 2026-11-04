@@ -3,15 +3,6 @@
   "name": "뱀파이어 각성",
   "kind": "vfx",
   "renderer": "effect",
-  "effectId": "shadow/vampire-awaken",
-  "options": {
-    "palette": [
-      "#0b0614",
-      "#22113a",
-      "#3d1d63",
-      "#6a2d8f",
-      "#a04ccf",
-      "#e0a8ff"
-    ]
-  }
+  "effectId": "shadow/vampire-awaken-showcase",
+  "options": {}
 }

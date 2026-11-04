@@ -3,6 +3,6 @@
   "name": "빙결 내려찍기",
   "kind": "vfx",
   "renderer": "effect",
-  "effectId": "ice/freeze-slam",
+  "effectId": "ice/freeze-slam-showcase",
   "options": {}
 }

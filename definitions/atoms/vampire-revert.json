@@ -1,0 +1,8 @@
+{
+  "id": "vampire-revert",
+  "name": "뱀파이어 각성 해제 · 역순",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "shadow/vampire-revert-showcase",
+  "options": {}
+}

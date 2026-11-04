@@ -1,0 +1,8 @@
+{
+  "id": "cynthia-jericho-impact",
+  "name": "제리코 · Grenade 착탄",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/jericho-impact-showcase",
+  "options": {}
+}

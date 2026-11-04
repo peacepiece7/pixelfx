@@ -1,0 +1,11 @@
+{
+  "id": "lobby-campfire-ambient",
+  "name": "홈 야영지 · 절제된 모닥불 (기존 코드 재사용 검수)",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "fire/campfire",
+  "options": {
+    "height": 33,
+    "light": 0.55
+  }
+}

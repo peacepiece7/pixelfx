@@ -1,0 +1,8 @@
+{
+  "id": "cynthia-gunfire",
+  "name": "개틀링 · 탄두 6연사",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/gunfire",
+  "options": {}
+}

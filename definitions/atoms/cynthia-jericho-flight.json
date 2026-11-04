@@ -1,0 +1,8 @@
+{
+  "id": "cynthia-jericho-flight",
+  "name": "제리코 · 유도 로켓 전체 연출",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/jericho-flight-showcase",
+  "options": {}
+}

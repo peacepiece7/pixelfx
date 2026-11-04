@@ -1,0 +1,8 @@
+{
+  "id": "cynthia-ignition-burst",
+  "name": "레바테인 · 이전 제리코 착탄",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/ignition-burst-showcase",
+  "options": {}
+}

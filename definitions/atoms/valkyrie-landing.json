@@ -3,6 +3,6 @@
   "name": "valkyrie-landing",
   "kind": "vfx",
   "renderer": "effect",
-  "effectId": "holy/valkyrie-landing",
+  "effectId": "holy/valkyrie-landing-showcase",
   "options": {}
 }

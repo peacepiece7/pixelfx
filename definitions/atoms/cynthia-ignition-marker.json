@@ -1,0 +1,8 @@
+{
+  "id": "cynthia-ignition-marker",
+  "name": "레바테인 · 발사부터 다단 폭발",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "cynthia/ignition-marker-showcase",
+  "options": {}
+}
