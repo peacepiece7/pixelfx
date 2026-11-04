@@ -52,7 +52,7 @@ const widthAt = (t) => (t < REL ? 0 : 12 * (1 + 0.4 * Math.exp(-(t - REL) * 10))
 
 // the pillar: shoots up from the feet (one white-hot frame), then stands as light, not paint: two flowing
 // walls, a white core and strands streaming up in dashes; at the end its foot lifts off and it shoots away
-function column(p, C, t) {
+export function column(p, C, t) {
   const a = t - REL;
   if (a < 0 || t > GONE) return;
   const top = -TOP * ease.outExpo(clamp(a / 0.12)), bot = -TOP * ease.inCubic(seg(t, RET, GONE)), W = widthAt(t), k = 1 - smooth(RET, GONE, t);

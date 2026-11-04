@@ -127,6 +127,11 @@ export function create(o) {
       ps.update(dt);
       lights.update(dt);
     },
+    drawGround(p) {
+      crack(p);
+      const k = seg(t, HIT, HIT + 0.42);
+      if (t >= HIT && k < 1) band(p, 0, 0, 6 + 84 * ease.outCubic(k), SY * 0.8, Math.max(1, 5 * (1 - k)), 1.15 - k, C.slice(3), () => true, k < 0.12);
+    },
     drawBack(p) {
       crack(p);
       ps.draw(p, "back");

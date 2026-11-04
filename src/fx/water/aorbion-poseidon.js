@@ -130,7 +130,7 @@ function bubbles(p, C, t, i, seed, front) {
 
 // Reference-study addition: open, rising helices, never a solid cylinder.
 // Two broad pitches leave windows between the storm and the orbiting jets.
-function storm(p, C, t, seed, front, pulse) {
+export function storm(p, C, t, seed, front, pulse, fallingDrops = true) {
   for (let lane = 0; lane < 2; lane++) {
     let last = null;
     for (let j = 0; j <= 56; j++) {
@@ -183,7 +183,7 @@ function storm(p, C, t, seed, front, pulse) {
       }
       last = [x, y];
     }
-    if (u > .48 && u < .88) {
+    if (fallingDrops && u > .48 && u < .88) {
       const fall = (u - .48) * 1.5;
       bead(p, last[0] + Math.cos(a) * fall * 16, last[1] - fall * 22 + 80 * fall * fall,
         Math.cos(a) * 16, -22 + 160 * fall, 2, C, k);
