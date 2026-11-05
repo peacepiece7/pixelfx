@@ -1,0 +1,35 @@
+{
+  "id": "scene-home-furniture-v4",
+  "name": "[홈 v4] 화롯가 가구·소품",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "environments/scene-home-furniture-v4/runtime/icons-64.png",
+  "icons": [
+    "crates",
+    "barrel",
+    "bedroll",
+    "lantern",
+    "table",
+    "book",
+    "anvil",
+    "weapons",
+    "canopy",
+    "banner",
+    "chest",
+    "potions"
+  ],
+  "sheets": {
+    "32": {
+      "path": "environments/scene-home-furniture-v4/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "environments/scene-home-furniture-v4/runtime/icons-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "environments/scene-home-furniture-v4/runtime/icons-96.png",
+      "size": 96
+    }
+  }
+}

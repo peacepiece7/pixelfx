@@ -1,0 +1,9 @@
+{
+  "id": "scene-hub-daily-v2",
+  "name": "[모험 허브 v2] 일일 던전 · 황금 수정 동굴 가로 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-hub-daily-v2/runtime/art.png",
+  "width": 864,
+  "height": 256
+}

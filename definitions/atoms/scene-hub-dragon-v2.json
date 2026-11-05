@@ -1,0 +1,9 @@
+{
+  "id": "scene-hub-dragon-v2",
+  "name": "[모험 허브 v2] 보스 배너 · 용 상반신 기준 원화",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "monsters/scene-hub-dragon-v2/runtime/concept.png",
+  "width": 472,
+  "height": 512
+}

@@ -1,0 +1,9 @@
+{
+  "id": "scene-hub-boss-v2",
+  "name": "[모험 허브 v2] 보스 던전 · 붉은 성채와 원경 용",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-hub-boss-v2/runtime/art.png",
+  "width": 1792,
+  "height": 176
+}

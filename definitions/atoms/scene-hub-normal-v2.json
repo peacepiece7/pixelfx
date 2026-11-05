@@ -1,0 +1,9 @@
+{
+  "id": "scene-hub-normal-v2",
+  "name": "[모험 허브 v2] 일반 던전 · 성문과 폐허 가로 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-hub-normal-v2/runtime/art.png",
+  "width": 1792,
+  "height": 300
+}

@@ -1,0 +1,27 @@
+{
+  "id": "scene-hub-emblems-v2",
+  "name": "[모험 허브 v2] 던전 문장 4종 · 정지 아이콘 시트",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-hub-emblems-v2/runtime/icons-64.png",
+  "icons": [
+    "normal",
+    "infinite",
+    "daily",
+    "boss"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-hub-emblems-v2/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-hub-emblems-v2/runtime/icons-64.png",
+      "size": 64
+    },
+    "128": {
+      "path": "ui/scene-hub-emblems-v2/runtime/icons-128.png",
+      "size": 128
+    }
+  }
+}

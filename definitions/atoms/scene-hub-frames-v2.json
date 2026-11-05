@@ -1,0 +1,14 @@
+{
+  "id": "scene-hub-frames-v2",
+  "name": "[모험 허브 v2] 장식 테두리 4종 · 정지 디자인 시트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-hub-frames-v2/runtime/frames.png",
+  "borderSlice": 40,
+  "variants": {
+    "normal": "ui/scene-hub-frames-v2/runtime/normal.png",
+    "infinite": "ui/scene-hub-frames-v2/runtime/infinite.png",
+    "daily": "ui/scene-hub-frames-v2/runtime/daily.png",
+    "boss": "ui/scene-hub-frames-v2/runtime/boss.png"
+  }
+}

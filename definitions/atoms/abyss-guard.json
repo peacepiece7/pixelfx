@@ -1,0 +1,53 @@
+{
+  "id": "abyss-guard",
+  "name": "심연 철갑악마 픽셀 모델 시트",
+  "renderer": "sprite",
+  "kind": "monster",
+  "assetPath": "monsters/abyss-guard/runtime/concept.png",
+  "pivot": [
+    23,
+    51
+  ],
+  "animations": {
+    "walk": {
+      "path": "monsters/abyss-guard/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        23,
+        51
+      ],
+      "sequence": [
+        0
+      ],
+      "loop": true
+    },
+    "idle": {
+      "path": "monsters/abyss-guard/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        23,
+        51
+      ],
+      "sequence": [
+        0
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/abyss-guard/runtime/concept.png",
+      "frames": 3,
+      "fps": 1,
+      "pivot": [
+        23,
+        51
+      ],
+      "sequence": [
+        2
+      ],
+      "loop": true
+    }
+  },
+  "previewOnlyPoses": true
+}

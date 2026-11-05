@@ -1,0 +1,47 @@
+{
+  "id": "scene-home-icons-v4",
+  "name": "[홈 v4] 황동 테두리 판타지 메뉴 아이콘",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-home-icons-v4/runtime/icons-64.png",
+  "icons": [
+    "swords",
+    "doorway",
+    "abyss",
+    "spirit",
+    "alchemy",
+    "codex",
+    "helmet",
+    "backpack",
+    "summon",
+    "growth",
+    "guild",
+    "merchant",
+    "pass",
+    "trophy",
+    "settings",
+    "mail",
+    "mission",
+    "event",
+    "hot-time",
+    "gift",
+    "stamina",
+    "gold",
+    "gem",
+    "chat"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-home-icons-v4/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-home-icons-v4/runtime/icons-64.png",
+      "size": 64
+    },
+    "128": {
+      "path": "ui/scene-home-icons-v4/runtime/icons-128.png",
+      "size": 128
+    }
+  }
+}
