@@ -1,24 +1,21 @@
 {
   "id": "abyss-warden",
-  "name": "심연 문지기 픽셀 모델 시트",
-  "renderer": "sprite",
+  "name": "심연 문지기",
   "kind": "monster",
-  "assetPath": "monsters/abyss-warden/runtime/concept.png",
+  "renderer": "sprite",
+  "assetPath": "monsters/abyss-warden/runtime/walk.png",
   "pivot": [
     24,
-    64
+    60
   ],
   "animations": {
     "walk": {
-      "path": "monsters/abyss-warden/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/abyss-warden/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
         24,
-        64
-      ],
-      "sequence": [
-        0
+        60
       ],
       "loop": true
     },
@@ -36,18 +33,39 @@
       "loop": true
     },
     "attack": {
-      "path": "monsters/abyss-warden/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/abyss-warden/runtime/attack.png",
+      "frames": 4,
+      "fps": 12.0,
       "pivot": [
-        24,
-        64
+        46,
+        61
       ],
-      "sequence": [
-        2
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -29,
+        -45
+      ]
+    },
+    "hit": {
+      "path": "monsters/abyss-warden/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        22,
+        61
       ],
-      "loop": true
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/abyss-warden/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        42,
+        62
+      ],
+      "loop": false
     }
-  },
-  "previewOnlyPoses": true
+  }
 }

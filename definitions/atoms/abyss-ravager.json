@@ -1,24 +1,21 @@
 {
   "id": "abyss-ravager",
-  "name": "심연 갈퀴악마 픽셀 모델 시트",
-  "renderer": "sprite",
+  "name": "심연 갈퀴악마",
   "kind": "monster",
-  "assetPath": "monsters/abyss-ravager/runtime/concept.png",
+  "renderer": "sprite",
+  "assetPath": "monsters/abyss-ravager/runtime/walk.png",
   "pivot": [
-    15,
-    38
+    14,
+    36
   ],
   "animations": {
     "walk": {
-      "path": "monsters/abyss-ravager/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/abyss-ravager/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
-        15,
-        38
-      ],
-      "sequence": [
-        0
+        14,
+        36
       ],
       "loop": true
     },
@@ -36,18 +33,39 @@
       "loop": true
     },
     "attack": {
-      "path": "monsters/abyss-ravager/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/abyss-ravager/runtime/attack.png",
+      "frames": 4,
+      "fps": 12.0,
       "pivot": [
-        15,
-        38
+        24,
+        33
       ],
-      "sequence": [
-        2
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -16,
+        -14
+      ]
+    },
+    "hit": {
+      "path": "monsters/abyss-ravager/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        12,
+        36
       ],
-      "loop": true
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/abyss-ravager/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        21,
+        35
+      ],
+      "loop": false
     }
-  },
-  "previewOnlyPoses": true
+  }
 }

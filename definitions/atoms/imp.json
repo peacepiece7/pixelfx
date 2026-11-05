@@ -1,24 +1,21 @@
 {
   "id": "imp",
-  "name": "불씨 임프 픽셀 모델 시트",
-  "renderer": "sprite",
+  "name": "불씨 임프",
   "kind": "monster",
-  "assetPath": "monsters/imp/runtime/concept.png",
+  "renderer": "sprite",
+  "assetPath": "monsters/imp/runtime/walk.png",
   "pivot": [
-    13,
-    32
+    9,
+    30
   ],
   "animations": {
     "walk": {
-      "path": "monsters/imp/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/imp/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
       "pivot": [
-        13,
-        32
-      ],
-      "sequence": [
-        0
+        9,
+        30
       ],
       "loop": true
     },
@@ -36,18 +33,39 @@
       "loop": true
     },
     "attack": {
-      "path": "monsters/imp/runtime/concept.png",
-      "frames": 3,
-      "fps": 1,
+      "path": "monsters/imp/runtime/attack.png",
+      "frames": 4,
+      "fps": 12.0,
       "pivot": [
-        13,
-        32
+        14,
+        29
       ],
-      "sequence": [
-        2
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -8,
+        -12
+      ]
+    },
+    "hit": {
+      "path": "monsters/imp/runtime/hit.png",
+      "frames": 2,
+      "fps": 8.0,
+      "pivot": [
+        8,
+        29
       ],
-      "loop": true
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/imp/runtime/death.png",
+      "frames": 5,
+      "fps": 8.0,
+      "pivot": [
+        16,
+        28
+      ],
+      "loop": false
     }
-  },
-  "previewOnlyPoses": true
+  }
 }
