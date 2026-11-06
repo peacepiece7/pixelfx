@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->304<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->324<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -26,27 +26,27 @@ the idea at library scale, with a skill to keep going.
 <!-- catalog -->
 | category | effects | some of them |
 |---|---|---|
-| **cynthia** | 9 | gunfire, ignition burst, ignition marker, ignition zone, jericho flight, jericho impact… |
-| **raid** | 7 | abyss distant fog, breath ground impact, breath warning, dragon abyss breath, near cliff dust, dragon phase surge… |
+| **cynthia** | 17 | cynthia · gatling burst, cynthia · sustained red plasma, cynthia · laevateinn transferred rocket impact, cynthia · laevateinn sequence, cynthia · laevateinn sequence, cynthia · expanding multi-hit plasma… |
+| **raid** | 6 | abyss distant fog, dragon abyss breath, dragon heavy stomp, near cliff dust, dragon phase surge, distant rift flow |
 | **moves** | 13 | arrow shot, brynhild basic strike, dash strike, earth stomp, fireball throw, ground pound… |
 | **fire** | 12 | brazier, campfire, candle, fire breath, fire ring, fire tornado… |
 | **explosions** | 12 | barrel explosion, big explosion, cartoon pow, dirt explosion, firework burst, firework rocket… |
 | **water** | 18 | aorbion charge emerge, aorbion poseidon wave storm, aorbion sea response, aorbion sea dragon, aorbion submerge, aorbion tail pillars… |
-| **ice** | 11 | blizzard vortex, freeze, freeze slam, frost breath, frost nova, ice crystal… |
+| **ice** | 12 | blizzard vortex, freeze, freeze slam, freeze slam · frost charge, frost breath, frost nova… |
 | **lightning** | 11 | ball lightning, chain lightning, charge up, electrified, lightning strike, plasma ball… |
 | **sci-fi** | 12 | emp blast, energy core, force field, glitch, hologram, jetpack… |
 | **melee** | 12 | claw swipe, dagger flurry, double slash, hammer smash, heavy cleave, scythe reap… |
 | **impacts** | 11 | blunt hit, bullet impact, critical hit, ground slam, heavy landing, hit flash… |
 | **projectiles** | 15 | arrow, bullet tracer, cannon shot, energy disc, signal flare, homing missile… |
 | **spawn & death** | 10 | coin drop, disintegrate, dissolve burn, egg hatch, poof, respawn beam… |
-| **arcane** | 12 | arcane beam, arcane missiles, arcane orb, blink in, blink out, magic circle cast… |
-| **holy** | 24 | adelvin aurora bloom, adelvin aurora bolt, adelvin healing arrival, adelvin healing lance, michael healing pulse, adelvin light missile impact… |
-| **blood** | 4 | bleeding status, blood boom, roar wave, thorn reflect |
-| **shadow** | 16 | black hole, curse, dark explosion, dark shroud, dark wave, eclipse… |
-| **status** | 16 | bleeding, blood armor, burning, charmed, confused, cursed… |
-| **poison** | 8 | venom mine burst, poison arrow, poisoned venom drips, poison dagger, poison detonation, poison fog field… |
+| **arcane** | 13 | arcane beam, arcane missiles, arcane orb, blink in, blink out, gate portal… |
+| **holy** | 26 | adelvin aurora bloom, adelvin aurora bolt, adelvin healing arrival, adelvin healing lance, michael healing pulse, adelvin light missile impact… |
+| **blood** | 5 | bleeding status, blood boom, blood boom · rising blood storm, roar wave, thorn reflect |
+| **shadow** | 20 | black hole, curse, dark explosion, dark shroud, dark shroud · white violet ellipse, dark wave… |
+| **status** | 17 | bleeding, blood armor, blood armor · single crimson shadow, burning, charmed, confused… |
+| **poison** | 10 | venom mine burst, venom mine burst · green spawn portal, poison arrow, poisoned venom drips, poison dagger, poison detonation… |
 | **nature** | 14 | acid splash, boulder, earth spike, healing bloom, leaf storm, poison cloud… |
-| **weather** | 12 | aurora, blizzard, cherry blossoms, clouds, falling leaves, fireflies… |
+| **weather** | 13 | aurora, blizzard, cherry blossoms, clouds, embers, falling leaves… |
 | **ui** | 12 | achievement, coin collect, combo counter, confetti, countdown, crit number… |
 | **pickups** | 11 | chest open, coin spin, collect burst, crystal shard, gem spin, heart pickup… |
 | **transitions** | 10 | blinds, burn away, crt off, diamond wipe, glitch wipe, iris… |

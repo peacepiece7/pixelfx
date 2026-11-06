@@ -2,13 +2,21 @@
 
 import * as cynthia_gunfire from "./cynthia/gunfire.js";
 import * as cynthia_ignition_burst from "./cynthia/ignition-burst.js";
+import * as cynthia_ignition_burst_showcase from "./cynthia/ignition-burst-showcase.js";
 import * as cynthia_ignition_marker from "./cynthia/ignition-marker.js";
+import * as cynthia_ignition_marker_showcase from "./cynthia/ignition-marker-showcase.js";
 import * as cynthia_ignition_zone from "./cynthia/ignition-zone.js";
+import * as cynthia_ignition_zone_showcase from "./cynthia/ignition-zone-showcase.js";
 import * as cynthia_jericho_flight from "./cynthia/jericho-flight.js";
+import * as cynthia_jericho_flight_showcase from "./cynthia/jericho-flight-showcase.js";
 import * as cynthia_jericho_impact from "./cynthia/jericho-impact.js";
+import * as cynthia_jericho_impact_showcase from "./cynthia/jericho-impact-showcase.js";
 import * as cynthia_overheat from "./cynthia/overheat.js";
+import * as cynthia_overheat_showcase from "./cynthia/overheat-showcase.js";
 import * as cynthia_satellite from "./cynthia/satellite.js";
+import * as cynthia_satellite_showcase from "./cynthia/satellite-showcase.js";
 import * as cynthia_satellite_trail from "./cynthia/satellite-trail.js";
+import * as cynthia_satellite_trail_showcase from "./cynthia/satellite-trail-showcase.js";
 import * as raid_abyss_fog from "./raid/abyss-fog.js";
 import * as raid_dragon_breath from "./raid/dragon-breath.js";
 import * as raid_heavy_stomp from "./raid/heavy-stomp.js";
@@ -73,6 +81,7 @@ import * as water_whirlpool from "./water/whirlpool.js";
 import * as ice_blizzard_vortex from "./ice/blizzard-vortex.js";
 import * as ice_freeze from "./ice/freeze.js";
 import * as ice_freeze_slam from "./ice/freeze-slam.js";
+import * as ice_freeze_slam_showcase from "./ice/freeze-slam-showcase.js";
 import * as ice_frost_breath from "./ice/frost-breath.js";
 import * as ice_frost_nova from "./ice/frost-nova.js";
 import * as ice_ice_crystal from "./ice/ice-crystal.js";
@@ -157,6 +166,7 @@ import * as arcane_arcane_missiles from "./arcane/arcane-missiles.js";
 import * as arcane_arcane_orb from "./arcane/arcane-orb.js";
 import * as arcane_blink_in from "./arcane/blink-in.js";
 import * as arcane_blink_out from "./arcane/blink-out.js";
+import * as arcane_gate_portal from "./arcane/gate-portal.js";
 import * as arcane_magic_circle_cast from "./arcane/magic-circle-cast.js";
 import * as arcane_mana_burst from "./arcane/mana-burst.js";
 import * as arcane_portal from "./arcane/portal.js";
@@ -173,6 +183,7 @@ import * as holy_adelvin_impact from "./holy/adelvin-impact.js";
 import * as holy_adelvin_lance from "./holy/adelvin-lance.js";
 import * as holy_adelvin_meteor from "./holy/adelvin-meteor.js";
 import * as holy_adelvin_orb_array from "./holy/adelvin-orb-array.js";
+import * as holy_adelvin_orb_array_showcase from "./holy/adelvin-orb-array-showcase.js";
 import * as holy_adelvin_orb_flight from "./holy/adelvin-orb-flight.js";
 import * as holy_adelvin_orbiting_shields from "./holy/adelvin-orbiting-shields.js";
 import * as holy_adelvin_summon_seal from "./holy/adelvin-summon-seal.js";
@@ -188,15 +199,19 @@ import * as holy_smite from "./holy/smite.js";
 import * as holy_sunburst from "./holy/sunburst.js";
 import * as holy_valhalla_zone from "./holy/valhalla-zone.js";
 import * as holy_valkyrie_landing from "./holy/valkyrie-landing.js";
+import * as holy_valkyrie_landing_showcase from "./holy/valkyrie-landing-showcase.js";
 import * as blood_bleeding from "./blood/bleeding.js";
 import * as blood_blood_boom from "./blood/blood-boom.js";
+import * as blood_blood_boom_showcase from "./blood/blood-boom-showcase.js";
 import * as blood_roar_wave from "./blood/roar-wave.js";
 import * as blood_thorn_reflect from "./blood/thorn-reflect.js";
 import * as shadow_black_hole from "./shadow/black-hole.js";
 import * as shadow_curse from "./shadow/curse.js";
 import * as shadow_dark_explosion from "./shadow/dark-explosion.js";
 import * as shadow_dark_shroud from "./shadow/dark-shroud.js";
+import * as shadow_dark_shroud_showcase from "./shadow/dark-shroud-showcase.js";
 import * as shadow_dark_wave from "./shadow/dark-wave.js";
+import * as shadow_dark_wave_showcase from "./shadow/dark-wave-showcase.js";
 import * as shadow_eclipse from "./shadow/eclipse.js";
 import * as shadow_grasping_hands from "./shadow/grasping-hands.js";
 import * as shadow_hex_sigil from "./shadow/hex-sigil.js";
@@ -207,9 +222,12 @@ import * as shadow_shadow_flames from "./shadow/shadow-flames.js";
 import * as shadow_shadow_tendrils from "./shadow/shadow-tendrils.js";
 import * as shadow_soul_drain from "./shadow/soul-drain.js";
 import * as shadow_vampire_awaken from "./shadow/vampire-awaken.js";
+import * as shadow_vampire_awaken_showcase from "./shadow/vampire-awaken-showcase.js";
+import * as shadow_vampire_revert_showcase from "./shadow/vampire-revert-showcase.js";
 import * as shadow_void_orb from "./shadow/void-orb.js";
 import * as status_bleeding from "./status/bleeding.js";
 import * as status_blood_armor from "./status/blood-armor.js";
+import * as status_blood_armor_showcase from "./status/blood-armor-showcase.js";
 import * as status_burning from "./status/burning.js";
 import * as status_charmed from "./status/charmed.js";
 import * as status_confused from "./status/confused.js";
@@ -225,10 +243,12 @@ import * as status_sleep from "./status/sleep.js";
 import * as status_slowed from "./status/slowed.js";
 import * as status_stunned from "./status/stunned.js";
 import * as poison_mine_burst from "./poison/mine-burst.js";
+import * as poison_mine_burst_showcase from "./poison/mine-burst-showcase.js";
 import * as poison_poison_arrow from "./poison/poison-arrow.js";
 import * as poison_poison_aura from "./poison/poison-aura.js";
 import * as poison_poison_dagger from "./poison/poison-dagger.js";
 import * as poison_poison_detonation from "./poison/poison-detonation.js";
+import * as poison_poison_detonation_showcase from "./poison/poison-detonation-showcase.js";
 import * as poison_poison_fog from "./poison/poison-fog.js";
 import * as poison_poison_mine from "./poison/poison-mine.js";
 import * as poison_poison_transfer from "./poison/poison-transfer.js";
@@ -250,6 +270,7 @@ import * as weather_aurora from "./weather/aurora.js";
 import * as weather_blizzard from "./weather/blizzard.js";
 import * as weather_cherry_blossoms from "./weather/cherry-blossoms.js";
 import * as weather_clouds from "./weather/clouds.js";
+import * as weather_embers from "./weather/embers.js";
 import * as weather_falling_leaves from "./weather/falling-leaves.js";
 import * as weather_fireflies from "./weather/fireflies.js";
 import * as weather_fog from "./weather/fog.js";
@@ -309,13 +330,21 @@ export { categories } from "./categories.js";
 export const effects = {
   "cynthia/gunfire": cynthia_gunfire,
   "cynthia/ignition-burst": cynthia_ignition_burst,
+  "cynthia/ignition-burst-showcase": cynthia_ignition_burst_showcase,
   "cynthia/ignition-marker": cynthia_ignition_marker,
+  "cynthia/ignition-marker-showcase": cynthia_ignition_marker_showcase,
   "cynthia/ignition-zone": cynthia_ignition_zone,
+  "cynthia/ignition-zone-showcase": cynthia_ignition_zone_showcase,
   "cynthia/jericho-flight": cynthia_jericho_flight,
+  "cynthia/jericho-flight-showcase": cynthia_jericho_flight_showcase,
   "cynthia/jericho-impact": cynthia_jericho_impact,
+  "cynthia/jericho-impact-showcase": cynthia_jericho_impact_showcase,
   "cynthia/overheat": cynthia_overheat,
+  "cynthia/overheat-showcase": cynthia_overheat_showcase,
   "cynthia/satellite": cynthia_satellite,
+  "cynthia/satellite-showcase": cynthia_satellite_showcase,
   "cynthia/satellite-trail": cynthia_satellite_trail,
+  "cynthia/satellite-trail-showcase": cynthia_satellite_trail_showcase,
   "raid/abyss-fog": raid_abyss_fog,
   "raid/dragon-breath": raid_dragon_breath,
   "raid/heavy-stomp": raid_heavy_stomp,
@@ -380,6 +409,7 @@ export const effects = {
   "ice/blizzard-vortex": ice_blizzard_vortex,
   "ice/freeze": ice_freeze,
   "ice/freeze-slam": ice_freeze_slam,
+  "ice/freeze-slam-showcase": ice_freeze_slam_showcase,
   "ice/frost-breath": ice_frost_breath,
   "ice/frost-nova": ice_frost_nova,
   "ice/ice-crystal": ice_ice_crystal,
@@ -464,6 +494,7 @@ export const effects = {
   "arcane/arcane-orb": arcane_arcane_orb,
   "arcane/blink-in": arcane_blink_in,
   "arcane/blink-out": arcane_blink_out,
+  "arcane/gate-portal": arcane_gate_portal,
   "arcane/magic-circle-cast": arcane_magic_circle_cast,
   "arcane/mana-burst": arcane_mana_burst,
   "arcane/portal": arcane_portal,
@@ -480,6 +511,7 @@ export const effects = {
   "holy/adelvin-lance": holy_adelvin_lance,
   "holy/adelvin-meteor": holy_adelvin_meteor,
   "holy/adelvin-orb-array": holy_adelvin_orb_array,
+  "holy/adelvin-orb-array-showcase": holy_adelvin_orb_array_showcase,
   "holy/adelvin-orb-flight": holy_adelvin_orb_flight,
   "holy/adelvin-orbiting-shields": holy_adelvin_orbiting_shields,
   "holy/adelvin-summon-seal": holy_adelvin_summon_seal,
@@ -495,15 +527,19 @@ export const effects = {
   "holy/sunburst": holy_sunburst,
   "holy/valhalla-zone": holy_valhalla_zone,
   "holy/valkyrie-landing": holy_valkyrie_landing,
+  "holy/valkyrie-landing-showcase": holy_valkyrie_landing_showcase,
   "blood/bleeding": blood_bleeding,
   "blood/blood-boom": blood_blood_boom,
+  "blood/blood-boom-showcase": blood_blood_boom_showcase,
   "blood/roar-wave": blood_roar_wave,
   "blood/thorn-reflect": blood_thorn_reflect,
   "shadow/black-hole": shadow_black_hole,
   "shadow/curse": shadow_curse,
   "shadow/dark-explosion": shadow_dark_explosion,
   "shadow/dark-shroud": shadow_dark_shroud,
+  "shadow/dark-shroud-showcase": shadow_dark_shroud_showcase,
   "shadow/dark-wave": shadow_dark_wave,
+  "shadow/dark-wave-showcase": shadow_dark_wave_showcase,
   "shadow/eclipse": shadow_eclipse,
   "shadow/grasping-hands": shadow_grasping_hands,
   "shadow/hex-sigil": shadow_hex_sigil,
@@ -514,9 +550,12 @@ export const effects = {
   "shadow/shadow-tendrils": shadow_shadow_tendrils,
   "shadow/soul-drain": shadow_soul_drain,
   "shadow/vampire-awaken": shadow_vampire_awaken,
+  "shadow/vampire-awaken-showcase": shadow_vampire_awaken_showcase,
+  "shadow/vampire-revert-showcase": shadow_vampire_revert_showcase,
   "shadow/void-orb": shadow_void_orb,
   "status/bleeding": status_bleeding,
   "status/blood-armor": status_blood_armor,
+  "status/blood-armor-showcase": status_blood_armor_showcase,
   "status/burning": status_burning,
   "status/charmed": status_charmed,
   "status/confused": status_confused,
@@ -532,10 +571,12 @@ export const effects = {
   "status/slowed": status_slowed,
   "status/stunned": status_stunned,
   "poison/mine-burst": poison_mine_burst,
+  "poison/mine-burst-showcase": poison_mine_burst_showcase,
   "poison/poison-arrow": poison_poison_arrow,
   "poison/poison-aura": poison_poison_aura,
   "poison/poison-dagger": poison_poison_dagger,
   "poison/poison-detonation": poison_poison_detonation,
+  "poison/poison-detonation-showcase": poison_poison_detonation_showcase,
   "poison/poison-fog": poison_poison_fog,
   "poison/poison-mine": poison_poison_mine,
   "poison/poison-transfer": poison_poison_transfer,
@@ -557,6 +598,7 @@ export const effects = {
   "weather/blizzard": weather_blizzard,
   "weather/cherry-blossoms": weather_cherry_blossoms,
   "weather/clouds": weather_clouds,
+  "weather/embers": weather_embers,
   "weather/falling-leaves": weather_falling_leaves,
   "weather/fireflies": weather_fireflies,
   "weather/fog": weather_fog,

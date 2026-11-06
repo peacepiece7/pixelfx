@@ -1,6 +1,6 @@
 # Catalog
 
-303 effects in 25 categories. Every one is a file in
+324 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## cynthia
@@ -11,13 +11,21 @@ firearms, ignition and orbital fire.
 |---|---|---|---|---|
 | Cynthia · Gatling burst | `cynthia/gunfire` | one-shot 2.4s | 460×180 | SMG burst at the muzzle, synchronized with six traveling bullet tracers. |
 | Cynthia · Sustained red plasma | `cynthia/ignition-burst` | one-shot 8s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
+| Cynthia · Laevateinn transferred rocket impact | `cynthia/ignition-burst-showcase` | one-shot 1.7s | 224×200 | The former Jericho red plasma impact, transferred unchanged to Laevateinn for review. |
 | Cynthia · Laevateinn sequence | `cynthia/ignition-marker` | one-shot 9.5s | 540×300 | Silver pistol tracer bolt, embedded charge from Ice lance throw, then an eight-second red Plasma explosion. |
+| Cynthia · Laevateinn sequence | `cynthia/ignition-marker-showcase` | one-shot 3.2s | 540×300 | Silver pistol tracer bolt, embedded charge from Ice lance throw, then the former Jericho red plasma impact. |
 | Cynthia · Expanding multi-hit plasma | `cynthia/ignition-zone` | one-shot 8s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
+| Cynthia · Laevateinn transferred impact zone | `cynthia/ignition-zone-showcase` | one-shot 1.7s | 224×200 | The former Jericho red plasma impact, transferred unchanged to Laevateinn for review. |
 | Cynthia · Direct rockets | `cynthia/jericho-flight` | one-shot 3.5s | 600×360 | Short smokeless rockets fly forward then pitch into the ground, ending in red plasma impacts. |
+| Cynthia · Direct rockets | `cynthia/jericho-flight-showcase` | one-shot 4.4s | 600×360 | Short smokeless rockets fly forward then pitch into the ground, ending in Grenade blasts whose spreading smoke fades quickly. |
 | Cynthia · Smokeless rocket impact | `cynthia/jericho-impact` | one-shot 1.7s | 224×200 | A blue-violet energy blast with no smoke: a white flash, a ball of plasma swelling into a thinning shell, shock rings in and out of depth, lightning arcs crackling off it. |
+| Cynthia · Jericho grenade impact | `cynthia/jericho-impact-showcase` | one-shot 2.6s | 300×200 | Grenade blast at the rocket impact point, with the original flash, shrapnel and fireball. Spreading smoke dissipates 2.5 times faster. |
 | Cynthia · Overheat charge | `cynthia/overheat` | loop 1.6s | 160×110 | Energy gathers in the caster's hand: streaks and motes spiral in, rings collapse into a swelling orb that crackles with arcs, ready to fire. |
+| Cynthia · Crimson overheat glitch | `cynthia/overheat-showcase` | loop 2.4s | 128×128 | Subtle red Glitch slices flicker over the intact hero while crimson heat wisps and tiny red fragments rise from the body. |
 | Cynthia · Satellite beam | `cynthia/satellite` | one-shot 9s | 560×340 | Pale orange Warp in beam with the caster circle and Big explosion burning aftermath. |
+| Cynthia · Wide sweeping satellite | `cynthia/satellite-showcase` | one-shot 12s | 700×320 | A wide sky-connected beam ignites the floor on impact and sweeps forward, accumulating a broad burning trail that remains after the beam ends. |
 | Cynthia · Burning explosion aftermath | `cynthia/satellite-trail` | one-shot 8.7s | 360×300 | Big explosion aftermath: cooling fire, smoke, scorched ground and lingering burning fragments. |
+| Cynthia · Immediate satellite burn trail | `cynthia/satellite-trail-showcase` | one-shot 6s | 256×128 | Ground ignites immediately on contact. Overlapping scorch patches remain behind a moving beam, with low flames and cooling embers. |
 
 ## raid
 
@@ -124,6 +132,7 @@ spikes, novas, freezing, shattering.
 | Blizzard vortex | `ice/blizzard-vortex` | loop 2s | 128×116 | A swirling snow tornado: wind bands spin up a leaning funnel, flakes and ice crystals orbit in front and behind, snow boils at its foot and cold light fills its throat. |
 | Freeze | `ice/freeze` | one-shot 4s | 176×128 | Frost races in and climbs the character, turning it to ice; a faceted block crystallizes round it pane by pane, glints, cracks and bursts, and the character thaws free. |
 | Freeze slam | `ice/freeze-slam` | one-shot 1.6s | 200×120 | A landing flash drives a radial crown of ice to radius 90; frost mist rolls between the spikes, fractures light up and the crown bursts into falling splinters. |
+| Freeze slam · frost charge | `ice/freeze-slam-showcase` | one-shot 2.02s | 224×176 | Airborne frost-nova charge and icy body light lead into the original landing crown. |
 | Frost breath | `ice/frost-breath` | loop 1.2s | 184×104 | A cone of icy wind blowing right: frost puffs billow out, swell and sink, wind streaks race through, ice crystals tumble and glint off a white-hot mouth. |
 | Frost nova | `ice/frost-nova` | one-shot 3.4s | 288×192 | Frost spirals into a spinning snowflake, then a wave blooms three rings of ice crystals round the caster; snow drifts, frost creeps, and the ice melts back into the floor. |
 | Ice crystal | `ice/ice-crystal` | loop 3s | 96×100 | A floating ice crystal turning slowly in its own cold light: its facets brighten and darken as they turn, glints flash on them, frost motes circle it. |
@@ -257,6 +266,7 @@ portals, runes, missiles, beams.
 | Arcane orb | `arcane/arcane-orb` | loop 2.4s | 136×112 | A floating orb of smoky violet glass with a swirl turning round a white-hot heart, two tilted rings of light orbiting behind and in front. |
 | Blink in | `arcane/blink-in` | one-shot 1.4s | 136×96 | Glittering bits spiral in to a point of light that opens into a line, then into a white silhouette that cools into the caster. |
 | Blink out | `arcane/blink-out` | one-shot 1.6s | 136×96 | The caster crackles with gathering light, flashes white, squeezes into a line of light that collapses and pops away in sparks. |
+| Gate portal | `arcane/gate-portal` | loop 4s | 64×96 | A calm portal filling a pointed stone arch: two broad spiral arms turn slowly in hard tones, a pale rim, motes drifting in. Stepped frames for painted scenery. |
 | Magic circle cast | `arcane/magic-circle-cast` | one-shot 3.9s | 200×220 | A circle draws itself on the floor, runes ignite one by one, it flashes, and a column of light fires up and breaks apart into glints. |
 | Mana burst | `arcane/mana-burst` | one-shot 1.8s | 208×150 | Energy rushes into a point and blows out in a white flash and rings, flinging glowing runes that flare and pop into sparks one after another. |
 | Portal | `arcane/portal` | loop 2.4s | 152×116 | An upright rift: fibrous spiral arms wind down into the dark, a lit rim wobbles, motes and streaks are pulled in, the floor glows. |
@@ -280,6 +290,7 @@ heals, halos, pillars of light.
 | Adelvin light lance | `holy/adelvin-lance` | loop 1.2s | 160×80 | An ivory spearhead with a cyan bevel, gold collar and tapering split ribbons. The host moves the nose; it never selects targets or applies damage. |
 | Gabriel radiant meteor | `holy/adelvin-meteor` | one-shot 1.15s | 288×288 | A large pearl-gold light meteor releases an enlarged sunburst, two aura shells, floor light waves and drifting sparks. No stone, dark crater or curtains. |
 | Adelvin stored light missiles | `holy/adelvin-orb-array` | loop 2s | 144×128 | Charged white cores orbit on short twisting cyan wakes, ready to launch. Host remaining count controls every light; zero is empty and there is no five-orb cap. |
+| Adelvin stored light missiles · violet | `holy/adelvin-orb-array-showcase` | loop 2s | 340×160 | Violet missiles remain stored. Each pulse launches one on a shallow arc with the original impact burst. Reset to refill. |
 | Adelvin light missile | `holy/adelvin-orb-flight` | loop 1.2s | 112×72 | A white-hot magic core pulls a twisting cyan ribbon and warm star motes. Host owns homing, position and lifetime; this loop never travels or applies damage. |
 | Adelvin orbiting shields | `holy/adelvin-orbiting-shields` | loop 2s | 168×128 | Independent beveled shields orbit an ally in front and back layers. Count and phase come from the host; the art never creates extra collision or shield HP. |
 | Adelvin radiant summon seal | `holy/adelvin-summon-seal` | one-shot 0.85s | 192×152 | A layered cyan-gold rune seal opens beneath the summon. Counter-rotating compass rays, rising ivory halos and star motes unfold once and dissolve. |
@@ -295,6 +306,7 @@ heals, halos, pillars of light.
 | Sunburst | `holy/sunburst` | loop 4s | 128×128 | A white-hot core in a gold corona; long and short rays turn slowly round it, breathing, with glints running out along them that wink at the tips. |
 | Valhalla zone | `holy/valhalla-zone` | loop 6s | 224×160 | A gold seal unfolds beneath the caster: rotating runes, a radiant compass and rising rim motes brighten on each second, then fold into the floor. |
 | Valkyrie landing | `holy/valkyrie-landing` | one-shot 1s | 160×100 | A floor sigil tightens before a white landing flash; two gold wing-shaped shockwaves unfurl, scattering ten fluttering feathers over a rolling dust ring. |
+| Valkyrie landing · great wings | `holy/valkyrie-landing-showcase` | one-shot 2.5s | 480×260 | A floor sigil tightens before a white landing flash; two gold wing-shaped shockwaves unfurl, scattering ten fluttering feathers over a rolling dust ring. |
 
 ## blood
 
@@ -304,6 +316,7 @@ crimson eruptions, droplets and blood magic.
 |---|---|---|---|---|
 | Bleeding status | `blood/bleeding` | loop 1.2s | 64×72 | Wet beads gather on the target's torso, fall and kick up tiny crowns; stacks increase the drip frequency while dark splats dry underfoot. |
 | Blood boom | `blood/blood-boom` | one-shot 1.4s | 120×140 | A ground strike hurls five torn blood membranes skyward: curling split crests, moving wet folds, arcing beads and stretched falling sheets over a hot fractured seal. |
+| Blood boom · rising blood storm | `blood/blood-boom-showcase` | one-shot 1.4s | 320×360 | Twice-sized blood eruption: red level-up ascent, curling Poseidon wave folds and returning heavy droplets. |
 | Roar wave | `blood/roar-wave` | one-shot 0.9s | 220×110 | Three crimson pressure rings burst from the mouth to a 100px radius, driving rolling dust and grit away from the caster. |
 | Thorn reflect | `blood/thorn-reflect` | one-shot 0.4s | 64×64 | A sharp blood-red hit flashes, then five to seven barbed shards kick back toward the attacker, trailing thin red wakes and cooling away in midair. |
 
@@ -317,7 +330,9 @@ curses, voids, tendrils, souls.
 | Curse | `shadow/curse` | one-shot 3.4s | 112×124 | Wisps gather over the head, a skull stamps down with a flash, its eyes burn as the curse floods the body violet, then it cracks and crumbles. |
 | Dark explosion | `shadow/dark-explosion` | one-shot 3.8s | 280×248 | Motes swirl into a pulsing core, a black star cuts across a violet-white flash, and a black sphere burns at the rim, throws lit shards and smoke, then collapses. |
 | Dark shroud | `shadow/dark-shroud` | loop 1s | 144×112 | A hollow violet veil sways around the caster, dark behind and translucent in front; each one-second pulse curls shadow hands inward without hiding the centre. |
+| Dark shroud · white violet ellipse | `shadow/dark-shroud-showcase` | loop 1s | 200×128 | A hollow violet veil sways around the caster, dark behind and translucent in front; each one-second pulse curls shadow hands inward without hiding the centre. |
 | Dark wave | `shadow/dark-wave` | one-shot 1s | 260×130 | A hollow wave of midnight shadow rolls outward to radius 110, its ragged violet lip shedding bright embers while the dark wake thins away. |
+| Dark wave · white violet ellipse | `shadow/dark-wave-showcase` | one-shot 1s | 352×144 | A 30% longer elliptical dark-purple wave with a white luminous rim. |
 | Eclipse | `shadow/eclipse` | loop 4s | 160×144 | A black moon over the sun: a breathing pearl corona with long streamers, a thin white rim, and one diamond bead blazing on its edge. |
 | Grasping hands | `shadow/grasping-hands` | one-shot 3.1s | 200×116 | Shadow arms burst up out of a dark pool with a splash, clench their hands into claws, strain, and are dragged back under, fingers clawing at the air. |
 | Hex sigil | `shadow/hex-sigil` | one-shot 4.2s | 168×128 | A burning pen traces a cursed sigil in the air, its glyphs pop in one by one, then it flares white and crumbles into falling embers. |
@@ -328,6 +343,8 @@ curses, voids, tendrils, souls.
 | Shadow tendrils | `shadow/shadow-tendrils` | one-shot 3.2s | 208×130 | A dark pool opens on the floor; tentacles with lit rims and hooked tips lash up out of it with a splash, writhe, and sink back as it closes. |
 | Soul drain | `shadow/soul-drain` | loop 3.2s | 208×120 | Pale souls are torn loose on the right and dragged down a funnel of streaks into a black crystal vessel, which flares violet as each one lands. |
 | Vampire awaken | `shadow/vampire-awaken` | one-shot 1.6s | 200×160 | A dense cascade of ninety bats pours across the caster and scatters outward in overlapping waves above a dark ground ring; no central pillar. |
+| Vampire awaken · dark blink transformation | `shadow/vampire-awaken-showcase` | one-shot 1.6s | 208×168 | Dark Blink transformation inside the original ninety-bat swarm, without a floor ring. Reversing time restores the body and reverses every bat flight. |
+| Vampire revert · reverse dark blink | `shadow/vampire-revert-showcase` | one-shot 1.6s | 208×168 | Dark Blink transformation inside the original ninety-bat swarm, without a floor ring. Reversing time restores the body and reverses every bat flight. |
 | Void orb | `shadow/void-orb` | loop 3.2s | 168×160 | A black orb hangs in the air, a pale rim crawling round it; a dark vortex winds into it, motes and streaks are pulled in, and light bends round its edge. |
 
 ## status
@@ -338,6 +355,7 @@ burning, frozen, poisoned, asleep.
 |---|---|---|---|---|
 | Bleeding | `status/bleeding` | loop 2.4s | 60×56 | Bleeding out: beads swell at three wounds, run, let go and fall to spatter into a glossy pool that ripples; each heartbeat spurts a little and flashes the body red. |
 | Blood armor | `status/blood-armor` | loop 1.2s | 80×80 | A sustained blood-red aura shaped into paired pauldrons, a breastplate and plated gauntlets. Open seams pulse with heat while the head stays clear. |
+| Blood armor · single crimson shadow | `status/blood-armor-showcase` | loop 1s | 96×80 | One crimson silhouette, 18% larger than the hero, breathes behind the body with rising red energy and a moving sheen. |
 | Burning | `status/burning` | loop 1.2s | 72×80 | Burning over time: small flames lick from four hot spots, trailing sparks and thin smoke; every 0.6 s they flare, the body flashes white then orange, scorch marks spread. |
 | Charmed | `status/charmed` | loop 2.4s | 60×76 | Smitten: a big heart beats over the head, throwing a ring and a flush of light with every beat, little hearts float up, the eyes go pink and the cheeks blush. |
 | Confused | `status/confused` | loop 2.4s | 60×78 | Head in a spin: a glowing spiral whirls over the head, question marks pop up round it and bob, the eyes dart left and right. |
@@ -360,10 +378,12 @@ venom arrows, thrown daggers, fixed fog, contact mines and residual toxin.
 | effect | id | | size | what it does |
 |---|---|---|---|---|
 | Venom mine burst | `poison/mine-burst` | one-shot 0.5s | 128×96 | One consumed mine erupts into a low liquid crown, falling venom beads, a spreading floor ripple and olive-violet gas. No fire, chain reaction or extra hits. |
+| Venom mine burst · green spawn portal | `poison/mine-burst-showcase` | one-shot 3.8s | 320×240 | An enlarged green spawn portal vents venom wisps and a low green fog before closing. |
 | Poison arrow | `poison/poison-arrow` | one-shot 0.4s | 128×64 | A thin physical arrow flies from the bow with a wet venom tip, dark fletching and a sparse trail of falling poison beads. No impact or damage cue. |
 | Poisoned venom drips | `poison/poison-aura` | loop 2s | 104×112 | Sticky green venom gathers beside the lower body and drips into small toxic stains, away from the central torso lanes used by bleeding and wetness. A faint body aura remains. |
 | Poison dagger | `poison/poison-dagger` | one-shot 0.4s | 128×64 | A beveled physical throwing dagger with a wrapped handle, crossguard and a few venom drops. A visual delivery cue without ammunition, return or impact logic. |
 | Poison detonation | `poison/poison-detonation` | one-shot 0.7s | 160×128 | An immediate green bomb blast: dense hot puffs, radial shrapnel streaks and a short rolling smoke aftershock. Snapshot stacks change visual size only. |
+| Poison detonation · green barrel blast | `poison/poison-detonation-showcase` | one-shot 1.65s | 320×256 | The barrel explosion fireball in green, immediate on impact; smoke clears early while green embers settle. |
 | Poison fog field | `poison/poison-fog` | loop 5s | 160×96 | A fixed olive-green miasma rolls in low translucent banks with violet crowns, oily beads and one local light pulse per second. Every area has its own clock. |
 | Venom contact mine | `poison/poison-mine` | loop 12s | 64×64 | A small barbed venom capsule settles into the ground; three olive pips charge for 0.5 seconds, then a green core breathes in a ready ring. Host-owned lifetime and contact. |
 | Residual poison skull transfer | `poison/poison-transfer` | one-shot 0.5s | 160×96 | A venom-green darkness skull rises from a dead body, flies to the host-selected recipient and dissolves into a brief body-wrap aura. No copied stacks or refreshed lifetimes. |
@@ -399,6 +419,7 @@ rain, snow, fog, aurora.
 | Blizzard | `weather/blizzard` | loop 8s | 320×180 | Snow driven almost flat by a gale: streaks at three depths race past, gusts throw translucent sheets of snow across the sky and spindrift streams off the drifts. |
 | Cherry blossoms | `weather/cherry-blossoms` | loop 10s | 320×180 | Pink petals flutter down on a spring breeze, tumbling in little spirals and flashing as they catch the light, with a few whole blossoms spinning among them. |
 | Clouds | `weather/clouds` | loop 12s | 320×180 | Layers of clouds drift past a bright moon at night: silver-lit tops, dark bellies, edges that flare where they cross the moon, forming and thinning as they go. |
+| Embers | `weather/embers` | loop 8s | 320×180 | Embers drift up from lava cracks on a slow sway, cooling from gold to deep red and winking out. A sparse transparent overlay for volcanic scenery. |
 | Falling leaves | `weather/falling-leaves` | loop 10s | 320×180 | Autumn leaves swing down through the air, tilting and flipping to show their pale backs, ride a gust, land flat in the litter and fade. |
 | Fireflies | `weather/fireflies` | loop 12s | 320×180 | Fireflies wander over a meadow at night, each glowing up and fading on its own rhythm, trailing light and lighting the grass tips beneath them. |
 | Fog | `weather/fog` | loop 12s | 320×180 | Slow banks of moonlit fog at three depths drift past each other, crests catching the light, while thin streaks of mist slide by in front. |

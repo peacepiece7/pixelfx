@@ -1,0 +1,12 @@
+{
+  "id": "lobby-gate-portal",
+  "name": "홈 야영지 · 관문 아치 포탈",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "arcane/gate-portal",
+  "options": {
+    "steps": 10,
+    "seed": 3
+  },
+  "scale": 1.85
+}
