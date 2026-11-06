@@ -1,0 +1,18 @@
+{
+  "id": "theme-map-embers",
+  "name": "테마 던전 · 화염의 협곡 불티 (신규)",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "weather/embers",
+  "options": {
+    "palette": [
+      "#3a0d08",
+      "#6e1a0c",
+      "#a8320f",
+      "#e0581a",
+      "#ff8f2e",
+      "#ffc65a",
+      "#fff0b0"
+    ]
+  }
+}

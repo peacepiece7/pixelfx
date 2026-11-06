@@ -1,0 +1,19 @@
+{
+  "id": "theme-battle-entry",
+  "name": "테마 던전 · 전투 진입 전환 (포탈 홍채)",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "transitions/iris",
+  "options": {
+    "palette": [
+      "#040817",
+      "#081843",
+      "#0c2f7a",
+      "#1450b4",
+      "#2478dc",
+      "#52a8f2",
+      "#a2dcff",
+      "#e8f8ff"
+    ]
+  }
+}

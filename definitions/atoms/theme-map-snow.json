@@ -1,0 +1,19 @@
+{
+  "id": "theme-map-snow",
+  "name": "테마 던전 · 설원의 산맥 눈발",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "weather/snow",
+  "options": {
+    "palette": [
+      "#0c1020",
+      "#161d36",
+      "#24304f",
+      "#3a4a72",
+      "#5f74a3",
+      "#93abd6",
+      "#cfe0fa",
+      "#ffffff"
+    ]
+  }
+}

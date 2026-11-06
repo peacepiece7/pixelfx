@@ -1,0 +1,17 @@
+{
+  "id": "theme-map-fireflies",
+  "name": "테마 던전 · 고대의 숲 반딧불",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "weather/fireflies",
+  "options": {
+    "palette": [
+      "#2a3a10",
+      "#5a7a1a",
+      "#9ad02a",
+      "#d6ff5a",
+      "#f4ffb8",
+      "#ffffff"
+    ]
+  }
+}

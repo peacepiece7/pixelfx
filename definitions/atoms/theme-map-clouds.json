@@ -1,0 +1,19 @@
+{
+  "id": "theme-map-clouds",
+  "name": "테마 던전 · 월드맵 가장자리 구름",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "weather/clouds",
+  "options": {
+    "palette": [
+      "#0c0c18",
+      "#16172a",
+      "#232540",
+      "#363a5a",
+      "#545a80",
+      "#8088ae",
+      "#bcc4e2",
+      "#f2f4ff"
+    ]
+  }
+}
