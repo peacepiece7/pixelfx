@@ -266,6 +266,7 @@ import * as nature_thorns from "./nature/thorns.js";
 import * as nature_tornado from "./nature/tornado.js";
 import * as nature_toxic_puddle from "./nature/toxic-puddle.js";
 import * as nature_vine_whip from "./nature/vine-whip.js";
+import * as weather_abyss_crystal_motes from "./weather/abyss-crystal-motes.js";
 import * as weather_aurora from "./weather/aurora.js";
 import * as weather_blizzard from "./weather/blizzard.js";
 import * as weather_cherry_blossoms from "./weather/cherry-blossoms.js";
@@ -279,6 +280,11 @@ import * as weather_rain from "./weather/rain.js";
 import * as weather_shooting_stars from "./weather/shooting-stars.js";
 import * as weather_snow from "./weather/snow.js";
 import * as weather_storm from "./weather/storm.js";
+import * as ui_abyss_boss_signal from "./ui/abyss-boss-signal.js";
+import * as ui_abyss_defeat_ash from "./ui/abyss-defeat-ash.js";
+import * as ui_abyss_loot_glint from "./ui/abyss-loot-glint.js";
+import * as ui_abyss_milestone_halo from "./ui/abyss-milestone-halo.js";
+import * as ui_abyss_victory_radiance from "./ui/abyss-victory-radiance.js";
 import * as ui_achievement from "./ui/achievement.js";
 import * as ui_coin_collect from "./ui/coin-collect.js";
 import * as ui_combo_counter from "./ui/combo-counter.js";
@@ -290,6 +296,13 @@ import * as ui_exclamation from "./ui/exclamation.js";
 import * as ui_health_bar_hit from "./ui/health-bar-hit.js";
 import * as ui_heart_lost from "./ui/heart-lost.js";
 import * as ui_level_up from "./ui/level-up.js";
+import * as ui_management_enhance_failure from "./ui/management-enhance-failure.js";
+import * as ui_management_enhance_success from "./ui/management-enhance-success.js";
+import * as ui_management_level_up from "./ui/management-level-up.js";
+import * as ui_management_rune_fusion from "./ui/management-rune-fusion.js";
+import * as ui_management_scroll_result from "./ui/management-scroll-result.js";
+import * as ui_management_seal_activation from "./ui/management-seal-activation.js";
+import * as ui_management_transcend from "./ui/management-transcend.js";
 import * as ui_quest_complete from "./ui/quest-complete.js";
 import * as pickups_chest_open from "./pickups/chest-open.js";
 import * as pickups_coin_spin from "./pickups/coin-spin.js";
@@ -302,6 +315,7 @@ import * as pickups_loot_beam from "./pickups/loot-beam.js";
 import * as pickups_potion from "./pickups/potion.js";
 import * as pickups_power_star from "./pickups/power-star.js";
 import * as pickups_xp_orb from "./pickups/xp-orb.js";
+import * as transitions_abyss_depth_wipe from "./transitions/abyss-depth-wipe.js";
 import * as transitions_blinds from "./transitions/blinds.js";
 import * as transitions_burn_away from "./transitions/burn-away.js";
 import * as transitions_crt_off from "./transitions/crt-off.js";
@@ -594,6 +608,7 @@ export const effects = {
   "nature/tornado": nature_tornado,
   "nature/toxic-puddle": nature_toxic_puddle,
   "nature/vine-whip": nature_vine_whip,
+  "weather/abyss-crystal-motes": weather_abyss_crystal_motes,
   "weather/aurora": weather_aurora,
   "weather/blizzard": weather_blizzard,
   "weather/cherry-blossoms": weather_cherry_blossoms,
@@ -607,6 +622,11 @@ export const effects = {
   "weather/shooting-stars": weather_shooting_stars,
   "weather/snow": weather_snow,
   "weather/storm": weather_storm,
+  "ui/abyss-boss-signal": ui_abyss_boss_signal,
+  "ui/abyss-defeat-ash": ui_abyss_defeat_ash,
+  "ui/abyss-loot-glint": ui_abyss_loot_glint,
+  "ui/abyss-milestone-halo": ui_abyss_milestone_halo,
+  "ui/abyss-victory-radiance": ui_abyss_victory_radiance,
   "ui/achievement": ui_achievement,
   "ui/coin-collect": ui_coin_collect,
   "ui/combo-counter": ui_combo_counter,
@@ -618,6 +638,13 @@ export const effects = {
   "ui/health-bar-hit": ui_health_bar_hit,
   "ui/heart-lost": ui_heart_lost,
   "ui/level-up": ui_level_up,
+  "ui/management-enhance-failure": ui_management_enhance_failure,
+  "ui/management-enhance-success": ui_management_enhance_success,
+  "ui/management-level-up": ui_management_level_up,
+  "ui/management-rune-fusion": ui_management_rune_fusion,
+  "ui/management-scroll-result": ui_management_scroll_result,
+  "ui/management-seal-activation": ui_management_seal_activation,
+  "ui/management-transcend": ui_management_transcend,
   "ui/quest-complete": ui_quest_complete,
   "pickups/chest-open": pickups_chest_open,
   "pickups/coin-spin": pickups_coin_spin,
@@ -630,6 +657,7 @@ export const effects = {
   "pickups/potion": pickups_potion,
   "pickups/power-star": pickups_power_star,
   "pickups/xp-orb": pickups_xp_orb,
+  "transitions/abyss-depth-wipe": transitions_abyss_depth_wipe,
   "transitions/blinds": transitions_blinds,
   "transitions/burn-away": transitions_burn_away,
   "transitions/crt-off": transitions_crt_off,

@@ -1,6 +1,6 @@
 # Catalog
 
-324 effects in 25 categories. Every one is a file in
+338 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## cynthia
@@ -415,6 +415,7 @@ rain, snow, fog, aurora.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
+| Abyss crystal motes | `weather/abyss-crystal-motes` | loop 8s | 320×180 | Sparse violet crystal motes drift up near the screen edges at different speeds while the edge light breathes. A clear centre stays empty. |
 | Aurora | `weather/aurora` | loop 12s | 320×180 | Rippling curtains of green-to-violet light over a starfield: folding hems burn bright, rays shimmer up into violet, and the whole sky slowly breathes. |
 | Blizzard | `weather/blizzard` | loop 8s | 320×180 | Snow driven almost flat by a gale: streaks at three depths race past, gusts throw translucent sheets of snow across the sky and spindrift streams off the drifts. |
 | Cherry blossoms | `weather/cherry-blossoms` | loop 10s | 320×180 | Pink petals flutter down on a spring breeze, tumbling in little spirals and flashing as they catch the light, with a few whole blossoms spinning among them. |
@@ -435,6 +436,11 @@ level ups, numbers, toasts, countdowns.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
+| Abyss boss signal | `ui/abyss-boss-signal` | one-shot 0.65s | 240×100 | Behind a boss name: one short violet pulse spreads and crystal shard outlines open at both sides, then clear. |
+| Abyss defeat ash | `ui/abyss-defeat-ash` | one-shot 1s | 320×180 | Dark violet ash draws in, spreads sideways and back, slows and settles. Alpha-blended dust, one small ember glow, gone within a second. |
+| Abyss loot glint | `ui/abyss-loot-glint` | one-shot 0.55s | 96×96 | Two or three small star glints and a short light running round a reward card's edge. Draws no card or item. |
+| Abyss milestone halo | `ui/abyss-milestone-halo` | one-shot 0.9s | 240×160 | Behind a record line: two thin gold rings open slowly and a little light dust lingers above. No medal, text or reward. |
+| Abyss victory radiance | `ui/abyss-victory-radiance` | one-shot 1.2s | 320×180 | Behind a result title: a warm gathering, then uneven gold rays fan out and slowing gold dust fades. The title area stays clear. |
 | Achievement | `ui/achievement` | one-shot 2.4s | 220×72 | A toast slides in on speed lines and settles; a gold medal pops onto it in a burst of sparkles, a shine sweeps the whole toast, then it slides away. |
 | Coin collect | `ui/coin-collect` | one-shot 2.45s | 176×116 | A coin bursts into a fountain of spinning coins that hang, then zip one by one into a HUD counter that pops and ticks up, glints and folds away. |
 | Combo counter | `ui/combo-counter` | one-shot 1.45s | 208×100 | x5 COMBO rockets in on streaming speed lines, smearing, and slams to a stop: a white flash, a ring, sparks; it pulses while a timer bar drains, then whooshes out. |
@@ -446,6 +452,13 @@ level ups, numbers, toasts, countdowns.
 | Health bar hit | `ui/health-bar-hit` | one-shot 2s | 160×64 | A segmented health bar takes a hit: it jolts and dips, the lost chunk flashes white and sheds chips, holds, then drains away behind a sparking edge. |
 | Heart lost | `ui/heart-lost` | one-shot 1.5s | 96×88 | A HUD heart is hit: it flashes white and jolts, a crack runs down it, it splits into two halves that tumble away, leaving an empty socket that fades. |
 | Level up | `ui/level-up` | one-shot 3.2s | 176×138 | Gold gathers at the feet and bursts up as a pillar of light round the hero; rings climb it, LEVEL UP! drops in letter by letter, a shine sweeps it, sparkles twinkle. |
+| Management enhance failure | `ui/management-enhance-failure` | one-shot 0.55s | 160×140 | A small grey-violet ripple just above the anvil fades and its afterglow goes quickly. Nothing breaks. |
+| Management enhance success | `ui/management-enhance-success` | one-shot 0.7s | 200×180 | A short gold star flash at the anvil contact, eight small sparks rising, and a brief glint left on the item's edge. |
+| Management level up | `ui/management-level-up` | one-shot 0.8s | 160×200 | One thin gold ring opens at a hero's feet and a few points of light rise to the chest and fade. No figure or number. |
+| Management rune fusion | `ui/management-rune-fusion` | one-shot 0.95s | 280×140 | Thin violet trails run from two source slots into the result slot, then one thin hexagonal wave. No rune art or numbers. |
+| Management scroll result | `ui/management-scroll-result` | one-shot 0.7s | 160×160 | Success: a short violet engraving light circles the item and closes with two gold points. Failure: a dim afterglow fades. |
+| Management seal activation | `ui/management-seal-activation` | one-shot 0.75s | 200×200 | A thin violet arc with a point of light runs once clockwise round a seal slot and stops, then fades. |
+| Management transcend | `ui/management-transcend` | one-shot 1.25s | 240×280 | Two platform rings at a hero's feet and restrained vertical gold ribbons rising to the chest, then gone. |
 | Quest complete | `ui/quest-complete` | one-shot 2.6s | 204×92 | A stitched ribbon unrolls from the middle, QUEST COMPLETE types on letter by letter, a gold seal stamps down and ticks, stars pop; then it all rolls away. |
 
 ## pickups
@@ -472,6 +485,7 @@ wipes, irises, dissolves.
 
 | effect | id | | size | what it does |
 |---|---|---|---|---|
+| Abyss depth wipe | `transitions/abyss-depth-wipe` | one-shot 0.65s | 320×180 | Dark crystal silhouettes close in from the edges, a short dark beat, then part on the new field; near crags move more than far haze. |
 | Blinds | `transitions/blinds` | one-shot 2s | 320×180 | Slats catch the light edge-on, then tilt shut top to bottom, lit rims glinting as warm light squeezes through the closing gaps with dust in it; then they tilt open and fade. |
 | Burn away | `transitions/burn-away` | one-shot 3s | 320×180 | The screen burns in from its edges behind a ragged ember line of licking flames, embers and smoke; then the black smoulders and burns open from the middle. |
 | CRT off | `transitions/crt-off` | one-shot 2s | 320×180 | The picture squeezes into a white-hot glowing line, the line into a dot that lingers as a fading afterglow; then it switches back on, dot to line to picture, with a warm-up glow. |

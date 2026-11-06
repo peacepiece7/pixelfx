@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->324<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->338<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -46,10 +46,10 @@ the idea at library scale, with a skill to keep going.
 | **status** | 17 | bleeding, blood armor, blood armor · single crimson shadow, burning, charmed, confused… |
 | **poison** | 10 | venom mine burst, venom mine burst · green spawn portal, poison arrow, poisoned venom drips, poison dagger, poison detonation… |
 | **nature** | 14 | acid splash, boulder, earth spike, healing bloom, leaf storm, poison cloud… |
-| **weather** | 13 | aurora, blizzard, cherry blossoms, clouds, embers, falling leaves… |
-| **ui** | 12 | achievement, coin collect, combo counter, confetti, countdown, crit number… |
+| **weather** | 14 | abyss crystal motes, aurora, blizzard, cherry blossoms, clouds, embers… |
+| **ui** | 24 | abyss boss signal, abyss defeat ash, abyss loot glint, abyss milestone halo, abyss victory radiance, achievement… |
 | **pickups** | 11 | chest open, coin spin, collect burst, crystal shard, gem spin, heart pickup… |
-| **transitions** | 10 | blinds, burn away, crt off, diamond wipe, glitch wipe, iris… |
+| **transitions** | 11 | abyss depth wipe, blinds, burn away, crt off, diamond wipe, glitch wipe… |
 | **critters** | 12 | bat, bird, butterfly, eyeball, fish school, flying skull… |
 <!-- /catalog -->
 
