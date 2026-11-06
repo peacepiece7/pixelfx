@@ -1,0 +1,9 @@
+{
+  "id": "abyss-crystal-result",
+  "name": "심연 테마 · 성공과 실패 공용 동굴 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/abyss-crystal-result/runtime/art.png",
+  "width": 640,
+  "height": 360
+}

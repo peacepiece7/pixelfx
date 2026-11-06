@@ -1,0 +1,9 @@
+{
+  "id": "scene-theme-world-map",
+  "name": "[테마 던전] 월드맵 · 4지역 섬",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-theme-world-map/runtime/art.png",
+  "width": 736,
+  "height": 414
+}

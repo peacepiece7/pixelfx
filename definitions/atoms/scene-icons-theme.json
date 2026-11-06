@@ -1,0 +1,27 @@
+{
+  "id": "scene-icons-theme",
+  "name": "[테마 던전] 아이콘 · 지역 문장·보스·정예·방치 생산·보물상자",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-theme/runtime/icons-64.png",
+  "icons": [
+    "emblem-forest",
+    "emblem-canyon",
+    "emblem-desert",
+    "emblem-snow",
+    "boss",
+    "elite",
+    "idle-production",
+    "chest"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-theme/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-theme/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

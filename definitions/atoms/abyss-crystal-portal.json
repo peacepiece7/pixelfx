@@ -1,0 +1,9 @@
+{
+  "id": "abyss-crystal-portal",
+  "name": "심연 테마 · 보라 수정 부유 섬 입구",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/abyss-crystal-portal/runtime/art.png",
+  "width": 272,
+  "height": 384
+}

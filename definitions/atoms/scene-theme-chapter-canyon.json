@@ -1,0 +1,9 @@
+{
+  "id": "scene-theme-chapter-canyon",
+  "name": "[테마 던전] 챕터 원화 · 화염의 협곡",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-theme-chapter-canyon/runtime/art.png",
+  "width": 1152,
+  "height": 768
+}
