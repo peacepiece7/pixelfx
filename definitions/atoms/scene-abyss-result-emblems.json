@@ -1,0 +1,26 @@
+{
+  "id": "scene-abyss-result-emblems",
+  "name": "심연 연출 · 승리 왕관·패배 교차검·층 문장 3종",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-abyss-result-emblems/runtime/icons-64.png",
+  "icons": [
+    "victory-crown",
+    "defeat-swords",
+    "depth-crest"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-abyss-result-emblems/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-abyss-result-emblems/runtime/icons-64.png",
+      "size": 64
+    },
+    "128": {
+      "path": "ui/scene-abyss-result-emblems/runtime/icons-128.png",
+      "size": 128
+    }
+  }
+}

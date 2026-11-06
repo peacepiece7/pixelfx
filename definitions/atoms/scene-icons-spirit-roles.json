@@ -1,0 +1,24 @@
+{
+  "id": "scene-icons-spirit-roles",
+  "name": "정령 · 동행 역할 초상 5종",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-spirit-roles/runtime/icons-64.png",
+  "icons": [
+    "spirit-attack",
+    "spirit-defense",
+    "spirit-hp",
+    "spirit-gold",
+    "spirit-experience"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-spirit-roles/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-spirit-roles/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}
