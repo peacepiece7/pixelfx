@@ -1,0 +1,17 @@
+{
+  "id": "abyss-milestone-halo",
+  "name": "심연 주요 돌파 · 문장 뒤 잔광",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/abyss-milestone-halo",
+  "options": {
+    "palette": [
+      "#2b183a",
+      "#65402d",
+      "#a66b2c",
+      "#e4a948",
+      "#ffd978",
+      "#fff1c2"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "management-transcend",
+  "name": "영웅 초월 · 발판 상승광",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/management-transcend",
+  "options": {
+    "palette": [
+      "#281c29",
+      "#71503b",
+      "#b88c50",
+      "#edc16e",
+      "#ffe6a8",
+      "#fff9de"
+    ]
+  }
+}

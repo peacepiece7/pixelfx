@@ -1,0 +1,17 @@
+{
+  "id": "abyss-result-defeat",
+  "name": "심연 실패 · 뒤로 퍼지는 흑먼지",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/abyss-defeat-ash",
+  "options": {
+    "palette": [
+      "#0d0b16",
+      "#1e1828",
+      "#342334",
+      "#51303e",
+      "#75515b",
+      "#a98586"
+    ]
+  }
+}

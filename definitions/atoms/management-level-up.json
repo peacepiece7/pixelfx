@@ -1,0 +1,17 @@
+{
+  "id": "management-level-up",
+  "name": "영웅 성장 · 레벨 상승",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/management-level-up",
+  "options": {
+    "palette": [
+      "#281c29",
+      "#71503b",
+      "#b88c50",
+      "#edc16e",
+      "#ffe6a8",
+      "#fff9de"
+    ]
+  }
+}

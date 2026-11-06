@@ -1,0 +1,17 @@
+{
+  "id": "management-enhance-success",
+  "name": "장비 강화 · 성공 반짝임",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/management-enhance-success",
+  "options": {
+    "palette": [
+      "#281c29",
+      "#71503b",
+      "#b88c50",
+      "#edc16e",
+      "#ffe6a8",
+      "#fff9de"
+    ]
+  }
+}

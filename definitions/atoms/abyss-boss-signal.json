@@ -1,0 +1,17 @@
+{
+  "id": "abyss-boss-signal",
+  "name": "심연 보스 · 문지기 출현 신호",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/abyss-boss-signal",
+  "options": {
+    "palette": [
+      "#140d27",
+      "#352052",
+      "#66358c",
+      "#a65ada",
+      "#d9a2ff",
+      "#f2d6ff"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "management-enhance-failure",
+  "name": "장비 강화 · 실패 잔광",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/management-enhance-failure",
+  "options": {
+    "palette": [
+      "#18132b",
+      "#443164",
+      "#805199",
+      "#ba7fc8",
+      "#ecc4f0",
+      "#fff0ff"
+    ]
+  }
+}

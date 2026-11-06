@@ -1,0 +1,17 @@
+{
+  "id": "abyss-result-victory",
+  "name": "심연 성공 · 제목 뒤 금빛 방사광",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/abyss-victory-radiance",
+  "options": {
+    "palette": [
+      "#2b183a",
+      "#65402d",
+      "#a66b2c",
+      "#e4a948",
+      "#ffd978",
+      "#fff1c2"
+    ]
+  }
+}

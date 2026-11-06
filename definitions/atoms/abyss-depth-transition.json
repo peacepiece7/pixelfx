@@ -1,0 +1,17 @@
+{
+  "id": "abyss-depth-transition",
+  "name": "심연 진입·다음 층 · 어둠 속으로 전환",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "transitions/abyss-depth-wipe",
+  "options": {
+    "palette": [
+      "#140d27",
+      "#352052",
+      "#66358c",
+      "#a65ada",
+      "#d9a2ff",
+      "#f2d6ff"
+    ]
+  }
+}

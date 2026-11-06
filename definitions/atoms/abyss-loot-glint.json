@@ -1,0 +1,17 @@
+{
+  "id": "abyss-loot-glint",
+  "name": "심연 보상 · 카드 획득 반짝임",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/abyss-loot-glint",
+  "options": {
+    "palette": [
+      "#2b183a",
+      "#65402d",
+      "#a66b2c",
+      "#e4a948",
+      "#ffd978",
+      "#fff1c2"
+    ]
+  }
+}

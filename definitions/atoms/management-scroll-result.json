@@ -1,0 +1,17 @@
+{
+  "id": "management-scroll-result",
+  "name": "세트 부여 · 접두 각인",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/management-scroll-result",
+  "options": {
+    "palette": [
+      "#18132b",
+      "#443164",
+      "#805199",
+      "#ba7fc8",
+      "#ecc4f0",
+      "#fff0ff"
+    ]
+  }
+}

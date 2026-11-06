@@ -1,0 +1,17 @@
+{
+  "id": "abyss-crystal-motes",
+  "name": "심연 분위기 · 수정 먼지 부유",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "weather/abyss-crystal-motes",
+  "options": {
+    "palette": [
+      "#140d27",
+      "#352052",
+      "#66358c",
+      "#a65ada",
+      "#d9a2ff",
+      "#f2d6ff"
+    ]
+  }
+}

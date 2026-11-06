@@ -1,0 +1,17 @@
+{
+  "id": "management-rune-fusion",
+  "name": "룬 합성 · 결합과 완성",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/management-rune-fusion",
+  "options": {
+    "palette": [
+      "#18132b",
+      "#443164",
+      "#805199",
+      "#ba7fc8",
+      "#ecc4f0",
+      "#fff0ff"
+    ]
+  }
+}
