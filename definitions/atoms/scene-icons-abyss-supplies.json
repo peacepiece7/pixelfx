@@ -1,0 +1,31 @@
+{
+  "id": "scene-icons-abyss-supplies",
+  "name": "심연 테마 · 포션·보상 아이콘 12종",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-abyss-supplies/runtime/icons-64.png",
+  "icons": [
+    "potion-0",
+    "potion-1",
+    "potion-2",
+    "potion-3",
+    "potion-4",
+    "potion-5",
+    "potion-6",
+    "potion-gold",
+    "upgrade",
+    "socket",
+    "deep-socket",
+    "forbidden"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-abyss-supplies/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-abyss-supplies/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}
