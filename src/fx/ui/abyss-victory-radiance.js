@@ -39,11 +39,13 @@ export function create(o) {
         if (e <= 0) continue;
         const grow = smooth(0.12, 0.5, t - r.delay), L = r.len * (0.35 + 0.65 * grow), ca = Math.cos(r.a), sa = Math.sin(r.a);
         const x0 = ca * 24, y0 = sa * 24 * 0.45, x1 = ca * L, y1 = sa * L * 0.45;
-        p.glowLine(x0, y0, x1, y1, r.w, C[3], 0.16 * e);
+        p.glowLine(x0, y0, x1, y1, r.w, C[3], 0.24 * e);
+        // a thin bright core so the ray reads over painted, already-lit backgrounds
+        p.glowLine(x0, y0, x0 + (x1 - x0) * 0.7, y0 + (y1 - y0) * 0.7, Math.max(2, r.w * 0.35), C[4], 0.22 * e);
         for (let s = 0; s <= 1; s += 1 / 48) {
           const x = x0 + (x1 - x0) * s, y = y0 + (y1 - y0) * s;
           if (inTitle(x, y)) continue;
-          p.dot(x, y, s < 0.4 ? C[4] : C[3], e * 0.55 * (1 - s));
+          p.dot(x, y, s < 0.45 ? C[5] : s < 0.75 ? C[4] : C[3], Math.min(1, e * 0.9 * (1 - s * 0.8)));
         }
       }
       // dust: launched outward, slowing, twinkling, gone
