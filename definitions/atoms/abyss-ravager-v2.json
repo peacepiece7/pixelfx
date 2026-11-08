@@ -1,0 +1,68 @@
+{
+  "id": "abyss-ravager-v2",
+  "name": "심연 갈퀴악마",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/abyss-ravager-v2/runtime/idle.png",
+  "pivot": [
+    22,
+    37
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/abyss-ravager-v2/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        22,
+        37
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/abyss-ravager-v2/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        22,
+        36
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/abyss-ravager-v2/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        40,
+        34
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -40,
+        -18
+      ]
+    },
+    "hit": {
+      "path": "monsters/abyss-ravager-v2/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        26,
+        37
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/abyss-ravager-v2/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        34,
+        34
+      ],
+      "loop": false
+    }
+  }
+}

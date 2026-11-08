@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->338<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->340<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -28,7 +28,7 @@ the idea at library scale, with a skill to keep going.
 |---|---|---|
 | **cynthia** | 17 | cynthia · gatling burst, cynthia · sustained red plasma, cynthia · laevateinn transferred rocket impact, cynthia · laevateinn sequence, cynthia · laevateinn sequence, cynthia · expanding multi-hit plasma… |
 | **raid** | 6 | abyss distant fog, dragon abyss breath, dragon heavy stomp, near cliff dust, dragon phase surge, distant rift flow |
-| **moves** | 13 | arrow shot, brynhild basic strike, dash strike, earth stomp, fireball throw, ground pound… |
+| **moves** | 14 | arrow shot, brynhild basic strike, brynhild hunt spear, dash strike, earth stomp, fireball throw… |
 | **fire** | 12 | brazier, campfire, candle, fire breath, fire ring, fire tornado… |
 | **explosions** | 12 | barrel explosion, big explosion, cartoon pow, dirt explosion, firework burst, firework rocket… |
 | **water** | 18 | aorbion charge emerge, aorbion poseidon wave storm, aorbion sea response, aorbion sea dragon, aorbion submerge, aorbion tail pillars… |
@@ -40,7 +40,7 @@ the idea at library scale, with a skill to keep going.
 | **projectiles** | 15 | arrow, bullet tracer, cannon shot, energy disc, signal flare, homing missile… |
 | **spawn & death** | 10 | coin drop, disintegrate, dissolve burn, egg hatch, poof, respawn beam… |
 | **arcane** | 13 | arcane beam, arcane missiles, arcane orb, blink in, blink out, gate portal… |
-| **holy** | 26 | adelvin aurora bloom, adelvin aurora bolt, adelvin healing arrival, adelvin healing lance, michael healing pulse, adelvin light missile impact… |
+| **holy** | 27 | adelvin aurora bloom, adelvin aurora bolt, adelvin healing arrival, adelvin healing lance, michael healing pulse, adelvin light missile impact… |
 | **blood** | 5 | bleeding status, blood boom, blood boom · rising blood storm, roar wave, thorn reflect |
 | **shadow** | 20 | black hole, curse, dark explosion, dark shroud, dark shroud · white violet ellipse, dark wave… |
 | **status** | 17 | bleeding, blood armor, blood armor · single crimson shadow, burning, charmed, confused… |

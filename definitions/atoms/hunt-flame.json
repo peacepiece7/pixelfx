@@ -1,0 +1,68 @@
+{
+  "id": "hunt-flame",
+  "name": "용암 수호자",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-flame/runtime/idle.png",
+  "pivot": [
+    80,
+    148
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-flame/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        80,
+        148
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-flame/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        100,
+        152
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-flame/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        126,
+        151
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -118,
+        -80
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-flame/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        102,
+        154
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-flame/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        101,
+        134
+      ],
+      "loop": false
+    }
+  }
+}

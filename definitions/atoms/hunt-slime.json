@@ -1,0 +1,68 @@
+{
+  "id": "hunt-slime",
+  "name": "늪의 군주",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-slime/runtime/idle.png",
+  "pivot": [
+    98,
+    161
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-slime/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        98,
+        161
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-slime/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        97,
+        143
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-slime/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        126,
+        138
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -105,
+        -4
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-slime/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        127,
+        166
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-slime/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        100,
+        140
+      ],
+      "loop": false
+    }
+  }
+}

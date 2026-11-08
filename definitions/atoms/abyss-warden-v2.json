@@ -1,0 +1,68 @@
+{
+  "id": "abyss-warden-v2",
+  "name": "심연 문지기",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/abyss-warden-v2/runtime/idle.png",
+  "pivot": [
+    40,
+    64
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/abyss-warden-v2/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        40,
+        64
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/abyss-warden-v2/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        40,
+        63
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/abyss-warden-v2/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        52,
+        67
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -52,
+        -21
+      ]
+    },
+    "hit": {
+      "path": "monsters/abyss-warden-v2/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        41,
+        63
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/abyss-warden-v2/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        43,
+        57
+      ],
+      "loop": false
+    }
+  }
+}

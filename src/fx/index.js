@@ -25,6 +25,7 @@ import * as raid_phase_surge from "./raid/phase-surge.js";
 import * as raid_rift_flow from "./raid/rift-flow.js";
 import * as moves_arrow_shot from "./moves/arrow-shot.js";
 import * as moves_brynhild_basic from "./moves/brynhild-basic.js";
+import * as moves_brynhild_hunt_spear from "./moves/brynhild-hunt-spear.js";
 import * as moves_dash_strike from "./moves/dash-strike.js";
 import * as moves_earth_stomp from "./moves/earth-stomp.js";
 import * as moves_fireball_throw from "./moves/fireball-throw.js";
@@ -188,6 +189,7 @@ import * as holy_adelvin_orb_flight from "./holy/adelvin-orb-flight.js";
 import * as holy_adelvin_orbiting_shields from "./holy/adelvin-orbiting-shields.js";
 import * as holy_adelvin_summon_seal from "./holy/adelvin-summon-seal.js";
 import * as holy_blessing from "./holy/blessing.js";
+import * as holy_brynhild_spear_hit from "./holy/brynhild-spear-hit.js";
 import * as holy_divine_shield from "./holy/divine-shield.js";
 import * as holy_feather_burst from "./holy/feather-burst.js";
 import * as holy_halo from "./holy/halo.js";
@@ -367,6 +369,7 @@ export const effects = {
   "raid/rift-flow": raid_rift_flow,
   "moves/arrow-shot": moves_arrow_shot,
   "moves/brynhild-basic": moves_brynhild_basic,
+  "moves/brynhild-hunt-spear": moves_brynhild_hunt_spear,
   "moves/dash-strike": moves_dash_strike,
   "moves/earth-stomp": moves_earth_stomp,
   "moves/fireball-throw": moves_fireball_throw,
@@ -530,6 +533,7 @@ export const effects = {
   "holy/adelvin-orbiting-shields": holy_adelvin_orbiting_shields,
   "holy/adelvin-summon-seal": holy_adelvin_summon_seal,
   "holy/blessing": holy_blessing,
+  "holy/brynhild-spear-hit": holy_brynhild_spear_hit,
   "holy/divine-shield": holy_divine_shield,
   "holy/feather-burst": holy_feather_burst,
   "holy/halo": holy_halo,

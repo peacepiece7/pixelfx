@@ -1,0 +1,68 @@
+{
+  "id": "hunt-vampire",
+  "name": "핏빛 성주",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-vampire/runtime/idle.png",
+  "pivot": [
+    88,
+    144
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-vampire/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        88,
+        144
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-vampire/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        71,
+        139
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-vampire/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        136,
+        135
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -136,
+        -76
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-vampire/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        86,
+        130
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-vampire/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        104,
+        130
+      ],
+      "loop": false
+    }
+  }
+}

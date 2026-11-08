@@ -1,6 +1,6 @@
 # Catalog
 
-338 effects in 25 categories. Every one is a file in
+340 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## cynthia
@@ -48,6 +48,7 @@ whole attacks, wind-up to recovery, chained from the effects below.
 |---|---|---|---|---|
 | Arrow shot | `moves/arrow-shot` | one-shot 1.9s | 300×74 | He raises the bow, draws to his cheek, holds his breath and looses: the string snaps forward, the arrow crosses the floor and thuds home. |
 | Brynhild basic strike | `moves/brynhild-basic` | one-shot 2.3s | 372×156 | A crouch, then he's across the floor in a blur of after-images and already cutting: a clean blue slash, a beat, and he hops back to where he started. |
+| Brynhild hunt spear | `moves/brynhild-hunt-spear` | one-shot 0.9s | 192×160 | A fixed-foot jump gathers a wing of gold light, then releases a narrow ivory spear toward the boss. The caster stays in place; impact is a separate effect. |
 | Dash strike | `moves/dash-strike` | one-shot 2.3s | 372×156 | A crouch, then he's across the floor in a blur of after-images and already cutting: a critical hit, a beat, and he hops back to where he started. |
 | Earth stomp | `moves/earth-stomp` | one-shot 3.46s | 290×142 | A knee comes up, the boot slams down, the floor heaves under the target and a stone spike rams up through it. |
 | Fireball throw | `moves/fireball-throw` | one-shot 6.81s | 356×244 | He gathers fire in his hand, leans back and hurls it: the ball flies, the target takes it in a blast and comes out charred. |
@@ -295,6 +296,7 @@ heals, halos, pillars of light.
 | Adelvin orbiting shields | `holy/adelvin-orbiting-shields` | loop 2s | 168×128 | Independent beveled shields orbit an ally in front and back layers. Count and phase come from the host; the art never creates extra collision or shield HP. |
 | Adelvin radiant summon seal | `holy/adelvin-summon-seal` | one-shot 0.85s | 192×152 | A layered cyan-gold rune seal opens beneath the summon. Counter-rotating compass rays, rising ivory halos and star motes unfold once and dissolve. |
 | Blessing | `holy/blessing` | loop 3s | 80×128 | A soft cone of light rests on the character from above; sparkles drift down through it, twinkling, and wink out where they land on the head and shoulders. |
+| Brynhild spear hit | `holy/brynhild-spear-hit` | one-shot 0.4s | 96×96 | A short directional ivory puncture opens two broken gold arcs and sheds small shards. No floor slam, smoke cloud or character. |
 | Divine shield | `holy/divine-shield` | loop 2.4s | 88×84 | A bubble of gold light round the character: a bright rim and a thin gold film, meridians turning like a slow globe, a sheen sweeping across and sparkles winking on it. |
 | Feather burst | `holy/feather-burst` | one-shot 3s | 160×160 | A white puff pops and throws feathers that brake hard, then rock from side to side as they sink and fade, with down drifting after them. |
 | Halo | `holy/halo` | loop 2s | 56×80 | A ring of gold light floats over the head with a glint running round it; fine dust sifts down from it and the head catches its light. |

@@ -1,0 +1,68 @@
+{
+  "id": "hunt-orc",
+  "name": "협곡 전쟁군주",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-orc/runtime/idle.png",
+  "pivot": [
+    94,
+    155
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-orc/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        94,
+        155
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-orc/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        116,
+        145
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-orc/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        161,
+        160
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -142,
+        -34
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-orc/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        124,
+        154
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-orc/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        114,
+        145
+      ],
+      "loop": false
+    }
+  }
+}
