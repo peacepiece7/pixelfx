@@ -1,0 +1,9 @@
+{
+  "id": "scene-hero-detail-art",
+  "name": "히어로 상세·인장 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-hero-detail-art/runtime/art.png",
+  "width": 512,
+  "height": 212
+}

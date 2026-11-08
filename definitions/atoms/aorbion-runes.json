@@ -1,0 +1,37 @@
+{
+  "id": "aorbion-runes",
+  "name": "아오르비온 룬 각인",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/aorbion-runes/runtime/runes-common.png",
+  "icons": [
+    "aorbion-wave-play-rune",
+    "aorbion-playful-geyser-rune",
+    "aorbion-sea-response-rune",
+    "aorbion-bold-charge-rune",
+    "aorbion-tail-sweep-rune",
+    "aorbion-seadragon-rune",
+    "aorbion-poseidon-rune",
+    "aorbion-swift-current-job",
+    "aorbion-current-force-job",
+    "aorbion-first-wave-job",
+    "aorbion-extra-pillar-job",
+    "aorbion-tail-force-job",
+    "aorbion-tail-cycle-job",
+    "aorbion-wave-evasion-job"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/aorbion-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/aorbion-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/aorbion-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

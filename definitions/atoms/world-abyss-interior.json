@@ -1,0 +1,9 @@
+{
+  "id": "world-abyss-interior",
+  "name": "[월드 로비] 심연 동굴 · 내부 깊이",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-abyss-interior/runtime/art.png",
+  "width": 1024,
+  "height": 1024
+}

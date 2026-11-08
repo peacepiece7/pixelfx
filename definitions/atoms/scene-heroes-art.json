@@ -1,0 +1,9 @@
+{
+  "id": "scene-heroes-art",
+  "name": "히어로 목록 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-heroes-art/runtime/art.png",
+  "width": 512,
+  "height": 492
+}

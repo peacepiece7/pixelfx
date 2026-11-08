@@ -104,6 +104,16 @@
         41
       ],
       "loop": true
+    },
+    "stand-up": {
+      "path": "characters/rodair/runtime/stand-up.png",
+      "frames": 8,
+      "fps": 12,
+      "pivot": [
+        25,
+        50
+      ],
+      "loop": false
     }
   }
 }

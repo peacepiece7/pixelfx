@@ -1,0 +1,9 @@
+{
+  "id": "world-abyss-depth-mask",
+  "name": "[월드 로비] 심연 동굴 · 전경 가림 암석",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-abyss-depth-mask/runtime/art.png",
+  "width": 1024,
+  "height": 1024
+}

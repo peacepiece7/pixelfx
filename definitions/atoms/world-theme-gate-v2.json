@@ -1,0 +1,15 @@
+{
+  "id": "world-theme-gate-v2",
+  "name": "[로비 시안 정합] 파란 문장 관문 · 계단과 깃발",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-theme-gate-v2/runtime/art.png",
+  "width": 1024,
+  "height": 1280,
+  "contentBounds": [
+    84,
+    14,
+    921,
+    1239
+  ]
+}

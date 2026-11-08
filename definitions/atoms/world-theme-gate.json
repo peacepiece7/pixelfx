@@ -1,0 +1,9 @@
+{
+  "id": "world-theme-gate",
+  "name": "[월드 로비] 테마 관문 · 석조 구조물",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-theme-gate/runtime/art.png",
+  "width": 1024,
+  "height": 1024
+}

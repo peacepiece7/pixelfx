@@ -1,0 +1,23 @@
+{
+  "id": "world-lobby-furniture-v2",
+  "name": "[로비 시안 정합] 천막·요리대·탁자·랜턴 · 정지 소품 8종",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "environments/world-lobby-furniture-v2/runtime/icons-96.png",
+  "icons": [
+    "tent",
+    "table",
+    "cooking-pot",
+    "seat",
+    "lantern",
+    "crates",
+    "chair",
+    "packs"
+  ],
+  "sheets": {
+    "96": {
+      "path": "environments/world-lobby-furniture-v2/runtime/icons-96.png",
+      "size": 96
+    }
+  }
+}

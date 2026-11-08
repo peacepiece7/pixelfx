@@ -1,0 +1,9 @@
+{
+  "id": "raid-cliff-foreground",
+  "name": "레이드 · 전경 절벽 가장자리",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/raid-cliff-foreground/runtime/overlay.png",
+  "width": 640,
+  "height": 360
+}

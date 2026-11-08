@@ -135,6 +135,16 @@
         40
       ],
       "loop": true
+    },
+    "stand-up": {
+      "path": "characters/brynhild/runtime/stand-up.png",
+      "frames": 8,
+      "fps": 12,
+      "pivot": [
+        29,
+        51
+      ],
+      "loop": false
     }
   },
   "portraitPath": "characters/brynhild/runtime/portrait.png",

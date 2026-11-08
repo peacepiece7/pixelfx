@@ -1,0 +1,9 @@
+{
+  "id": "scene-reset-art",
+  "name": "옵션·세트 재설정 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-reset-art/runtime/art.png",
+  "width": 495,
+  "height": 512
+}

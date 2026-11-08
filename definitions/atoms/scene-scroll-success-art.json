@@ -1,0 +1,9 @@
+{
+  "id": "scene-scroll-success-art",
+  "name": "스크롤 성공 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-scroll-success-art/runtime/art.png",
+  "width": 499,
+  "height": 512
+}

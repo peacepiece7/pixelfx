@@ -1,0 +1,9 @@
+{
+  "id": "scene-rune-fusion-art",
+  "name": "룬 합성 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-rune-fusion-art/runtime/art.png",
+  "width": 512,
+  "height": 400
+}

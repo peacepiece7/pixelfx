@@ -1,0 +1,9 @@
+{
+  "id": "scene-repeat-art",
+  "name": "자동 반복·종료 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-repeat-art/runtime/art.png",
+  "width": 512,
+  "height": 503
+}

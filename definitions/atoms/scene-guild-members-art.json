@@ -1,0 +1,9 @@
+{
+  "id": "scene-guild-members-art",
+  "name": "길드 구성원·요청 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-guild-members-art/runtime/art.png",
+  "width": 512,
+  "height": 241
+}

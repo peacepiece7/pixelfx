@@ -1,0 +1,9 @@
+{
+  "id": "raid-abyss-far",
+  "name": "레이드 · 심연 원경",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "backgrounds/raid-abyss-far/runtime/background.png",
+  "width": 640,
+  "height": 360
+}

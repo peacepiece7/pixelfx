@@ -149,6 +149,16 @@
         40
       ],
       "loop": true
+    },
+    "stand-up": {
+      "path": "characters/vesper/runtime/stand-up.png",
+      "frames": 8,
+      "fps": 12,
+      "pivot": [
+        25,
+        48
+      ],
+      "loop": false
     }
   }
 }

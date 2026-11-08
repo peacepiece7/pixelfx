@@ -1,6 +1,7 @@
 // The gallery: every effect playing live from its own code. Tiles start when they scroll into view; a click
 // opens one effect with its options, a sprite sheet and the code to use it.
 
+import { projectEffects } from "./tyrant-effects.js";
 import { effects, categories } from "../src/fx/index.js";
 import { createFrame, clearFrame, createFx, createAct, actBounds, composite, backdrop, drawActor, painterFor, stockActor, actorAlphaOf, PAL, BACKDROPS } from "../src/core/index.js";
 
@@ -121,7 +122,7 @@ function build() {
       const b = fx.mod.act ? actBounds(fx.mod) : null, [fw, fh] = b ? [b.x1 - b.x0, b.y1 - b.y0] : fx.meta.size;
       const fig = el("figure", { className: isScreen(fx) ? "tile big screen" : fw > 200 || fh > 170 || (b && (fw > 130 || fx.mod.act.target || fx.mod.act.targets)) ? "tile big" : "tile", tabIndex: 0 }, [
         el("div", { className: "stage" }, cv),
-        el("figcaption", {}, [el("b", { textContent: fx.name }), el("small", { textContent: fx.meta.loop ? "loop" : `${+fx.meta.duration.toFixed(2)}s` })]),
+        el("figcaption", {}, [el("b", { textContent: (projectEffects[fx.id] ? "[인게임] " : "") + fx.name }), el("small", { textContent: fx.meta.loop ? "loop" : `${+fx.meta.duration.toFixed(2)}s` })]),
       ]);
       const t = { fx, fig, cv, player: null, visible: false, hover: false };
       fig.addEventListener("click", () => openDetail(fx));
@@ -156,11 +157,12 @@ function chips() {
     b.addEventListener("click", () => setCat(id));
     box.append(b);
   };
+  mk("project", "전체 · 인게임 표시", FX.length);
   mk("all", "all", FX.length);
   for (const s of sections) mk(s.c.id, s.c.name, s.list.length);
 }
 function setCat(id, fromHash = false) {
-  state.cat = sections.some((s) => s.c.id === id) ? id : "all";
+  state.cat = id === "project" || sections.some((s) => s.c.id === id) ? id : "all";
   document.querySelectorAll(".chip").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.cat === state.cat)));
   if (!fromHash) history.replaceState(null, "", state.cat === "all" ? location.pathname : "#" + state.cat);
   filter();
@@ -173,7 +175,7 @@ function filter() {
     let any = false;
     for (const fx of s.list) {
       const t = tiles.find((x) => x.fx === fx);
-      const hit = (state.cat === "all" || state.cat === s.c.id) && (!q || [fx.id, fx.name, fx.meta.desc, ...fx.meta.tags].join(" ").toLowerCase().includes(q));
+      const hit = (state.cat === "all" || state.cat === s.c.id || state.cat === "project") && (!q || [fx.id, fx.name, fx.meta.desc, ...fx.meta.tags, ...(projectEffects[fx.id]?.labels ?? [])].join(" ").toLowerCase().includes(q));
       t.fig.hidden = !hit;
       any ||= hit;
       shown += hit;
@@ -193,7 +195,7 @@ function openDetail(fx) {
   const m = fx.meta;
   $("#d-name").textContent = m.name;
   $("#d-id").textContent = fx.id;
-  $("#d-desc").textContent = m.desc;
+  $("#d-desc").textContent = [m.desc, ...(projectEffects[fx.id]?.labels ?? [])].join(" · ");
   const frames = Math.round(m.duration * m.fps) + (m.loop ? 0 : 1);
   $("#d-facts").replaceChildren(
     ...[["kind", m.loop ? "loop" : "one-shot"], ["length", `${+m.duration.toFixed(2)} s, ${frames} frames at ${m.fps} fps`], ...(fx.mod.act ? [["acted", actFacts(fx.mod)]] : []), ["canvas", `${m.size[0]} × ${m.size[1]} px`], ["tags", m.tags.join(", ")]].flatMap(([k, v]) => [el("dt", { textContent: k }), el("dd", { textContent: v })]),
@@ -249,7 +251,7 @@ function code(fx) {
     `composite(frame, imageData.data, null);`,
     ...(acted ? [``, `// your own character? read the timing: ${v}.act (poses, hits, freezes)`] : []),
   ].join("\n");
-  $("#d-src").href = `${REPO}/blob/main/src/fx/${fx.id}.js`;
+  $("#d-src").href = `../src/fx/${fx.id}.js`;
 }
 function sheet() {
   const fx = detail.fx, m = fx.meta, [w, h] = m.size, n = Math.max(1, Math.round(m.duration * m.fps) + (m.loop ? 0 : 1));

@@ -1,0 +1,9 @@
+{
+  "id": "scene-runes-art",
+  "name": "룬 보관함 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-runes-art/runtime/art.png",
+  "width": 512,
+  "height": 421
+}

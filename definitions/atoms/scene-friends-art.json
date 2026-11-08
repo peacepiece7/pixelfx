@@ -1,0 +1,9 @@
+{
+  "id": "scene-friends-art",
+  "name": "친구·초대 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-friends-art/runtime/art.png",
+  "width": 512,
+  "height": 255
+}

@@ -1,0 +1,9 @@
+{
+  "id": "scene-home-courtyard-v2",
+  "name": "[홈 재배치] HUD 여백을 확보한 야영지 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-home-courtyard-v2/runtime/art.png",
+  "width": 1792,
+  "height": 828
+}

@@ -229,6 +229,16 @@
         41
       ],
       "loop": true
+    },
+    "stand-up": {
+      "path": "characters/adelvin/runtime/stand-up.png",
+      "frames": 8,
+      "fps": 12,
+      "pivot": [
+        24,
+        50
+      ],
+      "loop": false
     }
   }
 }

@@ -1,0 +1,9 @@
+{
+  "id": "scene-rewards-art",
+  "name": "보상 수령·레벨업 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-rewards-art/runtime/art.png",
+  "width": 430,
+  "height": 512
+}

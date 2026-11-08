@@ -1,0 +1,9 @@
+{
+  "id": "raid-cliff-platform",
+  "name": "레이드 · 아군 보행 절벽 발판",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/raid-cliff-platform/runtime/platform.png",
+  "width": 640,
+  "height": 360
+}

@@ -1,0 +1,9 @@
+{
+  "id": "scene-sockets-art",
+  "name": "소켓·룬 장착 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-sockets-art/runtime/art.png",
+  "width": 512,
+  "height": 235
+}

@@ -1,0 +1,19 @@
+{
+  "id": "endless-dragon-ui",
+  "name": "레이드 · 보스 선택 초상·입장 아이콘",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/endless-dragon-ui/runtime/icons.png",
+  "width": 96,
+  "height": 48,
+  "icons": [
+    "portrait",
+    "entry"
+  ],
+  "sheets": {
+    "48": {
+      "path": "icons/endless-dragon-ui/runtime/icons.png",
+      "size": 48
+    }
+  }
+}

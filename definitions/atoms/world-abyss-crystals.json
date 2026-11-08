@@ -1,0 +1,9 @@
+{
+  "id": "world-abyss-crystals",
+  "name": "[월드 로비] 심연 동굴 · 수정 장식",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-abyss-crystals/runtime/art.png",
+  "width": 1024,
+  "height": 1024
+}

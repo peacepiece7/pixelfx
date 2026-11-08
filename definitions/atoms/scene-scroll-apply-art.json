@@ -1,0 +1,9 @@
+{
+  "id": "scene-scroll-apply-art",
+  "name": "스크롤 부여 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-scroll-apply-art/runtime/art.png",
+  "width": 443,
+  "height": 512
+}

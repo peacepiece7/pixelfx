@@ -1,0 +1,9 @@
+{
+  "id": "scene-social-art",
+  "name": "교류 허브 · 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-social-art/runtime/art.png",
+  "width": 768,
+  "height": 512
+}

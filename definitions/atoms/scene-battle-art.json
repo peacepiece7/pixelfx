@@ -1,0 +1,9 @@
+{
+  "id": "scene-battle-art",
+  "name": "전투·HUD · 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-battle-art/runtime/art.png",
+  "width": 768,
+  "height": 512
+}

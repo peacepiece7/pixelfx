@@ -1,0 +1,27 @@
+{
+  "id": "scene-icons-results",
+  "name": "씬 공통 아이콘 · results",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-results/runtime/icons-64.png",
+  "icons": [
+    "victory",
+    "defeat",
+    "success",
+    "failure",
+    "star-empty",
+    "star-earned",
+    "reward",
+    "retry"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-results/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-results/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

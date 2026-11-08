@@ -1,0 +1,9 @@
+{
+  "id": "scene-system-art",
+  "name": "로딩·오류·빈 상태 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-system-art/runtime/art.png",
+  "width": 300,
+  "height": 512
+}

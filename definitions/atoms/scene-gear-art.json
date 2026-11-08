@@ -1,0 +1,9 @@
+{
+  "id": "scene-gear-art",
+  "name": "기어·장비 상세 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-gear-art/runtime/art.png",
+  "width": 323,
+  "height": 512
+}

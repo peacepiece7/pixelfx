@@ -1,0 +1,31 @@
+{
+  "id": "cynthia-jobs-runes",
+  "name": "신시아 인장 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/cynthia-jobs-runes/runtime/runes-common.png",
+  "icons": [
+    "cynthia-extra-beam-job",
+    "cynthia-extra-missile-job",
+    "cynthia-extra-bolt-job",
+    "cynthia-beam-duration-job",
+    "cynthia-zone-duration-job",
+    "cynthia-burn-recycle-job",
+    "cynthia-burning-target-job",
+    "cynthia-overheat-duration-job"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/cynthia-jobs-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/cynthia-jobs-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/cynthia-jobs-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

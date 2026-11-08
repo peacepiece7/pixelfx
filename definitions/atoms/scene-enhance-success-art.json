@@ -1,0 +1,9 @@
+{
+  "id": "scene-enhance-success-art",
+  "name": "강화 성공 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-enhance-success-art/runtime/art.png",
+  "width": 386,
+  "height": 512
+}

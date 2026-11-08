@@ -1,0 +1,77 @@
+{
+  "id": "endless-dragon",
+  "name": "엔드리스 드래곤",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/endless-dragon/runtime/concept.png",
+  "width": 390,
+  "height": 260,
+  "pivot": [
+    254,
+    203
+  ],
+  "animations": {
+    "appear": {
+      "path": "monsters/endless-dragon/runtime/appear.png",
+      "frames": 8,
+      "fps": 8,
+      "loop": false,
+      "pivot": [
+        205,
+        229
+      ]
+    },
+    "idle": {
+      "path": "monsters/endless-dragon/runtime/idle.png",
+      "frames": 8,
+      "fps": 8,
+      "loop": true,
+      "pivot": [
+        205,
+        229
+      ]
+    },
+    "attack": {
+      "path": "monsters/endless-dragon/runtime/attack.png",
+      "frames": 12,
+      "fps": 16,
+      "loop": false,
+      "pivot": [
+        205,
+        229
+      ],
+      "hitFrame": 4
+    },
+    "breath": {
+      "path": "monsters/endless-dragon/runtime/breath.png",
+      "frames": 16,
+      "fps": 12,
+      "loop": false,
+      "pivot": [
+        205,
+        229
+      ],
+      "hitFrame": 6
+    },
+    "hit": {
+      "path": "monsters/endless-dragon/runtime/hit.png",
+      "frames": 8,
+      "fps": 16,
+      "loop": false,
+      "pivot": [
+        205,
+        229
+      ]
+    },
+    "phase": {
+      "path": "monsters/endless-dragon/runtime/phase.png",
+      "frames": 12,
+      "fps": 12,
+      "loop": false,
+      "pivot": [
+        205,
+        229
+      ]
+    }
+  }
+}

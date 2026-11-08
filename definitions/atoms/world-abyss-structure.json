@@ -1,0 +1,9 @@
+{
+  "id": "world-abyss-structure",
+  "name": "[월드 로비] 심연 동굴 · 암석 외벽",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-abyss-structure/runtime/art.png",
+  "width": 1024,
+  "height": 1024
+}

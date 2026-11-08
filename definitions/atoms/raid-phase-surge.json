@@ -1,0 +1,18 @@
+{
+  "id": "raid-phase-surge",
+  "name": "엔드리스 드래곤 · 장시간 독 포효·강화 파동",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "raid/phase-surge",
+  "options": {
+    "palette": [
+      "#19351c",
+      "#2e5929",
+      "#569047",
+      "#83bd52",
+      "#b5ed74",
+      "#e4ffad",
+      "#f4ffdc"
+    ]
+  }
+}

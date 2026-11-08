@@ -1,0 +1,9 @@
+{
+  "id": "scene-missions-art",
+  "name": "미션·업적 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-missions-art/runtime/art.png",
+  "width": 512,
+  "height": 464
+}

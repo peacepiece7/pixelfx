@@ -1,0 +1,9 @@
+{
+  "id": "scene-mail-art",
+  "name": "우편·초과 보상 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-mail-art/runtime/art.png",
+  "width": 387,
+  "height": 512
+}

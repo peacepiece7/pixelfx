@@ -65,16 +65,6 @@
       ],
       "loop": false
     },
-    "dive": {
-      "path": "characters/aorbion/runtime/stabilized/dive.png",
-      "frames": 12,
-      "fps": 24.0,
-      "pivot": [
-        31,
-        49
-      ],
-      "loop": false
-    },
     "emerge": {
       "path": "characters/aorbion/runtime/stabilized/emerge.png",
       "frames": 12,
@@ -84,16 +74,6 @@
         48
       ],
       "loop": false
-    },
-    "camp-rest": {
-      "path": "characters/aorbion/runtime/stabilized/camp-rest.png",
-      "frames": 8,
-      "fps": 3.0,
-      "pivot": [
-        19,
-        41
-      ],
-      "loop": true
     },
     "tail": {
       "path": "characters/aorbion/runtime/stabilized/tail.png",
@@ -114,6 +94,26 @@
         55
       ],
       "loop": false
+    },
+    "dive": {
+      "path": "characters/aorbion/runtime/stabilized/dive.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        31,
+        49
+      ],
+      "loop": false
+    },
+    "camp-rest": {
+      "path": "characters/aorbion/runtime/stabilized/camp-rest.png",
+      "frames": 8,
+      "fps": 3.0,
+      "pivot": [
+        19,
+        41
+      ],
+      "loop": true
     }
   }
 }

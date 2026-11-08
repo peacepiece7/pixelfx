@@ -1,0 +1,9 @@
+{
+  "id": "world-theme-banner",
+  "name": "[월드 로비] 테마 관문 · 깃발 장식",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-theme-banner/runtime/art.png",
+  "width": 1024,
+  "height": 1024
+}

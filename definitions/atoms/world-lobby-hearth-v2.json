@@ -1,0 +1,15 @@
+{
+  "id": "world-lobby-hearth-v2",
+  "name": "[로비 시안 정합] 분리 화로 · 낮은 돌 테두리와 장작",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-lobby-hearth-v2/runtime/art.png",
+  "width": 1024,
+  "height": 512,
+  "contentBounds": [
+    76,
+    83,
+    939,
+    445
+  ]
+}

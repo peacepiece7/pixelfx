@@ -1,0 +1,9 @@
+{
+  "id": "scene-title-art",
+  "name": "타이틀·접속 · 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-title-art/runtime/art.png",
+  "width": 768,
+  "height": 512
+}

@@ -1,0 +1,9 @@
+{
+  "id": "scene-guild-art",
+  "name": "길드·정보 · 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-guild-art/runtime/art.png",
+  "width": 768,
+  "height": 512
+}

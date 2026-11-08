@@ -1,0 +1,27 @@
+{
+  "id": "scene-icons-resources",
+  "name": "씬 공통 아이콘 · resources",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-resources/runtime/icons-64.png",
+  "icons": [
+    "gold",
+    "gem",
+    "stamina",
+    "material",
+    "experience",
+    "hero-copy",
+    "scroll-token",
+    "key"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-resources/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-resources/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

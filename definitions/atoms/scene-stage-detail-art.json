@@ -1,0 +1,9 @@
+{
+  "id": "scene-stage-detail-art",
+  "name": "입장·별 미션 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-stage-detail-art/runtime/art.png",
+  "width": 512,
+  "height": 441
+}

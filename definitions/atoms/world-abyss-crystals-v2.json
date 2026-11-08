@@ -1,0 +1,15 @@
+{
+  "id": "world-abyss-crystals-v2",
+  "name": "[로비 시안 정합] 심연 입구 · 보랏빛 수정 결정",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-abyss-crystals-v2/runtime/art.png",
+  "width": 1024,
+  "height": 1024,
+  "contentBounds": [
+    37,
+    215,
+    977,
+    923
+  ]
+}

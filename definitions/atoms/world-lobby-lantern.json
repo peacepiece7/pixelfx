@@ -1,0 +1,17 @@
+{
+  "id": "world-lobby-lantern",
+  "name": "[월드 로비] 월드 구조물 · 랜턴과 횃불 소품",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "environments/world-lobby-lantern/runtime/icons-128.png",
+  "icons": [
+    "lantern",
+    "brazier"
+  ],
+  "sheets": {
+    "128": {
+      "path": "environments/world-lobby-lantern/runtime/icons-128.png",
+      "size": 128
+    }
+  }
+}

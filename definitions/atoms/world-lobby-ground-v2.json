@@ -1,0 +1,15 @@
+{
+  "id": "world-lobby-ground-v2",
+  "name": "[로비 시안 정합] 밀집형 성채 배경 · 화로 없는 지면",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "backgrounds/world-lobby-ground-v2/runtime/art.png",
+  "width": 1792,
+  "height": 828,
+  "contentBounds": [
+    0,
+    0,
+    1792,
+    828
+  ]
+}

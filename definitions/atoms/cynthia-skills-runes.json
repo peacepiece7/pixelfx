@@ -1,0 +1,28 @@
+{
+  "id": "cynthia-skills-runes",
+  "name": "신시아 능력 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/cynthia-skills-runes/runtime/runes-common.png",
+  "icons": [
+    "cynthia-overheat-rune",
+    "cynthia-burning-rounds-rune",
+    "cynthia-jericho-rune",
+    "cynthia-laevateinn-rune",
+    "cynthia-satellite-rune"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/cynthia-skills-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/cynthia-skills-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/cynthia-skills-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

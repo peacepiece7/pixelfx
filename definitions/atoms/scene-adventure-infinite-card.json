@@ -1,0 +1,9 @@
+{
+  "id": "scene-adventure-infinite-card",
+  "name": "[모험] 무한 던전 세로 카드 원화",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-adventure-infinite-card/runtime/art.png",
+  "width": 512,
+  "height": 768
+}

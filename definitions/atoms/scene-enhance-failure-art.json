@@ -1,0 +1,9 @@
+{
+  "id": "scene-enhance-failure-art",
+  "name": "강화 실패 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-enhance-failure-art/runtime/art.png",
+  "width": 512,
+  "height": 312
+}

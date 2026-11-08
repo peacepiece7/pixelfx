@@ -1,0 +1,9 @@
+{
+  "id": "scene-victory-art",
+  "name": "게임 성공 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-victory-art/runtime/art.png",
+  "width": 512,
+  "height": 488
+}

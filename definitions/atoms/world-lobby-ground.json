@@ -1,0 +1,9 @@
+{
+  "id": "world-lobby-ground",
+  "name": "[월드 로비] 배경 · 구조물 없는 성채 마당",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "backgrounds/world-lobby-ground/runtime/art.png",
+  "width": 1792,
+  "height": 828
+}

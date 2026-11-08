@@ -1,0 +1,27 @@
+{
+  "id": "scene-icons-actions",
+  "name": "씬 공통 아이콘 · actions",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-actions/runtime/icons-64.png",
+  "icons": [
+    "back",
+    "close",
+    "confirm",
+    "info",
+    "filter",
+    "sort",
+    "lock",
+    "unlock"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-actions/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-actions/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "raid-abyss-mid",
+  "name": "레이드 · 중경 부유 유적",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "backgrounds/raid-abyss-mid/runtime/layer.png",
+  "width": 640,
+  "height": 360
+}

@@ -1,0 +1,9 @@
+{
+  "id": "scene-scroll-failure-art",
+  "name": "스크롤 실패 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-scroll-failure-art/runtime/art.png",
+  "width": 512,
+  "height": 493
+}

@@ -1,0 +1,9 @@
+{
+  "id": "scene-events-art",
+  "name": "이벤트·출석 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-events-art/runtime/art.png",
+  "width": 423,
+  "height": 512
+}

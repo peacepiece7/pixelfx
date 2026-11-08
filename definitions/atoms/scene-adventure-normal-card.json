@@ -1,0 +1,9 @@
+{
+  "id": "scene-adventure-normal-card",
+  "name": "[모험] 일반 던전 세로 카드 원화",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-adventure-normal-card/runtime/art.png",
+  "width": 512,
+  "height": 768
+}

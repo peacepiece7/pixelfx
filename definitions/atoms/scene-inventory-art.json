@@ -1,0 +1,9 @@
+{
+  "id": "scene-inventory-art",
+  "name": "인벤토리·가방 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-inventory-art/runtime/art.png",
+  "width": 512,
+  "height": 472
+}

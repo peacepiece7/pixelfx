@@ -1,0 +1,9 @@
+{
+  "id": "scene-formation-art",
+  "name": "파티·프리셋 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-formation-art/runtime/art.png",
+  "width": 512,
+  "height": 410
+}

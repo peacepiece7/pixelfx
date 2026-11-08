@@ -1,0 +1,9 @@
+{
+  "id": "world-bounty-board",
+  "name": "[월드 로비] 현상금 게시판 · 지붕과 목재 구조",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-bounty-board/runtime/art.png",
+  "width": 1024,
+  "height": 768
+}

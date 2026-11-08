@@ -1,0 +1,9 @@
+{
+  "id": "scene-settings-art",
+  "name": "설정·접근성 · 대표 오브젝트",
+  "renderer": "image",
+  "kind": "ui",
+  "assetPath": "ui/scene-settings-art/runtime/art.png",
+  "width": 482,
+  "height": 512
+}

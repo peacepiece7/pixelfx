@@ -1,0 +1,35 @@
+{
+  "id": "rosilia-runes",
+  "name": "로실리아 스킬·저격수 룬",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/rosilia-runes/runtime/runes-common.png",
+  "icons": [
+    "rosilia-piercing-rune",
+    "rosilia-armored-rune",
+    "rosilia-explosive-rune",
+    "rosilia-marked-shots-rune",
+    "rosilia-quick-reload-rune",
+    "rosilia-infinite-rune",
+    "rosilia-support-rune",
+    "rosilia-capacity",
+    "rosilia-reload",
+    "rosilia-support-round",
+    "rosilia-infinite-duration",
+    "rosilia-fire-rate"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/rosilia-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/rosilia-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/rosilia-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "id": "world-bounty-papers",
+  "name": "[월드 로비] 현상금 게시판 · 종이와 포스터",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "environments/world-bounty-papers/runtime/art.png",
+  "width": 1024,
+  "height": 512
+}

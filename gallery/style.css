@@ -20,6 +20,8 @@
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
+/* Author display:flex on tiles must not override category/search filtering. */
+[hidden] { display: none !important; }
 html { background: var(--ground); }
 body {
   margin: 0;

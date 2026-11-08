@@ -1,0 +1,9 @@
+{
+  "id": "scene-stage-map-art",
+  "name": "던전·스테이지 · 배경",
+  "renderer": "image",
+  "kind": "environment",
+  "assetPath": "backgrounds/scene-stage-map-art/runtime/art.png",
+  "width": 768,
+  "height": 512
+}

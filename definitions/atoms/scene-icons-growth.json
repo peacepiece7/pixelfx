@@ -1,0 +1,27 @@
+{
+  "id": "scene-icons-growth",
+  "name": "씬 공통 아이콘 · growth",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-growth/runtime/icons-64.png",
+  "icons": [
+    "enhance",
+    "transcend",
+    "socket",
+    "fusion",
+    "scroll",
+    "reset",
+    "equip",
+    "unequip"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-growth/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-growth/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

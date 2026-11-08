@@ -1,0 +1,17 @@
+{
+  "id": "raid-rift-flow",
+  "name": "레이드 · 대형 원경 차원 균열",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "raid/rift-flow",
+  "options": {
+    "palette": [
+      "#111126",
+      "#24203f",
+      "#45316b",
+      "#7844a4",
+      "#b66ce0",
+      "#e4bcff"
+    ]
+  }
+}

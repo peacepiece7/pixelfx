@@ -154,6 +154,126 @@
         42
       ],
       "loop": true
+    },
+    "move": {
+      "path": "characters/cynthia/runtime/move.png",
+      "frames": 12,
+      "fps": 18.0,
+      "pivot": [
+        18,
+        46
+      ],
+      "loop": true
+    },
+    "move-gatling": {
+      "path": "characters/cynthia/runtime/move-gatling.png",
+      "frames": 12,
+      "fps": 18.0,
+      "pivot": [
+        19,
+        47
+      ],
+      "loop": true
+    },
+    "move-rifle": {
+      "path": "characters/cynthia/runtime/move-rifle.png",
+      "frames": 12,
+      "fps": 18.0,
+      "pivot": [
+        18,
+        46
+      ],
+      "loop": true
+    },
+    "jericho": {
+      "path": "characters/cynthia/runtime/jericho.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        18,
+        45
+      ],
+      "loop": false
+    },
+    "laevateinn": {
+      "path": "characters/cynthia/runtime/laevateinn.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        14,
+        44
+      ],
+      "loop": false
+    },
+    "satellite": {
+      "path": "characters/cynthia/runtime/satellite.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        16,
+        45
+      ],
+      "loop": false
+    },
+    "overheat-idle": {
+      "path": "characters/cynthia/runtime/overheat-idle.png",
+      "frames": 12,
+      "fps": 18.0,
+      "pivot": [
+        17,
+        45
+      ],
+      "loop": true
+    },
+    "overheat-attack": {
+      "path": "characters/cynthia/runtime/overheat-attack.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        23,
+        46
+      ],
+      "loop": false
+    },
+    "overheat-idle-gatling": {
+      "path": "characters/cynthia/runtime/overheat-idle-gatling.png",
+      "frames": 12,
+      "fps": 18.0,
+      "pivot": [
+        20,
+        44
+      ],
+      "loop": true
+    },
+    "overheat-attack-gatling": {
+      "path": "characters/cynthia/runtime/overheat-attack-gatling.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        24,
+        46
+      ],
+      "loop": false
+    },
+    "overheat-idle-rifle": {
+      "path": "characters/cynthia/runtime/overheat-idle-rifle.png",
+      "frames": 12,
+      "fps": 18.0,
+      "pivot": [
+        19,
+        46
+      ],
+      "loop": true
+    },
+    "overheat-attack-rifle": {
+      "path": "characters/cynthia/runtime/overheat-attack-rifle.png",
+      "frames": 12,
+      "fps": 24.0,
+      "pivot": [
+        20,
+        44
+      ],
+      "loop": false
     }
   }
 }
