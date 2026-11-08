@@ -1,0 +1,20 @@
+{
+  "id": "lava-forge-2-hit",
+  "name": "05 용암의 대장간 · 화염 탄막",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#371a2d",
+      "#752d36",
+      "#b94932",
+      "#e98336",
+      "#ffc665",
+      "#ffedb1",
+      "#fffceb"
+    ],
+    "form": 1,
+    "material": 4
+  }
+}

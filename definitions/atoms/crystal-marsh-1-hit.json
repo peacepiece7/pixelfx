@@ -1,0 +1,20 @@
+{
+  "id": "crystal-marsh-1-hit",
+  "name": "09 황수정 습지 · 수정 압착",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#352238",
+      "#69503b",
+      "#ab7b36",
+      "#dbb148",
+      "#f8db74",
+      "#fff0b5",
+      "#fffbe4"
+    ],
+    "form": 0,
+    "material": 1
+  }
+}

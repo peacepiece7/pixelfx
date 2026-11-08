@@ -1,0 +1,20 @@
+{
+  "id": "war-canyon-2-hit",
+  "name": "03 전쟁의 협곡 · 도끼 투척",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#35233b",
+      "#694437",
+      "#996142",
+      "#ce9353",
+      "#efc37e",
+      "#ffe7bd",
+      "#fffbed"
+    ],
+    "form": 1,
+    "material": 2
+  }
+}

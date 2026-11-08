@@ -1,0 +1,20 @@
+{
+  "id": "venom-grove-3-hit",
+  "name": "13 독비늘 수림 · 부식의 숨결",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#163023",
+      "#23553e",
+      "#40934b",
+      "#79bc4a",
+      "#b3e85e",
+      "#e7ffb0",
+      "#ffffe4"
+    ],
+    "form": 2,
+    "material": 5
+  }
+}

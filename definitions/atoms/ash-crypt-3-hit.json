@@ -1,0 +1,20 @@
+{
+  "id": "ash-crypt-3-hit",
+  "name": "01 잿빛 묘역 · 죽음의 포효",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#202334",
+      "#384456",
+      "#647c83",
+      "#93bdc2",
+      "#c2e7db",
+      "#efffe7",
+      "#ffffff"
+    ],
+    "form": 2,
+    "material": 0
+  }
+}

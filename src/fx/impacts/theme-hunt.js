@@ -1,6 +1,6 @@
 import {fit,Rng,TAU,ease,smooth,READY} from '../../core/index.js';
 // Impact anchors are target feet. Gameplay and the three-second telegraph live in the combat engine.
-export const meta={name:'Theme hunt impact',desc:'Three target impacts: a hard crescent cleave, converging shard volley, or ground eruption. Seven materials change debris silhouettes; palette identifies the fourteen themes.',tags:['impact','hunt','boss','material','one-shot'],size:[192,160],origin:[96,128],duration:.9,loop:false,fps:30,bg:'ground',options:{palette:['#202334','#384456','#647c83','#93bdc2','#c2e7db','#efffe7','#ffffff'],form:0,material:0,seed:19}};
+export const meta={name:'Theme hunt impact',desc:'Three target impacts: a hard crescent cleave, converging shard volley, or ground eruption. Seven materials change debris silhouettes; palette identifies the fourteen themes.',tags:['impact','hunt','boss','material','one-shot'],size:[192,160],origin:[96,128],duration:.9,loop:false,fps:30,bg:'ground',options:{palette:['#202334','#384456','#647c83','#93bdc2','#c2e7db','#efffe7','#ffffff'],form:0,material:0,rise:53,seed:19}};
 export const act={target:{x:0},poses:[[-.25,{...READY,x:-48,crouch:1}],[-.05,{...READY,x:-48,crouch:3,fx:12,fy:-29}],[.06,{...READY,x:-48,fx:15,fy:-24},'snap'],[.3,{...READY,x:-48}],[.8,{...READY,x:-48}]],hits:[{t:.06,stop:.06,shake:.12,amp:1.5,push:1.2,y:-16}]};
 export function draw(p,t,o){
  if(t<0||t>=meta.duration)return;
@@ -13,7 +13,7 @@ export function draw(p,t,o){
   if(t<.1){p.line(-17,-38,17,-7,C[6],1-t/.1);p.glow(0,-22,18,C[4],.35*fade);}
  }else if(form===1){
   for(let i=0;i<3;i++){
-   const delay=i*.035,q=Math.max(0,Math.min(1,(t-delay)/.16)),x=(1-q)*(32+i*9)-8+i*8,y=-21-(1-q)*(53-i*4),k=1-smooth(.2,.43,t-delay);
+   const delay=i*.035,q=Math.max(0,Math.min(1,(t-delay)/.16)),x=(1-q)*(32+i*9)-8+i*8,y=-21-(1-q)*Math.max(0,(o.rise??53)-i*4),k=1-smooth(.2,.43,t-delay);
    if(t<delay)continue;
    p.beam(x+9,y-18,x,y,3,C[4],k);p.line(x+9,y-18,x+2,y-3,C[6],k*.8);p.tri(x-3,y-3,x,y+3,x+3,y-2,C[5],k);
    if(q===1)p.arc(-8+i*8,-21,4+(t-delay)*12,1,0,TAU,C[3],k);

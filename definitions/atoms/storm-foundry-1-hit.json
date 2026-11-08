@@ -1,0 +1,20 @@
+{
+  "id": "storm-foundry-1-hit",
+  "name": "12 뇌동의 공방 · 철권 압착",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#163737",
+      "#246064",
+      "#389b9d",
+      "#72d3c2",
+      "#c9ef9f",
+      "#f1ffd2",
+      "#ffffff"
+    ],
+    "form": 0,
+    "material": 4
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "mire-2-hit",
+  "name": "02 비취 늪지 · 독성 포자",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#163023",
+      "#23553e",
+      "#40934b",
+      "#79bc4a",
+      "#b3e85e",
+      "#e7ffb0",
+      "#ffffe4"
+    ],
+    "form": 1,
+    "material": 1
+  }
+}

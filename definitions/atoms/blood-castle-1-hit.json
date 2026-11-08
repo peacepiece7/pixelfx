@@ -1,0 +1,20 @@
+{
+  "id": "blood-castle-1-hit",
+  "name": "04 핏빛 고성 · 흡혈 베기",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#281631",
+      "#58223d",
+      "#96334e",
+      "#c75c76",
+      "#ec95a3",
+      "#ffd6d5",
+      "#fff6f1"
+    ],
+    "form": 0,
+    "material": 3
+  }
+}

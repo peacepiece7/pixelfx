@@ -1,0 +1,20 @@
+{
+  "id": "eclipse-castle-2-hit",
+  "name": "11 월식의 성채 · 그림자 검무",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#242144",
+      "#433c7d",
+      "#6d60b6",
+      "#9b92de",
+      "#c8bff5",
+      "#e7e4ff",
+      "#ffffff"
+    ],
+    "form": 1,
+    "material": 3
+  }
+}

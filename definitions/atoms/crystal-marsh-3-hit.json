@@ -1,0 +1,20 @@
+{
+  "id": "crystal-marsh-3-hit",
+  "name": "09 황수정 습지 · 결정 공명",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#352238",
+      "#69503b",
+      "#ab7b36",
+      "#dbb148",
+      "#f8db74",
+      "#fff0b5",
+      "#fffbe4"
+    ],
+    "form": 2,
+    "material": 1
+  }
+}

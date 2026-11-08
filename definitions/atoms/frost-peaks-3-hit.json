@@ -1,0 +1,20 @@
+{
+  "id": "frost-peaks-3-hit",
+  "name": "06 서리 산맥 · 설산의 포효",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#182b47",
+      "#2c4f7b",
+      "#3e88b2",
+      "#69bed3",
+      "#a2e8eb",
+      "#ddfbfc",
+      "#ffffff"
+    ],
+    "form": 2,
+    "material": 5
+  }
+}

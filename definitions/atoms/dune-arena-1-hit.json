@@ -1,0 +1,20 @@
+{
+  "id": "dune-arena-1-hit",
+  "name": "10 모래의 투기장 · 곡도 강습",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#35233b",
+      "#694437",
+      "#996142",
+      "#ce9353",
+      "#efc37e",
+      "#ffe7bd",
+      "#fffbed"
+    ],
+    "form": 0,
+    "material": 2
+  }
+}

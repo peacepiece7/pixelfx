@@ -1,0 +1,20 @@
+{
+  "id": "demon-throne-3-hit",
+  "name": "07 마왕의 왕좌 · 군왕의 칙령",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "impacts/theme-hunt",
+  "options": {
+    "palette": [
+      "#201b3f",
+      "#3c2e66",
+      "#674594",
+      "#9862c3",
+      "#c798e9",
+      "#e9caff",
+      "#fff4ff"
+    ],
+    "form": 2,
+    "material": 6
+  }
+}
