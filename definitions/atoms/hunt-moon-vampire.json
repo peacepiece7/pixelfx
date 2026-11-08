@@ -1,0 +1,68 @@
+{
+  "id": "hunt-moon-vampire",
+  "name": "월식의 귀족",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-moon-vampire/runtime/idle.png",
+  "pivot": [
+    79,
+    147
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-moon-vampire/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        79,
+        147
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-moon-vampire/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        70,
+        145
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-moon-vampire/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        116,
+        142
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -116,
+        -78
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-moon-vampire/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        81,
+        142
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-moon-vampire/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        92,
+        136
+      ],
+      "loop": false
+    }
+  }
+}

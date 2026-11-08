@@ -1,0 +1,68 @@
+{
+  "id": "hunt-desert-orc",
+  "name": "사막의 투사",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-desert-orc/runtime/idle.png",
+  "pivot": [
+    92,
+    146
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-desert-orc/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        92,
+        146
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-desert-orc/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        116,
+        145
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-desert-orc/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        119,
+        163
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -119,
+        -68
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-desert-orc/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        92,
+        142
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-desert-orc/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        91,
+        142
+      ],
+      "loop": false
+    }
+  }
+}

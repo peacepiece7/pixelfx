@@ -1,0 +1,68 @@
+{
+  "id": "hunt-venom-dragon",
+  "name": "독비늘 고룡",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-venom-dragon/runtime/idle.png",
+  "pivot": [
+    91,
+    151
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-venom-dragon/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        91,
+        151
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-venom-dragon/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        122,
+        144
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-venom-dragon/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        141,
+        140
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -126,
+        -103
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-venom-dragon/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        129,
+        166
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-venom-dragon/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        118,
+        137
+      ],
+      "loop": false
+    }
+  }
+}

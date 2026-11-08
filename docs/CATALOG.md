@@ -1,6 +1,6 @@
 # Catalog
 
-340 effects in 25 categories. Every one is a file in
+341 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## cynthia
@@ -216,6 +216,7 @@ hit sparks, shockwaves, landings.
 | Parry | `impacts/parry` | one-shot 1s | 200×112 | Two blades clash: their edges flash in an X, a white four-point star rings out, a ring breaks into arcs and a fan of gold sparks sprays up and rains down. |
 | Ricochet | `impacts/ricochet` | one-shot 1.1s | 232×84 | A tracer streaks down onto the floor, glances off with a white-hot star and skips away at an angle, leaving a glowing skid while sparks skitter along the ground. |
 | Shield block | `impacts/shield-block` | one-shot 1.1s | 148×104 | A blow is caught on a half-dome of energy in front of the character: its diamond lattice flashes, a ripple runs over it, sparks glance off, then it blinks out cell by cell. |
+| Theme hunt impact | `impacts/theme-hunt` | one-shot 0.9s | 192×160 | Three target impacts: a hard crescent cleave, converging shard volley, or ground eruption. Seven materials change debris silhouettes; palette identifies the fourteen themes. |
 
 ## projectiles
 

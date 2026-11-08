@@ -1,0 +1,68 @@
+{
+  "id": "hunt-crystal-slime",
+  "name": "황수정 군체",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-crystal-slime/runtime/idle.png",
+  "pivot": [
+    109,
+    152
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-crystal-slime/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        109,
+        152
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-crystal-slime/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        132,
+        149
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-crystal-slime/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        172,
+        149
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -172,
+        -35
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-crystal-slime/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        120,
+        149
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-crystal-slime/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        122,
+        149
+      ],
+      "loop": false
+    }
+  }
+}

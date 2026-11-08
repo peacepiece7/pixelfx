@@ -1,0 +1,68 @@
+{
+  "id": "hunt-storm-golem",
+  "name": "뇌동의 거신",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-storm-golem/runtime/idle.png",
+  "pivot": [
+    94,
+    156
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-storm-golem/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        94,
+        156
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-storm-golem/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        120,
+        157
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-storm-golem/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        138,
+        144
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -138,
+        -82
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-storm-golem/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        118,
+        149
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-storm-golem/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        108,
+        144
+      ],
+      "loop": false
+    }
+  }
+}

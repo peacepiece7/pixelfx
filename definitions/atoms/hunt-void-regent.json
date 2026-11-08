@@ -1,0 +1,68 @@
+{
+  "id": "hunt-void-regent",
+  "name": "공허의 섭정",
+  "kind": "monster",
+  "renderer": "sprite",
+  "assetPath": "monsters/hunt-void-regent/runtime/idle.png",
+  "pivot": [
+    99,
+    146
+  ],
+  "animations": {
+    "idle": {
+      "path": "monsters/hunt-void-regent/runtime/idle.png",
+      "frames": 6,
+      "fps": 6.0,
+      "pivot": [
+        99,
+        146
+      ],
+      "loop": true
+    },
+    "walk": {
+      "path": "monsters/hunt-void-regent/runtime/walk.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        96,
+        146
+      ],
+      "loop": true
+    },
+    "attack": {
+      "path": "monsters/hunt-void-regent/runtime/attack.png",
+      "frames": 6,
+      "fps": 12.0,
+      "pivot": [
+        136,
+        143
+      ],
+      "loop": false,
+      "hitFrame": 3,
+      "tip": [
+        -101,
+        -58
+      ]
+    },
+    "hit": {
+      "path": "monsters/hunt-void-regent/runtime/hit.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        98,
+        145
+      ],
+      "loop": false
+    },
+    "death": {
+      "path": "monsters/hunt-void-regent/runtime/death.png",
+      "frames": 6,
+      "fps": 8.0,
+      "pivot": [
+        88,
+        142
+      ],
+      "loop": false
+    }
+  }
+}
