@@ -1,0 +1,7 @@
+{
+  "id": "brynhild-hunt-spear-hit",
+  "name": "발키리의 분노 · 창 관통 적중",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "holy/brynhild-spear-hit"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "brynhild-hunt-spear-cast",
+  "name": "발키리의 분노 · 제자리 도약 후 창 투척",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "moves/brynhild-hunt-spear"
+}
