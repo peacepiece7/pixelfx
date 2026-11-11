@@ -1,0 +1,27 @@
+{
+  "id": "equipment-sample-twilight-necklace",
+  "name": "장비 샘플 · 황혼 성기사단 목걸이",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-sample-twilight-necklace/runtime/twilight-necklace-64.png",
+  "icons": [
+    "equipment-sample-twilight-necklace"
+  ],
+  "sheets": {
+    "64": {
+      "path": "icons/equipment-sample-twilight-necklace/runtime/twilight-necklace-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "icons/equipment-sample-twilight-necklace/runtime/twilight-necklace-96.png",
+      "size": 96
+    },
+    "128": {
+      "path": "icons/equipment-sample-twilight-necklace/runtime/twilight-necklace-128.png",
+      "size": 128
+    }
+  },
+  "labels": {
+    "equipment-sample-twilight-necklace": "황혼 성기사단 목걸이"
+  }
+}

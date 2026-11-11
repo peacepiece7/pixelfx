@@ -1,0 +1,27 @@
+{
+  "id": "equipment-sample-frost-ring",
+  "name": "장비 샘플 · 서리 묘역 반지",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-sample-frost-ring/runtime/frost-ring-64.png",
+  "icons": [
+    "equipment-sample-frost-ring"
+  ],
+  "sheets": {
+    "64": {
+      "path": "icons/equipment-sample-frost-ring/runtime/frost-ring-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "icons/equipment-sample-frost-ring/runtime/frost-ring-96.png",
+      "size": 96
+    },
+    "128": {
+      "path": "icons/equipment-sample-frost-ring/runtime/frost-ring-128.png",
+      "size": 128
+    }
+  },
+  "labels": {
+    "equipment-sample-frost-ring": "서리 묘역 반지"
+  }
+}

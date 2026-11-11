@@ -1,0 +1,27 @@
+{
+  "id": "equipment-sample-abyss-rod",
+  "name": "장비 샘플 · 심연 수정단 로드",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-sample-abyss-rod/runtime/abyss-rod-64.png",
+  "icons": [
+    "equipment-sample-abyss-rod"
+  ],
+  "sheets": {
+    "64": {
+      "path": "icons/equipment-sample-abyss-rod/runtime/abyss-rod-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "icons/equipment-sample-abyss-rod/runtime/abyss-rod-96.png",
+      "size": 96
+    },
+    "128": {
+      "path": "icons/equipment-sample-abyss-rod/runtime/abyss-rod-128.png",
+      "size": 128
+    }
+  },
+  "labels": {
+    "equipment-sample-abyss-rod": "심연 수정단 로드"
+  }
+}

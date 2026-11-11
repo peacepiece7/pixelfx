@@ -1,0 +1,36 @@
+{
+  "id": "fame-runes",
+  "name": "페임 스킬·직업 룬 각인 13종",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/fame-runes/runtime/runes-common.png",
+  "icons": [
+    "fame-overloaded-core-rune",
+    "fame-poison-feast-rune",
+    "fame-corrosive-blood-rune",
+    "fame-toxic-release-rune",
+    "fame-venom-crush-rune",
+    "fame-solitary-poison-rune",
+    "fame-toxic-cycle-job",
+    "fame-resistant-tissue-job",
+    "fame-residual-venom-job",
+    "fame-rupture-conduction-job",
+    "fame-solitary-heart-job",
+    "fame-condensed-toxin-job",
+    "fame-toxic-echo-job"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/fame-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/fame-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/fame-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

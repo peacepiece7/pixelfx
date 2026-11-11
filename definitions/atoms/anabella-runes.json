@@ -1,0 +1,24 @@
+{
+  "id": "anabella-runes",
+  "name": "아나벨라 필살기 룬 각인 1종",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/anabella-runes/runtime/runes-common.png",
+  "icons": [
+    "anabella-trial-ultimate-rune"
+  ],
+  "sheets": {
+    "common": {
+      "path": "icons/anabella-runes/runtime/runes-common.png",
+      "size": 32
+    },
+    "rare": {
+      "path": "icons/anabella-runes/runtime/runes-rare.png",
+      "size": 32
+    },
+    "unique": {
+      "path": "icons/anabella-runes/runtime/runes-unique.png",
+      "size": 32
+    }
+  }
+}

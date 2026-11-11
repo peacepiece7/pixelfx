@@ -1,0 +1,27 @@
+{
+  "id": "equipment-sample-frontier-chest",
+  "name": "장비 샘플 · 변경 수비대 흉갑",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-sample-frontier-chest/runtime/frontier-chest-64.png",
+  "icons": [
+    "equipment-sample-frontier-chest"
+  ],
+  "sheets": {
+    "64": {
+      "path": "icons/equipment-sample-frontier-chest/runtime/frontier-chest-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "icons/equipment-sample-frontier-chest/runtime/frontier-chest-96.png",
+      "size": 96
+    },
+    "128": {
+      "path": "icons/equipment-sample-frontier-chest/runtime/frontier-chest-128.png",
+      "size": 128
+    }
+  },
+  "labels": {
+    "equipment-sample-frontier-chest": "변경 수비대 흉갑"
+  }
+}

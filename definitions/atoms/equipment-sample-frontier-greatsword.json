@@ -1,0 +1,27 @@
+{
+  "id": "equipment-sample-frontier-greatsword",
+  "name": "장비 샘플 · 변경 수비대 대검",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-sample-frontier-greatsword/runtime/frontier-greatsword-64.png",
+  "icons": [
+    "equipment-sample-frontier-greatsword"
+  ],
+  "sheets": {
+    "64": {
+      "path": "icons/equipment-sample-frontier-greatsword/runtime/frontier-greatsword-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "icons/equipment-sample-frontier-greatsword/runtime/frontier-greatsword-96.png",
+      "size": 96
+    },
+    "128": {
+      "path": "icons/equipment-sample-frontier-greatsword/runtime/frontier-greatsword-128.png",
+      "size": 128
+    }
+  },
+  "labels": {
+    "equipment-sample-frontier-greatsword": "변경 수비대 대검"
+  }
+}

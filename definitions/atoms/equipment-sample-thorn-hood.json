@@ -1,0 +1,27 @@
+{
+  "id": "equipment-sample-thorn-hood",
+  "name": "장비 샘플 · 가시 사냥단 후드",
+  "kind": "icon",
+  "renderer": "sprite",
+  "assetPath": "icons/equipment-sample-thorn-hood/runtime/thorn-hood-64.png",
+  "icons": [
+    "equipment-sample-thorn-hood"
+  ],
+  "sheets": {
+    "64": {
+      "path": "icons/equipment-sample-thorn-hood/runtime/thorn-hood-64.png",
+      "size": 64
+    },
+    "96": {
+      "path": "icons/equipment-sample-thorn-hood/runtime/thorn-hood-96.png",
+      "size": 96
+    },
+    "128": {
+      "path": "icons/equipment-sample-thorn-hood/runtime/thorn-hood-128.png",
+      "size": 128
+    }
+  },
+  "labels": {
+    "equipment-sample-thorn-hood": "가시 사냥단 후드"
+  }
+}
