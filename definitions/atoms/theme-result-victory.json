@@ -1,0 +1,17 @@
+{
+  "id": "theme-result-victory",
+  "name": "테마 던전 가로 개편 · 승리 · 제목 뒤 금빛 방사광",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/theme-victory-radiance",
+  "options": {
+    "palette": [
+      "#30203b",
+      "#80502d",
+      "#c48a34",
+      "#efb84f",
+      "#ffdc87",
+      "#fff2c5"
+    ]
+  }
+}

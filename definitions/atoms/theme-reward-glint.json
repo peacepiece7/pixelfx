@@ -1,0 +1,17 @@
+{
+  "id": "theme-reward-glint",
+  "name": "테마 던전 가로 개편 · 실제 획득 보상 · 아이콘 반짝임",
+  "kind": "vfx",
+  "renderer": "effect",
+  "effectId": "ui/theme-reward-glint",
+  "options": {
+    "palette": [
+      "#30203b",
+      "#80502d",
+      "#c48a34",
+      "#efb84f",
+      "#ffdc87",
+      "#fff2c5"
+    ]
+  }
+}
