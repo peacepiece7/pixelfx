@@ -1,0 +1,23 @@
+{
+  "id": "scene-icons-growth-menu",
+  "name": "UI 개편 · 성장 메뉴 카드 아이콘 4종 (재요청: v1 벡터 화풍 불일치)",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-growth-menu/runtime/icons-64.png",
+  "icons": [
+    "level-up-hero",
+    "ability-rune-enhance",
+    "seal-laurel-enhance",
+    "option-reroll-dice"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-growth-menu/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-growth-menu/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "id": "scene-icons-materials",
+  "name": "UI 개편 · 성장/가공 재료 아이콘 10종",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-icons-materials/runtime/icons-64.png",
+  "icons": [
+    "herb",
+    "resin",
+    "dust",
+    "leather",
+    "spirit-stone",
+    "extract",
+    "reroll-stone",
+    "elite-scroll",
+    "reset-stone",
+    "stable-scroll"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-icons-materials/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-icons-materials/runtime/icons-64.png",
+      "size": 64
+    }
+  }
+}

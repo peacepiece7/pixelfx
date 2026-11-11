@@ -1,0 +1,31 @@
+{
+  "id": "scene-management-panel-frame",
+  "name": "UI 개편 · 관리 화면 금색 패널 모서리 장식 · 정지 시트",
+  "renderer": "sprite",
+  "kind": "icon",
+  "assetPath": "ui/scene-management-panel-frame/runtime/icons-64.png",
+  "icons": [
+    "corner-top-left",
+    "corner-top-right",
+    "corner-bottom-left",
+    "corner-bottom-right",
+    "top-crest",
+    "divider-diamond",
+    "result-laurel",
+    "tab-ornament"
+  ],
+  "sheets": {
+    "32": {
+      "path": "ui/scene-management-panel-frame/runtime/icons-32.png",
+      "size": 32
+    },
+    "64": {
+      "path": "ui/scene-management-panel-frame/runtime/icons-64.png",
+      "size": 64
+    },
+    "128": {
+      "path": "ui/scene-management-panel-frame/runtime/icons-128.png",
+      "size": 128
+    }
+  }
+}
