@@ -1,6 +1,6 @@
 # Catalog
 
-341 effects in 25 categories. Every one is a file in
+344 effects in 25 categories. Every one is a file in
 `src/fx/<category>/<name>.js`; render any of them with `node tools/render.mjs <id> --gif`.
 
 ## cynthia
@@ -463,6 +463,9 @@ level ups, numbers, toasts, countdowns.
 | Management seal activation | `ui/management-seal-activation` | one-shot 0.75s | 200×200 | A thin violet arc with a point of light runs once clockwise round a seal slot and stops, then fades. |
 | Management transcend | `ui/management-transcend` | one-shot 1.25s | 240×280 | Two platform rings at a hero's feet and restrained vertical gold ribbons rising to the chest, then gone. |
 | Quest complete | `ui/quest-complete` | one-shot 2.6s | 204×92 | A stitched ribbon unrolls from the middle, QUEST COMPLETE types on letter by letter, a gold seal stamps down and ticks, stars pop; then it all rolls away. |
+| Theme chapter halo | `ui/theme-chapter-halo` | one-shot 0.9s | 360×220 | Upright brass halo and opening side arcs celebrate a first chapter clear, with a protected title and rising embers. |
+| Theme reward glint | `ui/theme-reward-glint` | one-shot 0.55s | 96×96 | A short gold sweep and two opposite corner glints frame a reward icon, keeping its centre and quantity clear. |
+| Theme victory radiance | `ui/theme-victory-radiance` | one-shot 1.2s | 360×200 | Broad uneven brass rays open behind a protected title, then gold dust settles. No text or badge. |
 
 ## pickups
 

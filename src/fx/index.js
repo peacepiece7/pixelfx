@@ -307,6 +307,9 @@ import * as ui_management_scroll_result from "./ui/management-scroll-result.js";
 import * as ui_management_seal_activation from "./ui/management-seal-activation.js";
 import * as ui_management_transcend from "./ui/management-transcend.js";
 import * as ui_quest_complete from "./ui/quest-complete.js";
+import * as ui_theme_chapter_halo from "./ui/theme-chapter-halo.js";
+import * as ui_theme_reward_glint from "./ui/theme-reward-glint.js";
+import * as ui_theme_victory_radiance from "./ui/theme-victory-radiance.js";
 import * as pickups_chest_open from "./pickups/chest-open.js";
 import * as pickups_coin_spin from "./pickups/coin-spin.js";
 import * as pickups_collect_burst from "./pickups/collect-burst.js";
@@ -652,6 +655,9 @@ export const effects = {
   "ui/management-seal-activation": ui_management_seal_activation,
   "ui/management-transcend": ui_management_transcend,
   "ui/quest-complete": ui_quest_complete,
+  "ui/theme-chapter-halo": ui_theme_chapter_halo,
+  "ui/theme-reward-glint": ui_theme_reward_glint,
+  "ui/theme-victory-radiance": ui_theme_victory_radiance,
   "pickups/chest-open": pickups_chest_open,
   "pickups/coin-spin": pickups_coin_spin,
   "pickups/collect-burst": pickups_collect_burst,

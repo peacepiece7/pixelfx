@@ -4,7 +4,7 @@
 
 # pixelfx.
 
-**<!-- count -->341<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
+**<!-- count -->344<!-- /count --> pixel art effects and animations, every one a small piece of code.** Fire,
 explosions, magic, weather, UI, pickups, critters and more. Play them live, recolor and mirror them, drop them into
 a browser game, or export sprite sheets for any engine. Plus a Claude Code skill that makes new ones the way a
 picky pixel artist would: draft, render, look, refine.
@@ -47,7 +47,7 @@ the idea at library scale, with a skill to keep going.
 | **poison** | 10 | venom mine burst, venom mine burst · green spawn portal, poison arrow, poisoned venom drips, poison dagger, poison detonation… |
 | **nature** | 14 | acid splash, boulder, earth spike, healing bloom, leaf storm, poison cloud… |
 | **weather** | 14 | abyss crystal motes, aurora, blizzard, cherry blossoms, clouds, embers… |
-| **ui** | 24 | abyss boss signal, abyss defeat ash, abyss loot glint, abyss milestone halo, abyss victory radiance, achievement… |
+| **ui** | 27 | abyss boss signal, abyss defeat ash, abyss loot glint, abyss milestone halo, abyss victory radiance, achievement… |
 | **pickups** | 11 | chest open, coin spin, collect burst, crystal shard, gem spin, heart pickup… |
 | **transitions** | 11 | abyss depth wipe, blinds, burn away, crt off, diamond wipe, glitch wipe… |
 | **critters** | 12 | bat, bird, butterfly, eyeball, fish school, flying skull… |
