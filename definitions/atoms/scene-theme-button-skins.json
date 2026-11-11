@@ -1,0 +1,17 @@
+{
+  "id": "scene-theme-button-skins",
+  "name": "테마 던전 가로 개편 · 공통 버튼 스킨 6종 (정지 상태 파츠)",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "ui/scene-theme-button-skins/runtime/parts.png",
+  "width": 2784,
+  "height": 128,
+  "icons": [
+    "primary-normal",
+    "primary-pressed",
+    "secondary-normal",
+    "secondary-pressed",
+    "disabled",
+    "tab-selected"
+  ]
+}

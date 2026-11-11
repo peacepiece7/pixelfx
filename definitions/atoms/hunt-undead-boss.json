@@ -1,0 +1,9 @@
+{
+  "id": "hunt-undead-boss",
+  "name": "보스 헌트 · 언데드 기본 보스 모델",
+  "kind": "environment",
+  "renderer": "image",
+  "assetPath": "monsters/hunt-undead-boss/runtime/parts.png",
+  "width": 1152,
+  "height": 320
+}
